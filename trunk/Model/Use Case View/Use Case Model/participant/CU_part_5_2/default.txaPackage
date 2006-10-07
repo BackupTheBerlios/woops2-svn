@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<nodeSet  version="1.1">
+	<node uin="8qvhpeiloc27c-p1sgu3">
+		<property name="$metaclass" value="Use Case"/>
+		<property name="$name" value="CU_part_5_2"/>
+		<property name="@url" value="element://model:project::Woops/design:view:::V21xx84egp0psd5-csv2ux"/>
+	</node>
+	<node uin="8rj5leiloc28k-lay5t2">
+		<property name="$metaclass" value="Note"/>
+		<property name="$name" value="Note1"/>
+		<property name="$note_text" value="Terminer une activité"/>
+		<link uin="c3skaeiloc28k-8a8z7c">
+			<property name="$metaclass" value="Note Link"/>
+			<participant referencedUin="design:node:::8rj5leiloc28k-lay5t2" role="Client"></participant>
+			<participant referencedUin="design:node:::8qvhpeiloc27c-p1sgu3" role="Supplier"></participant>
+		</link>
+	</node>
+</nodeSet>

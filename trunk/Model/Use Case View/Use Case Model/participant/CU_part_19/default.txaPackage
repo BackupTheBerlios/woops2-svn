@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<nodeSet  version="1.1">
+	<node uin="35kpyekjv4jcyl11upe">
+		<property name="$metaclass" value="Use Case"/>
+		<property name="$name" value="CU_part_19 "/>
+		<link uin="ieje0rekjv8ipz-rciapv">
+			<property name="$metaclass" value="Association Link"/>
+			<property name="@stereotype" value="communicate"/>
+			<participant referencedUin="design:node:::35kpyekjv4jcyl11upe" role="Client"></participant>
+			<participant referencedUin="design:node:::18bnieiloctvb-nkrnnd" role="Supplier"></participant>
+		</link>
+	</node>
+	<node uin="1g64yekjv5zbmx997ri">
+		<property name="$metaclass" value="Note"/>
+		<property name="$name" value="Note1"/>
+		<property name="$note_text" value="Créer une tâche associée à un évènement"/>
+		<link uin="ieje0rekjv72tx-v5vi1e">
+			<property name="$metaclass" value="Note Link"/>
+			<participant referencedUin="design:node:::1g64yekjv5zbmx997ri" role="Client"></participant>
+			<participant referencedUin="design:node:::35kpyekjv4jcyl11upe" role="Supplier"></participant>
+		</link>
+	</node>
+</nodeSet>
