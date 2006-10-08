@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<nodeSet  version="1.1">
+	<view uin="e1ucqefy0qm4tec39ky">
+		<property name="$defaultDiagram" value="true"/>
+		<property name="$metaclass" value="Package Diagram"/>
+		<reference referencedUin="jdt:e_class:src:business.activity.Activity">
+			<property name="bounds" value="259,9,140,171"/>
+			<property name="location_set_by_user" value="true"/>
+			<property name="collapsedCompartments" value=""/>
+			<property name="hideOperation" value="true"/>
+			<property name="hideAttribute" value="true"/>
+			<reference referencedUin="jdt:l_ast:src:business.activity.Activity:listActivitiesSequences">
+				<property name="sourceAnchor" value="224,212"/>
+				<property name="targetAnchor" value="224,328"/>
+				<reference referencedUin="label:$associationRoleSupplierInplace:jdt:l_ast:src:business.activity.Activity:listActivitiesSequences">
+					<property name="bounds" value="159,225,62,17"/>
+				</reference>
+				<reference referencedUin="label:clientCardinality:jdt:l_ast:src:business.activity.Activity:listActivitiesSequences">
+					<property name="bounds" value="227,215,10,17"/>
+				</reference>
+				<reference referencedUin="label:supplierCardinality:jdt:l_ast:src:business.activity.Activity:listActivitiesSequences">
+					<property name="bounds" value="227,301,20,17"/>
+				</reference>
+				<reference referencedUin="label:$associationRoleClientInplace:jdt:l_ast:src:business.activity.Activity:listActivitiesSequences">
+					<property name="bounds" value="109,291,112,17"/>
+				</reference>
+			</reference>
+			<reference referencedUin="jdt:l_ast:src:business.activity.Activity:lnkActivitySequence1">
+				<property name="location_set_by_user" value="true"/>
+				<property name="sourceAnchor" value="140,80"/>
+				<property name="targetAnchor" value="420,80"/>
+				<reference referencedUin="label:supplierCardinality:jdt:l_ast:src:business.activity.Activity:lnkActivitySequence1">
+					<property name="bounds" value="380,80,24,17"/>
+					<property name="weight" value="0.8571428571428571"/>
+					<property name="location_set_by_user" value="true"/>
+				</reference>
+				<reference referencedUin="label:clientCardinality:jdt:l_ast:src:business.activity.Activity:lnkActivitySequence1">
+					<property name="bounds" value="160,80,10,17"/>
+					<property name="weight" value="0.07142857142857142"/>
+					<property name="location_set_by_user" value="true"/>
+				</reference>
+				<reference referencedUin="label:$associationRoleClientInplace:jdt:l_ast:src:business.activity.Activity:lnkActivitySequence1">
+					<property name="weight" value="0.6428571428571429"/>
+					<property name="bounds" value="320,60,79,17"/>
+					<property name="location_set_by_user" value="true"/>
+				</reference>
+				<reference referencedUin="label:$associationRoleSupplierInplace:jdt:l_ast:src:business.activity.Activity:lnkActivitySequence1">
+					<property name="weight" value="0.07142857142857142"/>
+					<property name="bounds" value="160,60,51,17"/>
+					<property name="location_set_by_user" value="true"/>
+				</reference>
+			</reference>
+			<reference referencedUin="property:e_property:jdt=e_class=src=business.activity.Activity:bdeId">
+			</reference>
+			<reference referencedUin="jdt:l_ast:src:business.activity.Activity:state">
+				<property name="sourceAnchor" value="307,120"/>
+				<property name="targetAnchor" value="420,120"/>
+			</reference>
+			<reference referencedUin="jdt:l_dpn:src:business.activity.Activity:lnkIActivityState">
+				<property name="sourceAnchor" value="268,143"/>
+				<property name="targetAnchor" value="400,96"/>
+				<reference referencedUin="label:supplierRole:jdt:l_dpn:src:business.activity.Activity:lnkIActivityState">
+					<property name="bounds" value="220,0,85,17"/>
+					<property name="weight" value="0.05511811023622047"/>
+					<property name="location_set_by_user" value="true"/>
+				</reference>
+			</reference>
+			<reference referencedUin="jdt:e_field:src:business.activity.Activity.serialVersionUID">
+			</reference>
+			<reference referencedUin="jdt:e_field:src:business.activity.Activity.linkToSuccessor">
+			</reference>
+			<reference referencedUin="property:e_property:jdt=e_class=src=business.activity.Activity:state">
+			</reference>
+			<reference referencedUin="jdt:l_ast:src:business.activity.Activity:linkToSuccessor">
+				<property name="sourceAnchor" value="260,208"/>
+				<property name="targetAnchor" value="260,324"/>
+				<property name="location_set_by_user" value="true"/>
+				<reference referencedUin="label:$associationRoleClientInplace:jdt:l_ast:src:business.activity.Activity:linkToSuccessor">
+					<property name="bounds" value="280,260,83,17"/>
+					<property name="weight" value="0.4482758620689655"/>
+					<property name="location_set_by_user" value="true"/>
+				</reference>
+				<reference referencedUin="label:$associationRoleSupplierInplace:jdt:l_ast:src:business.activity.Activity:linkToSuccessor">
+					<property name="bounds" value="280,220,52,17"/>
+					<property name="weight" value="0.10344827586206896"/>
+					<property name="location_set_by_user" value="true"/>
+				</reference>
+				<reference referencedUin="label:supplierCardinality:jdt:l_ast:src:business.activity.Activity:linkToSuccessor">
+					<property name="bounds" value="280,300,20,17"/>
+					<property name="weight" value="0.7931034482758621"/>
+					<property name="location_set_by_user" value="true"/>
+				</reference>
+				<reference referencedUin="label:clientCardinality:jdt:l_ast:src:business.activity.Activity:linkToSuccessor">
+					<property name="bounds" value="160,220,10,17"/>
+					<property name="weight" value="0.10344827586206896"/>
+					<property name="location_set_by_user" value="true"/>
+				</reference>
+				<reference referencedUin="label:$clientQualifier:jdt:l_ast:src:business.activity.Activity:linkToSuccessor">
+				</reference>
+			</reference>
+		</reference>
+		<reference referencedUin="jdt:e_class:src:business.activity.ActivitySequence">
+			<property name="bounds" value="123,323,165,135"/>
+			<property name="location_set_by_user" value="true"/>
+			<reference referencedUin="jdt:l_ast:src:business.activity.ActivitySequence:predecessor">
+				<property name="$hidden" value="true"/>
+			</reference>
+			<reference referencedUin="jdt:l_ast:src:business.activity.ActivitySequence:successor">
+				<property name="location_set_by_user" value="true"/>
+				<property name="sourceAnchor" value="420,100"/>
+				<property name="targetAnchor" value="120,100"/>
+				<property name="$hidden" value="true"/>
+			</reference>
+			<reference referencedUin="jdt:l_ast:src:business.activity.ActivitySequence:linkType">
+				<property name="sourceAnchor" value="293,362"/>
+				<property name="targetAnchor" value="389,362"/>
+			</reference>
+		</reference>
+		<reference referencedUin="jdt:e_class:src:business.activity.IActivityState">
+			<property name="bounds" value="415,75,88,80"/>
+			<property name="location_set_by_user" value="true"/>
+			<property name="collapsedCompartments" value="Operation"/>
+			<reference referencedUin="label:$name:jdt:e_class:src:business.activity.IActivityState">
+				<property name="bounds" value="464,170,0,0"/>
+			</reference>
+		</reference>
+		<reference referencedUin="jdt:e_class:src:business.activity.CreatedActivity">
+			<property name="bounds" value="575,0,96,80"/>
+			<property name="location_set_by_user" value="true"/>
+			<property name="collapsedCompartments" value=""/>
+			<reference referencedUin="jdt:l_impl:src:business.activity.CreatedActivity:IActivityState">
+				<property name="sourceAnchor" value="580,82"/>
+				<property name="targetAnchor" value="508,82"/>
+			</reference>
+			<reference referencedUin="jdt:e_method:src:business.activity.CreatedActivity.process:process">
+				<property name="bounds" value="5,-25,94,13"/>
+			</reference>
+		</reference>
+		<reference referencedUin="jdt:e_class:src:business.activity.InProgressActivity">
+			<property name="bounds" value="609,100,114,80"/>
+			<property name="location_set_by_user" value="true"/>
+			<reference referencedUin="jdt:l_impl:src:business.activity.InProgressActivity:IActivityState">
+				<property name="sourceAnchor" value="614,132"/>
+				<property name="targetAnchor" value="508,132"/>
+			</reference>
+		</reference>
+		<reference referencedUin="jdt:e_class:src:business.activity.FinishedActivity">
+			<property name="bounds" value="555,215,99,80"/>
+			<property name="location_set_by_user" value="true"/>
+			<reference referencedUin="jdt:l_impl:src:business.activity.FinishedActivity:IActivityState">
+				<property name="sourceAnchor" value="567,220"/>
+				<property name="targetAnchor" value="505,160"/>
+			</reference>
+		</reference>
+		<reference referencedUin="jdt:e_class:src:business.activity.ActivitySequenceType">
+			<property name="bounds" value="384,319,134,138"/>
+			<property name="location_set_by_user" value="true"/>
+		</reference>
+		<reference referencedUin="jdt:e_class:src:business.activity.ActivityManager">
+			<property name="bounds" value="378,164,169,148"/>
+			<property name="location_set_by_user" value="true"/>
+			<property name="$hidden" value="true"/>
+			<reference referencedUin="jdt:l_ast:src:business.activity.ActivityManager:instance">
+				<property name="sourceAnchor" value="421,283"/>
+				<property name="targetAnchor" value="417,287"/>
+				<property name="bendpoints" value="450,283,450,316,417,316"/>
+				<property name="smooth_bendpoints" value="450,283,450,316,417,316"/>
+			</reference>
+			<reference referencedUin="jdt:l_ast:src:business.activity.ActivityManager:activityDAO">
+				<property name="sourceAnchor" value="414,165"/>
+				<property name="targetAnchor" value="414,146"/>
+			</reference>
+			<reference referencedUin="jdt:l_ast:src:business.activity.ActivityManager:dao">
+				<property name="sourceAnchor" value="354,165"/>
+				<property name="targetAnchor" value="354,146"/>
+			</reference>
+			<reference referencedUin="jdt:l_ast:src:business.activity.ActivityManager:activityManager">
+				<property name="sourceAnchor" value="504,296"/>
+				<property name="targetAnchor" value="500,300"/>
+				<property name="bendpoints" value="533,296,533,329,500,329"/>
+				<property name="smooth_bendpoints" value="533,296,533,329,500,329"/>
+			</reference>
+			<reference referencedUin="jdt:e_method:src:business.activity.ActivityManager.getActivitiesByUser1:getActivitiesByUser1~QInteger;">
+				<property name="bounds" value="6,-22,0,0"/>
+				<property name="location_set_by_user" value="true"/>
+			</reference>
+		</reference>
+		<reference referencedUin="jdt:e_class:src:business.activity.ActivityDAO">
+			<property name="bounds" value="378,65,102,80"/>
+			<property name="location_set_by_user" value="true"/>
+			<property name="$hidden" value="true"/>
+		</reference>
+		<reference referencedUin="jdt:e_class:src:business.activity.ActivitySequenceTypeManager">
+			<property name="bounds" value="5,9,200,135"/>
+			<property name="location_set_by_user" value="true"/>
+			<reference referencedUin="jdt:l_ast:src:business.activity.ActivitySequenceTypeManager:activitySequenceTypeManager">
+				<property name="sourceAnchor" value="210,145"/>
+				<property name="targetAnchor" value="206,149"/>
+				<property name="bendpoints" value="239,145,239,178,206,178"/>
+				<property name="smooth_bendpoints" value="239,145,239,178,206,178"/>
+			</reference>
+			<reference referencedUin="jdt:l_ast:src:business.activity.ActivitySequenceTypeManager:activitySequenceTypeDAO">
+				<property name="sourceAnchor" value="210,45"/>
+				<property name="targetAnchor" value="229,45"/>
+			</reference>
+		</reference>
+		<reference referencedUin="design:view:::V574ng9egqi0vfp-snsnf1">
+			<property name="bounds" value="5,129,121,110"/>
+			<property name="location_set_by_user" value="true"/>
+		</reference>
+		<reference referencedUin="jdt:e_class:src:business.activity.ActivitySequenceManager">
+			<property name="bounds" value="341,99,200,148"/>
+			<property name="location_set_by_user" value="true"/>
+			<reference referencedUin="jdt:l_ast:src:business.activity.ActivitySequenceManager:activitySequenceManager">
+				<property name="sourceAnchor" value="546,248"/>
+				<property name="targetAnchor" value="542,252"/>
+				<property name="bendpoints" value="575,248,575,281,542,281"/>
+				<property name="smooth_bendpoints" value="575,248,575,281,542,281"/>
+			</reference>
+			<reference referencedUin="jdt:l_ast:src:business.activity.ActivitySequenceManager:activitySequenceDAO">
+				<property name="sourceAnchor" value="546,120"/>
+				<property name="targetAnchor" value="590,98"/>
+			</reference>
+		</reference>
+		<reference referencedUin="jdt:e_class:src:business.activity.ActivitySequenceTypeDAO">
+			<property name="bounds" value="224,0,200,80"/>
+			<property name="location_set_by_user" value="true"/>
+		</reference>
+		<reference referencedUin="jdt:e_class:src:business.activity.ActivitySequenceDAO">
+			<property name="bounds" value="579,0,200,93"/>
+			<property name="location_set_by_user" value="true"/>
+		</reference>
+		<reference referencedUin="design:view:::V574ng9ejbftxzc-3ricxm">
+			<property name="bounds" value="5,9,119,71"/>
+			<property name="location_set_by_user" value="true"/>
+		</reference>
+		<reference referencedUin="design:view:::V574ng9ejg5cz03emp9t0">
+			<property name="bounds" value="144,9,95,71"/>
+			<property name="location_set_by_user" value="true"/>
+		</reference>
+	</view>
+</nodeSet>

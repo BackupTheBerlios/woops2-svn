@@ -1,0 +1,27 @@
+<pre>
+&lt;%@ taglib uri="/WEB-INF/tlds/struts-html.tld" prefix="html" %&gt;
+&lt;%@ taglib uri="/WEB-INF/tlds/cc-controls.tld" prefix="ctrl" %&gt;
+&lt;%@ taglib uri="/WEB-INF/tlds/cc-utility.tld"  prefix="util" %&gt;
+
+&lt;util:imagemap name="im_tabs"&gt;
+    &lt;util:imagemapping  rule="user"  src="app/images/user/user.gif"  width="16"  height="16"/&gt;
+&lt;/util:imagemap&gt;
+
+&lt;ctrl:tabset
+    id="tabset1"
+    name="maintabset"
+    action="sample401/tabsetBrowse"
+    tabs="6"
+    labellength="20"
+    width="650"
+    imagemap="im_tabs"
+    runat="<b>server</b>"&gt;
+
+    &lt;ctrl:tab  id="tab1"  action="/sample401/tabpage1"  title="Books"               content="Tab_Page1.jsp"  tooltip="Books"/&gt;
+    &lt;ctrl:tab  id="tab2"  action="/sample401/tabpage2"  title="Movies & DVD's"      content="Tab_Page2.jsp"  tooltip="Movies"/&gt;
+    &lt;ctrl:tab  id="tab3"  action="/sample401/tabpage3"  title="Musik CD's"          content="Tab_Page3.jsp"  tooltip="Disabled Tab"  enable="false"/&gt;
+    &lt;ctrl:tab  id="tab4"  action="/sample401/tabpage4"  title="Nested TabSet"       content="Tab_Page4.jsp"  tooltip="Demo of a nested TabSet"/&gt;
+    &lt;ctrl:tab  id="<a href="configtabset401_5.html">tab5</a>"  action="/sample401/tabpage5"  title="Simple SVG-Graphic"  content="Tab_Page5.jsp"  tooltip="SVG-Example"/&gt;
+    &lt;ctrl:tab  id="tab6"  action="/sample401/tabpage6"  title="User Profile"        content="Tab_Page6.jsp"  tooltip="User Profile"  imageref="user"/&gt;
+&lt;/ctrl:tabset&gt;
+</pre>

@@ -1,0 +1,26 @@
+<pre>
+&lt;%@ taglib uri="/WEB-INF/tlds/cc-controls.tld" prefix="ctrl" %&gt;
+
+&lt;ctrl:list
+	id="cl1"
+	action="sample106/coinBrowse"
+	name="coins"
+	title="Coins Europe"
+	width="500"
+	rows="5"
+	refreshButton="true"&gt;
+
+	&lt;ctrl:columndrilldown   title="Id"        property="select"       width="20"    <b>filter="false"</b>  onclick="return message();"/&gt;
+	&lt;ctrl:columnhtml        title="Info"      property="html"         width="400"   sortable="true"/&gt;
+	&lt;ctrl:columntext        title="Country"   property="countryName"  width="80"/&gt;
+&lt;/ctrl:list&gt;
+
+&lt;%@ include file="Frontside.jsp"%&gt;
+
+&lt;script&gt;
+	function message() {
+		alert('Drilldown disabled!');
+		return false;
+	}
+&lt;/script&gt;
+</pre>
