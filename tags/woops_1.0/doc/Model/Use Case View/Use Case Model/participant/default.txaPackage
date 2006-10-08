@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<nodeSet  version="1.1">
+	<node uin="18bnieiloctvb-nkrnnd">
+		<property name="$metaclass" value="Actor"/>
+		<property name="$name" value="Participant"/>
+		<link uin="4ihhyeiloctvb-n89585">
+			<property name="$metaclass" value="Association Link"/>
+			<property name="@stereotype" value="communicate"/>
+			<participant referencedUin="design:node:::18bnieiloctvb-nkrnnd" role="Client"></participant>
+			<participant referencedUin="design:node:::7ujy5eiloccdxeagi5x" role="Supplier"></participant>
+		</link>
+		<link uin="63lepeiloctvb-5j0ozx">
+			<property name="$metaclass" value="Association Link"/>
+			<property name="@stereotype" value="communicate"/>
+			<participant referencedUin="design:node:::18bnieiloctvb-nkrnnd" role="Client"></participant>
+			<participant referencedUin="design:node:::bl8xbeilocf5a-5ryvnz" role="Supplier"></participant>
+		</link>
+		<link uin="j6l12eiloctvcsqbyks">
+			<property name="$metaclass" value="Association Link"/>
+			<property name="@stereotype" value="communicate"/>
+			<participant referencedUin="design:node:::18bnieiloctvb-nkrnnd" role="Client"></participant>
+			<participant referencedUin="design:node:::9p9xieiloc4sy-luk6ti" role="Supplier"></participant>
+		</link>
+		<link uin="gmv1eeiloctvculrvyu">
+			<property name="$metaclass" value="Association Link"/>
+			<property name="@stereotype" value="communicate"/>
+			<participant referencedUin="design:node:::18bnieiloctvb-nkrnnd" role="Client"></participant>
+			<participant referencedUin="design:node:::8qvhpeiloc27c-p1sgu3" role="Supplier"></participant>
+		</link>
+		<link uin="316pbeiloctvcsvhliw">
+			<property name="$metaclass" value="Association Link"/>
+			<property name="@stereotype" value="communicate"/>
+			<participant referencedUin="design:node:::18bnieiloctvb-nkrnnd" role="Client"></participant>
+			<participant referencedUin="design:node:::3x12eilocioft3msoo" role="Supplier"></participant>
+		</link>
+		<link uin="71dc8eiloctvdu9xtem">
+			<property name="$metaclass" value="Association Link"/>
+			<property name="@stereotype" value="communicate"/>
+			<participant referencedUin="design:node:::18bnieiloctvb-nkrnnd" role="Client"></participant>
+			<participant referencedUin="design:node:::55xt0eiloc9v5r6mrqf" role="Supplier"></participant>
+		</link>
+		<link uin="iur6eiloctvdf5zkpo">
+			<property name="$metaclass" value="Association Link"/>
+			<property name="@stereotype" value="communicate"/>
+			<participant referencedUin="design:node:::18bnieiloctvb-nkrnnd" role="Client"></participant>
+			<participant referencedUin="design:node:::1jrxweiloc02xxd3h72" role="Supplier"></participant>
+		</link>
+		<link uin="700ozeiloctvd-jcjswm">
+			<property name="$metaclass" value="Association Link"/>
+			<property name="@stereotype" value="communicate"/>
+			<participant referencedUin="design:node:::18bnieiloctvb-nkrnnd" role="Client"></participant>
+			<participant referencedUin="design:node:::51dnfeilobtmksdvrbp" role="Supplier"></participant>
+		</link>
+		<link uin="dscx7eiloctvdxiyr16">
+			<property name="$metaclass" value="Association Link"/>
+			<property name="@stereotype" value="communicate"/>
+			<participant referencedUin="design:node:::18bnieiloctvb-nkrnnd" role="Client"></participant>
+			<participant referencedUin="design:node:::2wbf6eilobq7b-82dllp" role="Supplier"></participant>
+		</link>
+		<link uin="jvjn0eiloctveijjl2z">
+			<property name="$metaclass" value="Association Link"/>
+			<property name="@stereotype" value="communicate"/>
+			<participant referencedUin="design:node:::18bnieiloctvb-nkrnnd" role="Client"></participant>
+			<participant referencedUin="design:node:::b56sleiloay3calr8ic" role="Supplier"></participant>
+		</link>
+		<link uin="ieje0reilpu96b8lsikw">
+			<property name="$metaclass" value="Association Link"/>
+			<property name="@stereotype" value="communicate"/>
+			<participant referencedUin="design:node:::18bnieiloctvb-nkrnnd" role="Client"></participant>
+			<participant referencedUin="design:node:::-4lk713eilpttum-xh5fv6" role="Supplier"></participant>
+		</link>
+		<link uin="ieje0reilpwd7e-o6will">
+			<property name="$metaclass" value="Association Link"/>
+			<property name="@stereotype" value="communicate"/>
+			<participant referencedUin="design:node:::18bnieiloctvb-nkrnnd" role="Client"></participant>
+			<participant referencedUin="design:node:::-4lk713eilpvzgrdhlold" role="Supplier"></participant>
+		</link>
+		<link uin="ieje0reilpy2ttj4vtan">
+			<property name="$metaclass" value="Association Link"/>
+			<property name="@stereotype" value="communicate"/>
+			<participant referencedUin="design:node:::18bnieiloctvb-nkrnnd" role="Client"></participant>
+			<participant referencedUin="design:node:::-4lk713eilpxojw-nun1ko" role="Supplier"></participant>
+		</link>
+	</node>
+</nodeSet>

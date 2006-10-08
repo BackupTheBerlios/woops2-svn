@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd" >
+
+<hibernate-mapping package="business.activity.state">
+	<class name="business.activity.state.IActivityState" table="ActivityState">
+		
+
+		
+		<!-- nom de l'état : cet attribut est manipulé par Hibernate pour distinguer un état  -->
+		<!-- et ne peut don pas être modifié -->
+		<id
+			column="name"
+			name="name"
+			type="string" 
+		>
+			<!-- l'identifiant est fourni par l'application --> 
+			<generator class="assigned" />
+		</id>
+		
+		<!-- colonne permettant d'identifier l'état -->
+		<discriminator column="name" type="string" insert="false" />
+		
+		<!-- différents états possibles -->
+		<subclass name="CreatedActivityState" discriminator-value="created" />
+		<subclass name="InProgressActivityState" discriminator-value="inProgress">
+			<property name="progress" column="progress" type="integer"/>
+		</subclass>
+		<subclass name="FinishedActivityState" discriminator-value="finished" />
+	
+	</class>	
+</hibernate-mapping>

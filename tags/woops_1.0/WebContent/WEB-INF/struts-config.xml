@@ -1,0 +1,359 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN" "http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">
+<struts-config>
+
+	<!-- Form Beans -->
+   	<form-beans >
+   
+		<form-bean name="listActivitiesForm" type="view.activity.performing.ListActivitiesForm" />
+		<form-bean name="listFreeActivitiesForm" type="view.activity.performing.ListFreeActivitiesForm" />
+		<form-bean name="manageActivityCreationForm" type="view.activity.manage.ManageActivityCreationForm" />
+		<form-bean name="manageActivityDependancesForm" type="view.activity.manage.ManageActivityDependancesForm" />
+	  	<form-bean name="manageDependancesTypesForm" type="view.activity.manage.ManageDependancesTypesForm" />
+		<form-bean name="showActivitySummaryForm" type="view.activity.summary.ShowActivitySummaryForm" />
+		<form-bean name="showActivityGraphForm" type="view.activity.graph.ShowActivityGraphForm" />
+	  	<form-bean name="loginForm" type="view.logon.LoginForm" />
+	  
+	  	<form-bean name="emptyForm" type="view.common.EmptyForm"/>
+	  	
+	  	<form-bean name="adminForm" type="view.admin.AdminForm" />  
+	  	<form-bean name="addUserForm" type="view.user.AddUserForm" />
+	  	<form-bean name="addBreakdownElementForm" type="view.breakdownelement.create.AddBreakdownElementForm" />  
+	  	<form-bean name="showUserSummaryForm" type="view.user.summary.ShowUserSummaryForm" />
+	  	<form-bean name="showBdeSummaryForm" type="view.breakdownelement.summary.ShowBdeSummaryForm" />
+	  	<form-bean name="showTeamActivitiesSummaryForm" type="view.activity.summary.ShowTeamActivitiesSummaryForm" />
+	  	<form-bean name="importFileForm" type="view.breakdownelement.importactivities.ImportFileForm" />
+	  	<form-bean name="manageDpeForm" type="view.breakdownelement.importactivities.ManageDpeForm" />
+	  	
+	  	<form-bean name="listEventsForm" type="view.activity.event.ListEventsForm" />
+	  	<form-bean name="updateEventForm" type="view.activity.event.UpdateEventForm" />
+	  	
+	  	
+	</form-beans>
+
+
+   	<!-- Global Exceptions -->
+   	<global-exceptions />
+
+
+   	<!-- Global Forwards -->
+   	<global-forwards>
+		<forward name="index" path="/index.jsp"/>
+		<forward name="nosession" path="/html/logon/loginUser.jsp"/>
+		<forward name="logout" path="/logoutUser.do"/>
+		<forward name="admin" path="/admin.do"/>
+		<forward name="dev" path="/listActivities.do"/>
+   	</global-forwards>
+
+
+	<!-- Action Mappings -->
+   	<action-mappings >
+
+<!-- ================= List Activities ================ -->  
+		<action path="/listActivities"	 type="view.activity.performing.ListActivitiesAction"
+      		name="listActivitiesForm"
+      	 	scope="session"
+      	 	roles="#dev"
+      	 	input="/html/participant/activity/performing/listActivities.jsp"
+      	 >
+         	<forward name="error" path="/html/logon/loginUser.jsp" />
+         	<forward name="success" path="/html/participant/activity/performing/listActivities.jsp" />
+         	<forward name="action" path="/listActivities.do"/>
+         	<forward name="edit" path="/manageActivityCreation.do"/>
+         	<forward name="drillDown" path="/showActivitySummary.do"/>
+      	</action>
+      	
+<!-- ================= List Free Activities ================ -->  
+		<action path="/listFreeActivities"	 type="view.activity.performing.ListFreeActivitiesAction"
+      		name="listFreeActivitiesForm"
+      	 	scope="session"
+      	 	roles="#dev"
+      	 	input="/html/participant/activity/performing/listFreeActivities.jsp"
+      	 >
+         	<forward name="error" path="/html/participant/activity/performing/listFreeActivities.jsp" />
+         	<forward name="success" path="/html/participant/activity/performing/listFreeActivities.jsp" />
+         	<forward name="action" path="/listActivities.do"/>
+         	<forward name="edit" path="/manageActivityCreation.do"/>
+         	<forward name="drillDown" path="/showActivitySummary.do"/>
+      	</action>
+      	
+     	
+  <!-- ================= Historized Activities ================ -->  
+		<action path="/historizedActivities"	 type="view.activity.history.HistorizedActivitiesAction"
+      		name="listActivitiesForm"
+      	 	scope="session"
+      	 	roles="#dev"
+      	 	input="/html/participant/activity/history/historizedActivities.jsp"
+      	 >
+         	<forward name="error" path="/html/participant/activity/history/historizedActivities.jsp"  />
+         	<forward name="success" path="/html/participant/activity/history/historizedActivities.jsp" />
+         	<forward name="action" path="historizedActivities.do"/>
+         	<forward name="drillDown" path="/showActivitySummary.do"/>
+      	</action>
+      	
+<!-- ================= Changement de processus ================ -->  
+		<action path="/changeBDE"	 type="view.breakdownelement.ChangeBreakdownElementAction"
+      		name="listActivitiesForm"
+      	 	scope="session"
+      	 	roles="#dev"
+      	 	input="/listActivities.do"
+      	 >
+         	<forward name="error" path="/html/participant/activity/performing/listActivities.jsp" />
+      	</action>   
+           
+           
+<!-- ================= Manage Activity Dependances ================ -->  
+      	<action path="/manageActivityDependances"	 type="view.activity.manage.ManageActivityDependancesAction"
+      	 	attribute="manageActivityDependancesForm"
+         	name="manageActivityDependancesForm"
+		 	validate="false"      
+         	scope="request"
+         	roles="#dev"
+         	input="/html/participant/activity/manage/manageActivityDependances.jsp"
+         >
+         	<forward name="success" path="/html/participant/activity/manage/manageActivityDependances.jsp" />
+         	<forward name="error" path="/html/participant/activity/manage/manageActivityDependances.jsp" />
+         	<forward name="finish" path="/listActivities.do"/>
+         	<forward name="finishListFreeActivities" path="/listFreeActivities.do"/>
+        	<forward name="next" path="/manageDependancesTypes.do"/>
+        	<forward name="previous" path="/manageActivityCreation.do"/>
+      	</action>
+
+
+<!-- ================= Manage Dependances Types ================ -->  
+      	<action path="/manageDependancesTypes"	 type="view.activity.manage.ManageDependancesTypesAction"
+      	 	attribute="manageDependancesTypesForm"
+         	name="manageDependancesTypesForm"
+		 	validate="false"      
+         	scope="request"
+         	roles="#dev"
+         	input="/html/participant/activity/manage/manageDependancesTypes.jsp"
+         >
+         	<forward name="success" path="/html/participant/activity/manage/manageDependancesTypes.jsp" />
+         	<forward name="error" path="/html/participant/activity/manage/manageDependancesTypes.jsp" />
+      		<forward name="finish" path="/listActivities.do"/>
+      		<forward name="finishListFreeActivities" path="/listFreeActivities.do"/>
+        	<forward name="previous" path="/manageActivityDependances.do"/>
+      	</action>
+
+
+<!-- ================= Manage Activity Creation ================ -->  
+    <action path="/manageActivityCreation" type="view.activity.manage.ManageActivityCreationAction"
+    	attribute="manageActivityCreationForm"
+        name="manageActivityCreationForm"
+		validate="false"      
+        scope="request"
+        roles="#dev">
+        <forward name="success" path="/html/participant/activity/manage/manageActivityCreation.jsp" />
+        <forward name="error" path="/manageActivityCreation.do" />
+        <forward name="finish" path="/listActivities.do"/>
+        <forward name="finishListFreeActivities" path="/listFreeActivities.do"/>
+        <forward name="next" path="/manageActivityDependances.do"/>
+        <forward name="previous" path="/listActivities.do"/>
+        <forward name="previousFreeActivity" path="/listFreeActivities.do"/>
+     </action>
+
+<!-- ================= Show Activity Summary ================ -->  
+		<action path="/showActivitySummary"	 type="view.activity.summary.ShowActivitySummaryAction"
+      		name="showActivitySummaryForm"
+      	 	scope="session"
+      	 	roles="#dev"
+      	 >
+         	<forward name="error" path="/showActivitySummary.do" />
+         	<forward name="success" path="/html/participant/activity/summary/showActivitySummary.jsp" />
+      	</action>
+
+
+<!-- ================= Show Activity Graph ================ -->  
+		<action path="/showActivityGraph"	 type="view.activity.graph.ShowActivityGraphAction"
+      		name="showActivityGraphForm"
+      	 	scope="request"
+      	 	roles="#dev"
+      	 >
+         	<forward name="error" path="/html/participant/activity/graph/showActivityGraph.jsp" />
+         	<forward name="success" path="/html/participant/activity/graph/showActivityGraph.jsp" />
+      	</action>
+
+<!-- ================= Login form ================ -->  
+      	<action path="/loginUser"	 type="view.logon.LoginAction"
+     		attribute="loginForm"
+        	name="loginForm"
+			validate="false"      
+        	scope="request"
+        	input="/html/logon/loginUser.jsp">
+        	<forward name="error" path="/html/logon/loginUser.jsp" />
+     	</action>
+
+<!-- ================= Logout form ================ -->  
+      	<action path="/logoutUser"	 type="view.logon.LogoutAction"
+     		attribute="emptyForm"
+        	name="loginForm"
+			validate="false"      
+        	scope="request"
+        	input="/html/logon/loginUser.jsp">
+     	</action>   
+    	
+<!-- ================= Show Activity Summary To Print ================ -->  
+		<action path="/showActivitySummaryToPrint"	 
+			type="view.activity.summary.ShowActivitySummaryAction"
+      		name="showActivitySummaryForm"
+      	 	scope="request"
+      	 	roles="#dev"
+      	 	>
+         	<forward name="error" path="/html/participant/activity/listChangeStateActivities.jsp" />
+         	<forward name="success" path="/html/participant/activity/summary/showActivitySummaryToPrint.jsp" />
+      	</action>
+    	
+ <!-- ================= showTeamActivitiesSummary ================ -->  
+		<action path="/showTeamActivitiesSummary"	 
+			type="view.activity.summary.ShowTeamActivitiesSummaryAction"
+      		name="showTeamActivitiesSummaryForm"
+      	 	scope="session"
+      	 	input="/html/participant/activity/summary/showTeamActivitiesSummary.jsp"
+      	 	roles="#dev"
+      	 	>
+      	 	<forward name="error" path="/html/participant/activity/listChangeStateActivities.jsp" />
+         	<forward name="success" path="/html/participant/activity/summary/showTeamActivitiesSummary.jsp" />
+      	</action>	
+    	
+
+
+<!-- ================= List Events ================ -->  
+		<action path="/listEvents"	 type="view.activity.event.ListEventsAction"
+      		name="listEventsForm"
+      	 	scope="request"
+      	 	roles="#dev"
+      	 	input="/html/participant/activity/event/listEvents.jsp"
+      	 >
+         	<forward name="error" path="/html/participant/activity/event/listEvents.jsp" />
+         	<forward name="edit" path="/updateEvent.do"/>
+         	<forward name="delete" path="/listEvents.do"/>
+         	<forward name="signal" path="/listFreeActivities.do"/>
+      	</action>    	
+    	
+<!-- ================= Update Event ================ -->  
+		<action path="/updateEvent"	 type="view.activity.event.UpdateEventAction"
+      		name="updateEventForm"
+      	 	scope="request"
+      	 	roles="#dev"
+      	 	input="/html/participant/activity/event/updateEvent.jsp"
+      	 >
+         	<forward name="error" path="/html/participant/activity/event/updateEvent.jsp" />
+         	<forward name="finish" path="/listEvents.do"/>
+      	</action>   	
+      	
+      	
+      	
+<!-- ================= Admin / admin ================ -->  
+      	<action path="/admin"	 type="view.admin.AdminAction"
+     		attribute="adminForm"
+        	name="adminForm"
+			validate="false"
+        	scope="session"
+        	roles="#admin"
+        	input="/html/admin/admin.jsp">
+        	<forward name="error" path="/admin.do" />
+        	<forward name="success" path="/admin.do"/>
+        	<forward name="editUser" path="/addUser.do?mode={0}"/>
+        	<forward name="deleteUser" path="/admin.do"/>
+        	<forward name="drillDownBreakdown" path="/showBdeSummary.do"/>
+        	<forward name="drillDownUser" path="/showUserSummary.do"/>
+     	    <forward name="editBreakdown" path="/addBreakdownElement.do?mode={0}"/>
+     	    <forward name="deleteBreakdown" path="/admin.do"/>
+     	    <forward name="import" path="/importFile.do"/>
+     	    <forward name="finishBde" path="/admin.do"/>     	    
+     </action>
+     
+    <!-- ================= Admin / addUser ================ -->  
+  	<action path="/addUser"	 type="view.user.AddUserAction"
+ 		attribute="addUserForm"
+    	name="addUserForm"
+		validate="false"      
+    	scope="request"
+    	roles="#admin"
+    	input="/html/admin/user/addUser.jsp">
+    	<forward name="error" path="/addUser.do" />
+ 	</action>  
+ 	
+ 	<!-- ================= Admin / addBreakdownElement ================ -->  
+  	<action path="/addBreakdownElement"	 type="view.breakdownelement.create.AddBreakdownElementAction"
+ 		attribute="addBreakdownElementForm"
+    	name="addBreakdownElementForm"
+		validate="false"      
+    	scope="request"
+    	roles="#admin"
+    	input="/html/admin/breakdownelement/addBreakdownElement.jsp">
+    	<forward name="error" path="/addBreakdownElement.do" />
+ 	</action>    
+
+<!-- ================= Admin / Show User Summary ================ -->  
+		<action path="/showUserSummary"	 type="view.user.summary.ShowUserSummaryAction"
+      		name="showUserSummaryForm"
+      	 	scope="session"
+      	 	roles="#admin"
+      	 	input="/html/admin/user/summary/showUserSummary.jsp"
+      	 >
+         	<forward name="error" path="/showUserSummary.do" />
+         	<forward name="success" path="/html/admin/user/summary/showUserSummary.jsp" />
+      		<forward name="previous" path="/admin"/>
+      	</action>
+      	
+<!-- ================= Admin / Show BDE Summary ================ -->  
+		<action path="/showBdeSummary"	 type="view.breakdownelement.summary.ShowBdeSummaryAction"
+	  		name="showBdeSummaryForm"
+	  	 	scope="session"
+	  	 	roles="#admin"
+	  	 	input="/html/admin/breakdownelement/summary/showBdeSummary.jsp"
+	  	 >
+	     	<forward name="error" path="/showBdeSummary.do" />
+	     	<forward name="success" path="/html/admin/breakdownelement/summary/showBdeSummary.jsp" />
+	  		<forward name="previous" path="/admin"/>
+	  	</action>
+      	
+<!-- ================= Admin / ImportFile ================ -->        	
+      	<action path="/importFile"	 type="view.breakdownelement.importactivities.ImportFileAction"
+	  		name="importFileForm"
+	  	 	scope="session"
+	  	 	roles="#admin"
+	  	 	input="/html/admin/importActivities/importFile.jsp"
+	  	 >
+	     	<forward name="error" path="/importFile.do" />
+	     	<forward name="success" path="/manageDpe.do" />
+	  		<forward name="previous" path="/importFile.do"/>
+	  	</action>
+	  	
+<!-- ================= Admin / ManageDpe ================ -->        	
+      	<action path="/manageDpe"	 type="view.breakdownelement.importactivities.ManageDpeAction"
+	  		name="manageDpeForm"
+	  	 	scope="session"
+	  	 	roles="#admin"
+	  	 	input="/html/admin/importActivities/manageDpe.jsp"
+	  	 >
+	     	<forward name="error" path="/admin.do" />
+	     	<forward name="success" path="/admin.do" />
+	  		<forward name="previous" path="/manageDpe.do"/>
+	  	</action>
+      	
+<!-- ================= Show Activity Summary To Print ================ -->  
+		<action path="/showActivitySummaryToPrint"	 
+			type="view.activity.summary.ShowActivitySummaryAction"
+      		name="showActivitySummaryForm"
+      	 	scope="request"
+      	 	roles="#admin"
+      	 	>
+         	<forward name="error" path="/showActivitySummary.do" />
+         	<forward name="success" path="/html/participant/activity/summary/showActivitySummaryToPrint.jsp" />
+      	</action>
+      	
+	</action-mappings>
+
+	<!-- RequestProcessor -->
+	<controller
+		nocache="true"
+		processorClass="view.common.WoopsRequestProcessor"/>
+
+	<message-resources parameter="ApplicationResources" />
+	<message-resources parameter="com.cc.framework.FrameworkResources"      key="com.cc.framework.message"/>
+
+</struts-config>
+

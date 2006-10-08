@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<nodeSet  version="1.1">
+	<node uin="8m86bekjv4c7l8zl42d">
+		<property name="$metaclass" value="Use Case"/>
+		<property name="$name" value="CU_part_20 "/>
+		<link uin="ieje0rekjv8f9f-vu82om">
+			<property name="$metaclass" value="Association Link"/>
+			<property name="@stereotype" value="communicate"/>
+			<participant referencedUin="design:node:::8m86bekjv4c7l8zl42d" role="Client"></participant>
+			<participant referencedUin="design:node:::18bnieiloctvb-nkrnnd" role="Supplier"></participant>
+		</link>
+	</node>
+	<node uin="1g64yekjv78ui7cep3q">
+		<property name="$metaclass" value="Note"/>
+		<property name="$name" value="Note1"/>
+		<property name="$note_text" value="Signaler l’occurrence d’un évènement"/>
+		<link uin="ieje0rekjv97le-yovqjk">
+			<property name="$metaclass" value="Note Link"/>
+			<participant referencedUin="design:node:::1g64yekjv78ui7cep3q" role="Client"></participant>
+			<participant referencedUin="design:node:::8m86bekjv4c7l8zl42d" role="Supplier"></participant>
+		</link>
+	</node>
+</nodeSet>

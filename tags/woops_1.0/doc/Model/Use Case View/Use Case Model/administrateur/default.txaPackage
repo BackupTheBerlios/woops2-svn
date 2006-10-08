@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<nodeSet  version="1.1">
+	<node uin="2ck5meiloyyh8120cuu">
+		<property name="$metaclass" value="Actor"/>
+		<property name="$name" value="Administrateur"/>
+		<link uin="937xdeiloyyh869n6kn">
+			<property name="$metaclass" value="Association Link"/>
+			<property name="@stereotype" value="communicate"/>
+			<participant referencedUin="design:node:::2ck5meiloyyh8120cuu" role="Client"></participant>
+			<participant referencedUin="design:node:::6rgeieiloyujp3pvptd" role="Supplier"></participant>
+		</link>
+		<link uin="2bviveiloyyh8m2myu2">
+			<property name="$metaclass" value="Association Link"/>
+			<property name="@stereotype" value="communicate"/>
+			<participant referencedUin="design:node:::2ck5meiloyyh8120cuu" role="Client"></participant>
+			<participant referencedUin="design:node:::tqmleiloywkhio7wax" role="Supplier"></participant>
+		</link>
+	</node>
+</nodeSet>

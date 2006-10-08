@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<nodeSet  version="1.1">
+	<node uin="-4lk713eilpttum-xh5fv6">
+		<property name="$metaclass" value="Use Case"/>
+		<property name="$name" value="CU_part_8"/>
+	</node>
+	<node uin="dsw89eilpv9b7plsvw3">
+		<property name="$metaclass" value="Note"/>
+		<property name="$name" value="Note1"/>
+		<property name="$note_text" value="Créer une activite libre"/>
+		<link uin="cuxlseilpv9b7-4dd4ow">
+			<property name="$metaclass" value="Note Link"/>
+			<participant referencedUin="design:node:::dsw89eilpv9b7plsvw3" role="Client"></participant>
+			<participant referencedUin="design:node:::-4lk713eilpttum-xh5fv6" role="Supplier"></participant>
+		</link>
+	</node>
+</nodeSet>
