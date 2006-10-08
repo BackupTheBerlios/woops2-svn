@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<nodeSet  version="1.1">
+	<view uin="V574ng9ejbftxzc-3ricxm">
+		<property name="$defaultDiagram" value="true"/>
+		<property name="$metaclass" value="Package Diagram"/>
+		<reference referencedUin="jdt:e_class:src:business.activity.sequencetype.ActivitySequenceTypeManager">
+			<property name="bounds" value="285,5,200,148"/>
+			<property name="location_set_by_user" value="true"/>
+			<property name="$hidden" value="true"/>
+			<reference referencedUin="jdt:l_ast:src:business.activity.sequencetype.ActivitySequenceTypeManager:activitySequenceTypeManager">
+				<property name="sourceAnchor" value="490,154"/>
+				<property name="targetAnchor" value="486,158"/>
+				<property name="bendpoints" value="519,154,519,187,486,187"/>
+				<property name="smooth_bendpoints" value="519,154,519,187,486,187"/>
+			</reference>
+			<reference referencedUin="jdt:l_ast:src:business.activity.sequencetype.ActivitySequenceTypeManager:activitySequenceTypeDAO">
+				<property name="sourceAnchor" value="290,84"/>
+				<property name="targetAnchor" value="210,84"/>
+			</reference>
+		</reference>
+		<reference referencedUin="jdt:e_class:src:business.activity.sequencetype.ActivitySequenceTypeDAO">
+			<property name="bounds" value="5,39,200,80"/>
+			<property name="location_set_by_user" value="true"/>
+			<property name="$hidden" value="true"/>
+		</reference>
+		<reference referencedUin="jdt:e_class:src:business.activity.sequencetype.ActivitySequenceType">
+			<property name="bounds" value="5,5,134,151"/>
+			<property name="location_set_by_user" value="true"/>
+		</reference>
+	</view>
+</nodeSet>

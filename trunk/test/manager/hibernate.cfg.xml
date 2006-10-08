@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration
+PUBLIC "-//Hibernate/Hibernate Configuration DTD//EN"
+"http://hibernate.sourceforge.net/hibernate-configuration-2.0.dtd">
+
+<hibernate-configuration>
+	<session-factory>
+
+		<!-- properties -->
+		<!-- <property name="connection.datasource">jdbc:mysql://localhost:3306/woops</property > -->
+		<property name="connection.url">jdbc:mysql://localhost:3306/woops_test?autoReconnect=true</property>
+		<property name="connection.driver_class">org.gjt.mm.mysql.Driver</property>
+		<property name="connection.username">woops</property>
+		<property name="connection.password">wo!o!ps</property>
+
+		<property name="hibernate.cache.provider_class">
+			net.sf.hibernate.cache.HashtableCacheProvider
+		</property> 
+		<property name="dialect">net.sf.hibernate.dialect.MySQLDialect</property>
+		<property name="show_sql">true</property>
+		<property name="transaction.factory_class">net.sf.hibernate.transaction.JDBCTransactionFactory</property>
+		
+		
+				<!--### Apache DBCP Connection Pool ###-->
+	    <!--connection pool-->
+	    <property name="hibernate.dbcp.maxActive">20</property>
+	    <property name="hibernate.dbcp.whenExhaustedAction">1</property>
+	    <property name="hibernate.dbcp.maxWait">20000</property>
+	    <property name="hibernate.dbcp.maxIdle">10</property>
+	
+		<!-- prepared statement cache-->
+	    <property name="hibernate.dbcp.ps.maxActive">10</property>
+	    <property name="hibernate.dbcp.ps.whenExhaustedAction">1</property>
+	    <property name="hibernate.dbcp.ps.maxWait">20000</property>
+	    <property name="hibernate.dbcp.ps.maxIdle">10</property>
+	
+	    <!-- optional query to validate pooled connections:-->
+	    <property name="hibernate.dbcp.validationQuery">select 1</property>
+	    <property name="hibernate.dbcp.testOnBorrow">true</property>
+	    <property name="hibernate.dbcp.testOnReturn">true</property> 
+		
+		<!-- mapping files -->
+		<mapping resource="business/activity/Activity.hbm.xml" />
+		<mapping resource="business/user/User.hbm.xml" />
+		<mapping resource="business/user/UserRole.hbm.xml" />
+		<mapping resource="business/activity/sequence/ActivitySequence.hbm.xml" />
+		<mapping resource="business/activity/sequencetype/ActivitySequenceType.hbm.xml" />
+		<mapping resource="business/activity/state/ActivityState.hbm.xml" />
+		<mapping resource="business/breakdownelement/BreakdownElement.hbm.xml" />
+		<mapping resource="business/breakdownelement/BreakdownElementKind.hbm.xml" />
+		
+	</session-factory>
+</hibernate-configuration>
