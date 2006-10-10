@@ -1,0 +1,21 @@
+<pre>
+&lt;%@ taglib uri="/WEB-INF/tlds/struts-html.tld" prefix="html" %&gt;
+&lt;%@ taglib uri="/WEB-INF/tlds/cc-controls.tld" prefix="ctrl" %&gt;
+
+&lt;html:form action="/sample402/userprofilEdit" method="post"&gt;
+
+    &lt;ctrl:tabset
+        id="uptabset"
+        property="tabset"
+        tabs="3"
+        labellength="20"
+        width="450"
+        runat="<b>client</b>"&gt;
+
+        &lt;ctrl:tab  id="tab1"  title="User"      content="Tab_Page1.jsp"  tooltip="Display"/&gt;
+        &lt;ctrl:tab  id="tab2"  title="Settings"  content="Tab_Page2.jsp"  tooltip="User Settings"/&gt;
+        &lt;ctrl:tab  id="tab3"  title="History"   content="Tab_Page3.jsp"  tooltip="History"/&gt;
+    &lt;/ctrl:tabset&gt;
+
+&lt;/html:form&gt;
+</pre>
