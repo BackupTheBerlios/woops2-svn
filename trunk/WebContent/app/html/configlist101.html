@@ -1,0 +1,43 @@
+
+<pre>
+&lt;%@ taglib uri="/WEB-INF/tlds/cc-controls.tld" prefix="ctrl" %&gt;
+
+&lt;ctrl:list
+	id="userlist1"
+	action="sample101/userBrowse"
+	name="users"
+	title="User List"
+	width="500"
+	rows="10"
+	refreshButton="true"
+	createButton="true"&gt;
+
+	&lt;ctrl:columndrilldown   title="Id"       property="userId"       width="65"/&gt;
+	&lt;ctrl:columntext        title="Name"     property="name"         width="350"/&gt;
+	&lt;ctrl:columntext        title="Role"     property="role.value"   width="150"/&gt;
+	&lt;ctrl:columnedit        title="Edit"/&gt;
+	&lt;ctrl:columndelete      title="Delete"   onclick="return userlist1_onBeforeServerSend(this);"/&gt;
+	&lt;ctrl:columnbutton      title="Print"    property="print"  image="app/images/imgPDF.gif"  align="center"/&gt;
+&lt;/ctrl:list&lt;
+
+
+
+&lt;script language="JavaScript1.2"&gt;
+// Examples for JavaScript handler
+
+function userlist1_onBeforeServerSend(column) {
+	var param = column.href.split('param')[1];
+	param = param.split('=')[1];
+
+	// normally you will check this in your action class !
+	if (param == 'FAS') {
+		alert("This user can not be deleted, because the data will be used by other examples");
+		return false;
+	} else {
+		return window.confirm("Do you realy want to delete this Row: '" + param + "' ?");
+	}
+	// alert("This function is disabled!");
+	// return rtc;
+}
+&lt;/script&gt;
+</pre>

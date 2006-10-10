@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd" >
+
+<hibernate-mapping>
+	<class name="business.user.User" table="User">
+		<id
+			column="id"
+			name="id"
+			type="integer"
+		>
+		<generator class="identity" />
+		</id>
+		
+		<property
+			column="login"
+			length="30"
+			name="login"
+			not-null="true"
+			type="string"
+		 />	
+		 
+		 <property
+			column="password"
+			length="15"
+			name="password"
+			not-null="true"
+			type="string"
+		 />	
+		 
+		 <property
+			column="firstName"
+			length="50"
+			name="firstName"
+			not-null="true"
+			type="string"
+		 />	
+		 
+		 <property
+			column="lastName"
+			length="50"
+			name="lastName"
+			not-null="true"
+			type="string"
+		 />	
+		 
+		 <property
+			column="defaultBDE"
+			name="defaultBDEId"
+			not-null="false"
+			type="integer"
+		 />
+		 
+		 <many-to-one
+			class="business.user.UserRole"
+			name="role"
+			not-null="true"
+			>
+			<column name="role" />
+		 </many-to-one>
+		
+		 <set name="bdes" table="UserBDE" lazy="true">
+      		<key column="user"/>
+      		<many-to-many class="business.breakdownelement.BreakdownElement" column="bde"/>
+    	 </set>
+	</class>	
+</hibernate-mapping>
