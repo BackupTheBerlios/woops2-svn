@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.4" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee   http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+<web-app xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+version="2.4" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee   http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
 	<display-name>Application WOOPS</display-name>
 	<servlet>
     	<servlet-name>action</servlet-name>
@@ -34,9 +35,9 @@
  	</servlet>
   
 	<servlet> 
-		<servlet-name>res</servlet-name>
-		<display-name>Ressource Servlet</display-name>
 		<description>Provides access to cached Ressources</description>
+		<display-name>Ressource Servlet</display-name>
+		<servlet-name>res</servlet-name>
 		<servlet-class>com.cc.framework.resource.ResourceServlet</servlet-class>
 	</servlet> 
 		
@@ -122,7 +123,7 @@
 	</jsp-config>
 
 	
-<!-- Interdit l'accès direct aux JSP -->
+	<!-- Interdit l'accès direct aux JSP 
 	<security-constraint> 
 		<web-resource-collection>
 			<web-resource-name>Toutes ressources JSP et HTML</web-resource-name>
@@ -131,14 +132,14 @@
 		<auth-constraint>
     		<role-name>user</role-name>
   		</auth-constraint>
-	</security-constraint>
+	</security-constraint> -->
  	
- 	//the login page in case of form based authentication
+ 	<!-- the login page in case of form based authentication -->
 	<login-config>
 		<auth-method>FORM</auth-method>
 		<form-login-config>
-			<form-login-page>/html/logon/loginUser.jsp</form-login-page> //path pour accéder à la page de login
-			<form-error-page>/logoutUser.do</form-error-page> //path si l'accès est refusé
+			<form-login-page>/html/logon/loginUser.jsp</form-login-page>
+			<form-error-page>/logoutUser.do</form-error-page>
 		</form-login-config>
 	</login-config>
 	
