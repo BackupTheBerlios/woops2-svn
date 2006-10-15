@@ -10,14 +10,9 @@
 	<property name="build.dir"   	value="${basedir}/build" />
 	<property name="src.dir" 		value="${basedir}/src" />
 	<property name="src.java.dir" 	value="${src.dir}" />
-	<property name="doc.dir" 		value="${basedir}/doc" />
-	<property name="doc.api.dir" 	value="${docs.dir}/api" />
 	<property name="web.dir" 		value="${basedir}/WebContent" />
-	<property name="lib.dir"		value="${basedir}/lib" />
+	<property name="lib.dir"		value="${basedir}/WebContent/WEB-INF/lib" />
 	<property name="dist.dir" 		value="${basedir}/dist" />
-	<property name="tomcat.webapps.dir" 		value="D:\java\apache-tomcat-5.5.17\webapps" />
-	<property name="tomcat.webapps.bin" 		value="D:\java\apache-tomcat-5.5.17\bin" />
-	<property name="project.logs" 		value="C:\logs" />
 
 	<path id="classpath">
 		<!-- Ajout des classes
@@ -28,17 +23,6 @@
 			<include name="**/*.jar"/>
 		</fileset>
 	</path>
-
-	<path id="tomcat.classpath">
-		<pathelement location="${lib.dir}/tomcat-tasks/catalina-ant.jar"/>
-		<pathelement location="${lib.dir}/tomcat-tasks/jasper-compiler.jar"/>
-		<pathelement location="${lib.dir}/tomcat-tasks/jasper-runtime.jar"/>
-		<pathelement location="${lib.dir}/tomcat-tasks/servlet-api.jar"/>
-		<pathelement location="${lib.dir}/commons-logging.jar"/>
-	</path>
-	<!-- Taches Ant 
-	<taskdef resource="org/apache/catalina/ant/catalina.tasks"
-	          classpathref="classpath"/> -->
 
 	<!-- Gestion de l'application -->
 	<target name="clean" depends="clean_dist">
@@ -64,7 +48,7 @@
 	<!-- Copie des Jar et classes -->
 	<target name="copyJars">
 		<copy todir="${build.dir}/${project.name}/WEB-INF/lib">
-			<fileset dir="lib">
+			<fileset dir="${lib.dir}">
 				<!-- libs uniuement dans le repertoire lib
 				<include name="**/*.jar" /> 
 				<include name="*.dtd" /> 
@@ -161,33 +145,6 @@
 		</war>
 		<delete dir="${build.dir}" />
 
-	</target>
-
-	<!-- Copie du fichier dans tomcat -->
-	<target name="copy2tomcat" depends="build.war">
-		<!-- Suppression anciens fichiers -->
-		<delete dir="${tomcat.webapps.dir}/${project.name}" />
-		<delete file="${tomcat.webapps.dir}/${project.name}.war" />
-		<!-- Copie des nouveaux fichiers -->
-		<copy todir="${tomcat.webapps.dir}">
-			<fileset dir="${dist.dir}">
-				<include name="*.war" />
-			</fileset>
-		</copy>
-	</target>
-
-	<!-- Lancement de Tomcat -->
-	<target name="runTomcat" depends="copy2tomcat">
-		<exec 
-			command="${tomcat.webapps.bin}/startup.bat"
-			dir="${tomcat.webapps.bin}"
-		/>
-	</target>
-
-	<!-- Suppression repertoire de logs -->
-	<target name="clearLogs">
-		<delete dir="${project.logs}" />
-		<mkdir dir="${project.logs}" />
 	</target>
 
 </project>
