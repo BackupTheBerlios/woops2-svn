@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+version="2.4" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee   http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+	<display-name>Application WOOPS</display-name>
+	<servlet>
+    	<servlet-name>action</servlet-name>
+		<servlet-class>view.common.WoopsFrontController</servlet-class>
+	    <init-param>
+    	     <param-name>config</param-name>
+        	 <param-value>/WEB-INF/struts-config.xml</param-value>
+      	</init-param>
+      	<init-param>
+        	<param-name>debug</param-name>
+         	<param-value>2</param-value>
+      	</init-param>
+      	<init-param>
+        	<param-name>detail</param-name>
+         	<param-value>2</param-value>
+      	</init-param>
+		<load-on-startup>1</load-on-startup>
+  	</servlet>
+  	<servlet>
+    	<description>Servlet d'initialisation de l'application</description>
+    	<servlet-name>WoopsServlet</servlet-name>
+    	<servlet-class>view.common.WoopsServlet</servlet-class>
+    	<init-param>
+      		<param-name>log4jFile</param-name>
+      		<param-value>properties/log4j.properties</param-value>
+    	</init-param>
+    	<init-param>
+      		<param-name>hibernateConfFile</param-name>
+      		<param-value>WEB-INF/classes/hibernate.cfg.xml</param-value>
+    	</init-param>
+ 		<load-on-startup>1</load-on-startup>
+ 	</servlet>
+  
+	<servlet> 
+		<description>Provides access to cached Ressources</description>
+		<display-name>Ressource Servlet</display-name>
+		<servlet-name>res</servlet-name>
+		<servlet-class>com.cc.framework.resource.ResourceServlet</servlet-class>
+	</servlet> 
+		
+		
+		
+	<!-- Servlet-mapping pour Common Controls-->
+  	<servlet-mapping>
+  		<servlet-name>action</servlet-name>
+    	<url-pattern>*.do</url-pattern>
+ 	</servlet-mapping>
+ 
+ 	<servlet-mapping>
+    	<servlet-name>WoopsServlet</servlet-name>
+    	<url-pattern>/WoopsServlet</url-pattern>
+ 	</servlet-mapping>
+
+	<servlet-mapping> 
+		<servlet-name>res</servlet-name>
+		<url-pattern>*.res</url-pattern>
+	</servlet-mapping>
+
+
+	<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+	</welcome-file-list>
+
+	<!-- Taglibs -->
+	<jsp-config>
+		<!-- Taglibs pour Struts -->
+		<taglib>
+			<taglib-uri>/struts-bean</taglib-uri>
+			<taglib-location>/WEB-INF/tags/struts-bean.tld</taglib-location>
+		</taglib>
+		<taglib>
+			<taglib-uri>/struts-html</taglib-uri>
+			<taglib-location>/WEB-INF/tags/struts-html.tld</taglib-location>
+		</taglib>
+		<taglib>
+			<taglib-uri>/struts-logic</taglib-uri>
+			<taglib-location>/WEB-INF/tags/struts-logic.tld</taglib-location>
+		</taglib>
+		
+		<!-- Taglibs pour Common Controls -->
+		<taglib> 
+			<taglib-uri>/cc-base</taglib-uri> 
+			<taglib-location>/WEB-INF/tags/cc-base.tld</taglib-location> 
+		</taglib> 
+		
+		<taglib> 
+			<taglib-uri>/cc-controls</taglib-uri> 
+			<taglib-location>/WEB-INF/tags/cc-controls.tld</taglib-location> 
+		</taglib> 
+		
+		<taglib> 
+			<taglib-uri>/cc-forms</taglib-uri> 
+			<taglib-location>/WEB-INF/tags/cc-forms.tld</taglib-location> 
+		</taglib> 
+		
+		<taglib> 
+			<taglib-uri>/cc-menu</taglib-uri> 
+			<taglib-location>/WEB-INF/tags/cc-menu.tld</taglib-location> 
+		</taglib> 
+		
+		<taglib> 
+			<taglib-uri>/cc-security</taglib-uri> 
+			<taglib-location>/WEB-INF/tags/cc-security.tld</taglib-location>
+		</taglib> 
+		
+		<taglib> 
+			<taglib-uri>/cc-svg</taglib-uri> 
+			<taglib-location>/WEB-INF/tags/cc-svg.tld</taglib-location> 
+		</taglib>
+		 
+		<taglib> 
+			<taglib-uri>/cc-template</taglib-uri> 
+			<taglib-location>/WEB-INF/tags/cc-template.tld</taglib-location> 
+		</taglib>
+		 
+		<taglib> 
+			<taglib-uri>/cc-utility</taglib-uri> 
+			<taglib-location>/WEB-INF/tags/cc-utility.tld</taglib-location> 
+		</taglib>
+	</jsp-config>
+
+	
+	<!-- Interdit l'accès direct aux JSP 
+	<security-constraint> 
+		<web-resource-collection>
+			<web-resource-name>Toutes ressources JSP et HTML</web-resource-name>
+			<url-pattern>/html/*</url-pattern>
+		</web-resource-collection>
+		<auth-constraint>
+    		<role-name>user</role-name>
+  		</auth-constraint>
+	</security-constraint> -->
+ 	
+ 	<!-- the login page in case of form based authentication -->
+	<login-config>
+		<auth-method>FORM</auth-method>
+		<form-login-config>
+			<form-login-page>/html/logon/loginUser.jsp</form-login-page>
+			<form-error-page>/logoutUser.do</form-error-page>
+		</form-login-config>
+	</login-config>
+	
+	<security-role>
+		<description>Un utilisateur quelconque</description>
+		<role-name>user</role-name>
+	</security-role>
+
+</web-app>
