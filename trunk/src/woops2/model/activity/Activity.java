@@ -1,4 +1,6 @@
-package woops2.model;
+package woops2.model.activity;
+
+import woops2.model.WorkBreakDownElement;
 
 /**
  * 
