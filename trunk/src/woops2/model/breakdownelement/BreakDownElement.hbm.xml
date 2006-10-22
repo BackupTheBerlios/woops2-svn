@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping>
+
+	<class name="woops2.model.breakdownelement.BreakDownElement" table="breakdownelement"
+		lazy="false">
+
+		<id name="id" type="string"
+			column="breakdownelement_id">
+			<!--identifiant auto-incrementé -->
+			<generator class="uuid" />
+		</id>
+
+		<property name="prefix" type="java.lang.String" column="prefix"
+			length="256" />
+
+
+		<property name="isPlanned" type="java.lang.Boolean"
+			column="isplanned" length="1" />
+
+		<property name="hasMultipleOccurrences" type="java.lang.Boolean"
+			column="hasMultipleOccurrences" length="1" />
+
+		<property name="isOptional" type="java.lang.Boolean"
+			column="isOptional" length="1" />
+
+		<!-- Associations -->
+		<set name="superActivities" table="nesting" >
+			<key column="breakdownelement_id"></key>
+			<many-to-many class="woops2.model.activity.Activity"
+				column="activity_id">
+			</many-to-many>
+		</set>
+		
+	</class>
+</hibernate-mapping>

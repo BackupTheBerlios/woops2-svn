@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping>
+	
+	<joined-subclass
+		name="woops2.model.activity.Activity"
+		extends="woops2.model.breakdownelement.WorkBreakDownElement"
+		table="activity">
+		<key column="activity_id"></key>
+		
+		<!-- Associations -->
+		<set name="breakDownElements" table="nesting" >
+			<key column="activity_id"></key>
+			<many-to-many class="woops2.model.breakdownelement.BreakDownElement"
+				column="breakdownelement_id">
+			</many-to-many>
+		</set>
+		
+	</joined-subclass>
+	
+</hibernate-mapping>

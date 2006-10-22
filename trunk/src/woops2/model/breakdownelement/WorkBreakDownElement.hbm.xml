@@ -2,167 +2,22 @@
 <!DOCTYPE hibernate-mapping PUBLIC
     "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
     "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
-    
+
 <hibernate-mapping>
+	<joined-subclass
+		name="woops2.model.breakdownelement.WorkBreakDownElement"
+		extends="woops2.model.breakdownelement.BreakDownElement"
+		table="workbreakdownelement">
+		<key column="workbreakdownelement_id"></key>
+		
+		<property name="isRepeatable" type="java.lang.Boolean"
+			column="isRepeatable" length="1" />
 
-<class 
-    name="woops2.model.WorkBreakDownElement" 
-    table="WBE"
-    lazy="false"
->
+		<property name="isOngoing" type="java.lang.Boolean"
+			column="isOngoing" length="1" />
 
-    <meta attribute="implement-equals" inherit="false">true</meta>
-    
-    <id
-        name="noaffaire"
-        type="java.lang.Integer"
-        column="noaffaire"
-    >
-    
-        <generator class="sequence">
-            <param name="sequence">affaires_noaffaire_seq</param>
-        </generator>
-    </id>
-
-    <property
-        name="libelle"
-        type="java.lang.String"
-        column="libelle"
-        length="256"
-    />
-    <property
-        name="estcloturee"
-        type="java.lang.Boolean"
-        column="estcloturee"
-        length="1"
-    />
-    <property
-        name="commentaire"
-        type="java.lang.String"
-        column="commentaire"
-        length="256"
-    />
-
-    <!-- Associations -->
-  
-    <!-- bi-directional one-to-many association to Versionsaffaire -->
-
-    <set
-        name="versionsaffaires"
-        lazy="true"
-        inverse="true"
-		cascade="all"
-
-    >
-        <key>
-            <column name="fk_noaffaire" />
-        </key>
-        
-        <one-to-many 
-            class="com.airod.model.Versionsaffaire"
-        />
-    </set>
-    <!-- bi-directional one-to-many association to AffairesProduit -->
-
-    <set
-        name="affairesProduits"
-        lazy="true"
-        inverse="true"
-		cascade="all"
-
-    >
-        <key>
-            <column name="noaffaire" />
-        </key>
-        
-        <one-to-many 
-            class="com.airod.model.AffairesProduit"
-        />
-    </set>
-    <!-- bi-directional one-to-many association to AffairesContact -->
-
-    <set
-        name="affairesContacts"
-        lazy="true"
-        inverse="true"
-		cascade="all"
-
-    >
-        <key>
-            <column name="noaffaire" />
-        </key>
-        
-        <one-to-many 
-            class="com.airod.model.AffairesContact"
-        />
-    </set>
-    <!-- bi-directional one-to-many association to AffairesAvancement -->
-
-    <set
-        name="affairesAvancements"
-        lazy="true"
-        inverse="true"
-		cascade="all"
-
-    >
-        <key>
-            <column name="noaffaire" />
-        </key>
-        
-        <one-to-many 
-            class="com.airod.model.AffairesAvancement"
-        />
-    </set>
-    <!-- bi-directional one-to-many association to Affectation -->
-
-    <set
-        name="affectations"
-        lazy="true"
-        inverse="true"
-		cascade="all"
-
-    >
-        <key>
-            <column name="noaffaire" />
-        </key>
-        
-        <one-to-many 
-            class="com.airod.model.Affectation"
-        />
-    </set>
-    <!-- bi-directional one-to-many association to ProfilVersionsaffaire -->
-
-    <set
-        name="profilVersionsaffaires"
-        lazy="true"
-        inverse="true"
-		cascade="all"
-
-    >
-        <key>
-            <column name="noaffaire" />
-        </key>
-        
-        <one-to-many 
-            class="com.airod.model.ProfilVersionsaffaire"
-        />
-    </set>
-    <!-- bi-directional many-to-one association to Secteursactivite -->
-    <many-to-one
-        name="secteursactivite"
-        class="com.airod.model.Secteursactivite"
-        not-null="true"
-    >
-        <column name="idsecteuractivite" />
-    </many-to-one>
-    <!-- bi-directional many-to-one association to Client -->
-    <many-to-one
-        name="client"
-        class="com.airod.model.Client"
-        not-null="true"
-    >
-        <column name="noentrepriseclient" />
-    </many-to-one>
-
-</class>
+		<property name="isEvenDriven" type="java.lang.Boolean"
+			column="isEvenDriven" length="1" />
+		
+	</joined-subclass>
 </hibernate-mapping>

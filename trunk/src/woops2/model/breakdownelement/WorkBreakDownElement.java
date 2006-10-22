@@ -6,10 +6,7 @@ import java.io.Serializable;
  * 
  * 
  */
-public class WorkBreakDownElement extends BreakDownElement implements
-		Serializable {
-
-	private static final long serialVersionUID = 8536408716131585279L;
+public class WorkBreakDownElement extends BreakDownElement  {
 
 	/**
 	 * <p>
@@ -17,7 +14,7 @@ public class WorkBreakDownElement extends BreakDownElement implements
 	 * </p>
 	 * 
 	 */
-	public Boolean isRepeatable = false;
+	private Boolean isRepeatable = false;
 
 	/**
 	 * <p>
@@ -25,7 +22,7 @@ public class WorkBreakDownElement extends BreakDownElement implements
 	 * </p>
 	 * 
 	 */
-	public Boolean isOngoing = false;
+	private Boolean isOngoing = false;
 
 	/**
 	 * <p>
@@ -33,5 +30,29 @@ public class WorkBreakDownElement extends BreakDownElement implements
 	 * </p>
 	 * 
 	 */
-	public Boolean isEvenDriven = false;
+	private Boolean isEvenDriven = false;
+
+	public Boolean getIsEvenDriven() {
+		return isEvenDriven;
+	}
+
+	public void setIsEvenDriven(Boolean isEvenDriven) {
+		this.isEvenDriven = isEvenDriven;
+	}
+
+	public Boolean getIsOngoing() {
+		return isOngoing;
+	}
+
+	public void setIsOngoing(Boolean isOngoing) {
+		this.isOngoing = isOngoing;
+	}
+
+	public Boolean getIsRepeatable() {
+		return isRepeatable;
+	}
+
+	public void setIsRepeatable(Boolean isRepeatable) {
+		this.isRepeatable = isRepeatable;
+	}
 }
