@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "file:/C:/Bin/spring122/dist/spring-beans.dtd">
+
+<beans>
+	<!-- ========================= Start of PERSISTENCE DEFINITIONS ========================= -->
+
+	<!-- DataSource Definition -->
+	<bean id="dataSource"
+		class="org.apache.commons.dbcp.BasicDataSource"
+		destroy-method="close">
+		<property name="driverClassName">
+			<value>org.postgresql.Driver</value>
+		</property>
+		<property name="url">
+			<value>jdbc:postgresql://airod2/intranet2</value>
+		</property>
+		<property name="username">
+			<value>intranetadmin</value>
+		</property>
+		<property name="password">
+			<value>airod</value>
+		</property>
+	</bean>
+
+	<!-- Hibernate SessionFactory Definition -->
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource">
+			<ref bean="dataSource" />
+		</property>
+
+		<property name="mappingResources">
+			<list>
+				<value>com/airod/model/AccesSet.hbm.xml</value>
+				<value>com/airod/model/Module.hbm.xml</value>
+				<value>com/airod/model/Utilisateur.hbm.xml</value>
+				<value>com/airod/model/Affaire.hbm.xml</value>
+				<value>
+					com/airod/model/AffairesAvancement.hbm.xml
+				</value>
+				<value>com/airod/model/AffairesContact.hbm.xml</value>
+				<value>com/airod/model/Typesitemproduit.hbm.xml</value>
+				<value>com/airod/model/AffairesProduit.hbm.xml</value>
+				<value>com/airod/model/Affectation.hbm.xml</value>
+				<value>com/airod/model/Avancement.hbm.xml</value>
+				<value>com/airod/model/Bondelivraison.hbm.xml</value>
+				<value>com/airod/model/Client.hbm.xml</value>
+				<value>com/airod/model/Commandesclient.hbm.xml</value>
+				<value>
+					com/airod/model/CommandesclientContact.hbm.xml
+				</value>
+				<value>
+					com/airod/model/Commandesfournisseur.hbm.xml
+				</value>
+				<value>
+					com/airod/model/CommandesfournisseurFacturesfournisseur.hbm.xml
+				</value>
+				<value>com/airod/model/Contact.hbm.xml</value>
+				<value>com/airod/model/Facturesclient.hbm.xml</value>
+				<value>
+					com/airod/model/Facturesfournisseur.hbm.xml
+				</value>
+				<value>com/airod/model/Fournisseur.hbm.xml</value>
+				<value>com/airod/model/Itemsproduit.hbm.xml</value>
+				<value>com/airod/model/Pointage.hbm.xml</value>
+				<value>com/airod/model/Pointageencour.hbm.xml</value>
+				<value>com/airod/model/Profil.hbm.xml</value>
+				<value>com/airod/model/Secteursactivite.hbm.xml</value>
+				<value>
+					com/airod/model/ProfilVersionsaffaire.hbm.xml
+				</value>
+				<value>
+					com/airod/model/VersionsproduitProfil.hbm.xml
+				</value>
+				<value>com/airod/model/Versionsaffaire.hbm.xml</value>
+				<value>com/airod/model/Versionsproduit.hbm.xml</value>
+			</list>
+		</property>
+
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">
+					org.hibernate.dialect.PostgreSQLDialect
+				</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.cglib.use_reflection_optimizer">
+					true
+				</prop>
+				<prop key="hibernate.cache.provider_class">
+					org.hibernate.cache.HashtableCacheProvider
+				</prop>
+				<prop key="hibernate."></prop>
+			</props>
+		</property>
+
+	</bean>
+
+	<!-- Spring Data Access Exception Translator Defintion -->
+	<bean id="jdbcExceptionTranslator"
+		class="org.springframework.jdbc.support.SQLErrorCodeSQLExceptionTranslator">
+		<property name="dataSource">
+			<ref bean="dataSource" />
+		</property>
+	</bean>
+
+	<!-- Hibernate Template Defintion  -->
+	<bean id="hibernateTemplate"
+		class="org.springframework.orm.hibernate3.HibernateTemplate">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+		<property name="jdbcExceptionTranslator">
+			<ref bean="jdbcExceptionTranslator" />
+		</property>
+	</bean>
+
+	<!-- Hibernate Transaction Manager Definition 
+		<bean id="transactionManager"
+		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory">
+		<ref local="sessionFactory" />
+		</property> 
+		</bean> -->
+
+	<!-- ========================= Start of DAO DEFINITIONS ========================= -->
+	<!-- Package systeme -->
+	<bean id="UtilisateurDao"
+		class="com.airod.dao.systeme.UtilisateurDao">
+		<property name="hibernateTemplate">
+			<ref bean="hibernateTemplate" />
+		</property>
+	</bean>
+	<bean id="ModuleDao" class="com.airod.dao.systeme.ModuleDao">
+		<property name="hibernateTemplate">
+			<ref bean="hibernateTemplate" />
+		</property>
+	</bean>
+	<bean id="AccesSetDao" class="com.airod.dao.systeme.AccesSetDao">
+		<property name="hibernateTemplate">
+			<ref bean="hibernateTemplate" />
+		</property>
+	</bean>
+	<!-- Package systeme -->
+	<!-- Package acticite -->
+	<bean id="AffaireDao" class="com.airod.dao.activite.AffaireDao">
+		<property name="hibernateTemplate">
+			<ref bean="hibernateTemplate" />
+		</property>
+	</bean>
+	<bean id="AffairesAvancementDao"
+		class="com.airod.dao.activite.AffairesAvancementDao">
+		<property name="hibernateTemplate">
+			<ref bean="hibernateTemplate" />
+		</property>
+	</bean>
+	<bean id="AffairesContactDao"
+		class="com.airod.dao.activite.AffairesContactDao">
+		<property name="hibernateTemplate">
+			<ref bean="hibernateTemplate" />
+		</property>
+	</bean>
+	<bean id="AffairesProduitDao"
+		class="com.airod.dao.activite.AffairesProduitDao">
+		<property name="hibernateTemplate">
+			<ref bean="hibernateTemplate" />
+		</property>
+	</bean>
+	<bean id="AvancementDao"
+		class="com.airod.dao.activite.AvancementDao">
+		<property name="hibernateTemplate">
+			<ref bean="hibernateTemplate" />
+		</property>
+	</bean>
+	<bean id="ItemsproduitDao"
+		class="com.airod.dao.activite.ItemsproduitDao">
+		<property name="hibernateTemplate">
+			<ref bean="hibernateTemplate" />
+		</property>
+	</bean>
+	<bean id="SecteursactiviteDao"
+		class="com.airod.dao.activite.SecteursactiviteDao">
+		<property name="hibernateTemplate">
+			<ref bean="hibernateTemplate" />
+		</property>
+	</bean>
+	<bean id="TypesitemproduitDao"
+		class="com.airod.dao.activite.TypesitemproduitDao">
+		<property name="hibernateTemplate">
+			<ref bean="hibernateTemplate" />
+		</property>
+	</bean>
+	<bean id="VersionsaffaireDao"
+		class="com.airod.dao.activite.VersionsaffaireDao">
+		<property name="hibernateTemplate">
+			<ref bean="hibernateTemplate" />
+		</property>
+	</bean>
+	<bean id="VersionsproduitDao"
+		class="com.airod.dao.activite.VersionsproduitDao">
+		<property name="hibernateTemplate">
+			<ref bean="hibernateTemplate" />
+		</property>
+	</bean>
+	<!-- Package systeme -->
+	<!-- Package bl -->
+	<bean id="BondelivraisonDao"
+		class="com.airod.dao.bondelivraison.BondelivraisonDao">
+		<property name="hibernateTemplate">
+			<ref bean="hibernateTemplate" />
+		</property>
+	</bean>
+	<!-- Package bl -->
+	<!-- Package commande -->
+	<bean id="CommandesclientContactDao"
+		class="com.airod.dao.commande.CommandesclientContactDao">
+		<property name="hibernateTemplate">
+			<ref bean="hibernateTemplate" />
+		</property>
+	</bean>
+	<bean id="CommandesclientDao"
+		class="com.airod.dao.commande.CommandesclientDao">
+		<property name="hibernateTemplate">
+			<ref bean="hibernateTemplate" />
+		</property>
+	</bean>
+	<bean id="CommandesfournisseurDao"
+		class="com.airod.dao.commande.CommandesfournisseurDao">
+		<property name="hibernateTemplate">
+			<ref bean="hibernateTemplate" />
+		</property>
+	</bean>
+	<bean id="CommandesfournisseurFacturesfournisseurDao"
+		class="com.airod.dao.commande.CommandesfournisseurFacturesfournisseurDao">
+		<property name="hibernateTemplate">
+			<ref bean="hibernateTemplate" />
+		</property>
+	</bean>
+	<!-- Package commande -->
+	<!-- Package cra -->
+	<bean id="AffectationDao"
+		class="com.airod.dao.cra.AffectationDao">
+		<property name="hibernateTemplate">
+			<ref bean="hibernateTemplate" />
+		</property>
+	</bean>
+	<bean id="PointageDao" class="com.airod.dao.cra.PointageDao">
+		<property name="hibernateTemplate">
+			<ref bean="hibernateTemplate" />
+		</property>
+	</bean>
+	<bean id="PointageencourDao"
+		class="com.airod.dao.cra.PointageencourDao">
+		<property name="hibernateTemplate">
+			<ref bean="hibernateTemplate" />
+		</property>
+	</bean>
+	<bean id="ProfilVersionsaffaireDao"
+		class="com.airod.dao.cra.ProfilVersionsaffaireDao">
+		<property name="hibernateTemplate">
+			<ref bean="hibernateTemplate" />
+		</property>
+	</bean>
+	<bean id="VersionsproduitProfilDao"
+		class="com.airod.dao.cra.VersionsproduitProfilDao">
+		<property name="hibernateTemplate">
+			<ref bean="hibernateTemplate" />
+		</property>
+	</bean>
+	<bean id="ProfilDao" class="com.airod.dao.cra.ProfilDao">
+		<property name="hibernateTemplate">
+			<ref bean="hibernateTemplate" />
+		</property>
+	</bean>
+	<!-- Package cra -->
+	<!-- Package entreprise -->
+	<bean id="ClientDao" class="com.airod.dao.entreprise.ClientDao">
+		<property name="hibernateTemplate">
+			<ref bean="hibernateTemplate" />
+		</property>
+	</bean>
+	<bean id="ContactDao" class="com.airod.dao.entreprise.ContactDao">
+		<property name="hibernateTemplate">
+			<ref bean="hibernateTemplate" />
+		</property>
+	</bean>
+	<bean id="FournisseurDao"
+		class="com.airod.dao.entreprise.FournisseurDao">
+		<property name="hibernateTemplate">
+			<ref bean="hibernateTemplate" />
+		</property>
+	</bean>
+	<!-- Package entreprise -->
+	<!-- Package facture -->
+	<bean id="FacturesclientDao"
+		class="com.airod.dao.facture.FacturesclientDao">
+		<property name="hibernateTemplate">
+			<ref bean="hibernateTemplate" />
+		</property>
+	</bean>
+	<bean id="FacturesfournisseurDao"
+		class="com.airod.dao.facture.FacturesfournisseurDao">
+		<property name="hibernateTemplate">
+			<ref bean="hibernateTemplate" />
+		</property>
+	</bean>
+	<!-- Package facture -->
+	<!-- ========================= End of DAO DEFINITIONS ========================= -->
+
+</beans>

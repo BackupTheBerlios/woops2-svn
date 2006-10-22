@@ -1,26 +1,37 @@
 package woops2.model;
 
-/**
- * 
- * 
- */
-public class WorkBreakDownElement extends BreakDownElement {
+import java.io.Serializable;
 
 /**
- * <p>Represents ...</p>
+ * 
  * 
  */
-    public Boolean isRepeatable = false;
+public class WorkBreakDownElement extends BreakDownElement implements
+		Serializable {
 
-/**
- * <p>Represents ...</p>
- * 
- */
-    public Boolean isOngoing = false;
+	private static final long serialVersionUID = 8536408716131585279L;
 
-/**
- * <p>Represents ...</p>
- * 
- */
-    public Boolean isEvenDriven = false;
- }
+	/**
+	 * <p>
+	 * Represents ...
+	 * </p>
+	 * 
+	 */
+	public Boolean isRepeatable = false;
+
+	/**
+	 * <p>
+	 * Represents ...
+	 * </p>
+	 * 
+	 */
+	public Boolean isOngoing = false;
+
+	/**
+	 * <p>
+	 * Represents ...
+	 * </p>
+	 * 
+	 */
+	public Boolean isEvenDriven = false;
+}
