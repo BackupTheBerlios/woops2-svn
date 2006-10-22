@@ -1,4 +1,4 @@
-package woops2.model;
+package woops2.model.breakdownelement;
 
 /**
  * 

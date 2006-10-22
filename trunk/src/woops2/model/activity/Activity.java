@@ -1,6 +1,6 @@
 package woops2.model.activity;
 
-import woops2.model.WorkBreakDownElement;
+import woops2.model.breakdownelement.WorkBreakDownElement;
 
 /**
  * 

@@ -17,7 +17,7 @@
         <property name="hbm2ddl.auto">create</property>
         
         <!-- Mappings de classes -->
-		<mapping resource="woops2/model/WorkBreakDownElement.hbm.xml" />
+		<mapping resource="woops2/model/breakdownelement/WorkBreakDownElement.hbm.xml" />
 
 	</session-factory>
 </hibernate-configuration>
