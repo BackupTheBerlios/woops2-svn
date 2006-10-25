@@ -1,4 +1,4 @@
-package woops2.testapplication;
+package woops2.application.console;
 
 import org.springframework.beans.factory.xml.XmlBeanFactory;
 import org.springframework.core.io.FileSystemResource;
