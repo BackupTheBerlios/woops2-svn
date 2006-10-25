@@ -4,23 +4,13 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
 	
 	<display-name>Woops2</display-name>
-	<description>Woops2 Web File</description>
 	<context-param>
 		<param-name>javax.faces.CONFIG_FILES</param-name>
 		<param-value>/WEB-INF/faces-config.xml</param-value>
-		<description>
-			Comma separated list of URIs of (additional) faces config
-			files. (e.g. /WEB-INF/my-config.xml) See JSF 1.0 PRD2,
-			10.3.2
-		</description>
 	</context-param>
 	<context-param>
 		<param-name>javax.faces.STATE_SAVING_METHOD</param-name>
 		<param-value>server</param-value>
-		<description>
-			State saving method: "client" or "server" (= default) See
-			JSF Specification 2.5.2
-		</description>
 	</context-param>
 	
 	<!-- Faces Servlet -->
