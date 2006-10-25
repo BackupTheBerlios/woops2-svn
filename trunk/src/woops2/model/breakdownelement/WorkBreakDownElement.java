@@ -1,6 +1,5 @@
 package woops2.model.breakdownelement;
 
-import java.io.Serializable;
 
 /**
  * 

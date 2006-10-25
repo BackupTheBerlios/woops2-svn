@@ -90,7 +90,7 @@ public class BreakDownElement {
 		return superActivities;
 	}
 
-	public void setSuperActivities(java.util.Set superActivities) {
+	public void setSuperActivities(java.util.Set<Activity> superActivities) {
 		this.superActivities = superActivities;
 	}
 }
