@@ -28,7 +28,7 @@
 
 		<property name="mappingResources">
 			<list>
-				<value>woops2/model/breakdownelement/BreakDownElement.hbm.xml</value>
+				<value>woops2/model/breakdownelement/BreakdownElement.hbm.xml</value>
 				<value>woops2/model/breakdownelement/WorkBreakDownElement.hbm.xml</value>
 				<value>woops2/model/activity/Activity.hbm.xml</value>
 			</list>
@@ -80,13 +80,6 @@
 		</bean> -->
 
 	<!-- ========================= Start of DAO DEFINITIONS ========================= -->
-	<!-- Package systeme 
-	<bean id="UtilisateurDao"
-		class="com.airod.dao.systeme.UtilisateurDao">
-		<property name="hibernateTemplate">
-			<ref bean="hibernateTemplate" />
-		</property>
-	</bean> -->
 	
 	<bean id="ActivityDao"
 		class="woops2.hibernate.activity.ActivityDao">

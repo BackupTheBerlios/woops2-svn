@@ -5,7 +5,7 @@ package woops2.model.breakdownelement;
  * 
  * 
  */
-public class WorkBreakDownElement extends BreakDownElement  {
+public class WorkBreakDownElement extends BreakdownElement  {
 
 	/**
 	 * <p>

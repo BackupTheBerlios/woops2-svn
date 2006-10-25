@@ -6,7 +6,7 @@
 <hibernate-mapping>
 	<joined-subclass
 		name="woops2.model.breakdownelement.WorkBreakDownElement"
-		extends="woops2.model.breakdownelement.BreakDownElement"
+		extends="woops2.model.breakdownelement.BreakdownElement"
 		table="workbreakdownelement">
 		<key column="workbreakdownelement_id"></key>
 		

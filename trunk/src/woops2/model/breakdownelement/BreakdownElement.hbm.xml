@@ -5,7 +5,7 @@
 
 <hibernate-mapping>
 
-	<class name="woops2.model.breakdownelement.BreakDownElement" table="breakdownelement"
+	<class name="woops2.model.breakdownelement.BreakdownElement" table="breakdownelement"
 		lazy="false">
 
 		<id name="id" type="string"

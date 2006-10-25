@@ -14,7 +14,7 @@
 		<!-- Associations -->
 		<set name="breakDownElements" table="nesting" >
 			<key column="activity_id"></key>
-			<many-to-many class="woops2.model.breakdownelement.BreakDownElement"
+			<many-to-many class="woops2.model.breakdownelement.BreakdownElement"
 				column="breakdownelement_id">
 			</many-to-many>
 		</set>

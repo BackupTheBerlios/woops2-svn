@@ -4,7 +4,7 @@ import java.util.HashSet;
 
 import woops2.model.activity.Activity;
 
-public class BreakDownElement {
+public class BreakdownElement {
 
 	private String id;
 
