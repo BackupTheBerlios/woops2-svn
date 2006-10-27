@@ -61,7 +61,7 @@
 	</bean>
 
 	<!-- Hibernate Template Defintion  -->
-	<bean id="hibernateTemplate"
+	<bean id="hibernateTemplate" 
 		class="org.springframework.orm.hibernate3.HibernateTemplate">
 		<property name="sessionFactory">
 			<ref bean="sessionFactory" />
@@ -79,11 +79,18 @@
 		</property> 
 		</bean> -->
 
-	<!-- ========================= Start of DAO DEFINITIONS ========================= -->
+	<!-- ========================= Start of BEAN DEFINITIONS ========================= -->
 	
-	<bean id="ActivityDao"
+	<!-- DAO Layer -->
+	<bean id="ActivityDao" 
 		class="woops2.hibernate.activity.ActivityDao">
 		<property name="hibernateTemplate" ref="hibernateTemplate"/>
+	</bean>
+	
+	<!-- Business Layer -->
+	<bean id="ActivityManager" 
+		class="woops2.business.activity.ActivityManager" >
+		<property name="activityDao" ref="ActivityDao"/>
 	</bean>
 	
 </beans>
