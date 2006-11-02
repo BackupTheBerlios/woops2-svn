@@ -1,9 +1,9 @@
 package woops2.model.activity;
 
-import woops2.model.breakdownelement.WorkBreakDownElement;
+import woops2.model.breakdownelement.WorkBreakdownElement;
 
 
-public class Activity extends WorkBreakDownElement {
+public class Activity extends WorkBreakdownElement {
 	
 	private java.util.Set breakDownElements = new java.util.TreeSet();
 
