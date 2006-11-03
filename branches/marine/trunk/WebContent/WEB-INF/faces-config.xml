@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE faces-config PUBLIC
+  "-//Sun Microsystems, Inc.//DTD JavaServer Faces Config 1.0//EN"
+  "http://java.sun.com/dtd/web-facesconfig_1_0.dtd">
+
+<faces-config>
+	<!--   Spring Variable resolver -->
+	<application>
+		<variable-resolver>
+			org.springframework.web.jsf.DelegatingVariableResolver
+		</variable-resolver>
+		<locale-config />
+	</application>
+	
+	<managed-bean>
+		<managed-bean-name>ActivityViewer</managed-bean-name>
+		<managed-bean-class>woops2.presentation.activity.ActivityViewer</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>activityManager</property-name>
+			<value>#{ActivityManager}</value>
+		</managed-property>
+	</managed-bean>
+</faces-config>
