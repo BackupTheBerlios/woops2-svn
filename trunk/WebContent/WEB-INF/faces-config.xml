@@ -22,4 +22,16 @@
 			<value>#{ActivityManager}</value>
 		</managed-property>
 	</managed-bean>
+	
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>createactivity</from-outcome>
+			<to-view-id>/activityform.jsf</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>activity</from-outcome>
+			<to-view-id>/activity.jsf</to-view-id>
+		</navigation-case>
+	</navigation-rule>
 </faces-config>

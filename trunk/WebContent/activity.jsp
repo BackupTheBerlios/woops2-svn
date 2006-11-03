@@ -7,13 +7,19 @@
 
 <f:view>
 	<h:form id="form">
-		<h:outputText value="Woops2 - JSF test" style="h2" />
+		<h2>Woops2 - activities list</h2>
+		<h:outputText value="Table :" style="h2" />
 		<h:dataTable value="#{ActivityViewer.activitiesList}" border="1"
 			var="activity">
 			<h:column>
 				<h:outputText value="#{activity.id}" />
 			</h:column>
+			<h:column>
+				<h:outputText value="#{activity.prefix}" />
+			</h:column>
 		</h:dataTable>
+		<br>
+		<h:commandButton value="new activity" action="createactivity"/>
 	</h:form>
 </f:view>
 </body>

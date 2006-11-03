@@ -20,4 +20,8 @@ public class ActivityManager {
 	public List<Activity> getActivitiesList(){
 		return this.activityDao.getAllActivities();
 	}
+	
+	public void saveActivity(Activity a){
+		activityDao.saveOrUpdateActivity(a);
+	}
 }
