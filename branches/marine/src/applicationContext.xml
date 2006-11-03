@@ -9,13 +9,13 @@
 			<value>org.gjt.mm.mysql.Driver</value>
 		</property>
 		<property name="url">
-			<value>jdbc:mysql://127.0.0.1/woops2</value>
+			<value>jdbc:mysql://127.0.0.1/m1isb10</value>
 		</property>
 		<property name="username">
-			<value>root</value>
+			<value>m1isb10</value>
 		</property>
 		<property name="password">
-			<value></value>
+			<value>enisym</value>
 		</property>
 	</bean>
 
