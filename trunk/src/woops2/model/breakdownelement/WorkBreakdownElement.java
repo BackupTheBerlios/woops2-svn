@@ -1,11 +1,11 @@
-package woops2.model.breakdownelement;
 
+package woops2.model.breakdownelement ;
 
 /**
  * 
  * 
  */
-public class WorkBreakdownElement extends BreakdownElement  {
+public class WorkBreakdownElement extends BreakdownElement {
 
 	/**
 	 * <p>
@@ -13,7 +13,7 @@ public class WorkBreakdownElement extends BreakdownElement  {
 	 * </p>
 	 * 
 	 */
-	private Boolean isRepeatable = false;
+	private Boolean isRepeatable = false ;
 
 	/**
 	 * <p>
@@ -21,7 +21,7 @@ public class WorkBreakdownElement extends BreakdownElement  {
 	 * </p>
 	 * 
 	 */
-	private Boolean isOngoing = false;
+	private Boolean isOngoing = false ;
 
 	/**
 	 * <p>
@@ -29,29 +29,29 @@ public class WorkBreakdownElement extends BreakdownElement  {
 	 * </p>
 	 * 
 	 */
-	private Boolean isEvenDriven = false;
+	private Boolean isEvenDriven = false ;
 
-	public Boolean getIsEvenDriven() {
-		return isEvenDriven;
+	public Boolean getIsEvenDriven () {
+		return this.isEvenDriven ;
 	}
 
-	public void setIsEvenDriven(Boolean isEvenDriven) {
-		this.isEvenDriven = isEvenDriven;
+	public void setIsEvenDriven (Boolean _isEvenDriven) {
+		this.isEvenDriven = _isEvenDriven ;
 	}
 
-	public Boolean getIsOngoing() {
-		return isOngoing;
+	public Boolean getIsOngoing () {
+		return this.isOngoing ;
 	}
 
-	public void setIsOngoing(Boolean isOngoing) {
-		this.isOngoing = isOngoing;
+	public void setIsOngoing (Boolean _isOngoing) {
+		this.isOngoing = _isOngoing ;
 	}
 
-	public Boolean getIsRepeatable() {
-		return isRepeatable;
+	public Boolean getIsRepeatable () {
+		return this.isRepeatable ;
 	}
 
-	public void setIsRepeatable(Boolean isRepeatable) {
-		this.isRepeatable = isRepeatable;
+	public void setIsRepeatable (Boolean _isRepeatable) {
+		this.isRepeatable = _isRepeatable ;
 	}
 }

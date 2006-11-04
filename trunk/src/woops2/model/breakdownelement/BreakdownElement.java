@@ -1,12 +1,13 @@
-package woops2.model.breakdownelement;
 
-import java.util.HashSet;
+package woops2.model.breakdownelement ;
 
-import woops2.model.activity.Activity;
+import java.util.HashSet ;
+
+import woops2.model.activity.Activity ;
 
 public class BreakdownElement {
 
-	private String id;
+	private String id ;
 
 	/**
 	 * <p>
@@ -14,7 +15,7 @@ public class BreakdownElement {
 	 * </p>
 	 * 
 	 */
-	private String prefix;
+	private String prefix ;
 
 	/**
 	 * <p>
@@ -22,7 +23,7 @@ public class BreakdownElement {
 	 * </p>
 	 * 
 	 */
-	private Boolean isPlanned = true;
+	private Boolean isPlanned = true ;
 
 	/**
 	 * <p>
@@ -30,7 +31,7 @@ public class BreakdownElement {
 	 * </p>
 	 * 
 	 */
-	private Boolean hasMultipleOccurrences = false;
+	private Boolean hasMultipleOccurrences = false ;
 
 	/**
 	 * <p>
@@ -38,59 +39,59 @@ public class BreakdownElement {
 	 * </p>
 	 * 
 	 */
-	private Boolean isOptional = false;
+	private Boolean isOptional = false ;
 
 	/**
 	 * 
 	 * @poseidon-type Activity
 	 */
-	private java.util.Set<Activity> superActivities = new HashSet<Activity>();
+	private java.util.Set <Activity> superActivities = new HashSet <Activity>() ;
 
-	public Boolean getHasMultipleOccurrences() {
-		return hasMultipleOccurrences;
+	public Boolean getHasMultipleOccurrences () {
+		return this.hasMultipleOccurrences ;
 	}
 
-	public void setHasMultipleOccurrences(Boolean hasMultipleOccurrences) {
-		this.hasMultipleOccurrences = hasMultipleOccurrences;
+	public void setHasMultipleOccurrences (Boolean _hasMultipleOccurrences) {
+		this.hasMultipleOccurrences = _hasMultipleOccurrences ;
 	}
 
-	public String getId() {
-		return id;
+	public String getId () {
+		return this.id ;
 	}
 
-	public void setId(String id) {
-		this.id = id;
+	public void setId (String _id) {
+		this.id = _id ;
 	}
 
-	public Boolean getIsOptional() {
-		return isOptional;
+	public Boolean getIsOptional () {
+		return this.isOptional ;
 	}
 
-	public void setIsOptional(Boolean isOptional) {
-		this.isOptional = isOptional;
+	public void setIsOptional (Boolean _isOptional) {
+		this.isOptional = _isOptional ;
 	}
 
-	public Boolean getIsPlanned() {
-		return isPlanned;
+	public Boolean getIsPlanned () {
+		return this.isPlanned ;
 	}
 
-	public void setIsPlanned(Boolean isPlanned) {
-		this.isPlanned = isPlanned;
+	public void setIsPlanned (Boolean _isPlanned) {
+		this.isPlanned = _isPlanned ;
 	}
 
-	public String getPrefix() {
-		return prefix;
+	public String getPrefix () {
+		return this.prefix ;
 	}
 
-	public void setPrefix(String prefix) {
-		this.prefix = prefix;
+	public void setPrefix (String _prefix) {
+		this.prefix = _prefix ;
 	}
 
-	public java.util.Set getSuperActivities() {
-		return superActivities;
+	public java.util.Set getSuperActivities () {
+		return this.superActivities ;
 	}
 
-	public void setSuperActivities(java.util.Set<Activity> superActivities) {
-		this.superActivities = superActivities;
+	public void setSuperActivities (java.util.Set <Activity> _superActivities) {
+		this.superActivities = _superActivities ;
 	}
 }

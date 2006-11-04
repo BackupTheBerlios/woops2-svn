@@ -1,62 +1,65 @@
-package woops2.presentation.activity;
 
-import java.util.List;
+package woops2.presentation.activity ;
 
-import javax.faces.event.ActionEvent;
+import java.util.List ;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.apache.commons.logging.Log ;
+import org.apache.commons.logging.LogFactory ;
 
-import woops2.business.activity.ActivityManager;
-import woops2.model.activity.Activity;
+import woops2.business.activity.ActivityManager ;
+import woops2.model.activity.Activity ;
 
 public class ActivityViewer {
 
-	private List<Activity> activitiesList;
-	private ActivityManager activityManager;
-	private Activity activity;
-	
-	protected final Log logger = LogFactory.getLog(this.getClass());
-	
-	public ActivityViewer(){
-		this.logger.debug("--- ActivityViewer --- == creating ..."+this);
-		activity = new Activity();
+	private List <Activity> activitiesList ;
+
+	private ActivityManager activityManager ;
+
+	private Activity activity ;
+
+	protected final Log logger = LogFactory.getLog(this.getClass()) ;
+
+	public ActivityViewer () {
+		this.logger.debug("--- ActivityViewer --- == creating ..." + this) ;
+		this.activity = new Activity() ;
 	}
-	
-	public List<Activity> getActivitiesList() {
-		this.activitiesList = this.activityManager.getActivitiesList();
-		this.logger.debug("acti list ="+this.activitiesList);
-		return activitiesList;
+
+	public List <Activity> getActivitiesList () {
+		this.activitiesList = this.activityManager.getActivitiesList() ;
+		this.logger.debug("acti list =" + this.activitiesList) ;
+		return this.activitiesList ;
 	}
+
 	/**
 	 * Method for saving activity data from form
+	 * 
 	 * @return
 	 */
-	public String saveActivityAction(){
-		String url = "activity";
-		activityManager.saveActivity(this.activity);
-		return url;
-	}
-	
-	public void setActivitiesList(List<Activity> activitiesList) {
-		this.activitiesList = activitiesList;
+	public String saveActivityAction () {
+		String url = "activity" ;
+		this.activityManager.saveActivity(this.activity) ;
+		return url ;
 	}
 
-	public ActivityManager getActivityManager() {
-		return activityManager;
+	public void setActivitiesList (List <Activity> _activitiesList) {
+		this.activitiesList = _activitiesList ;
 	}
 
-	public void setActivityManager(ActivityManager activityManager) {
-		this.activityManager = activityManager;
+	public ActivityManager getActivityManager () {
+		return this.activityManager ;
 	}
 
-	public Activity getActivity() {
-		return activity;
+	public void setActivityManager (ActivityManager _activityManager) {
+		this.activityManager = _activityManager ;
 	}
 
-	public void setActivity(Activity activity) {
-		logger.debug("### Activity = "+activity+ " ###");
-		logger.debug("### prefix = "+activity.getPrefix()+ " ###");
-		this.activity = activity;
+	public Activity getActivity () {
+		return this.activity ;
+	}
+
+	public void setActivity (Activity _activity) {
+		this.logger.debug("### Activity = " + _activity + " ###") ;
+		this.logger.debug("### prefix = " + _activity.getPrefix() + " ###") ;
+		this.activity = _activity ;
 	}
 }
