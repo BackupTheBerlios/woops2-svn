@@ -1,22 +1,22 @@
-package woops2.hibernate.activity;
 
-import java.util.ArrayList;
-import java.util.List;
+package woops2.hibernate.activity ;
 
-import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
+import java.util.ArrayList ;
+import java.util.List ;
 
-import woops2.model.activity.Activity;
+import org.springframework.orm.hibernate3.support.HibernateDaoSupport ;
 
-public class ActivityDao extends HibernateDaoSupport{
-	
-	public void saveOrUpdateActivity(Activity a) {
-		this.getHibernateTemplate().saveOrUpdate(a);
+import woops2.model.activity.Activity ;
+
+public class ActivityDao extends HibernateDaoSupport {
+
+	public void saveOrUpdateActivity (Activity _activity) {
+		this.getHibernateTemplate().saveOrUpdate(_activity) ;
 	}
-	
-	
-	public List<Activity> getAllActivities(){
-		List<Activity> loadAll = new ArrayList<Activity>();
-		loadAll.addAll(this.getHibernateTemplate().loadAll(Activity.class));
-		return loadAll;
+
+	public List <Activity> getAllActivities () {
+		List <Activity> loadAll = new ArrayList <Activity>() ;
+		loadAll.addAll(this.getHibernateTemplate().loadAll(Activity.class)) ;
+		return loadAll ;
 	}
 }
