@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN"
+                  "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+<beans>
+	<!-- DataSource Definition -->
+	<bean id="dataSource"
+		class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+		<property name="driverClassName">
+			<value>org.gjt.mm.mysql.Driver</value>
+		</property>
+		<property name="url">
+			<value>jdbc:mysql://127.0.0.1/m1isb10</value>
+		</property>
+		<property name="username">
+			<value>m1isb10</value>
+		</property>
+		<property name="password">
+			<value>enisym</value>
+		</property>
+	</bean>
+
+	<!-- Hibernate SessionFactory Definition -->
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource">
+			<ref bean="dataSource" />
+		</property>
+
+		<property name="mappingResources">
+			<list>
+				<value>woops2/model/breakdownelement/BreakdownElement.hbm.xml</value>
+				<value>woops2/model/breakdownelement/WorkBreakdownElement.hbm.xml</value>
+				<value>woops2/model/activity/Activity.hbm.xml</value>
+			</list>
+		</property>
+
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">
+					org.hibernate.dialect.MySQLDialect
+				</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.cglib.use_reflection_optimizer">
+					true
+				</prop>
+				<prop key="hibernate.cache.provider_class">
+					org.hibernate.cache.HashtableCacheProvider
+				</prop>
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
+      			</props>
+	</property>
+
+	</bean>
+
+	<!-- Spring Data Access Exception Translator Defintion -->
+	<bean id="jdbcExceptionTranslator"
+		class="org.springframework.jdbc.support.SQLErrorCodeSQLExceptionTranslator">
+		<property name="dataSource">
+			<ref bean="dataSource" />
+		</property>
+	</bean>
+
+	<!-- Hibernate Template Defintion  -->
+	<bean id="hibernateTemplate" 
+		class="org.springframework.orm.hibernate3.HibernateTemplate">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+		<property name="jdbcExceptionTranslator">
+			<ref bean="jdbcExceptionTranslator" />
+		</property>
+	</bean>
+
+	<!-- Hibernate Transaction Manager Definition 
+		<bean id="transactionManager"
+		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory">
+		<ref local="sessionFactory" />
+		</property> 
+		</bean> -->
+
+	<!-- ========================= Start of BEAN DEFINITIONS ========================= -->
+	
+	<!-- DAO Layer -->
+	<bean id="ActivityDao" 
+		class="woops2.hibernate.activity.ActivityDao">
+		<property name="hibernateTemplate" ref="hibernateTemplate"/>
+	</bean>
+	
+	<!-- Business Layer -->
+	<bean id="ActivityManager" 
+		class="woops2.business.activity.ActivityManager" >
+		<property name="activityDao" ref="ActivityDao"/>
+	</bean>
+	
+</beans>
