@@ -48,10 +48,12 @@ public class ActivityManagerTest extends TestCase {
 
 		// Create empty Activity
 		Activity activity = new Activity() ;
-		activity.setId("666");
-		activity.setPrefix("ThisPrefix");
 		// Save it
 		hibernateTemplate.saveOrUpdate(activity) ;
+		
+		//Flush and clear the session
+		hibernateTemplate.flush();
+		hibernateTemplate.clear();
 
 		// Look if this activity is also into the database and look if the size of the set is >= 1.
 		List <Activity> activities = activityManager.getActivitiesList() ; // FIXME the bug with
@@ -82,10 +84,12 @@ public class ActivityManagerTest extends TestCase {
 
 		// Create empty Activity
 		Activity activity = new Activity() ;
-		activity.setId("666");
-		activity.setPrefix("ThisPrefix");
 		// Save it
 		activityManager.saveActivity(activity) ;// FIXME the bug with the activitydao.
+		
+		//Flush and clear the session
+		hibernateTemplate.flush();
+		hibernateTemplate.clear();
 
 		// Look if this activity is also into the database.
 		Activity activityTmp = (Activity) hibernateTemplate.get(Activity.class, activity.getId()) ;
