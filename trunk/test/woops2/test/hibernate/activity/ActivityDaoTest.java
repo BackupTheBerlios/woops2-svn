@@ -40,7 +40,7 @@ public class ActivityDaoTest extends TestCase {
 		// Create empty Activity
 		Activity activity = new Activity() ;
 		// Save it
-		activityDao.saveOrUpdateActivity(activity) ;//FIXME the bug with the activitydao.
+		activityDao.saveOrUpdateActivity(activity) ;
 		
 		//Flush and clear the session
 		hibernateTemplate.flush();
@@ -84,7 +84,7 @@ public class ActivityDaoTest extends TestCase {
 		hibernateTemplate.clear();
 		
 		// Look if this activity is also into the database and look if the size of the set is >= 1.
-		List <Activity> activities = activityDao.getAllActivities(); //FIXME the bug with the activitydao.
+		List <Activity> activities = activityDao.getAllActivities(); 
 		assertNotNull(activities) ;
 		assertTrue(activities.size() >= 1) ;
 		
