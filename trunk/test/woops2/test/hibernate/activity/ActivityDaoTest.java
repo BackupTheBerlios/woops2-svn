@@ -50,7 +50,9 @@ public class ActivityDaoTest extends TestCase {
 		ActivityDao activityDao = (ActivityDao) xmlBeanFactory.getBean("ActivityDao") ;
 
 		// Create empty Activity
-		Activity activity = new Activity("666", "ThisPrefix") ;
+		Activity activity = new Activity() ;
+		activity.setId("666");
+		activity.setPrefix("ThisPrefix");
 		// Save it
 		activityDao.saveOrUpdateActivity(activity) ;//FIXME the bug with the activitydao.
 		
@@ -83,7 +85,9 @@ public class ActivityDaoTest extends TestCase {
 		ActivityDao activityDao = (ActivityDao) xmlBeanFactory.getBean("ActivityDao") ;
 
 		// Create empty Activity
-		Activity activity = new Activity("666", "ThisPrefix") ;
+		Activity activity = new Activity() ;
+		activity.setId("666");
+		activity.setPrefix("ThisPrefix");
 		// Save it
 		hibernateTemplate.saveOrUpdate(activity) ;
 		
