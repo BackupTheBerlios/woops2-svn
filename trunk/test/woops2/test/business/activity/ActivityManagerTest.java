@@ -47,7 +47,9 @@ public class ActivityManagerTest extends TestCase {
 		ActivityManager activityManager = (ActivityManager) xmlBeanFactory.getBean("ActivityManager") ;
 
 		// Create empty Activity
-		Activity activity = new Activity("666", "ThisPrefix") ;
+		Activity activity = new Activity() ;
+		activity.setId("666");
+		activity.setPrefix("ThisPrefix");
 		// Save it
 		hibernateTemplate.saveOrUpdate(activity) ;
 
@@ -79,7 +81,9 @@ public class ActivityManagerTest extends TestCase {
 		ActivityManager activityManager = (ActivityManager) xmlBeanFactory.getBean("ActivityManager") ;
 
 		// Create empty Activity
-		Activity activity = new Activity("666", "ThisPrefix") ;
+		Activity activity = new Activity() ;
+		activity.setId("666");
+		activity.setPrefix("ThisPrefix");
 		// Save it
 		activityManager.saveActivity(activity) ;// FIXME the bug with the activitydao.
 
