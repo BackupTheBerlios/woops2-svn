@@ -19,18 +19,6 @@ import woops2.model.activity.Activity ;
  */
 public class ActivityDaoTest extends TestCase {
 
-	/*
-	 * //Getback the application context from the spring configuration file Resource res = new
-	 * FileSystemResource("src/applicationContext.xml"); XmlBeanFactory factory = new
-	 * XmlBeanFactory(res); // Show what is in the factory System.out.println("factory =>
-	 * "+factory); // Getback the hibernateTemplate bean
-	 * org.springframework.orm.hibernate3.HibernateTemplate hibTempl =
-	 * (org.springframework.orm.hibernate3.HibernateTemplate) factory.getBean("hibernateTemplate");
-	 * System.out.println("HibTemplate => "+hibTempl); // Get the ActivityDao Singleton for managing
-	 * Activity data ActivityDao dao = (ActivityDao) factory.getBean("ActivityDao"); // Create empty
-	 * Activity Activity a = new Activity(); // Save it dao.saveOrUpdateActivity(a);
-	 */
-
 	/**
 	 * Test method for
 	 * {@link woops2.hibernate.activity.ActivityDao#saveOrUpdateActivity(woops2.model.activity.Activity)}.
@@ -51,10 +39,12 @@ public class ActivityDaoTest extends TestCase {
 
 		// Create empty Activity
 		Activity activity = new Activity() ;
-		activity.setId("666");
-		activity.setPrefix("ThisPrefix");
 		// Save it
 		activityDao.saveOrUpdateActivity(activity) ;//FIXME the bug with the activitydao.
+		
+		//Flush and clear the session
+		hibernateTemplate.flush();
+		hibernateTemplate.clear();
 		
 		// Look if this activity is also into the database.
 		Activity activityTmp = (Activity) hibernateTemplate.get(Activity.class, activity.getId()) ;
@@ -86,10 +76,12 @@ public class ActivityDaoTest extends TestCase {
 
 		// Create empty Activity
 		Activity activity = new Activity() ;
-		activity.setId("666");
-		activity.setPrefix("ThisPrefix");
 		// Save it
 		hibernateTemplate.saveOrUpdate(activity) ;
+		
+		//Flush and clear the session
+		hibernateTemplate.flush();
+		hibernateTemplate.clear();
 		
 		// Look if this activity is also into the database and look if the size of the set is >= 1.
 		List <Activity> activities = activityDao.getAllActivities(); //FIXME the bug with the activitydao.
