@@ -39,21 +39,18 @@ public class ActivityDaoTest extends TestCase {
 
 		// Create empty Activity
 		Activity activity = new Activity() ;
-		// Save it
-		activityDao.saveOrUpdateActivity(activity) ;
+		activityDao.saveOrUpdateActivity(activity);
 		
 		//Flush and clear the session
 		hibernateTemplate.flush();
 		hibernateTemplate.clear();
-		
-		// Look if this activity is also into the database.
-		Activity activityTmp = (Activity) hibernateTemplate.get(Activity.class, activity.getId()) ;
-		assertNotNull(activityTmp) ;
-		assertEquals(activity.getId(), activityTmp.getId()) ;
-		assertEquals(activity.getPrefix(), activityTmp.getPrefix()) ;
+		final String id = activity.getId();
+		// Save it
+		Activity activityTmp = activityDao.getActivity(id);
+		assertNotNull(activityTmp);
 		
 		//Delete the tmp activity from the database.
-		hibernateTemplate.delete(activityTmp);
+		activityDao.deleteActivity(activity);
 	}
 
 	/**

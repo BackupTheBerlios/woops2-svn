@@ -9,7 +9,6 @@ import org.springframework.core.io.Resource ;
 import org.springframework.orm.hibernate3.HibernateTemplate ;
 
 import woops2.business.activity.ActivityManager ;
-import woops2.hibernate.activity.ActivityDao ;
 import woops2.model.activity.Activity ;
 import junit.framework.TestCase ;
 
@@ -18,17 +17,6 @@ import junit.framework.TestCase ;
  * 
  */
 public class ActivityManagerTest extends TestCase {
-
-	/**
-	 * Test method for {@link woops2.business.activity.ActivityManager#getActivityDao()}. and
-	 * {@link woops2.business.activity.ActivityManager#setActivityDao(woops2.hibernate.activity.ActivityDao)}.
-	 */
-	public void testSetAndGetActivityDao () {
-		ActivityManager activityManager = new ActivityManager() ;
-		ActivityDao activityDao = new ActivityDao() ;
-		activityManager.setActivityDao(activityDao) ;
-		assertEquals(activityDao, activityManager.getActivityDao()) ;
-	}
 
 	/**
 	 * Test method for {@link woops2.business.activity.ActivityManager#getActivitiesList()}.
@@ -41,19 +29,17 @@ public class ActivityManagerTest extends TestCase {
 		// Getback the application context from the spring configuration file
 		Resource resource = new FileSystemResource("src/applicationContext.xml") ;
 		XmlBeanFactory xmlBeanFactory = new XmlBeanFactory(resource) ;
-		// Getback the hibernateTemplate bean
-		HibernateTemplate hibernateTemplate = (HibernateTemplate) xmlBeanFactory.getBean("hibernateTemplate") ;
 		// Get the ActivityDao Singleton for managing Activity data
 		ActivityManager activityManager = (ActivityManager) xmlBeanFactory.getBean("ActivityManager") ;
 
 		// Create empty Activity
 		Activity activity = new Activity() ;
 		// Save it
-		hibernateTemplate.saveOrUpdate(activity) ;
+		activityManager.getActivityDao().saveOrUpdateActivity(activity) ;
 		
 		//Flush and clear the session
-		hibernateTemplate.flush();
-		hibernateTemplate.clear();
+		activityManager.getActivityDao().getHibernateTemplate().flush();
+		activityManager.getActivityDao().getHibernateTemplate().clear();
 
 		// Look if this activity is also into the database and look if the size of the set is >= 1.
 		List <Activity> activities = activityManager.getActivitiesList() ; 
@@ -61,7 +47,7 @@ public class ActivityManagerTest extends TestCase {
 		assertTrue(activities.size() >= 1) ;
 
 		// Delete the tmp activity from the database.
-		hibernateTemplate.delete(activity) ;
+		activityManager.getActivityDao().deleteActivity(activity) ;
 	}
 
 	/**

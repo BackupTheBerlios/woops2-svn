@@ -24,6 +24,24 @@ public class ActivityDao extends HibernateDaoSupport {
 	public void saveOrUpdateActivity (Activity _activity) {
 		this.getHibernateTemplate().saveOrUpdate(_activity) ;
 	}
+	
+	/**
+	 * 
+	 * @param _id
+	 * @return
+	 */
+	public Activity getActivity(String _id) {
+			return (Activity) this.getHibernateTemplate().load(Activity.class,_id);
+	}
+	
+	/**
+	 * 
+	 * @param _id
+	 * @return
+	 */
+	public void deleteActivity(Activity _activity) {
+			this.getHibernateTemplate().delete(_activity);
+	}
 
 	/**
 	 * TODO Method description
