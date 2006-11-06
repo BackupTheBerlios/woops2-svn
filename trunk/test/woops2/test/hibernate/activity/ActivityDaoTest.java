@@ -3,22 +3,51 @@ package woops2.test.hibernate.activity ;
 
 import java.util.List;
 
-import junit.framework.TestCase ;
+import junit.framework.TestCase;
 
-import org.springframework.beans.factory.xml.XmlBeanFactory ;
-import org.springframework.core.io.FileSystemResource ;
-import org.springframework.core.io.Resource ;
-import org.springframework.orm.hibernate3.HibernateTemplate ;
-
-import woops2.hibernate.activity.ActivityDao ;
-import woops2.model.activity.Activity ;
+import woops2.hibernate.activity.ActivityDao;
+import woops2.model.activity.Activity;
+import woops2.test.TestConfiguration;
 
 /**
  * @author Mathieu BENOIT.
- * 
+ *
+ * This class represents ... TODO
+ *
  */
 public class ActivityDaoTest extends TestCase {
 
+	private ActivityDao activityDao;
+	private Activity activity;
+	
+	public static final String PREFIX = "prefix";
+	public static final Boolean IS_OPTIONAL = true;
+	
+	/* (non-Javadoc)
+	 * @see junit.framework.TestCase#setUp()
+	 */
+	@ Override
+	protected void setUp () throws Exception {
+		super.setUp();
+		
+		// Get the ActivityDao Singleton for managing Activity data
+		this.activityDao = (ActivityDao) TestConfiguration.xmlBeanFactory.getBean("ActivityDao") ;
+
+		// Create empty Activity
+		this.activity = new Activity() ;
+	}
+
+	/* (non-Javadoc)
+	 * @see junit.framework.TestCase#tearDown()
+	 */
+	@ Override
+	protected void tearDown () throws Exception {
+		super.tearDown();
+		
+		// Delete the tmp activity from the database.
+		this.activityDao.getHibernateTemplate().delete(this.activity);
+	}
+	
 	/**
 	 * Test method for
 	 * {@link woops2.hibernate.activity.ActivityDao#saveOrUpdateActivity(woops2.model.activity.Activity)}.
@@ -29,28 +58,20 @@ public class ActivityDaoTest extends TestCase {
 	 * To finish delete this tmp activity from the database.
 	 */
 	public void testSaveOrUpdateActivity () {
-		// Getback the application context from the spring configuration file
-		Resource resource = new FileSystemResource("src/applicationContext.xml") ;
-		XmlBeanFactory xmlBeanFactory = new XmlBeanFactory(resource) ;
-		// Getback the hibernateTemplate bean
-		HibernateTemplate hibernateTemplate = (HibernateTemplate) xmlBeanFactory.getBean("hibernateTemplate") ;
-		// Get the ActivityDao Singleton for managing Activity data
-		ActivityDao activityDao = (ActivityDao) xmlBeanFactory.getBean("ActivityDao") ;
-
-		// Create empty Activity
-		Activity activity = new Activity() ;
-		activityDao.saveOrUpdateActivity(activity);
+		//Rk: the setUp method is called here.
 		
-		//Flush and clear the session
-		hibernateTemplate.flush();
-		hibernateTemplate.clear();
-		final String id = activity.getId();
-		// Save it
-		Activity activityTmp = activityDao.getActivity(id);
+		// Save the activity with the method to test.
+		this.activityDao.saveOrUpdateActivity(this.activity);
+		
+		//Flush and clear the session.
+		TestConfiguration.flushAndClear();
+		
+		//Check the saving.
+		String id = activity.getId();
+		Activity activityTmp = (Activity) this.activityDao.getHibernateTemplate().load(Activity.class, id) ;
 		assertNotNull(activityTmp);
 		
-		//Delete the tmp activity from the database.
-		activityDao.deleteActivity(activity);
+		//Rk: the tearDown method is called here.
 	}
 
 	/**
@@ -63,30 +84,19 @@ public class ActivityDaoTest extends TestCase {
 	 * To finish delete this tmp activity from the database.
 	 */
 	public void testGetAllActivities () {
-		//Getback the application context from the spring configuration file
-		Resource resource = new FileSystemResource("src/applicationContext.xml") ;
-		XmlBeanFactory xmlBeanFactory = new XmlBeanFactory(resource) ;
-		// Getback the hibernateTemplate bean
-		HibernateTemplate hibernateTemplate = (HibernateTemplate) xmlBeanFactory.getBean("hibernateTemplate") ;
-		// Get the ActivityDao Singleton for managing Activity data
-		ActivityDao activityDao = (ActivityDao) xmlBeanFactory.getBean("ActivityDao") ;
-
-		// Create empty Activity
-		Activity activity = new Activity() ;
-		// Save it
-		hibernateTemplate.saveOrUpdate(activity) ;
+		//Rk: the setUp method is called here.
 		
-		//Flush and clear the session
-		hibernateTemplate.flush();
-		hibernateTemplate.clear();
+		// Save the activity into the database.
+		this.activityDao.getHibernateTemplate().saveOrUpdate(this.activity) ;
+		
+		//Flush and clear the session.
+		TestConfiguration.flushAndClear();
 		
 		// Look if this activity is also into the database and look if the size of the set is >= 1.
-		List <Activity> activities = activityDao.getAllActivities(); 
+		List <Activity> activities = this.activityDao.getAllActivities(); 
 		assertNotNull(activities) ;
 		assertTrue(activities.size() >= 1) ;
 		
-		//Delete the tmp activity from the database.
-		hibernateTemplate.delete(activity);
+		// Rk: the tearDown method is called here.
 	}
-
 }

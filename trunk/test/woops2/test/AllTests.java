@@ -15,6 +15,7 @@ public class AllTests {
 		// $JUnit-BEGIN$
 		suite.addTest(woops2.test.business.AllTests.suite()) ;
 		suite.addTest(woops2.test.hibernate.AllTests.suite()) ;
+		suite.addTest(woops2.test.model.AllTests.suite()) ;
 		// $JUnit-END$
 		return suite ;
 	}

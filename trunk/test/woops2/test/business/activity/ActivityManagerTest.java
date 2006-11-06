@@ -1,16 +1,13 @@
 
 package woops2.test.business.activity ;
 
-import java.util.List ;
+import java.util.List;
 
-import org.springframework.beans.factory.xml.XmlBeanFactory ;
-import org.springframework.core.io.FileSystemResource ;
-import org.springframework.core.io.Resource ;
-import org.springframework.orm.hibernate3.HibernateTemplate ;
+import junit.framework.TestCase;
 
-import woops2.business.activity.ActivityManager ;
-import woops2.model.activity.Activity ;
-import junit.framework.TestCase ;
+import woops2.business.activity.ActivityManager;
+import woops2.model.activity.Activity;
+import woops2.test.TestConfiguration;
 
 /**
  * @author Mathieu BENOIT.
@@ -18,72 +15,90 @@ import junit.framework.TestCase ;
  */
 public class ActivityManagerTest extends TestCase {
 
+	private ActivityManager activityManager;
+	private Activity activity;
+	
+	public static final String PREFIX = "prefix";
+	public static final Boolean IS_OPTIONAL = true;
+	
+	/* (non-Javadoc)
+	 * @see junit.framework.TestCase#setUp()
+	 */
+	@ Override
+	protected void setUp () throws Exception {
+		super.setUp();
+		
+		// Get the ActivityDao Singleton for managing Activity data
+		this.activityManager = (ActivityManager) TestConfiguration.xmlBeanFactory.getBean("ActivityManager") ;
+
+		// Create empty Activity
+		this.activity = new Activity() ;
+	}
+
+	/* (non-Javadoc)
+	 * @see junit.framework.TestCase#tearDown()
+	 */
+	@ Override
+	protected void tearDown () throws Exception {
+		super.tearDown();
+		
+		// Delete the tmp activity from the database.
+		this.activityManager.getActivityDao().getHibernateTemplate().delete(this.activity);
+	}
+	
 	/**
 	 * Test method for {@link woops2.business.activity.ActivityManager#getActivitiesList()}.
 	 * 
-	 * PRINCIPLE Create a tmp activity, save it into the database. Then get all activities from the
+	 * PRINCIPLE 
+	 * Create a tmp activity, save it into the database. Then get all activities from the
 	 * database with the method to test, and look if the size of the activities set got is >= 1. To
 	 * finish delete this tmp activity from the database.
 	 */
 	public void testGetActivitiesList () {
-		// Getback the application context from the spring configuration file
-		Resource resource = new FileSystemResource("src/applicationContext.xml") ;
-		XmlBeanFactory xmlBeanFactory = new XmlBeanFactory(resource) ;
-		// Get the ActivityDao Singleton for managing Activity data
-		ActivityManager activityManager = (ActivityManager) xmlBeanFactory.getBean("ActivityManager") ;
-
-		// Create empty Activity
-		Activity activity = new Activity() ;
-		// Save it
-		activityManager.getActivityDao().saveOrUpdateActivity(activity) ;
+		//Rk: the setUp method is called here.
+		
+		// Save the activity.
+		this.activityManager.getActivityDao().saveOrUpdateActivity(this.activity) ;
 		
 		//Flush and clear the session
-		activityManager.getActivityDao().getHibernateTemplate().flush();
-		activityManager.getActivityDao().getHibernateTemplate().clear();
+		TestConfiguration.flushAndClear();
 
 		// Look if this activity is also into the database and look if the size of the set is >= 1.
-		List <Activity> activities = activityManager.getActivitiesList() ; 
+		List <Activity> activities = this.activityManager.getActivitiesList() ; 
 		assertNotNull(activities) ;
 		assertTrue(activities.size() >= 1) ;
 
-		// Delete the tmp activity from the database.
-		activityManager.getActivityDao().deleteActivity(activity) ;
+		//Rk: the tearDown method is called here.
 	}
 
 	/**
 	 * Test method for
 	 * {@link woops2.business.activity.ActivityManager#saveActivity(woops2.model.activity.Activity)}.
 	 * 
-	 * PRINCIPLE Create a tmp activity, save it into the database with the method to test. Then look
+	 * PRINCIPLE 
+	 * Create a tmp activity, save it into the database with the method to test. Then look
 	 * for the database to check if this tmp activity exists. To finish delete this tmp activity
 	 * from the database.
 	 */
 	public void testSaveActivity () {
-		// Getback the application context from the spring configuration file
-		Resource resource = new FileSystemResource("src/applicationContext.xml") ;
-		XmlBeanFactory xmlBeanFactory = new XmlBeanFactory(resource) ;
-		// Getback the hibernateTemplate bean
-		HibernateTemplate hibernateTemplate = (HibernateTemplate) xmlBeanFactory.getBean("hibernateTemplate") ;
-		// Get the ActivityDao Singleton for managing Activity data
-		ActivityManager activityManager = (ActivityManager) xmlBeanFactory.getBean("ActivityManager") ;
-
-		// Create empty Activity
-		Activity activity = new Activity() ;
-		// Save it
-		activityManager.saveActivity(activity) ;
+		//Rk: the setUp method is called here.
 		
-		//Flush and clear the session
-		hibernateTemplate.flush();
-		hibernateTemplate.clear();
+		// Save the activity to test the method saveActivity.
+		this.activity.setPrefix(PREFIX);
+		this.activity.setIsOptional(IS_OPTIONAL);
+		this.activityManager.saveActivity(this.activity) ;
+		String id = this.activity.getId();
+		
+		//Flush and clear the session.
+		TestConfiguration.flushAndClear();
 
 		// Look if this activity is also into the database.
-		Activity activityTmp = (Activity) hibernateTemplate.get(Activity.class, activity.getId()) ;
+		Activity activityTmp = (Activity) this.activityManager.getActivityDao().getHibernateTemplate().get(Activity.class, id) ;
 		assertNotNull(activityTmp) ;
-		assertEquals(activity.getId(), activityTmp.getId()) ;
-		assertEquals(activity.getPrefix(), activityTmp.getPrefix()) ;
+		assertEquals(activityTmp.getPrefix(), PREFIX) ;
+		assertEquals(activityTmp.getIsOptional(), IS_OPTIONAL) ;
 
-		// Delete the tmp activity from the database.
-		hibernateTemplate.delete(activityTmp) ;
+		//Rk: the tearDown method is called here.
 	}
 
 }

@@ -22,25 +22,7 @@ public class ActivityDao extends HibernateDaoSupport {
 	 * @param _activity
 	 */
 	public void saveOrUpdateActivity (Activity _activity) {
-		this.getHibernateTemplate().saveOrUpdate(_activity) ;
-	}
-	
-	/**
-	 * 
-	 * @param _id
-	 * @return
-	 */
-	public Activity getActivity(String _id) {
-			return (Activity) this.getHibernateTemplate().load(Activity.class,_id);
-	}
-	
-	/**
-	 * 
-	 * @param _id
-	 * @return
-	 */
-	public void deleteActivity(Activity _activity) {
-			this.getHibernateTemplate().delete(_activity);
+		super.getHibernateTemplate().saveOrUpdate(_activity) ;
 	}
 
 	/**
@@ -50,7 +32,7 @@ public class ActivityDao extends HibernateDaoSupport {
 	 */
 	public List <Activity> getAllActivities () {
 		List <Activity> loadAll = new ArrayList <Activity>() ;
-		loadAll.addAll(this.getHibernateTemplate().loadAll(Activity.class)) ;
+		loadAll.addAll(super.getHibernateTemplate().loadAll(Activity.class)) ;
 		return loadAll ;
 	}
 }
