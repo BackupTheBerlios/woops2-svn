@@ -3,7 +3,7 @@
 	Script de Construction ANT
 	A.GIULIANI
 -->
-<project name="Woops2 - Ant War Builder" default="build.war" basedir="../">
+<project name="Woops2" default="build.war" basedir="../">
 
 	<!-- Configure the context path for this application -->
 	<property name="project.name" 	value="Woops2" />
