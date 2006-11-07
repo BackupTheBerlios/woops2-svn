@@ -3,8 +3,6 @@ package woops2.test.hibernate.activity ;
 
 import java.util.List;
 
-import junit.framework.TestCase;
-
 import woops2.hibernate.activity.ActivityDao;
 import woops2.model.activity.Activity;
 import woops2.test.TestConfiguration;
@@ -15,7 +13,7 @@ import woops2.test.TestConfiguration;
  * This class represents ... TODO
  *
  */
-public class ActivityDaoTest extends TestCase {
+public class ActivityDaoTest extends TestConfiguration {
 
 	private ActivityDao activityDao;
 	private Activity activity;
@@ -31,7 +29,7 @@ public class ActivityDaoTest extends TestCase {
 		super.setUp();
 		
 		// Get the ActivityDao Singleton for managing Activity data
-		this.activityDao = (ActivityDao) TestConfiguration.xmlBeanFactory.getBean("ActivityDao") ;
+		this.activityDao = (ActivityDao) super.xmlBeanFactory.getBean("ActivityDao") ;
 
 		// Create empty Activity
 		this.activity = new Activity() ;
@@ -64,7 +62,7 @@ public class ActivityDaoTest extends TestCase {
 		this.activityDao.saveOrUpdateActivity(this.activity);
 		
 		//Flush and clear the session.
-		TestConfiguration.flushAndClear();
+		super.flushAndClear();
 		
 		//Check the saving.
 		String id = activity.getId();
@@ -90,7 +88,7 @@ public class ActivityDaoTest extends TestCase {
 		this.activityDao.getHibernateTemplate().saveOrUpdate(this.activity) ;
 		
 		//Flush and clear the session.
-		TestConfiguration.flushAndClear();
+		super.flushAndClear();
 		
 		// Look if this activity is also into the database and look if the size of the set is >= 1.
 		List <Activity> activities = this.activityDao.getAllActivities(); 

@@ -3,8 +3,6 @@ package woops2.test.business.activity ;
 
 import java.util.List;
 
-import junit.framework.TestCase;
-
 import woops2.business.activity.ActivityManager;
 import woops2.model.activity.Activity;
 import woops2.test.TestConfiguration;
@@ -13,7 +11,7 @@ import woops2.test.TestConfiguration;
  * @author Mathieu BENOIT.
  * 
  */
-public class ActivityManagerTest extends TestCase {
+public class ActivityManagerTest extends TestConfiguration {
 
 	private ActivityManager activityManager;
 	private Activity activity;
@@ -29,7 +27,7 @@ public class ActivityManagerTest extends TestCase {
 		super.setUp();
 		
 		// Get the ActivityDao Singleton for managing Activity data
-		this.activityManager = (ActivityManager) TestConfiguration.xmlBeanFactory.getBean("ActivityManager") ;
+		this.activityManager = (ActivityManager) super.xmlBeanFactory.getBean("ActivityManager") ;
 
 		// Create empty Activity
 		this.activity = new Activity() ;
@@ -61,7 +59,7 @@ public class ActivityManagerTest extends TestCase {
 		this.activityManager.getActivityDao().saveOrUpdateActivity(this.activity) ;
 		
 		//Flush and clear the session
-		TestConfiguration.flushAndClear();
+		super.flushAndClear();
 
 		// Look if this activity is also into the database and look if the size of the set is >= 1.
 		List <Activity> activities = this.activityManager.getActivitiesList() ; 
@@ -90,7 +88,7 @@ public class ActivityManagerTest extends TestCase {
 		String id = this.activity.getId();
 		
 		//Flush and clear the session.
-		TestConfiguration.flushAndClear();
+		super.flushAndClear();
 
 		// Look if this activity is also into the database.
 		Activity activityTmp = (Activity) this.activityManager.getActivityDao().getHibernateTemplate().get(Activity.class, id) ;

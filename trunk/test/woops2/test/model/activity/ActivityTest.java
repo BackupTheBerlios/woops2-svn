@@ -1,12 +1,10 @@
 
 package woops2.test.model.activity ;
 
-import junit.framework.TestCase ;
+import org.springframework.orm.hibernate3.HibernateTemplate;
 
-import org.springframework.orm.hibernate3.HibernateTemplate ;
-
-import woops2.model.activity.Activity ;
-import woops2.test.TestConfiguration ;
+import woops2.model.activity.Activity;
+import woops2.test.TestConfiguration;
 
 /**
  * @author Mathieu BENOIT.
@@ -14,7 +12,7 @@ import woops2.test.TestConfiguration ;
  * This class represents ... TODO
  *
  */
-public class ActivityTest extends TestCase {
+public class ActivityTest extends TestConfiguration {
 
 	private HibernateTemplate hibernateTemplate ;
 	private Activity activity ;
@@ -36,7 +34,7 @@ public class ActivityTest extends TestCase {
 		super.setUp() ;
 
 		// Getback the hibernateTemplate bean.
-		this.hibernateTemplate = (HibernateTemplate) TestConfiguration.xmlBeanFactory.getBean("hibernateTemplate") ;
+		this.hibernateTemplate = (HibernateTemplate) super.xmlBeanFactory.getBean("hibernateTemplate") ;
 
 		// Create an empty Activity.
 		this.activity = new Activity() ;
@@ -69,7 +67,7 @@ public class ActivityTest extends TestCase {
 		String id = this.activity.getId() ;
 
 		// Flush and clear the session.
-		TestConfiguration.flushAndClear() ;
+		super.flushAndClear() ;
 
 		Activity activityTmp = (Activity) this.hibernateTemplate.get(Activity.class, id) ;
 		assertNotNull(activityTmp) ;
