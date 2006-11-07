@@ -41,7 +41,7 @@ public class ActivityManagerTest extends TestConfiguration {
 		super.tearDown();
 		
 		// Delete the tmp activity from the database.
-		this.activityManager.getActivityDao().getHibernateTemplate().delete(this.activity);
+		this.activityManager.getActivityDao().deleteActivity(this.activity);
 	}
 	
 	/**
@@ -91,7 +91,7 @@ public class ActivityManagerTest extends TestConfiguration {
 		super.flushAndClear();
 
 		// Look if this activity is also into the database.
-		Activity activityTmp = (Activity) this.activityManager.getActivityDao().getHibernateTemplate().get(Activity.class, id) ;
+		Activity activityTmp = (Activity) this.activityManager.getActivityDao().getActivity(id);
 		assertNotNull(activityTmp) ;
 		assertEquals(activityTmp.getPrefix(), PREFIX) ;
 		assertEquals(activityTmp.getIsOptional(), IS_OPTIONAL) ;

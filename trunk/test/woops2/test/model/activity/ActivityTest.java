@@ -32,7 +32,7 @@ public class ActivityTest extends TestConfiguration {
 	@ Override
 	protected void setUp () throws Exception {
 		super.setUp() ;
-
+		//TODO : Remplacer hibernateTemplate par ActivityDao
 		// Getback the hibernateTemplate bean.
 		this.hibernateTemplate = (HibernateTemplate) super.xmlBeanFactory.getBean("hibernateTemplate") ;
 

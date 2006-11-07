@@ -8,10 +8,10 @@ import woops2.model.activity.Activity;
 import woops2.test.TestConfiguration;
 
 /**
+ * Unit test for ActivityDao
+ * 
  * @author Mathieu BENOIT.
- *
- * This class represents ... TODO
- *
+ * @author garwind
  */
 public class ActivityDaoTest extends TestConfiguration {
 
@@ -97,4 +97,8 @@ public class ActivityDaoTest extends TestConfiguration {
 		
 		// Rk: the tearDown method is called here.
 	}
+	
+	//TODO Test for getActivity
+	
+	//TODO Test for deleteActivity
 }
