@@ -9,16 +9,14 @@ import org.springframework.orm.hibernate3.support.HibernateDaoSupport ;
 import woops2.model.activity.Activity ;
 
 /**
+ * ActivityDao manage requests from the system to store Acitivties to the database
+ * @author garwind
  * @author Mathieu BENOIT.
- * 
- * This class represents ... TODO
- * 
  */
 public class ActivityDao extends HibernateDaoSupport {
 
 	/**
-	 * TODO Method description
-	 * 
+	 * Save or update an activity
 	 * @param _activity
 	 */
 	public void saveOrUpdateActivity (Activity _activity) {
@@ -26,8 +24,7 @@ public class ActivityDao extends HibernateDaoSupport {
 	}
 
 	/**
-	 * TODO Method description
-	 * 
+	 * Return a list of activities
 	 * @return
 	 */
 	public List <Activity> getAllActivities () {

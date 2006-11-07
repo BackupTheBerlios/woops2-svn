@@ -10,10 +10,9 @@ import woops2.business.activity.ActivityManager ;
 import woops2.model.activity.Activity ;
 
 /**
+ * Managed-Bean link to activity.jsp and activitform.jsp
+ * @author garwind
  * @author Mathieu BENOIT.
- * 
- * This class represents ... TODO
- * 
  */
 public class ActivityViewer {
 

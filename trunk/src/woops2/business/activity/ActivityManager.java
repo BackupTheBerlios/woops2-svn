@@ -7,18 +7,17 @@ import woops2.hibernate.activity.ActivityDao ;
 import woops2.model.activity.Activity ;
 
 /**
+ * ActivityManager manage operations about activity, requested by web pages 
+ * (activity.jsp & activityform.jsp)
+ * @author garwind
  * @author Mathieu BENOIT.
- * 
- * This class represents ... TODO
- * 
  */
 public class ActivityManager {
 
 	private ActivityDao activityDao ;
 
 	/**
-	 * TODO Method description
-	 * 
+	 * Return activities list
 	 * @return
 	 */
 	public List <Activity> getActivitiesList () {
@@ -26,8 +25,7 @@ public class ActivityManager {
 	}
 
 	/**
-	 * TODO Method description
-	 * 
+	 * Save activity
 	 * @param _activity
 	 */
 	public void saveActivity (Activity _activity) {
