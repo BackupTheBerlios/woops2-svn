@@ -6,13 +6,13 @@
 <project name="Woops2" default="build.war" basedir="../">
 
 	<!-- Configure the context path for this application -->
-	<property name="project.name" 	value="Woops2" />
-	<property name="build.dir"   	value="${basedir}/build" />
-	<property name="src.dir" 		value="${basedir}/src" />
-	<property name="src.java.dir" 	value="${src.dir}" />
-	<property name="web.dir" 		value="${basedir}/WebContent" />
-	<property name="lib.dir"		value="${basedir}/WebContent/WEB-INF/lib" />
-	<property name="dist.dir" 		value="${basedir}/dist" />
+	<property name="project.name" value="Woops2" />
+	<property name="build.dir" value="${basedir}/tmp" />
+	<property name="src.dir" value="${basedir}/src" />
+	<property name="src.java.dir" value="${src.dir}" />
+	<property name="web.dir" value="${basedir}/WebContent" />
+	<property name="lib.dir" value="${basedir}/WebContent/WEB-INF/lib" />
+	<property name="dist.dir" value="${basedir}/dist" />
 
 	<path id="classpath">
 		<!-- Ajout des classes
@@ -20,7 +20,7 @@
 				<include name="**/*.class"/>
 			</fileset> -->
 		<fileset dir="${lib.dir}">
-			<include name="**/*.jar"/>
+			<include name="**/*.jar" />
 		</fileset>
 	</path>
 
@@ -33,10 +33,10 @@
 		<delete dir="${dist.dir}" />
 	</target>
 
-	<target name="prepare" depends="clean"
-        description="Create build directories.">
+	<target name="prepare" depends="clean" description="Create build directories.">
 		<mkdir dir="${build.dir}/${project.name}" />
 		<mkdir dir="${build.dir}/${project.name}/images" />
+		<mkdir dir="${build.dir}/${project.name}/javascript" />
 		<mkdir dir="${build.dir}/${project.name}/WEB-INF" />
 		<mkdir dir="${build.dir}/${project.name}/META-INF" />
 		<mkdir dir="${build.dir}/${project.name}/WEB-INF/classes" />
@@ -49,7 +49,7 @@
 	<target name="copyJars">
 		<copy todir="${build.dir}/${project.name}/WEB-INF/lib">
 			<fileset dir="${lib.dir}">
-				<!-- libs uniuement dans le repertoire lib
+				<!-- libs uniquement dans le repertoire lib
 				<include name="**/*.jar" /> 
 				<include name="*.dtd" /> 
 				-->
@@ -68,13 +68,12 @@
 	</target>
 
 	<!-- Executable Targets -->
-	<target name="build" depends="prepare,copyJars"
-     description="Compile Java files and copy static files." >
+	<target name="build" depends="prepare,copyJars" description="Compile Java files and copy static files.">
 		<javac srcdir="${src.java.dir}" destdir="${build.dir}/${project.name}/WEB-INF/classes">
 			<include name="**/*.java" />
 			<include name="**/*.xml" />
 			<include name="**/*.properties" />
-			<classpath refid="classpath"/>
+			<classpath refid="classpath" />
 		</javac>
 
 		<copy todir="${build.dir}/${project.name}/WEB-INF/classes">
@@ -95,19 +94,8 @@
 		<copy todir="${build.dir}/${project.name}/">
 			<fileset dir="${web.dir}">
 				<include name="*.html" />
-				<include name="*.gif" />
-				<include name="*.jpg" />
 				<include name="*.jsp" />
 				<include name="*.xml" />
-				<include name="*.css" />
-			</fileset>
-		</copy>
-		<!-- repertoire include -->
-		<copy todir="${build.dir}/${project.name}/inc">
-			<fileset dir="${web.dir}/inc">
-				<include name="*.html" />
-				<include name="*.jsp" />
-				<include name="*.inc" />
 			</fileset>
 		</copy>
 
@@ -136,15 +124,12 @@
 	<target name="build.war" depends="build">
 		<delete dir="${dist.dir}" />
 		<mkdir dir="${dist.dir}" />
-		<war destfile="${dist.dir}/${project.name}.war" webxml="${build.dir}/${project.name}/WEB-INF/web.xml" 
-			excludes="${build.dir}/${project.name}/WEB-INF/web.xml" 
-			manifest="${build.dir}/${project.name}/META-INF/MANIFEST.MF">
+		<war destfile="${dist.dir}/${project.name}.war" webxml="${build.dir}/${project.name}/WEB-INF/web.xml" excludes="${build.dir}/${project.name}/WEB-INF/web.xml" manifest="${build.dir}/${project.name}/META-INF/MANIFEST.MF">
 			<fileset dir="${build.dir}/${project.name}/">
 				<include name="**/*.*" />
 			</fileset>
 		</war>
 		<delete dir="${build.dir}" />
-
 	</target>
 
 </project>
