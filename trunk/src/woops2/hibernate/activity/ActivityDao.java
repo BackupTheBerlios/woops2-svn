@@ -20,7 +20,7 @@ public class ActivityDao extends HibernateDaoSupport {
 	 * @param _activity
 	 */
 	public void saveOrUpdateActivity (Activity _activity) {
-		super.getHibernateTemplate().saveOrUpdate(_activity) ;
+		this.getHibernateTemplate().saveOrUpdate(_activity) ;
 	}
 
 	/**
