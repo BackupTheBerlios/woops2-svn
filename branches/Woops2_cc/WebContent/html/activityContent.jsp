@@ -27,7 +27,7 @@
 			</h:column>
 		</h:dataTable>
 		<br>
-		<h:commandButton  value="new activity" action="addActivity"/>
+		<h:commandButton image="html/btnSave1.gif" value="create" action="addActivity"/>
 	</h:form>
 </f:view>
 </body>
