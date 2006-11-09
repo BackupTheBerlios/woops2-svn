@@ -44,9 +44,9 @@ public class ActivityDao extends HibernateDaoSupport {
 	
 	/**
 	 * Delete the activity
-	 * @param _a
+	 * @param _activity
 	 */
-	public void deleteActivity(Activity _a) {
-		this.getHibernateTemplate().delete(_a);
+	public void deleteActivity(Activity _activity) {
+		this.getHibernateTemplate().delete(_activity);
 	}
 }

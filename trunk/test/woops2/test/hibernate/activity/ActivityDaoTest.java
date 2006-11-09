@@ -1,11 +1,11 @@
 
 package woops2.test.hibernate.activity ;
 
-import java.util.List;
+import java.util.List ;
 
-import woops2.hibernate.activity.ActivityDao;
-import woops2.model.activity.Activity;
-import woops2.test.TestConfiguration;
+import woops2.hibernate.activity.ActivityDao ;
+import woops2.model.activity.Activity ;
+import woops2.test.TestConfiguration ;
 
 /**
  * Unit test for ActivityDao
@@ -15,19 +15,31 @@ import woops2.test.TestConfiguration;
  */
 public class ActivityDaoTest extends TestConfiguration {
 
-	private ActivityDao activityDao;
-	private Activity activity;
-	
-	public static final String PREFIX = "prefix";
-	public static final Boolean IS_OPTIONAL = true;
-	
-	/* (non-Javadoc)
+	private ActivityDao activityDao = null;
+
+	private Activity activity = null;
+
+	public static final String PREFIX = "prefix" ;
+
+	public static final Boolean IS_OPTIONAL = true ;
+
+	public static final Boolean HAS_MULTIPLE_OCCURENCES = true ;
+
+	public static final Boolean IS_EVEN_DRIVEN = true ;
+
+	public static final Boolean IS_ON_GOING = true ;
+
+	public static final Boolean IS_PLANNED = true ;
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see junit.framework.TestCase#setUp()
 	 */
 	@ Override
 	protected void setUp () throws Exception {
-		super.setUp();
-		
+		super.setUp() ;
+
 		// Get the ActivityDao Singleton for managing Activity data
 		this.activityDao = (ActivityDao) super.xmlBeanFactory.getBean("ActivityDao") ;
 
@@ -35,70 +47,130 @@ public class ActivityDaoTest extends TestConfiguration {
 		this.activity = new Activity() ;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see junit.framework.TestCase#tearDown()
 	 */
 	@ Override
 	protected void tearDown () throws Exception {
-		super.tearDown();
-		
+		super.tearDown() ;
+
 		// Delete the tmp activity from the database.
-		this.activityDao.getHibernateTemplate().delete(this.activity);
+		if(this.activity != null)
+			this.activityDao.getHibernateTemplate().delete(this.activity) ;
+		this.activity = null;
 	}
-	
+
 	/**
 	 * Test method for
 	 * {@link woops2.hibernate.activity.ActivityDao#saveOrUpdateActivity(woops2.model.activity.Activity)}.
 	 * 
-	 * PRINCIPLE
-	 * Create a tmp activity, save it into the database with the method to test.
-	 * Then look for the database to check if this tmp activity exists.
-	 * To finish delete this tmp activity from the database.
+	 * PRINCIPLE Create a tmp activity, save it into the database with the method to test. Then look
+	 * for the database to check if this tmp activity exists. To finish delete this tmp activity
+	 * from the database.
 	 */
 	public void testSaveOrUpdateActivity () {
-		//Rk: the setUp method is called here.
-		
+		// Rk: the setUp method is called here.
+
 		// Save the activity with the method to test.
-		this.activityDao.saveOrUpdateActivity(this.activity);
-		
-		//Flush and clear the session.
-		super.flushAndClear();
-		
-		//Check the saving.
-		String id = activity.getId();
+		this.activityDao.saveOrUpdateActivity(this.activity) ;
+
+		// Flush and clear the session.
+		super.flushAndClear() ;
+
+		// Check the saving.
+		String id = activity.getId() ;
 		Activity activityTmp = (Activity) this.activityDao.getHibernateTemplate().load(Activity.class, id) ;
-		assertNotNull(activityTmp);
-		
-		//Rk: the tearDown method is called here.
+		assertNotNull(activityTmp) ;
+
+		// Rk: the tearDown method is called here.
 	}
 
 	/**
 	 * Test method for {@link woops2.hibernate.activity.ActivityDao#getAllActivities()}.
 	 * 
-	 * PRINCIPLE
-	 * Create a tmp activity, save it into the database.
-	 * Then get all activities from the database with the method to test,
-	 * and look if the size of the activities set got is >= 1.
-	 * To finish delete this tmp activity from the database.
+	 * PRINCIPLE Create a tmp activity, save it into the database. Then get all activities from the
+	 * database with the method to test, and look if the size of the activities set got is >= 1. To
+	 * finish delete this tmp activity from the database.
 	 */
 	public void testGetAllActivities () {
-		//Rk: the setUp method is called here.
-		
+		// Rk: the setUp method is called here.
+
 		// Save the activity into the database.
 		this.activityDao.getHibernateTemplate().saveOrUpdate(this.activity) ;
-		
-		//Flush and clear the session.
-		super.flushAndClear();
-		
+
+		// Flush and clear the session.
+		super.flushAndClear() ;
+
 		// Look if this activity is also into the database and look if the size of the set is >= 1.
-		List <Activity> activities = this.activityDao.getAllActivities(); 
+		List <Activity> activities = this.activityDao.getAllActivities() ;
 		assertNotNull(activities) ;
 		assertTrue(activities.size() >= 1) ;
-		
+
 		// Rk: the tearDown method is called here.
 	}
-	
-	//TODO Test for getActivity
-	
-	//TODO Test for deleteActivity
+
+	/**
+	 * Test method for {@link woops2.hibernate.activity.ActivityDao#getActivity()}.
+	 * 
+	 */
+	public void testGetActivity () {
+		// Rk: the setUp method is called here.
+
+		// Add prooperties to the activity.
+		this.activity.setPrefix(PREFIX) ;
+		this.activity.setHasMultipleOccurrences(HAS_MULTIPLE_OCCURENCES) ;
+		this.activity.setIsEvenDriven(IS_EVEN_DRIVEN) ;
+		this.activity.setIsOngoing(IS_ON_GOING) ;
+		this.activity.setIsOptional(IS_OPTIONAL) ;
+		this.activity.setIsPlanned(IS_PLANNED) ;
+
+		// Save the activity into the database.
+		this.activityDao.getHibernateTemplate().saveOrUpdate(this.activity) ;
+		String id = this.activity.getId() ;
+
+		// Flush and clear the session.
+		super.flushAndClear() ;
+
+		// Test the method getActivity.
+		Activity activityTmp = this.activityDao.getActivity(id) ;
+		assertNotNull(activityTmp) ;
+		assertEquals("Prefix", activityTmp.getPrefix(), PREFIX) ;
+		assertEquals("HasMultipleOccurences", activityTmp.getHasMultipleOccurrences(), HAS_MULTIPLE_OCCURENCES) ;
+		assertEquals("IsEvenDriven", activityTmp.getIsEvenDriven(), IS_EVEN_DRIVEN) ;
+		assertEquals("IsOnGoing", activityTmp.getIsOngoing(), IS_ON_GOING) ;
+		assertEquals("IsOptional", activityTmp.getIsOptional(), IS_OPTIONAL) ;
+		assertEquals("IsPlanned", activityTmp.getIsPlanned(), IS_PLANNED) ;
+
+		// Rk: the tearDown method is called here.
+	}
+
+	/**
+	 * Test method for {@link woops2.hibernate.activity.ActivityDao#deleteActivity()}.
+	 * 
+	 */
+	public void testDeleteActivity () {
+		// Rk: the setUp method is called here.
+
+		// Save the activity into the database.
+		this.activityDao.getHibernateTemplate().saveOrUpdate(this.activity) ;
+		String id = this.activity.getId() ;
+
+		// Flush and clear the session.
+		super.flushAndClear() ;
+
+		// Test the method deleteActivity.
+		this.activityDao.deleteActivity(this.activity) ;
+		this.activity = null;
+		
+		//Flush and clear the session.
+		super.flushAndClear() ;
+		
+		//See if this.activity is now absent in the db.
+		Activity activityTmp = (Activity) this.activityDao.getHibernateTemplate().get(Activity.class, id) ;
+		assertNull(activityTmp) ;
+
+		// Rk: the tearDown method is called here.
+	}
 }
