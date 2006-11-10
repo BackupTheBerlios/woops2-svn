@@ -10,7 +10,7 @@
 <f:view>
 	<f:loadBundle var="bundle" basename="woops2.Resources" />
 	<h:form id="form">
-		<h2>Woops2 - activities list</h2>
+		<h2>Liste des activités</h2>
 		<h:dataTable value="#{ActivityViewer.activitiesList}" border="1"
 			var="activity">
 			<h:column>

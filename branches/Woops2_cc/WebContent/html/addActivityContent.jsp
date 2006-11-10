@@ -7,8 +7,7 @@
 
 <f:view>
 	<h:form id="form">
-		<h2>Woops2 - activity form</h2>
-		<h:outputText value="- New activity -" style="h2" />
+		<h2>Création d'une activité</h2>
 		<h:panelGrid columns="2">
 		<h:outputText value="prefix : "/>
 		<h:inputText value="#{ActivityViewer.activity.prefix}"/>
