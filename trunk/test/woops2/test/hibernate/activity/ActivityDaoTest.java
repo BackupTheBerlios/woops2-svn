@@ -57,9 +57,12 @@ public class ActivityDaoTest extends TestConfiguration {
 		super.tearDown() ;
 
 		// Delete the tmp activity from the database.
-		if(this.activity != null)
+		try{
 			this.activityDao.getHibernateTemplate().delete(this.activity) ;
-		this.activity = null;
+		}
+		catch(Exception exception){
+			//None.
+		}
 	}
 
 	/**
@@ -133,7 +136,7 @@ public class ActivityDaoTest extends TestConfiguration {
 		// Flush and clear the session.
 		super.flushAndClear() ;
 
-		// Test the method getActivity.
+		// Test the method getActivity with an existing activity.
 		Activity activityTmp = this.activityDao.getActivity(id) ;
 		assertNotNull(activityTmp) ;
 		assertEquals("Prefix", activityTmp.getPrefix(), PREFIX) ;
@@ -142,6 +145,11 @@ public class ActivityDaoTest extends TestConfiguration {
 		assertEquals("IsOnGoing", activityTmp.getIsOngoing(), IS_ON_GOING) ;
 		assertEquals("IsOptional", activityTmp.getIsOptional(), IS_OPTIONAL) ;
 		assertEquals("IsPlanned", activityTmp.getIsPlanned(), IS_PLANNED) ;
+		
+		//Test the method getActivity with an unexisting activity.
+		this.activityDao.getHibernateTemplate().delete(activity);
+		activityTmp = this.activityDao.getActivity(id) ;
+		assertNull(activityTmp) ;
 
 		// Rk: the tearDown method is called here.
 	}
@@ -160,9 +168,8 @@ public class ActivityDaoTest extends TestConfiguration {
 		// Flush and clear the session.
 		super.flushAndClear() ;
 
-		// Test the method deleteActivity.
+		// Test the method deleteActivity with an acitivity existing into the db.
 		this.activityDao.deleteActivity(this.activity) ;
-		this.activity = null;
 		
 		//Flush and clear the session.
 		super.flushAndClear() ;
@@ -170,6 +177,10 @@ public class ActivityDaoTest extends TestConfiguration {
 		//See if this.activity is now absent in the db.
 		Activity activityTmp = (Activity) this.activityDao.getHibernateTemplate().get(Activity.class, id) ;
 		assertNull(activityTmp) ;
+		
+		//Test the method deleteActivity with an acitivity unexisting into the db.
+		//FIXME Normally here there are no exception thrown.
+		this.activityDao.deleteActivity(this.activity) ;
 
 		// Rk: the tearDown method is called here.
 	}
