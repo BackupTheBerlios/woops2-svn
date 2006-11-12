@@ -58,6 +58,7 @@ public class ActivityDao extends HibernateDaoSupport {
 		}
 		catch (StaleObjectStateException sose) {
 			// Catch normally errors when we delete an unexisting activity into the db.
+			logger.error("#### ERROR #### --- ActivityDao => deleteActivity : trying to delete unexisting object \n"+sose);
 		}
 	}
 }
