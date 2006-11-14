@@ -1,0 +1,136 @@
+<?xml version="1.0"?>
+<!-- 
+	Script de Construction ANT
+	A.GIULIANI
+-->
+<project name="Woops2" default="build.war" basedir="../">
+
+	<!-- Configure the context path for this application -->
+	<property name="project.name" value="Woops2" />
+	<property name="build.dir" value="${basedir}/tmp" />
+	<property name="src.dir" value="${basedir}/src" />
+	<property name="src.java.dir" value="${src.dir}" />
+	<property name="web.dir" value="${basedir}/WebContent" />
+	<property name="lib.dir" value="${basedir}/WebContent/WEB-INF/lib" />
+	<property name="dist.dir" value="${basedir}/dist" />
+
+	<path id="classpath">
+		<!-- Ajout des classes
+			<fileset dir="${web.dir}/WEB-INF/classes">
+				<include name="**/*.class"/>
+			</fileset> -->
+		<fileset dir="${lib.dir}">
+			<include name="**/*.jar" />
+		</fileset>
+	</path>
+
+	<!-- Gestion de l'application -->
+	<target name="clean" depends="clean_dist">
+		<delete dir="${build.dir}" />
+	</target>
+
+	<target name="clean_dist">
+		<delete dir="${dist.dir}" />
+	</target>
+
+	<target name="prepare" depends="clean" description="Create build directories.">
+		<mkdir dir="${build.dir}/${project.name}" />
+		<mkdir dir="${build.dir}/${project.name}/images" />
+		<mkdir dir="${build.dir}/${project.name}/javascript" />
+		<mkdir dir="${build.dir}/${project.name}/WEB-INF" />
+		<mkdir dir="${build.dir}/${project.name}/META-INF" />
+		<mkdir dir="${build.dir}/${project.name}/WEB-INF/classes" />
+		<mkdir dir="${build.dir}/${project.name}/WEB-INF/lib" />
+		<mkdir dir="${build.dir}/${project.name}/css" />
+		<mkdir dir="${dist.dir}" />
+	</target>
+
+	<!-- Copie des Jar et classes -->
+	<target name="copyJars">
+		<copy todir="${build.dir}/${project.name}/WEB-INF/lib">
+			<fileset dir="${lib.dir}">
+				<!-- libs uniquement dans le repertoire lib
+				<include name="**/*.jar" /> 
+				<include name="*.dtd" /> 
+				-->
+				<include name="*.jar" />
+				<include name="*.dtd" />
+			</fileset>
+		</copy>
+		<!--
+		<copy todir="${build.dir}/${project.name}/WEB-INF/classes">
+			<fileset dir="${web.dir}/WEB-INF/classes">
+				<include name="**/*.class" />
+				<include name="**/*.properties" />
+				<include name="**/*.xml" />
+			</fileset>
+		</copy> -->
+	</target>
+
+	<!-- Executable Targets -->
+	<target name="build" depends="prepare,copyJars" description="Compile Java files and copy static files.">
+		<javac srcdir="${src.java.dir}" destdir="${build.dir}/${project.name}/WEB-INF/classes">
+			<include name="**/*.java" />
+			<include name="**/*.xml" />
+			<include name="**/*.properties" />
+			<classpath refid="classpath" />
+		</javac>
+
+		<copy todir="${build.dir}/${project.name}/WEB-INF/classes">
+			<fileset dir="${src.java.dir}">
+				<include name="**/*.xml" />
+				<include name="**/*.tld" />
+				<include name="**/*.properties" />
+			</fileset>
+		</copy>
+
+		<copy todir="${build.dir}/${project.name}/WEB-INF">
+			<fileset dir="${web.dir}/WEB-INF">
+				<include name="*.xml" />
+				<include name="*.tld" />
+			</fileset>
+		</copy>
+
+		<copy todir="${build.dir}/${project.name}/">
+			<fileset dir="${web.dir}">
+				<include name="*.html" />
+				<include name="*.jsp" />
+				<include name="*.xml" />
+			</fileset>
+		</copy>
+
+		<copy todir="${build.dir}/${project.name}/css">
+			<fileset dir="${web.dir}/css">
+				<include name="*.css" />
+			</fileset>
+		</copy>
+		<copy todir="${build.dir}/${project.name}/META-INF">
+			<fileset dir="${web.dir}/META-INF">
+				<include name="*.MF" />
+			</fileset>
+		</copy>
+
+		<!-- Images -->
+		<copy todir="${build.dir}/${project.name}/images">
+			<fileset dir="${web.dir}/images">
+				<include name="**/*.gif" />
+				<include name="**/*.jpg" />
+				<include name="**/*.png" />
+			</fileset>
+		</copy>
+	</target>
+
+	<!-- Construction du WAR -->
+	<target name="build.war" depends="build">
+		<delete dir="${dist.dir}" />
+		<mkdir dir="${dist.dir}" />
+		<war destfile="${dist.dir}/${project.name}.war" webxml="${build.dir}/${project.name}/WEB-INF/web.xml" excludes="${build.dir}/${project.name}/WEB-INF/web.xml" manifest="${build.dir}/${project.name}/META-INF/MANIFEST.MF">
+			<fileset dir="${build.dir}/${project.name}/">
+				<include name="**/*.*" />
+			</fileset>
+		</war>
+		<delete dir="${build.dir}" />
+	</target>
+
+</project>
+
