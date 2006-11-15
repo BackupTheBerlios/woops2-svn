@@ -12,11 +12,18 @@ import woops2.model.breakdownelement.BreakdownElement ;
  */
 public class WorkBreakdownElement extends BreakdownElement {
 
-	private Boolean isRepeatable = false ;
+	private Boolean isRepeatable ;
 
-	private Boolean isOngoing = false ;
+	private Boolean isOngoing ;
 
-	private Boolean isEvenDriven = false ;
+	private Boolean isEvenDriven ;
+
+	public WorkBreakdownElement () {
+		super() ;
+		this.isEvenDriven = false ;
+		this.isOngoing = false ;
+		this.isRepeatable = false ;
+	}
 
 	/**
 	 * Getter of isEvenDriven.
