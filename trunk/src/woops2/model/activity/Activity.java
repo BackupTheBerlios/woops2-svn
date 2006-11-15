@@ -1,9 +1,10 @@
 
 package woops2.model.activity ;
 
-import java.util.HashSet;
+import java.util.HashSet ;
+import java.util.Set ;
 
-import woops2.model.breakdownelement.BreakdownElement;
+import woops2.model.breakdownelement.BreakdownElement ;
 import woops2.model.workbreakdownelement.WorkBreakdownElement ;
 
 /**
@@ -17,7 +18,7 @@ import woops2.model.workbreakdownelement.WorkBreakdownElement ;
  */
 public class Activity extends WorkBreakdownElement {
 
-	private java.util.Set <BreakdownElement> breakDownElements ;
+	private Set <BreakdownElement> breakDownElements ;
 
 	/**
 	 * Constructor.
@@ -33,7 +34,7 @@ public class Activity extends WorkBreakdownElement {
 	 * 
 	 * @return the breakDownElements.
 	 */
-	public java.util.Set <BreakdownElement> getBreakDownElements () {
+	public Set <BreakdownElement> getBreakDownElements () {
 		return this.breakDownElements ;
 	}
 
@@ -43,7 +44,7 @@ public class Activity extends WorkBreakdownElement {
 	 * @param _breakDownElements
 	 *            The breakDownElements to set.
 	 */
-	public void setBreakDownElements (java.util.Set <BreakdownElement> _breakDownElements) {
+	public void setBreakDownElements (Set <BreakdownElement> _breakDownElements) {
 		this.breakDownElements = _breakDownElements ;
 	}
 

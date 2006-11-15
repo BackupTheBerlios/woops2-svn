@@ -92,6 +92,14 @@
 		class="woops2.hibernate.activity.ActivityDao">
 		<property name="hibernateTemplate" ref="hibernateTemplate"/>
 	</bean>
+	<bean id="ElementDao" 
+		class="woops2.hibernate.element.ElementDao">
+		<property name="hibernateTemplate" ref="hibernateTemplate"/>
+	</bean>
+	<bean id="BreakdownElementDao" 
+		class="woops2.hibernate.breakdownelement.BreakdownElementDao">
+		<property name="hibernateTemplate" ref="hibernateTemplate"/>
+	</bean>
 	
 	<!-- Business Layer -->
 	<bean id="ActivityManager" 

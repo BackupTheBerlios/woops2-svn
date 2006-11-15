@@ -5,7 +5,7 @@ import junit.framework.Test ;
 import junit.framework.TestSuite ;
 
 /**
- * @author Mathieu BENOIT.
+ * @author deder
  * 
  */
 public class AllTests {

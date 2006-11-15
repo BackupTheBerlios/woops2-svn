@@ -1,4 +1,4 @@
-package woops2.test.hibernate.activity;
+package woops2.test.hibernate.breakdownelement;
 
 import junit.framework.Test;
 import junit.framework.TestSuite;
@@ -10,9 +10,9 @@ import junit.framework.TestSuite;
 public class AllTests {
 
 	public static Test suite () {
-		TestSuite suite = new TestSuite("Test for woops2.test.hibernate.activity") ;
+		TestSuite suite = new TestSuite("Test for woops2.test.hibernate.breakdownelement") ;
 		//$JUnit-BEGIN$
-		suite.addTestSuite(ActivityDaoTest.class) ;
+		suite.addTestSuite(BreakdownElementDaoTest.class) ;
 		//$JUnit-END$
 		return suite ;
 	}

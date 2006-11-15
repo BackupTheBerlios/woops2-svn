@@ -2,6 +2,7 @@
 package woops2.model.breakdownelement ;
 
 import java.util.HashSet ;
+import java.util.Set ;
 
 import woops2.model.activity.Activity ;
 import woops2.model.element.Element ;
@@ -23,7 +24,7 @@ public class BreakdownElement extends Element {
 
 	private Boolean isOptional ;
 
-	private java.util.Set <Activity> superActivities ;
+	private Set <Activity> superActivities ;
 
 	/**
 	 * Constructor.
@@ -119,7 +120,7 @@ public class BreakdownElement extends Element {
 	 * 
 	 * @return the superActivities.
 	 */
-	public java.util.Set <Activity> getSuperActivities () {
+	public Set <Activity> getSuperActivities () {
 		return this.superActivities ;
 	}
 
@@ -129,7 +130,7 @@ public class BreakdownElement extends Element {
 	 * @param _superActivities
 	 *            The superActivities to set.
 	 */
-	public void setSuperActivities (java.util.Set <Activity> _superActivities) {
+	public void setSuperActivities (Set <Activity> _superActivities) {
 		this.superActivities = _superActivities ;
 	}
 }
