@@ -1,22 +1,31 @@
-package woops2.model.element;
+
+package woops2.model.element ;
 
 /**
  * @author Mathieu BENOIT
- *
+ * 
  * This class represents ... TODO
- *
+ * 
  */
 public class Element {
-	
-	private String id;
-	
-	private String name;
-	
-	private String description;
+
+	private String id ;
+
+	private String name ;
+
+	private String description ;
+
+	/**
+	 * Constructor.
+	 *
+	 */
+	public Element () {
+		// None.
+	}
 
 	/**
 	 * Getter of description.
-	 *
+	 * 
 	 * @return the description.
 	 */
 	public String getDescription () {
@@ -25,8 +34,9 @@ public class Element {
 
 	/**
 	 * Setter of description.
-	 *
-	 * @param _description The description to set.
+	 * 
+	 * @param _description
+	 *            The description to set.
 	 */
 	public void setDescription (String _description) {
 		this.description = _description ;
@@ -34,7 +44,7 @@ public class Element {
 
 	/**
 	 * Getter of id.
-	 *
+	 * 
 	 * @return the id.
 	 */
 	public String getId () {
@@ -43,8 +53,9 @@ public class Element {
 
 	/**
 	 * Setter of id.
-	 *
-	 * @param _id The id to set.
+	 * 
+	 * @param _id
+	 *            The id to set.
 	 */
 	public void setId (String _id) {
 		this.id = _id ;
@@ -52,7 +63,7 @@ public class Element {
 
 	/**
 	 * Getter of name.
-	 *
+	 * 
 	 * @return the name.
 	 */
 	public String getName () {
@@ -61,8 +72,9 @@ public class Element {
 
 	/**
 	 * Setter of name.
-	 *
-	 * @param _name The name to set.
+	 * 
+	 * @param _name
+	 *            The name to set.
 	 */
 	public void setName (String _name) {
 		this.name = _name ;

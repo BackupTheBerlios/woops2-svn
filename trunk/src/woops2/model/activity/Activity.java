@@ -1,7 +1,7 @@
 
 package woops2.model.activity ;
 
-import woops2.model.workbreakdownelement.WorkBreakdownElement;
+import woops2.model.workbreakdownelement.WorkBreakdownElement ;
 
 /**
  * @author Mathieu BENOIT.
@@ -12,6 +12,14 @@ import woops2.model.workbreakdownelement.WorkBreakdownElement;
 public class Activity extends WorkBreakdownElement {
 
 	private java.util.Set breakDownElements = new java.util.TreeSet() ;
+
+	/**
+	 * Constructor.
+	 * 
+	 */
+	public Activity () {
+		super() ;
+	}
 
 	/**
 	 * Getter of breakDownElements.

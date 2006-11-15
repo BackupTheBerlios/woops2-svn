@@ -1,10 +1,10 @@
 
 package woops2.model.breakdownelement ;
 
-import java.util.HashSet;
+import java.util.HashSet ;
 
-import woops2.model.activity.Activity;
-import woops2.model.element.Element;
+import woops2.model.activity.Activity ;
+import woops2.model.element.Element ;
 
 /**
  * @author Mathieu BENOIT.
@@ -23,6 +23,14 @@ public class BreakdownElement extends Element {
 	private Boolean isOptional = false ;
 
 	private java.util.Set <Activity> superActivities = new HashSet <Activity>() ;
+
+	/**
+	 * Constructor.
+	 * 
+	 */
+	public BreakdownElement () {
+		super() ;
+	}
 
 	/**
 	 * Getter of hasMultipleOccurrences.
