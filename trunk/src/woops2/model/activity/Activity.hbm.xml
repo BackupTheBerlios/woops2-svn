@@ -12,7 +12,7 @@
 		<key column="activity_id"></key>
 		
 		<!-- Associations -->
-		<set name="breakDownElements" table="nesting" >
+		<set name="breakDownElements" table="nesting" lazy="false">
 			<key column="activity_id"></key>
 			<many-to-many class="woops2.model.breakdownelement.BreakdownElement"
 				column="breakdownelement_id">
