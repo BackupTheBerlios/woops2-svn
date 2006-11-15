@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping>
+
+	<class name="woops2.model.element.Element" table="element"
+		lazy="false">
+
+		<id name="id" type="string"
+			column="element_id">
+			<!--identifiant auto-incrementé -->
+			<generator class="uuid" />
+		</id>
+
+		<property name="name" type="java.lang.String" column="name"
+			length="256" />
+			
+		<property name="description" type="java.lang.String" column="description"
+			length="256" />
+			
+	</class>
+</hibernate-mapping>

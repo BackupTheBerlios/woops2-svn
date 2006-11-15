@@ -5,21 +5,12 @@
 
 <hibernate-mapping>
 
-	<class name="woops2.model.breakdownelement.BreakdownElement" table="breakdownelement"
-		lazy="false">
+	<joined-subclass
+		name="woops2.model.breakdownelement.BreakdownElement"
+		extends="woops2.model.element.Element"
+		table="breakdownelement">
+		<key column="breakdownelement_id"></key>
 
-		<id name="id" type="string"
-			column="breakdownelement_id">
-			<!--identifiant auto-incrementé -->
-			<generator class="uuid" />
-		</id>
-
-		<property name="name" type="java.lang.String" column="name"
-			length="256" />
-			
-		<property name="description" type="java.lang.String" column="description"
-			length="256" />
-			
 		<property name="prefix" type="java.lang.String" column="prefix"
 			length="256" />
 
@@ -40,5 +31,5 @@
 			</many-to-many>
 		</set>
 		
-	</class>
+	</joined-subclass>
 </hibernate-mapping>

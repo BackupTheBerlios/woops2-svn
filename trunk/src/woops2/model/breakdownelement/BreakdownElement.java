@@ -1,9 +1,10 @@
 
 package woops2.model.breakdownelement ;
 
-import java.util.HashSet ;
+import java.util.HashSet;
 
-import woops2.model.activity.Activity ;
+import woops2.model.activity.Activity;
+import woops2.model.element.Element;
 
 /**
  * @author Mathieu BENOIT.
@@ -11,13 +12,7 @@ import woops2.model.activity.Activity ;
  * This class represents ... TODO
  * 
  */
-public class BreakdownElement {
-
-	private String id ;
-
-	private String name ;
-
-	private String description ;
+public class BreakdownElement extends Element {
 
 	private String prefix ;
 
@@ -46,25 +41,6 @@ public class BreakdownElement {
 	 */
 	public void setHasMultipleOccurrences (Boolean _hasMultipleOccurrences) {
 		this.hasMultipleOccurrences = _hasMultipleOccurrences ;
-	}
-
-	/**
-	 * Getter of id.
-	 * 
-	 * @return the id.
-	 */
-	public String getId () {
-		return this.id ;
-	}
-
-	/**
-	 * Setter of id.
-	 * 
-	 * @param _id
-	 *            The id to set.
-	 */
-	public void setId (String _id) {
-		this.id = _id ;
 	}
 
 	/**
@@ -141,43 +117,5 @@ public class BreakdownElement {
 	 */
 	public void setSuperActivities (java.util.Set <Activity> _superActivities) {
 		this.superActivities = _superActivities ;
-	}
-
-	/**
-	 * Getter of description.
-	 * 
-	 * @return the description.
-	 */
-	public String getDescription () {
-		return this.description ;
-	}
-
-	/**
-	 * Setter of description.
-	 * 
-	 * @param _description
-	 *            The description to set.
-	 */
-	public void setDescription (String _description) {
-		this.description = _description ;
-	}
-
-	/**
-	 * Getter of name.
-	 * 
-	 * @return the name.
-	 */
-	public String getName () {
-		return this.name ;
-	}
-
-	/**
-	 * Setter of name.
-	 * 
-	 * @param _name
-	 *            The name to set.
-	 */
-	public void setName (String _name) {
-		this.name = _name ;
 	}
 }

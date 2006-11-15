@@ -5,9 +5,9 @@
 
 <hibernate-mapping>
 	<joined-subclass
-		name="woops2.model.role.RoleDescriptor"
+		name="woops2.model.role.Role"
 		extends="woops2.model.breakdownelement.BreakdownElement"
-		table="roledescriptor">
-		<key column="roledescriptor_id"></key>
+		table="role">
+		<key column="role_id"></key>
 	</joined-subclass>
 </hibernate-mapping>
