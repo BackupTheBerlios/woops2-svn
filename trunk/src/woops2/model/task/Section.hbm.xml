@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping>
+	<joined-subclass name="woops2.model.task.Section"
+		extends="woops2.model.element.Element" table="section">
+		<key column="section_id"></key>
+
+		<many-to-one name="task" class="woops2.model.task.Task"
+			column="task_id">
+		</many-to-one>
+	</joined-subclass>
+</hibernate-mapping>

@@ -4,11 +4,13 @@
     "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
 
 <hibernate-mapping>
-	<joined-subclass
-		name="woops2.model.task.TaskDescriptor"
+	<joined-subclass name="woops2.model.task.TaskDescriptor"
 		extends="woops2.model.workbreakdownelement.WorkBreakdownElement"
 		table="taskdescriptor">
 		<key column="taskdescriptor_id"></key>
-		
+
+		<many-to-one name="task" class="woops2.model.task.Task"
+			column="task_id">
+		</many-to-one>
 	</joined-subclass>
 </hibernate-mapping>

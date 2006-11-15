@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping>
+	<joined-subclass name="woops2.model.task.Task"
+		extends="woops2.model.element.Element" table="task">
+		<key column="task_id"></key>
+		<set name="sections">
+			<key column="task_id" />
+			<one-to-many class="woops2.model.task.Section"></one-to-many>
+		</set>
+		<set name="taskDescriptors">
+			<key column="taskdescriptor_id" />
+			<one-to-many class="woops2.model.task.TaskDescriptor"></one-to-many>
+		</set>
+	</joined-subclass>
+</hibernate-mapping>
