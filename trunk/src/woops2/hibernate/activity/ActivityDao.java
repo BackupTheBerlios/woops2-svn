@@ -13,7 +13,7 @@ import woops2.model.activity.Activity ;
  * ActivityDao manage requests from the system to store Acitivties to the database
  * 
  * @author garwind
- * @author Mathieu BENOIT.
+ * @author deder
  */
 public class ActivityDao extends HibernateDaoSupport {
 

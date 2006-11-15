@@ -11,8 +11,9 @@ import woops2.model.activity.Activity ;
 
 /**
  * Managed-Bean link to activity.jsp and activitform.jsp
+ * 
  * @author garwind
- * @author Mathieu BENOIT.
+ * @author deder.
  */
 public class ActivityViewer {
 

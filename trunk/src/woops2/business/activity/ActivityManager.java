@@ -7,10 +7,11 @@ import woops2.hibernate.activity.ActivityDao ;
 import woops2.model.activity.Activity ;
 
 /**
- * ActivityManager manage operations about activity, requested by web pages 
- * (activity.jsp & activityform.jsp)
+ * ActivityManager manage operations about activity, requested by web pages (activity.jsp &
+ * activityform.jsp)
+ * 
  * @author garwind
- * @author Mathieu BENOIT.
+ * @author deder.
  */
 public class ActivityManager {
 
@@ -18,6 +19,7 @@ public class ActivityManager {
 
 	/**
 	 * Return activities list
+	 * 
 	 * @return
 	 */
 	public List <Activity> getActivitiesList () {
@@ -26,6 +28,7 @@ public class ActivityManager {
 
 	/**
 	 * Save activity
+	 * 
 	 * @param _activity
 	 */
 	public void saveActivity (Activity _activity) {
@@ -34,7 +37,7 @@ public class ActivityManager {
 
 	/**
 	 * Getter of activityDao.
-	 *
+	 * 
 	 * @return the activityDao.
 	 */
 	public ActivityDao getActivityDao () {
@@ -43,8 +46,9 @@ public class ActivityManager {
 
 	/**
 	 * Setter of activityDao.
-	 *
-	 * @param _activityDao The activityDao to set.
+	 * 
+	 * @param _activityDao
+	 *            The activityDao to set.
 	 */
 	public void setActivityDao (ActivityDao _activityDao) {
 		this.activityDao = _activityDao ;

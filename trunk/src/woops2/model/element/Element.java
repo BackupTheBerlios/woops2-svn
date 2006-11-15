@@ -2,9 +2,11 @@
 package woops2.model.element ;
 
 /**
- * @author Mathieu BENOIT
+ * @author deder
  * 
- * This class represents ... TODO
+ * Every class defined in this specification is derived from Element. In other words Element is the
+ * root generalization for all UMA classes and defines a common set of attributes inherited by every
+ * other element type of this model.
  * 
  */
 public class Element {
@@ -17,7 +19,7 @@ public class Element {
 
 	/**
 	 * Constructor.
-	 *
+	 * 
 	 */
 	public Element () {
 		// None.

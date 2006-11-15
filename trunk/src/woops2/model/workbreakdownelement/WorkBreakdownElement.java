@@ -1,12 +1,13 @@
 
 package woops2.model.workbreakdownelement ;
 
-import woops2.model.breakdownelement.BreakdownElement;
+import woops2.model.breakdownelement.BreakdownElement ;
 
 /**
- * @author Administrateur
+ * @author deder
  * 
- * This class represents ... TODO
+ * A Work Breakdown Element is a special Breakdown Element that provides specific properties for
+ * Breakdown Elements that represent or refer to Work Definitions.
  * 
  */
 public class WorkBreakdownElement extends BreakdownElement {

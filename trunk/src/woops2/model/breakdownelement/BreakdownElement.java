@@ -7,9 +7,10 @@ import woops2.model.activity.Activity ;
 import woops2.model.element.Element ;
 
 /**
- * @author Mathieu BENOIT.
+ * @author deder.
  * 
- * This class represents ... TODO
+ * Breakdown Element is an abstract generalization for any type of Element that is part of a
+ * breakdown structure. It defines a set of properties available to all of its specializations.
  * 
  */
 public class BreakdownElement extends Element {
