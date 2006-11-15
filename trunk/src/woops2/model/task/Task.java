@@ -29,6 +29,7 @@ public class Task extends Element {
 	 * Default constructor
 	 */
 	public Task () {
+		super();
 		this.sections = new HashSet <Section>() ;
 		this.taskDescriptors = new HashSet <TaskDescriptor>() ;
 	}

@@ -12,7 +12,7 @@
 			<one-to-many class="woops2.model.task.Section"></one-to-many>
 		</set>
 		<set name="taskDescriptors">
-			<key column="taskdescriptor_id" />
+			<key column="task_id" />
 			<one-to-many class="woops2.model.task.TaskDescriptor"></one-to-many>
 		</set>
 	</joined-subclass>

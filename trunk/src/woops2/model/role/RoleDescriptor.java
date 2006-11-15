@@ -14,4 +14,28 @@ import woops2.model.breakdownelement.BreakdownElement ;
  */
 public class RoleDescriptor extends BreakdownElement {
 
+	private Role role ;
+
+	public RoleDescriptor () {
+		super() ;
+	}
+
+	/**
+	 * Getter of role.
+	 * 
+	 * @return the role.
+	 */
+	public Role getRole () {
+		return this.role ;
+	}
+
+	/**
+	 * Setter of role.
+	 * 
+	 * @param _role
+	 *            The role to set.
+	 */
+	public void setRole (Role _role) {
+		this.role = _role ;
+	}
 }

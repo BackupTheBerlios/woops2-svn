@@ -1,7 +1,11 @@
 
 package woops2.model.role ;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import woops2.model.element.Element ;
+import woops2.model.task.TaskDescriptor;
 
 /**
  * @author deder
@@ -12,6 +16,11 @@ import woops2.model.element.Element ;
  * 
  */
 public class Role extends Element {
+	
+	/**
+	 * Collection of TaskDescriptor
+	 */
+	private Set <RoleDescriptor> roleDescriptors ;
 
 	/**
 	 * Constructor.
@@ -19,5 +28,24 @@ public class Role extends Element {
 	 */
 	public Role () {
 		super() ;
+		this.roleDescriptors = new HashSet <RoleDescriptor>() ;
+	}
+
+	/**
+	 * Getter of roleDescriptors.
+	 *
+	 * @return the roleDescriptors.
+	 */
+	public Set <RoleDescriptor> getRoleDescriptors () {
+		return this.roleDescriptors ;
+	}
+
+	/**
+	 * Setter of roleDescriptors.
+	 *
+	 * @param _roleDescriptors The roleDescriptors to set.
+	 */
+	public void setRoleDescriptors (Set <RoleDescriptor> _roleDescriptors) {
+		this.roleDescriptors = _roleDescriptors ;
 	}
 }

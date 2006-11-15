@@ -33,7 +33,10 @@
 				<value>woops2/model/workbreakdownelement/WorkBreakdownElement.hbm.xml</value>
 				<value>woops2/model/activity/Activity.hbm.xml</value>
 				<value>woops2/model/task/TaskDescriptor.hbm.xml</value>
+				<value>woops2/model/task/Task.hbm.xml</value>
+				<value>woops2/model/task/Section.hbm.xml</value>
 				<value>woops2/model/role/RoleDescriptor.hbm.xml</value>
+				<value>woops2/model/role/Role.hbm.xml</value>
 			</list>
 		</property>
 

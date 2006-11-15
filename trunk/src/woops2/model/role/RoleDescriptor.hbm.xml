@@ -4,10 +4,13 @@
     "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
 
 <hibernate-mapping>
-	<joined-subclass
-		name="woops2.model.role.RoleDescriptor"
+	<joined-subclass name="woops2.model.role.RoleDescriptor"
 		extends="woops2.model.breakdownelement.BreakdownElement"
 		table="roledescriptor">
 		<key column="roledescriptor_id"></key>
+
+		<many-to-one name="role" class="woops2.model.role.Role"
+			column="role_id">
+		</many-to-one>
 	</joined-subclass>
 </hibernate-mapping>
