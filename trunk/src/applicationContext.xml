@@ -29,8 +29,10 @@
 		<property name="mappingResources">
 			<list>
 				<value>woops2/model/breakdownelement/BreakdownElement.hbm.xml</value>
-				<value>woops2/model/breakdownelement/WorkBreakdownElement.hbm.xml</value>
+				<value>woops2/model/workbreakdownelement/WorkBreakdownElement.hbm.xml</value>
 				<value>woops2/model/activity/Activity.hbm.xml</value>
+				<value>woops2/model/descriptor/TaskDescriptor.hbm.xml</value>
+				<value>woops2/model/descriptor/RoleDescriptor.hbm.xml</value>
 			</list>
 		</property>
 
