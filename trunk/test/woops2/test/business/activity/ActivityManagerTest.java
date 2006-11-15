@@ -27,7 +27,7 @@ public class ActivityManagerTest extends TestConfiguration {
 		super.setUp();
 		
 		// Get the ActivityDao Singleton for managing Activity data
-		this.activityManager = (ActivityManager) super.xmlBeanFactory.getBean("ActivityManager") ;
+		this.activityManager = (ActivityManager) super.getBeanFactory().getBean("ActivityManager") ;
 
 		// Create empty Activity
 		this.activity = new Activity() ;
@@ -58,9 +58,6 @@ public class ActivityManagerTest extends TestConfiguration {
 		// Save the activity.
 		this.activityManager.getActivityDao().saveOrUpdateActivity(this.activity) ;
 		
-		//Flush and clear the session
-		super.flushAndClear();
-
 		// Look if this activity is also into the database and look if the size of the set is >= 1.
 		List <Activity> activities = this.activityManager.getActivitiesList() ; 
 		assertNotNull(activities) ;
@@ -87,9 +84,6 @@ public class ActivityManagerTest extends TestConfiguration {
 		this.activityManager.saveActivity(this.activity) ;
 		String id = this.activity.getId();
 		
-		//Flush and clear the session.
-		super.flushAndClear();
-
 		// Look if this activity is also into the database.
 		Activity activityTmp = (Activity) this.activityManager.getActivityDao().getActivity(id);
 		assertNotNull(activityTmp) ;

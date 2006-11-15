@@ -45,7 +45,7 @@ public class ActivityDaoTest extends TestConfiguration {
 		super.setUp() ;
 
 		// Get the ActivityDao Singleton for managing Activity data
-		this.activityDao = (ActivityDao) super.xmlBeanFactory.getBean("ActivityDao") ;
+		this.activityDao = (ActivityDao) super.getBeanFactory().getBean("ActivityDao") ;
 
 		// Create empty Activity
 		this.activity = new Activity() ;
@@ -83,9 +83,6 @@ public class ActivityDaoTest extends TestConfiguration {
 		// Save the activity with the method to test.
 		this.activityDao.saveOrUpdateActivity(this.activity) ;
 
-		// Flush and clear the session.
-		super.flushAndClear() ;
-
 		// Check the saving.
 		String id = activity.getId() ;
 		Activity activityTmp = (Activity) this.activityDao.getHibernateTemplate().load(Activity.class, id) ;
@@ -106,9 +103,6 @@ public class ActivityDaoTest extends TestConfiguration {
 
 		// Save the activity into the database.
 		this.activityDao.getHibernateTemplate().saveOrUpdate(this.activity) ;
-
-		// Flush and clear the session.
-		super.flushAndClear() ;
 
 		// Look if this activity is also into the database and look if the size of the set is >= 1.
 		List <Activity> activities = this.activityDao.getAllActivities() ;
@@ -138,9 +132,6 @@ public class ActivityDaoTest extends TestConfiguration {
 		// Save the activity into the database.
 		this.activityDao.getHibernateTemplate().saveOrUpdate(this.activity) ;
 		String id = this.activity.getId() ;
-
-		// Flush and clear the session.
-		super.flushAndClear() ;
 
 		// Test the method getActivity with an existing activity.
 		Activity activityTmp = this.activityDao.getActivity(id) ;
@@ -173,14 +164,8 @@ public class ActivityDaoTest extends TestConfiguration {
 		this.activityDao.getHibernateTemplate().saveOrUpdate(this.activity) ;
 		String id = this.activity.getId() ;
 
-		// Flush and clear the session.
-		super.flushAndClear() ;
-
 		// Test the method deleteActivity with an acitivity existing into the db.
 		this.activityDao.deleteActivity(this.activity) ;
-
-		// Flush and clear the session.
-		super.flushAndClear() ;
 
 		// See if this.activity is now absent in the db.
 		Activity activityTmp = (Activity) this.activityDao.getHibernateTemplate().get(Activity.class, id) ;
