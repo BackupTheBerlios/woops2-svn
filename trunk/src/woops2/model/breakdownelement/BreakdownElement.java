@@ -17,13 +17,13 @@ public class BreakdownElement extends Element {
 
 	private String prefix ;
 
-	private Boolean isPlanned = true ;
+	private Boolean isPlanned ;
 
-	private Boolean hasMultipleOccurrences = false ;
+	private Boolean hasMultipleOccurrences ;
 
-	private Boolean isOptional = false ;
+	private Boolean isOptional ;
 
-	private java.util.Set <Activity> superActivities = new HashSet <Activity>() ;
+	private java.util.Set <Activity> superActivities ;
 
 	/**
 	 * Constructor.
@@ -31,6 +31,11 @@ public class BreakdownElement extends Element {
 	 */
 	public BreakdownElement () {
 		super() ;
+		this.isOptional = false ;
+		this.isPlanned = true ;
+		this.hasMultipleOccurrences = false ;
+
+		this.superActivities = new HashSet <Activity>() ;
 	}
 
 	/**
