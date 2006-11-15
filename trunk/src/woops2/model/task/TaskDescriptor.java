@@ -1,4 +1,4 @@
-package woops2.model.descriptor;
+package woops2.model.task;
 
 import woops2.model.workbreakdownelement.WorkBreakdownElement;
 
