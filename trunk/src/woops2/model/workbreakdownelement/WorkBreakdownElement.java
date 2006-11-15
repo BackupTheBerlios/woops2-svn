@@ -1,5 +1,7 @@
 
-package woops2.model.breakdownelement ;
+package woops2.model.workbreakdownelement ;
+
+import woops2.model.breakdownelement.BreakdownElement;
 
 /**
  * @author Administrateur

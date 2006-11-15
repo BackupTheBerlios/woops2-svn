@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping>
+	<joined-subclass
+		name="woops2.model.descriptor.RoleDescriptor"
+		extends="woops2.model.breakdownelement.BreakdownElement"
+		table="roledescriptor">
+		<key column="roledescriptor_id"></key>
+		
+	</joined-subclass>
+</hibernate-mapping>

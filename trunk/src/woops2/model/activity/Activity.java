@@ -1,7 +1,7 @@
 
 package woops2.model.activity ;
 
-import woops2.model.breakdownelement.WorkBreakdownElement ;
+import woops2.model.workbreakdownelement.WorkBreakdownElement;
 
 /**
  * @author Mathieu BENOIT.

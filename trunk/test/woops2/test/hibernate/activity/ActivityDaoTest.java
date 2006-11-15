@@ -15,9 +15,13 @@ import woops2.test.TestConfiguration ;
  */
 public class ActivityDaoTest extends TestConfiguration {
 
-	private ActivityDao activityDao = null;
+	private ActivityDao activityDao = null ;
 
-	private Activity activity = null;
+	private Activity activity = null ;
+
+	public static final String NAME = "thisActivity" ;
+
+	public static final String DESCRIPTION = "activity description" ;
 
 	public static final String PREFIX = "prefix" ;
 
@@ -57,11 +61,11 @@ public class ActivityDaoTest extends TestConfiguration {
 		super.tearDown() ;
 
 		// Delete the tmp activity from the database.
-		try{
+		try {
 			this.activityDao.getHibernateTemplate().delete(this.activity) ;
 		}
-		catch(Exception exception){
-			//None.
+		catch (Exception exception) {
+			// None.
 		}
 	}
 
@@ -122,6 +126,8 @@ public class ActivityDaoTest extends TestConfiguration {
 		// Rk: the setUp method is called here.
 
 		// Add prooperties to the activity.
+		this.activity.setName(NAME) ;
+		this.activity.setDescription(DESCRIPTION) ;
 		this.activity.setPrefix(PREFIX) ;
 		this.activity.setHasMultipleOccurrences(HAS_MULTIPLE_OCCURENCES) ;
 		this.activity.setIsEvenDriven(IS_EVEN_DRIVEN) ;
@@ -139,15 +145,17 @@ public class ActivityDaoTest extends TestConfiguration {
 		// Test the method getActivity with an existing activity.
 		Activity activityTmp = this.activityDao.getActivity(id) ;
 		assertNotNull(activityTmp) ;
+		assertEquals("Name", activityTmp.getName(), NAME) ;
+		assertEquals("Description", activityTmp.getDescription(), DESCRIPTION) ;
 		assertEquals("Prefix", activityTmp.getPrefix(), PREFIX) ;
 		assertEquals("HasMultipleOccurences", activityTmp.getHasMultipleOccurrences(), HAS_MULTIPLE_OCCURENCES) ;
 		assertEquals("IsEvenDriven", activityTmp.getIsEvenDriven(), IS_EVEN_DRIVEN) ;
 		assertEquals("IsOnGoing", activityTmp.getIsOngoing(), IS_ON_GOING) ;
 		assertEquals("IsOptional", activityTmp.getIsOptional(), IS_OPTIONAL) ;
 		assertEquals("IsPlanned", activityTmp.getIsPlanned(), IS_PLANNED) ;
-		
-		//Test the method getActivity with an unexisting activity.
-		this.activityDao.getHibernateTemplate().delete(activity);
+
+		// Test the method getActivity with an unexisting activity.
+		this.activityDao.getHibernateTemplate().delete(activity) ;
 		activityTmp = this.activityDao.getActivity(id) ;
 		assertNull(activityTmp) ;
 
@@ -170,16 +178,16 @@ public class ActivityDaoTest extends TestConfiguration {
 
 		// Test the method deleteActivity with an acitivity existing into the db.
 		this.activityDao.deleteActivity(this.activity) ;
-		
-		//Flush and clear the session.
+
+		// Flush and clear the session.
 		super.flushAndClear() ;
-		
-		//See if this.activity is now absent in the db.
+
+		// See if this.activity is now absent in the db.
 		Activity activityTmp = (Activity) this.activityDao.getHibernateTemplate().get(Activity.class, id) ;
 		assertNull(activityTmp) ;
-		
-		//Test the method deleteActivity with an acitivity unexisting into the db.
-		//FIXME Normally here there are no exception thrown.
+
+		// Test the method deleteActivity with an acitivity unexisting into the db.
+		// FIXME Normally here there are no exception thrown.
 		this.activityDao.deleteActivity(this.activity) ;
 
 		// Rk: the tearDown method is called here.

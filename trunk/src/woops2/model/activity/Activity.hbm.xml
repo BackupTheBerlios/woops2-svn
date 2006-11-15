@@ -7,7 +7,7 @@
 	
 	<joined-subclass
 		name="woops2.model.activity.Activity"
-		extends="woops2.model.breakdownelement.WorkBreakdownElement"
+		extends="woops2.model.workbreakdownelement.WorkBreakdownElement"
 		table="activity">
 		<key column="activity_id"></key>
 		

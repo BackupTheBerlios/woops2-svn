@@ -15,6 +15,10 @@ public class BreakdownElement {
 
 	private String id ;
 
+	private String name ;
+
+	private String description ;
+
 	private String prefix ;
 
 	private Boolean isPlanned = true ;
@@ -137,5 +141,43 @@ public class BreakdownElement {
 	 */
 	public void setSuperActivities (java.util.Set <Activity> _superActivities) {
 		this.superActivities = _superActivities ;
+	}
+
+	/**
+	 * Getter of description.
+	 * 
+	 * @return the description.
+	 */
+	public String getDescription () {
+		return this.description ;
+	}
+
+	/**
+	 * Setter of description.
+	 * 
+	 * @param _description
+	 *            The description to set.
+	 */
+	public void setDescription (String _description) {
+		this.description = _description ;
+	}
+
+	/**
+	 * Getter of name.
+	 * 
+	 * @return the name.
+	 */
+	public String getName () {
+		return this.name ;
+	}
+
+	/**
+	 * Setter of name.
+	 * 
+	 * @param _name
+	 *            The name to set.
+	 */
+	public void setName (String _name) {
+		this.name = _name ;
 	}
 }

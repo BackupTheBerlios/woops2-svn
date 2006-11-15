@@ -14,9 +14,14 @@
 			<generator class="uuid" />
 		</id>
 
+		<property name="name" type="java.lang.String" column="name"
+			length="256" />
+			
+		<property name="description" type="java.lang.String" column="description"
+			length="256" />
+			
 		<property name="prefix" type="java.lang.String" column="prefix"
 			length="256" />
-
 
 		<property name="isPlanned" type="java.lang.Boolean"
 			column="isplanned" length="1" />
