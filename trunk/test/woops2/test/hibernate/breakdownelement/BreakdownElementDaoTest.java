@@ -172,7 +172,7 @@ public class BreakdownElementDaoTest extends TestConfiguration {
 		assertNull(bdeTmp) ;
 
 		// Test the method deleteBreakdownElement with an BreakdownElement unexisting into the db.
-		// FIXME Normally here there are no exception thrown.
+		// Normally here there are no exception thrown.
 		this.breakdownElementDao.deleteBreakdownElement(this.breakdownElement) ;
 
 		// Rk: the tearDown method is called here.

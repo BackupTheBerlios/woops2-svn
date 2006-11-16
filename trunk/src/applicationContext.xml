@@ -4,7 +4,8 @@
 <beans>
 	<!-- DataSource Definition -->
 	<bean id="dataSource"
-		class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+		class="org.apache.commons.dbcp.BasicDataSource"
+		destroy-method="close">
 		<property name="driverClassName">
 			<value>org.gjt.mm.mysql.Driver</value>
 		</property>
@@ -29,8 +30,12 @@
 		<property name="mappingResources">
 			<list>
 				<value>woops2/model/element/Element.hbm.xml</value>
-				<value>woops2/model/breakdownelement/BreakdownElement.hbm.xml</value>
-				<value>woops2/model/workbreakdownelement/WorkBreakdownElement.hbm.xml</value>
+				<value>
+					woops2/model/breakdownelement/BreakdownElement.hbm.xml
+				</value>
+				<value>
+					woops2/model/workbreakdownelement/WorkBreakdownElement.hbm.xml
+				</value>
 				<value>woops2/model/activity/Activity.hbm.xml</value>
 				<value>woops2/model/task/TaskDescriptor.hbm.xml</value>
 				<value>woops2/model/task/Task.hbm.xml</value>
@@ -53,8 +58,8 @@
 					org.hibernate.cache.HashtableCacheProvider
 				</prop>
 				<prop key="hibernate.hbm2ddl.auto">update</prop>
-      			</props>
-	</property>
+			</props>
+		</property>
 
 	</bean>
 
@@ -67,7 +72,7 @@
 	</bean>
 
 	<!-- Hibernate Template Defintion  -->
-	<bean id="hibernateTemplate" 
+	<bean id="hibernateTemplate"
 		class="org.springframework.orm.hibernate3.HibernateTemplate">
 		<property name="sessionFactory">
 			<ref bean="sessionFactory" />
@@ -76,50 +81,56 @@
 			<ref bean="jdbcExceptionTranslator" />
 		</property>
 	</bean>
-
-	<!-- Hibernate Transaction Manager Definition 
-		<bean id="transactionManager"
+	   
+	<!--  
+	<bean id="transactionManager"
 		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
 		<property name="sessionFactory">
-		<ref local="sessionFactory" />
-		</property> 
-		</bean> -->
+			<ref local="sessionFactory" />
+		</property>
+	</bean> -->
 
 	<!-- ========================= Start of BEAN DEFINITIONS ========================= -->
+
+	<!-- ========================= DAO Layer ========================= -->
 	
-	<!-- DAO Layer -->
-	<bean id="ActivityDao" 
+	<bean id="ActivityDao"
 		class="woops2.hibernate.activity.ActivityDao">
-		<property name="hibernateTemplate" ref="hibernateTemplate"/>
+		<property name="hibernateTemplate" ref="hibernateTemplate" />
 	</bean>
-	<bean id="ElementDao" 
-		class="woops2.hibernate.element.ElementDao">
-		<property name="hibernateTemplate" ref="hibernateTemplate"/>
+	
+	<bean id="ElementDao" class="woops2.hibernate.element.ElementDao">
+		<property name="hibernateTemplate" ref="hibernateTemplate" />
 	</bean>
-	<bean id="BreakdownElementDao" 
+	
+	<bean id="BreakdownElementDao"
 		class="woops2.hibernate.breakdownelement.BreakdownElementDao">
-		<property name="hibernateTemplate" ref="hibernateTemplate"/>
+		<property name="hibernateTemplate" ref="hibernateTemplate" />
 	</bean>
 	
 	<bean id="WorkBreakdownElementDao" 
 		class="woops2.hibernate.workbreakdownelement.WorkBreakdownElementDao">
 		<property name="hibernateTemplate" ref="hibernateTemplate"/>
 	</bean>
-		
-	<bean id="TaskDao" 
-		class="woops2.hibernate.task.TaskDao">
-		<property name="hibernateTemplate" ref="hibernateTemplate"/>
+
+	<bean id="TaskDao" class="woops2.hibernate.task.TaskDao">
+		<property name="hibernateTemplate" ref="hibernateTemplate" />
 	</bean>
-	
-	<bean id="TaskDescriptorDao" 
+
+	<bean id="TaskDescriptorDao"
 		class="woops2.hibernate.task.TaskDescriptorDao">
-		<property name="hibernateTemplate" ref="hibernateTemplate"/>
+		<property name="hibernateTemplate" ref="hibernateTemplate" />
 	</bean>
 	
-	<!-- Business Layer -->
-	<bean id="ActivityManager" 
-		class="woops2.business.activity.ActivityManager" >
-		<property name="activityDao" ref="ActivityDao"/>
+	<bean id="SectionDao"
+		class="woops2.hibernate.task.SectionDao">
+		<property name="hibernateTemplate" ref="hibernateTemplate" />
 	</bean>
-	
+
+	<!-- ========================= Business Layer ========================= -->
+	<bean id="ActivityManager"
+		class="woops2.business.activity.ActivityManager">
+		<property name="activityDao" ref="ActivityDao" />
+	</bean>
+
 </beans>

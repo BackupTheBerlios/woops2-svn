@@ -7,7 +7,7 @@
 	<joined-subclass name="woops2.model.role.Role"
 		extends="woops2.model.element.Element" table="role">
 		<key column="role_id"></key>
-		<set name="roleDescriptors">
+		<set name="roleDescriptors" lazy="false">
 			<key column="role_id" />
 			<one-to-many class="woops2.model.role.RoleDescriptor"></one-to-many>
 		</set>

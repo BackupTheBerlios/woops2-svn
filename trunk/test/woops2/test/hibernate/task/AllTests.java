@@ -17,6 +17,7 @@ public class AllTests {
 		//$JUnit-BEGIN$
 		suite.addTestSuite(TaskDescriptorDaoTest.class) ;
 		suite.addTestSuite(TaskDaoTest.class);
+		suite.addTestSuite(SectionDaoTest.class);
 		//$JUnit-END$
 		return suite ;
 	}

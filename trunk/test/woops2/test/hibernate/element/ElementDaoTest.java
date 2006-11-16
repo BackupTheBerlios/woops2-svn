@@ -143,7 +143,7 @@ public class ElementDaoTest extends TestConfiguration {
 		assertNull(elementTmp) ;
 
 		// Test the method deleteElement with an element unexisting into the db.
-		// FIXME Normally here there are no exception thrown.
+		// Normally here there are no exception thrown.
 		this.elementDao.deleteElement(this.element) ;
 
 		// Rk: the tearDown method is called here.

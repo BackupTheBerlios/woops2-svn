@@ -167,7 +167,7 @@ public class RoleDescriptorDaoTest extends TestConfiguration {
 		assertNull(roleDescriptorTmp) ;
 
 		// Test the method deleteRoleDescriptor with an roleDescriptor unexisting into the db.
-		// FIXME Normally here there are no exception thrown.
+		// Normally here there are no exception thrown.
 		this.roleDescriptorDao.deleteRoleDescriptor(this.roleDescriptor) ;
 
 		// Rk: the tearDown method is called here.

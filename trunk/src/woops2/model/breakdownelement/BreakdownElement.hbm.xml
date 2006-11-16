@@ -24,7 +24,7 @@
 			column="isOptional" length="1" />
 
 		<!-- Associations -->
-		<set name="superActivities" table="nesting" >
+		<set name="superActivities" table="nesting" lazy="false">
 			<key column="breakdownelement_id"></key>
 			<many-to-many class="woops2.model.activity.Activity"
 				column="activity_id">
