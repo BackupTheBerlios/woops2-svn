@@ -1,13 +1,13 @@
 
 package woops2.hibernate.workbreakdownelement ;
 
-import java.util.ArrayList ;
-import java.util.List ;
+import java.util.HashSet;
+import java.util.Set;
 
-import org.hibernate.StaleObjectStateException ;
-import org.springframework.orm.hibernate3.support.HibernateDaoSupport ;
+import org.hibernate.StaleObjectStateException;
+import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
-import woops2.model.workbreakdownelement.WorkBreakdownElement ;
+import woops2.model.workbreakdownelement.WorkBreakdownElement;
 
 /**
  * @author Sebastien
@@ -31,8 +31,8 @@ public class WorkBreakdownElementDao extends HibernateDaoSupport {
 	 * 
 	 * @return
 	 */
-	public List <WorkBreakdownElement> getAllWorkBreakdownElement () {
-		List <WorkBreakdownElement> loadAll = new ArrayList <WorkBreakdownElement>() ;
+	public Set <WorkBreakdownElement> getAllWorkBreakdownElements () {
+		Set <WorkBreakdownElement> loadAll = new HashSet <WorkBreakdownElement>() ;
 		loadAll.addAll(this.getHibernateTemplate().loadAll(WorkBreakdownElement.class)) ;
 		return loadAll ;
 	}
