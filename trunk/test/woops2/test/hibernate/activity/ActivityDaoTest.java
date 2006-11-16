@@ -34,7 +34,9 @@ public class ActivityDaoTest extends TestConfiguration {
 	public static final Boolean IS_ON_GOING = true ;
 
 	public static final Boolean IS_PLANNED = true ;
-
+	
+	public static final Boolean IS_REPEATABLE = true ;
+	
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -128,6 +130,7 @@ public class ActivityDaoTest extends TestConfiguration {
 		this.activity.setIsOngoing(IS_ON_GOING) ;
 		this.activity.setIsOptional(IS_OPTIONAL) ;
 		this.activity.setIsPlanned(IS_PLANNED) ;
+		this.activity.setIsRepeatable(IS_REPEATABLE);
 
 		// Save the activity into the database.
 		this.activityDao.getHibernateTemplate().saveOrUpdate(this.activity) ;
@@ -144,6 +147,7 @@ public class ActivityDaoTest extends TestConfiguration {
 		assertEquals("IsOnGoing", activityTmp.getIsOngoing(), IS_ON_GOING) ;
 		assertEquals("IsOptional", activityTmp.getIsOptional(), IS_OPTIONAL) ;
 		assertEquals("IsPlanned", activityTmp.getIsPlanned(), IS_PLANNED) ;
+		assertEquals("IsRepeatale", activityTmp.getIsRepeatable(), IS_REPEATABLE);
 
 		// Test the method getActivity with an unexisting activity.
 		this.activityDao.getHibernateTemplate().delete(this.activity) ;
