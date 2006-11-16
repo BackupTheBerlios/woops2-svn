@@ -176,7 +176,7 @@ public class ActivityDaoTest extends TestConfiguration {
 		assertNull(activityTmp) ;
 
 		// Test the method deleteActivity with an activity unexisting into the db.
-		// Normally here there are no exception thrown.
+		// FIXME Normally here there are no exception thrown.
 		this.activityDao.deleteActivity(this.activity) ;
 
 		// Rk: the tearDown method is called here.

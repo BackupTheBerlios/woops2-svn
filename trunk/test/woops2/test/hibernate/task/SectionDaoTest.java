@@ -130,7 +130,7 @@ public class SectionDaoTest extends TestConfiguration {
 		assertNull(taskTmp) ;
 
 		// Test the method deleteTask with a task unexisting into the db.
-		// Normally here there are no exception thrown.
+		// FIXME Normally here there are no exception thrown.
 		this.sectionDao.deleteSection(this.section) ;
 
 		// Rk: the tearDown method is called here.

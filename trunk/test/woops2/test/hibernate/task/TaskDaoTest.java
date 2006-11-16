@@ -147,7 +147,7 @@ public class TaskDaoTest extends TestConfiguration {
 		assertNull(taskTmp) ;
 
 		// Test the method deleteTask with a task unexisting into the db.
-		// Normally here there are no exception thrown.
+		// FIXME Normally here there are no exception thrown.
 		this.taskDao.deleteTask(this.task) ;
 
 		// Rk: the tearDown method is called here.
