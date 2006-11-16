@@ -21,7 +21,7 @@ public class Element {
 	 * Constructor.
 	 * 
 	 */
-	public Element () {
+	public Element() {
 		// None.
 	}
 
@@ -30,7 +30,7 @@ public class Element {
 	 * 
 	 * @return the description.
 	 */
-	public String getDescription () {
+	public String getDescription() {
 		return this.description ;
 	}
 
@@ -40,7 +40,7 @@ public class Element {
 	 * @param _description
 	 *            The description to set.
 	 */
-	public void setDescription (String _description) {
+	public void setDescription(String _description) {
 		this.description = _description ;
 	}
 
@@ -49,7 +49,7 @@ public class Element {
 	 * 
 	 * @return the id.
 	 */
-	public String getId () {
+	public String getId() {
 		return this.id ;
 	}
 
@@ -59,7 +59,7 @@ public class Element {
 	 * @param _id
 	 *            The id to set.
 	 */
-	public void setId (String _id) {
+	public void setId(String _id) {
 		this.id = _id ;
 	}
 
@@ -68,7 +68,7 @@ public class Element {
 	 * 
 	 * @return the name.
 	 */
-	public String getName () {
+	public String getName() {
 		return this.name ;
 	}
 
@@ -78,7 +78,7 @@ public class Element {
 	 * @param _name
 	 *            The name to set.
 	 */
-	public void setName (String _name) {
+	public void setName(String _name) {
 		this.name = _name ;
 	}
 

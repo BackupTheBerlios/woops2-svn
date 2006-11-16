@@ -21,7 +21,7 @@ public class BreakdownElementDao extends HibernateDaoSupport {
 	 * 
 	 * @param _bde
 	 */
-	public void saveOrUpdateBreakdownElement (BreakdownElement _bde) {
+	public void saveOrUpdateBreakdownElement(BreakdownElement _bde) {
 		this.getHibernateTemplate().saveOrUpdate(_bde) ;
 	}
 
@@ -30,8 +30,8 @@ public class BreakdownElementDao extends HibernateDaoSupport {
 	 * 
 	 * @return
 	 */
-	public List <BreakdownElement> getAllBreakdownElements () {
-		List <BreakdownElement> loadAll = new ArrayList <BreakdownElement>() ;
+	public List<BreakdownElement> getAllBreakdownElements() {
+		List<BreakdownElement> loadAll = new ArrayList<BreakdownElement>() ;
 		loadAll.addAll(this.getHibernateTemplate().loadAll(BreakdownElement.class)) ;
 		return loadAll ;
 	}
@@ -42,7 +42,7 @@ public class BreakdownElementDao extends HibernateDaoSupport {
 	 * @param _id
 	 * @return
 	 */
-	public BreakdownElement getBreakdownElement (String _id) {
+	public BreakdownElement getBreakdownElement(String _id) {
 		return (BreakdownElement) this.getHibernateTemplate().get(BreakdownElement.class, _id) ;
 	}
 
@@ -51,11 +51,11 @@ public class BreakdownElementDao extends HibernateDaoSupport {
 	 * 
 	 * @param _bde
 	 */
-	public void deleteBreakdownElement (BreakdownElement _bde) {
-		try {
+	public void deleteBreakdownElement(BreakdownElement _bde) {
+		try{
 			this.getHibernateTemplate().delete(_bde) ;
 		}
-		catch (StaleObjectStateException sose) {
+		catch(StaleObjectStateException sose){
 			// Catch normally errors when we delete an unexisting element into the db.
 			logger.error("#### ERROR #### --- BreakdownElementdao => deleteBreakdownElement : trying to delete unexisting object \n" + sose) ;
 		}

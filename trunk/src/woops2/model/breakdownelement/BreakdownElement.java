@@ -24,19 +24,19 @@ public class BreakdownElement extends Element {
 
 	private Boolean isOptional ;
 
-	private Set <Activity> superActivities ;
+	private Set<Activity> superActivities ;
 
 	/**
 	 * Constructor.
 	 * 
 	 */
-	public BreakdownElement () {
+	public BreakdownElement() {
 		super() ;
 		this.isOptional = false ;
 		this.isPlanned = true ;
 		this.hasMultipleOccurrences = false ;
 
-		this.superActivities = new HashSet <Activity>() ;
+		this.superActivities = new HashSet<Activity>() ;
 	}
 
 	/**
@@ -44,7 +44,7 @@ public class BreakdownElement extends Element {
 	 * 
 	 * @return the hasMultipleOccurrences.
 	 */
-	public Boolean getHasMultipleOccurrences () {
+	public Boolean getHasMultipleOccurrences() {
 		return this.hasMultipleOccurrences ;
 	}
 
@@ -54,7 +54,7 @@ public class BreakdownElement extends Element {
 	 * @param _hasMultipleOccurrences
 	 *            The hasMultipleOccurrences to set.
 	 */
-	public void setHasMultipleOccurrences (Boolean _hasMultipleOccurrences) {
+	public void setHasMultipleOccurrences(Boolean _hasMultipleOccurrences) {
 		this.hasMultipleOccurrences = _hasMultipleOccurrences ;
 	}
 
@@ -63,7 +63,7 @@ public class BreakdownElement extends Element {
 	 * 
 	 * @return the isOptional.
 	 */
-	public Boolean getIsOptional () {
+	public Boolean getIsOptional() {
 		return this.isOptional ;
 	}
 
@@ -73,7 +73,7 @@ public class BreakdownElement extends Element {
 	 * @param _isOptional
 	 *            The isOptional to set.
 	 */
-	public void setIsOptional (Boolean _isOptional) {
+	public void setIsOptional(Boolean _isOptional) {
 		this.isOptional = _isOptional ;
 	}
 
@@ -82,7 +82,7 @@ public class BreakdownElement extends Element {
 	 * 
 	 * @return the isPlanned.
 	 */
-	public Boolean getIsPlanned () {
+	public Boolean getIsPlanned() {
 		return this.isPlanned ;
 	}
 
@@ -92,7 +92,7 @@ public class BreakdownElement extends Element {
 	 * @param _isPlanned
 	 *            The isPlanned to set.
 	 */
-	public void setIsPlanned (Boolean _isPlanned) {
+	public void setIsPlanned(Boolean _isPlanned) {
 		this.isPlanned = _isPlanned ;
 	}
 
@@ -101,7 +101,7 @@ public class BreakdownElement extends Element {
 	 * 
 	 * @return the prefix.
 	 */
-	public String getPrefix () {
+	public String getPrefix() {
 		return this.prefix ;
 	}
 
@@ -111,7 +111,7 @@ public class BreakdownElement extends Element {
 	 * @param _prefix
 	 *            The prefix to set.
 	 */
-	public void setPrefix (String _prefix) {
+	public void setPrefix(String _prefix) {
 		this.prefix = _prefix ;
 	}
 
@@ -120,7 +120,7 @@ public class BreakdownElement extends Element {
 	 * 
 	 * @return the superActivities.
 	 */
-	public Set <Activity> getSuperActivities () {
+	public Set<Activity> getSuperActivities() {
 		return this.superActivities ;
 	}
 
@@ -130,7 +130,7 @@ public class BreakdownElement extends Element {
 	 * @param _superActivities
 	 *            The superActivities to set.
 	 */
-	public void setSuperActivities (Set <Activity> _superActivities) {
+	public void setSuperActivities(Set<Activity> _superActivities) {
 		this.superActivities = _superActivities ;
 	}
 }
