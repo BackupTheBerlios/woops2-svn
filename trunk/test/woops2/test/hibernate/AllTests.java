@@ -16,6 +16,8 @@ public class AllTests {
 		suite.addTest(woops2.test.hibernate.activity.AllTests.suite()) ;
 		suite.addTest(woops2.test.hibernate.element.AllTests.suite()) ;
 		suite.addTest(woops2.test.hibernate.breakdownelement.AllTests.suite()) ;
+		suite.addTest(woops2.test.hibernate.task.AllTests.suite()) ;
+		suite.addTest(woops2.test.hibernate.role.AllTests.suite()) ;
 		// $JUnit-END$
 		return suite ;
 	}
