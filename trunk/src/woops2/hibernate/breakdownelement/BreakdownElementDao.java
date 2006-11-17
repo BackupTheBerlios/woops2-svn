@@ -1,16 +1,16 @@
+package woops2.hibernate.breakdownelement;
 
-package woops2.hibernate.breakdownelement ;
+import java.util.HashSet;
+import java.util.Set;
 
-import java.util.ArrayList ;
-import java.util.List ;
+import org.hibernate.StaleObjectStateException;
+import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
-import org.hibernate.StaleObjectStateException ;
-import org.springframework.orm.hibernate3.support.HibernateDaoSupport ;
-
-import woops2.model.breakdownelement.BreakdownElement ;
+import woops2.model.breakdownelement.BreakdownElement;
 
 /**
- * BreakdownElementDao manage requests from the system to store BreakdownElement to the database.
+ * BreakdownElementDao manage requests from the system to store BreakdownElement
+ * to the database.
  * 
  * @author deder
  */
@@ -22,7 +22,7 @@ public class BreakdownElementDao extends HibernateDaoSupport {
 	 * @param _bde
 	 */
 	public void saveOrUpdateBreakdownElement(BreakdownElement _bde) {
-		this.getHibernateTemplate().saveOrUpdate(_bde) ;
+		this.getHibernateTemplate().saveOrUpdate(_bde);
 	}
 
 	/**
@@ -30,10 +30,11 @@ public class BreakdownElementDao extends HibernateDaoSupport {
 	 * 
 	 * @return
 	 */
-	public List<BreakdownElement> getAllBreakdownElements() {
-		List<BreakdownElement> loadAll = new ArrayList<BreakdownElement>() ;
-		loadAll.addAll(this.getHibernateTemplate().loadAll(BreakdownElement.class)) ;
-		return loadAll ;
+	public Set<BreakdownElement> getAllBreakdownElements() {
+		Set<BreakdownElement> loadAll = new HashSet<BreakdownElement>();
+		loadAll.addAll(this.getHibernateTemplate().loadAll(
+				BreakdownElement.class));
+		return loadAll;
 	}
 
 	/**
@@ -43,7 +44,8 @@ public class BreakdownElementDao extends HibernateDaoSupport {
 	 * @return
 	 */
 	public BreakdownElement getBreakdownElement(String _id) {
-		return (BreakdownElement) this.getHibernateTemplate().get(BreakdownElement.class, _id) ;
+		return (BreakdownElement) this.getHibernateTemplate().get(
+				BreakdownElement.class, _id);
 	}
 
 	/**
@@ -52,12 +54,14 @@ public class BreakdownElementDao extends HibernateDaoSupport {
 	 * @param _bde
 	 */
 	public void deleteBreakdownElement(BreakdownElement _bde) {
-		try{
-			this.getHibernateTemplate().delete(_bde) ;
-		}
-		catch(StaleObjectStateException sose){
-			// Catch normally errors when we delete an unexisting element into the db.
-			logger.error("#### ERROR #### --- BreakdownElementdao => deleteBreakdownElement : trying to delete unexisting object \n" + sose) ;
+		try {
+			this.getHibernateTemplate().delete(_bde);
+		} catch (StaleObjectStateException sose) {
+			// Catch normally errors when we delete an unexisting element into
+			// the db.
+			logger
+					.error("#### ERROR #### --- BreakdownElementdao => deleteBreakdownElement : trying to delete unexisting object \n"
+							+ sose);
 		}
 	}
 }
