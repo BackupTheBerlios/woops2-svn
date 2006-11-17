@@ -1,7 +1,7 @@
 
 package woops2.business.activity ;
 
-import java.util.List ;
+import java.util.Set ;
 
 import woops2.hibernate.activity.ActivityDao ;
 import woops2.model.activity.Activity ;
@@ -22,7 +22,7 @@ public class ActivityManager {
 	 * 
 	 * @return
 	 */
-	public List <Activity> getActivitiesList () {
+	public Set<Activity> getActivitiesList() {
 		return this.activityDao.getAllActivities() ;
 	}
 
@@ -31,7 +31,7 @@ public class ActivityManager {
 	 * 
 	 * @param _activity
 	 */
-	public void saveActivity (Activity _activity) {
+	public void saveActivity(Activity _activity) {
 		activityDao.saveOrUpdateActivity(_activity) ;
 	}
 
@@ -40,7 +40,7 @@ public class ActivityManager {
 	 * 
 	 * @return the activityDao.
 	 */
-	public ActivityDao getActivityDao () {
+	public ActivityDao getActivityDao() {
 		return this.activityDao ;
 	}
 
@@ -50,7 +50,7 @@ public class ActivityManager {
 	 * @param _activityDao
 	 *            The activityDao to set.
 	 */
-	public void setActivityDao (ActivityDao _activityDao) {
+	public void setActivityDao(ActivityDao _activityDao) {
 		this.activityDao = _activityDao ;
 	}
 }
