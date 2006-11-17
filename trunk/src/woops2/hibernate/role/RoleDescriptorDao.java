@@ -1,13 +1,12 @@
+package woops2.hibernate.role;
 
-package woops2.hibernate.role ;
+import java.util.HashSet;
+import java.util.Set;
 
-import java.util.ArrayList ;
-import java.util.List ;
+import org.hibernate.StaleObjectStateException;
+import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
-import org.hibernate.StaleObjectStateException ;
-import org.springframework.orm.hibernate3.support.HibernateDaoSupport ;
-
-import woops2.model.role.RoleDescriptor ;
+import woops2.model.role.RoleDescriptor;
 
 /**
  * RoleDao manage requests from the system to store Role to the database
@@ -21,19 +20,20 @@ public class RoleDescriptorDao extends HibernateDaoSupport {
 	 * 
 	 * @param _RoleDescriptor
 	 */
-	public void saveOrUpdateRoleDescriptor (RoleDescriptor _RoleDescriptor) {
-		this.getHibernateTemplate().saveOrUpdate(_RoleDescriptor) ;
+	public void saveOrUpdateRoleDescriptor(RoleDescriptor _RoleDescriptor) {
+		this.getHibernateTemplate().saveOrUpdate(_RoleDescriptor);
 	}
 
 	/**
-	 * Return a list of RoleDescriptor
+	 * Return a set of RoleDescriptor
 	 * 
 	 * @return
 	 */
-	public List <RoleDescriptor> getAllRoleDescriptor () {
-		List <RoleDescriptor> loadAll = new ArrayList <RoleDescriptor>() ;
-		loadAll.addAll(this.getHibernateTemplate().loadAll(RoleDescriptor.class)) ;
-		return loadAll ;
+	public Set<RoleDescriptor> getAllRoleDescriptor() {
+		Set<RoleDescriptor> loadAll = new HashSet<RoleDescriptor>();
+		loadAll.addAll(this.getHibernateTemplate()
+				.loadAll(RoleDescriptor.class));
+		return loadAll;
 	}
 
 	/**
@@ -42,8 +42,9 @@ public class RoleDescriptorDao extends HibernateDaoSupport {
 	 * @param _id
 	 * @return
 	 */
-	public RoleDescriptor getRoleDescriptor (String _id) {
-		return (RoleDescriptor) this.getHibernateTemplate().get(RoleDescriptor.class, _id) ;
+	public RoleDescriptor getRoleDescriptor(String _id) {
+		return (RoleDescriptor) this.getHibernateTemplate().get(
+				RoleDescriptor.class, _id);
 	}
 
 	/**
@@ -51,13 +52,15 @@ public class RoleDescriptorDao extends HibernateDaoSupport {
 	 * 
 	 * @param _RoleDescriptor
 	 */
-	public void deleteRoleDescriptor (RoleDescriptor _RoleDescriptor) {
+	public void deleteRoleDescriptor(RoleDescriptor _RoleDescriptor) {
 		try {
-			this.getHibernateTemplate().delete(_RoleDescriptor) ;
-		}
-		catch (StaleObjectStateException sose) {
-			// Catch normally errors when we delete an unexisting RoleDescriptor into the db.
-			logger.error("#### ERROR #### --- RoleDescriptorDao => deleteRoleDescriptor : trying to delete unexisting object \n"+sose);
+			this.getHibernateTemplate().delete(_RoleDescriptor);
+		} catch (StaleObjectStateException sose) {
+			// Catch normally errors when we delete an unexisting RoleDescriptor
+			// into the db.
+			logger
+					.error("#### ERROR #### --- RoleDescriptorDao => deleteRoleDescriptor : trying to delete unexisting object \n"
+							+ sose);
 		}
 	}
 }

@@ -1,13 +1,13 @@
 
 package woops2.hibernate.element ;
 
-import java.util.ArrayList ;
-import java.util.List ;
+import java.util.HashSet;
+import java.util.Set;
 
-import org.hibernate.StaleObjectStateException ;
-import org.springframework.orm.hibernate3.support.HibernateDaoSupport ;
+import org.hibernate.StaleObjectStateException;
+import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
-import woops2.model.element.Element ;
+import woops2.model.element.Element;
 
 /**
  * ElementDao manage requests from the system to store Element to the database.
@@ -30,8 +30,8 @@ public class ElementDao extends HibernateDaoSupport {
 	 * 
 	 * @return
 	 */
-	public List <Element> getAllElements () {
-		List <Element> loadAll = new ArrayList <Element>() ;
+	public Set <Element> getAllElements () {
+		Set <Element> loadAll = new HashSet<Element>() ;
 		loadAll.addAll(this.getHibernateTemplate().loadAll(Element.class)) ;
 		return loadAll ;
 	}

@@ -1,13 +1,12 @@
+package woops2.hibernate.role;
 
-package woops2.hibernate.role ;
+import java.util.HashSet;
+import java.util.Set;
 
-import java.util.ArrayList ;
-import java.util.List ;
+import org.hibernate.StaleObjectStateException;
+import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
-import org.hibernate.StaleObjectStateException ;
-import org.springframework.orm.hibernate3.support.HibernateDaoSupport ;
-
-import woops2.model.role.Role ;
+import woops2.model.role.Role;
 
 /**
  * RoleDao manage requests from the system to store Role to the database
@@ -21,8 +20,8 @@ public class RoleDao extends HibernateDaoSupport {
 	 * 
 	 * @param _role
 	 */
-	public void saveOrUpdateRole (Role _role) {
-		this.getHibernateTemplate().saveOrUpdate(_role) ;
+	public void saveOrUpdateRole(Role _role) {
+		this.getHibernateTemplate().saveOrUpdate(_role);
 	}
 
 	/**
@@ -30,10 +29,10 @@ public class RoleDao extends HibernateDaoSupport {
 	 * 
 	 * @return
 	 */
-	public List <Role> getAllRole () {
-		List <Role> loadAll = new ArrayList <Role>() ;
-		loadAll.addAll(this.getHibernateTemplate().loadAll(Role.class)) ;
-		return loadAll ;
+	public Set<Role> getAllRole() {
+		Set<Role> loadAll = new HashSet<Role>();
+		loadAll.addAll(this.getHibernateTemplate().loadAll(Role.class));
+		return loadAll;
 	}
 
 	/**
@@ -42,8 +41,8 @@ public class RoleDao extends HibernateDaoSupport {
 	 * @param _id
 	 * @return
 	 */
-	public Role getRole (String _id) {
-		return (Role) this.getHibernateTemplate().get(Role.class, _id) ;
+	public Role getRole(String _id) {
+		return (Role) this.getHibernateTemplate().get(Role.class, _id);
 	}
 
 	/**
@@ -51,13 +50,15 @@ public class RoleDao extends HibernateDaoSupport {
 	 * 
 	 * @param _role
 	 */
-	public void deleteRole (Role _role) {
+	public void deleteRole(Role _role) {
 		try {
-			this.getHibernateTemplate().delete(_role) ;
-		}
-		catch (StaleObjectStateException sose) {
-			// Catch normally errors when we delete an unexisting role into the db.
-			logger.error("#### ERROR #### --- RoleDao => deleteRole : trying to delete unexisting object \n"+sose);
+			this.getHibernateTemplate().delete(_role);
+		} catch (StaleObjectStateException sose) {
+			// Catch normally errors when we delete an unexisting role into the
+			// db.
+			logger
+					.error("#### ERROR #### --- RoleDao => deleteRole : trying to delete unexisting object \n"
+							+ sose);
 		}
 	}
 }
