@@ -2,6 +2,7 @@
 package woops2.presentation.activity ;
 
 import java.util.List ;
+import java.util.Set ;
 
 import org.apache.commons.logging.Log ;
 import org.apache.commons.logging.LogFactory ;
@@ -17,7 +18,7 @@ import woops2.model.activity.Activity ;
  */
 public class ActivityViewer {
 
-	private List <Activity> activitiesList ;
+	private Set<Activity> activitiesList ;
 
 	private ActivityManager activityManager ;
 
@@ -29,7 +30,7 @@ public class ActivityViewer {
 	 * Constructor.
 	 * 
 	 */
-	public ActivityViewer () {
+	public ActivityViewer() {
 		this.logger.debug("--- ActivityViewer --- == creating ..." + this) ;
 		this.activity = new Activity() ;
 	}
@@ -39,7 +40,7 @@ public class ActivityViewer {
 	 * 
 	 * @return
 	 */
-	public String saveActivityAction () {
+	public String saveActivityAction() {
 		String url = "activity" ;
 		this.activityManager.saveActivity(this.activity) ;
 		return url ;
@@ -50,7 +51,7 @@ public class ActivityViewer {
 	 * 
 	 * @return the activitiesList.
 	 */
-	public List <Activity> getActivitiesList () {
+	public Set<Activity> getActivitiesList() {
 		this.activitiesList = this.activityManager.getActivitiesList() ;
 		this.logger.debug("acti list =" + this.activitiesList) ;
 		return this.activitiesList ;
@@ -62,7 +63,7 @@ public class ActivityViewer {
 	 * @param _activitiesList
 	 *            The activitiesList to set.
 	 */
-	public void setActivitiesList (List <Activity> _activitiesList) {
+	public void setActivitiesList(Set<Activity> _activitiesList) {
 		this.activitiesList = _activitiesList ;
 	}
 
@@ -71,7 +72,7 @@ public class ActivityViewer {
 	 * 
 	 * @return the activity.
 	 */
-	public Activity getActivity () {
+	public Activity getActivity() {
 		return this.activity ;
 	}
 
@@ -81,7 +82,7 @@ public class ActivityViewer {
 	 * @param _activity
 	 *            The activity to set.
 	 */
-	public void setActivity (Activity _activity) {
+	public void setActivity(Activity _activity) {
 		this.logger.debug("### Activity = " + _activity + " ###") ;
 		this.logger.debug("### prefix = " + _activity.getPrefix() + " ###") ;
 		this.activity = _activity ;
@@ -92,7 +93,7 @@ public class ActivityViewer {
 	 * 
 	 * @return the activityManager.
 	 */
-	public ActivityManager getActivityManager () {
+	public ActivityManager getActivityManager() {
 		return this.activityManager ;
 	}
 
@@ -102,7 +103,7 @@ public class ActivityViewer {
 	 * @param _activityManager
 	 *            The activityManager to set.
 	 */
-	public void setActivityManager (ActivityManager _activityManager) {
+	public void setActivityManager(ActivityManager _activityManager) {
 		this.activityManager = _activityManager ;
 	}
 }

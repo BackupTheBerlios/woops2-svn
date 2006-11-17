@@ -1,11 +1,11 @@
 
 package woops2.test.hibernate.activity ;
 
-import java.util.List ;
+import java.util.Set;
 
-import woops2.hibernate.activity.ActivityDao ;
-import woops2.model.activity.Activity ;
-import woops2.test.TestConfiguration ;
+import woops2.hibernate.activity.ActivityDao;
+import woops2.model.activity.Activity;
+import woops2.test.TestConfiguration;
 
 /**
  * Unit test for ActivityDao
@@ -34,16 +34,16 @@ public class ActivityDaoTest extends TestConfiguration {
 	public static final Boolean IS_ON_GOING = true ;
 
 	public static final Boolean IS_PLANNED = true ;
-	
+
 	public static final Boolean IS_REPEATABLE = true ;
-	
+
 	/*
 	 * (non-Javadoc)
 	 * 
 	 * @see junit.framework.TestCase#setUp()
 	 */
 	@ Override
-	protected void setUp () throws Exception {
+	protected void setUp() throws Exception {
 		super.setUp() ;
 
 		// Get the ActivityDao Singleton for managing Activity data
@@ -59,14 +59,14 @@ public class ActivityDaoTest extends TestConfiguration {
 	 * @see junit.framework.TestCase#tearDown()
 	 */
 	@ Override
-	protected void tearDown () throws Exception {
+	protected void tearDown() throws Exception {
 		super.tearDown() ;
 
 		// Delete the tmp activity from the database.
-		try {
+		try{
 			this.activityDao.getHibernateTemplate().delete(this.activity) ;
 		}
-		catch (Exception exception) {
+		catch(Exception exception){
 			// None.
 		}
 	}
@@ -79,7 +79,7 @@ public class ActivityDaoTest extends TestConfiguration {
 	 * for the database to check if this tmp activity exists. To finish delete this tmp activity
 	 * from the database.
 	 */
-	public void testSaveOrUpdateActivity () {
+	public void testSaveOrUpdateActivity() {
 		// Rk: the setUp method is called here.
 
 		// Save the activity with the method to test.
@@ -100,14 +100,14 @@ public class ActivityDaoTest extends TestConfiguration {
 	 * database with the method to test, and look if the size of the activities set got is >= 1. To
 	 * finish delete this tmp activity from the database.
 	 */
-	public void testGetAllActivities () {
+	public void testGetAllActivities() {
 		// Rk: the setUp method is called here.
 
 		// Save the activity into the database.
 		this.activityDao.getHibernateTemplate().saveOrUpdate(this.activity) ;
 
 		// Look if this activity is also into the database and look if the size of the set is >= 1.
-		List <Activity> activities = this.activityDao.getAllActivities() ;
+		Set<Activity> activities = this.activityDao.getAllActivities() ;
 		assertNotNull(activities) ;
 		assertTrue(activities.size() >= 1) ;
 
@@ -118,7 +118,7 @@ public class ActivityDaoTest extends TestConfiguration {
 	 * Test method for {@link woops2.hibernate.activity.ActivityDao#getActivity()}.
 	 * 
 	 */
-	public void testGetActivity () {
+	public void testGetActivity() {
 		// Rk: the setUp method is called here.
 
 		// Add properties to the activity.
@@ -130,7 +130,7 @@ public class ActivityDaoTest extends TestConfiguration {
 		this.activity.setIsOngoing(IS_ON_GOING) ;
 		this.activity.setIsOptional(IS_OPTIONAL) ;
 		this.activity.setIsPlanned(IS_PLANNED) ;
-		this.activity.setIsRepeatable(IS_REPEATABLE);
+		this.activity.setIsRepeatable(IS_REPEATABLE) ;
 
 		// Save the activity into the database.
 		this.activityDao.getHibernateTemplate().saveOrUpdate(this.activity) ;
@@ -147,7 +147,7 @@ public class ActivityDaoTest extends TestConfiguration {
 		assertEquals("IsOnGoing", activityTmp.getIsOngoing(), IS_ON_GOING) ;
 		assertEquals("IsOptional", activityTmp.getIsOptional(), IS_OPTIONAL) ;
 		assertEquals("IsPlanned", activityTmp.getIsPlanned(), IS_PLANNED) ;
-		assertEquals("IsRepeatale", activityTmp.getIsRepeatable(), IS_REPEATABLE);
+		assertEquals("IsRepeatale", activityTmp.getIsRepeatable(), IS_REPEATABLE) ;
 
 		// Test the method getActivity with an unexisting activity.
 		this.activityDao.getHibernateTemplate().delete(this.activity) ;
@@ -161,7 +161,7 @@ public class ActivityDaoTest extends TestConfiguration {
 	 * Test method for {@link woops2.hibernate.activity.ActivityDao#deleteActivity()}.
 	 * 
 	 */
-	public void testDeleteActivity () {
+	public void testDeleteActivity() {
 		// Rk: the setUp method is called here.
 
 		// Save the activity into the database.
