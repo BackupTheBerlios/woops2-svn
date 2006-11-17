@@ -122,6 +122,15 @@
 		<property name="hibernateTemplate" ref="hibernateTemplate" />
 	</bean>
 	
+	<bean id="RoleDao" class="woops2.hibernate.role.RoleDao">
+		<property name="hibernateTemplate" ref="hibernateTemplate" />
+	</bean>
+
+	<bean id="RoleDescriptorDao"
+		class="woops2.hibernate.role.RoleDescriptorDao">
+		<property name="hibernateTemplate" ref="hibernateTemplate" />
+	</bean>
+	
 	<bean id="SectionDao"
 		class="woops2.hibernate.task.SectionDao">
 		<property name="hibernateTemplate" ref="hibernateTemplate" />
