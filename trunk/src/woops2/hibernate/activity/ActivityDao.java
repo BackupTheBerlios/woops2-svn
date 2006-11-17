@@ -1,8 +1,8 @@
 
 package woops2.hibernate.activity ;
 
-import java.util.ArrayList ;
-import java.util.List ;
+import java.util.HashSet ;
+import java.util.Set ;
 
 import org.hibernate.StaleObjectStateException ;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport ;
@@ -22,7 +22,7 @@ public class ActivityDao extends HibernateDaoSupport {
 	 * 
 	 * @param _activity
 	 */
-	public void saveOrUpdateActivity (Activity _activity) {
+	public void saveOrUpdateActivity(Activity _activity) {
 		this.getHibernateTemplate().saveOrUpdate(_activity) ;
 	}
 
@@ -31,8 +31,8 @@ public class ActivityDao extends HibernateDaoSupport {
 	 * 
 	 * @return
 	 */
-	public List <Activity> getAllActivities () {
-		List <Activity> loadAll = new ArrayList <Activity>() ;
+	public Set<Activity> getAllActivities() {
+		Set<Activity> loadAll = new HashSet<Activity>() ;
 		loadAll.addAll(this.getHibernateTemplate().loadAll(Activity.class)) ;
 		return loadAll ;
 	}
@@ -43,7 +43,7 @@ public class ActivityDao extends HibernateDaoSupport {
 	 * @param _id
 	 * @return
 	 */
-	public Activity getActivity (String _id) {
+	public Activity getActivity(String _id) {
 		return (Activity) this.getHibernateTemplate().get(Activity.class, _id) ;
 	}
 
@@ -52,13 +52,13 @@ public class ActivityDao extends HibernateDaoSupport {
 	 * 
 	 * @param _activity
 	 */
-	public void deleteActivity (Activity _activity) {
-		try {
+	public void deleteActivity(Activity _activity) {
+		try{
 			this.getHibernateTemplate().delete(_activity) ;
 		}
-		catch (StaleObjectStateException sose) {
+		catch(StaleObjectStateException sose){
 			// Catch normally errors when we delete an unexisting activity into the db.
-			logger.error("#### ERROR #### --- ActivityDao => deleteActivity : trying to delete unexisting object \n"+sose);
+			logger.error("#### ERROR #### --- ActivityDao => deleteActivity : trying to delete unexisting object \n" + sose) ;
 		}
 	}
 }
