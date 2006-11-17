@@ -13,25 +13,25 @@ import woops2.model.element.Element ;
  * It defines one default performing RoleDefinition as well as many additional performers... TODO
  * 
  */
-public class Task extends Element {
+public class TaskDefinition extends Element {
 
 	/**
 	 * Collection of Section
 	 */
-	private Set <Section> sections ;
+	private Set<Section> sections ;
 
 	/**
 	 * Collection of TaskDescriptor
 	 */
-	private Set <TaskDescriptor> taskDescriptors ;
+	private Set<TaskDescriptor> taskDescriptors ;
 
 	/**
 	 * Default constructor
 	 */
-	public Task () {
-		super();
-		this.sections = new HashSet <Section>() ;
-		this.taskDescriptors = new HashSet <TaskDescriptor>() ;
+	public TaskDefinition() {
+		super() ;
+		this.sections = new HashSet<Section>() ;
+		this.taskDescriptors = new HashSet<TaskDescriptor>() ;
 	}
 
 	/**
@@ -39,7 +39,7 @@ public class Task extends Element {
 	 * 
 	 * @return the sections.
 	 */
-	public Set <Section> getSections () {
+	public Set<Section> getSections() {
 		return this.sections ;
 	}
 
@@ -49,7 +49,7 @@ public class Task extends Element {
 	 * @param _sections
 	 *            The sections to set.
 	 */
-	public void setSections (Set <Section> _sections) {
+	public void setSections(Set<Section> _sections) {
 		this.sections = _sections ;
 	}
 
@@ -58,7 +58,7 @@ public class Task extends Element {
 	 * 
 	 * @return the taskDescriptors.
 	 */
-	public Set <TaskDescriptor> getTaskDescriptors () {
+	public Set<TaskDescriptor> getTaskDescriptors() {
 		return this.taskDescriptors ;
 	}
 
@@ -68,7 +68,7 @@ public class Task extends Element {
 	 * @param _taskDescriptors
 	 *            The taskDescriptors to set.
 	 */
-	public void setTaskDescriptors (Set <TaskDescriptor> _taskDescriptors) {
+	public void setTaskDescriptors(Set<TaskDescriptor> _taskDescriptors) {
 		this.taskDescriptors = _taskDescriptors ;
 	}
 }

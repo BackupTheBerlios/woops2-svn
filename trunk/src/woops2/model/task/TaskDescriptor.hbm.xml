@@ -9,8 +9,8 @@
 		table="taskdescriptor">
 		<key column="taskdescriptor_id"></key>
 
-		<many-to-one name="task" class="woops2.model.task.Task"
-			column="task_id">
+		<many-to-one name="taskDefinition" class="woops2.model.task.TaskDefinition"
+			column="taskdefinition_id">
 		</many-to-one>
 	</joined-subclass>
 </hibernate-mapping>

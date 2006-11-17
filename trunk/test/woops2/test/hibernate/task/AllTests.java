@@ -16,7 +16,7 @@ public class AllTests {
 		TestSuite suite = new TestSuite("Test for woops2.test.hibernate.task") ;
 		//$JUnit-BEGIN$
 		suite.addTestSuite(TaskDescriptorDaoTest.class) ;
-		suite.addTestSuite(TaskDaoTest.class);
+		suite.addTestSuite(TaskDefinitionDaoTest.class);
 		suite.addTestSuite(SectionDaoTest.class);
 		//$JUnit-END$
 		return suite ;

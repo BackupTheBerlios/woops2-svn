@@ -34,7 +34,7 @@
 				<value>woops2/model/workbreakdownelement/WorkBreakdownElement.hbm.xml</value>
 				<value>woops2/model/activity/Activity.hbm.xml</value>
 				<value>woops2/model/task/TaskDescriptor.hbm.xml</value>
-				<value>woops2/model/task/Task.hbm.xml</value>
+				<value>woops2/model/task/TaskDefinition.hbm.xml</value>
 				<value>woops2/model/task/Section.hbm.xml</value>
 				<value>woops2/model/role/RoleDescriptor.hbm.xml</value>
 				<value>woops2/model/role/RoleDefinition.hbm.xml</value>
@@ -109,7 +109,7 @@
 		<property name="hibernateTemplate" ref="hibernateTemplate"/>
 	</bean>
 
-	<bean id="TaskDao" class="woops2.hibernate.task.TaskDao">
+	<bean id="TaskDefinitionDao" class="woops2.hibernate.task.TaskDefinitionDao">
 		<property name="hibernateTemplate" ref="hibernateTemplate" />
 	</bean>
 

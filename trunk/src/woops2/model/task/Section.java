@@ -1,44 +1,44 @@
 
 package woops2.model.task ;
 
-import woops2.model.element.Element;
+import woops2.model.element.Element ;
 
 /**
  * @author Sebastien BALARD
  * 
- * This class represents a section which represents structural subsections of a task TODO
+ * This class represents a section which represents structural subsections of a taskDefinition TODO
  * 
  */
 public class Section extends Element {
-	
+
 	/**
-	 * the attached task
+	 * the attached taskDefinition
 	 */
-	private Task task;
-	
+	private TaskDefinition taskDefinition ;
+
 	/**
 	 * Default constructor
 	 */
-	public Section() {}
-
-	/**
-	 * Getter of task.
-	 *
-	 * @return the task.
-	 */
-	public Task getTask () {
-		return this.task ;
+	public Section() {
 	}
 
 	/**
-	 * Setter of task.
-	 *
-	 * @param _task The task to set.
+	 * Getter of taskDefinition.
+	 * 
+	 * @return the taskDefinition.
 	 */
-	public void setTask (Task _task) {
-		this.task = _task ;
+	public TaskDefinition getTaskDefinition() {
+		return this.taskDefinition ;
 	}
-	
-	
+
+	/**
+	 * Setter of taskDefinition.
+	 * 
+	 * @param _taskDefinition
+	 *            The taskDefinition to set.
+	 */
+	public void setTaskDefinition(TaskDefinition _taskDefinition) {
+		this.taskDefinition = _taskDefinition ;
+	}
 
 }

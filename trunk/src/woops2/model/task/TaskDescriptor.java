@@ -15,9 +15,9 @@ import woops2.model.workbreakdownelement.WorkBreakdownElement ;
 public class TaskDescriptor extends WorkBreakdownElement {
 
 	/**
-	 * the attached task
+	 * the attached taskDefinition
 	 */
-	private Task task ;
+	private TaskDefinition taskDefinition ;
 
 	/**
 	 * The additional roles of the role
@@ -25,7 +25,7 @@ public class TaskDescriptor extends WorkBreakdownElement {
 	private Set<RoleDescriptor> additionalRoles ;
 
 	/**
-	 * The main role of the task
+	 * The main role of the taskDefinition
 	 */
 	private RoleDescriptor mainRole ;
 
@@ -37,22 +37,22 @@ public class TaskDescriptor extends WorkBreakdownElement {
 	}
 
 	/**
-	 * Getter of task.
+	 * Getter of taskDefinition.
 	 * 
-	 * @return the task.
+	 * @return the taskDefinition.
 	 */
-	public Task getTask() {
-		return this.task ;
+	public TaskDefinition getTaskDefinition() {
+		return this.taskDefinition ;
 	}
 
 	/**
-	 * Setter of task.
+	 * Setter of taskDefinition.
 	 * 
-	 * @param _task
-	 *            The task to set.
+	 * @param _taskDefinition
+	 *            The taskDefinition to set.
 	 */
-	public void setTask(Task _task) {
-		this.task = _task ;
+	public void setTaskDefinition(TaskDefinition _taskDefinition) {
+		this.taskDefinition = _taskDefinition ;
 	}
 
 	/**

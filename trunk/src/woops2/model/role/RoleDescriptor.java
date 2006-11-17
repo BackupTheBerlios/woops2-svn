@@ -10,7 +10,7 @@ import woops2.model.task.TaskDescriptor ;
  * @author deder
  * 
  * A RoleDefinition Descriptor represents a RoleDefinition in the context of one specific Activity. Every breakdown
- * structure can define different relationships of RoleDefinition Descriptors to Task Descriptors and Work
+ * structure can define different relationships of RoleDefinition Descriptors to TaskDefinition Descriptors and Work
  * Product Descriptors. Therefore one RoleDefinition can be represented by many RoleDefinition Descriptors each within
  * the context of an Activity with its own set of relationships.
  * 
