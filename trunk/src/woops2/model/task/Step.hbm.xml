@@ -4,9 +4,9 @@
     "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
 
 <hibernate-mapping>
-	<joined-subclass name="woops2.model.task.Section"
-		extends="woops2.model.element.Element" table="section">
-		<key column="section_id"></key>
+	<joined-subclass name="woops2.model.task.Step"
+		extends="woops2.model.element.Element" table="step">
+		<key column="step_id"></key>
 
 		<many-to-one name="taskDefinition" class="woops2.model.task.TaskDefinition"
 			column="taskdefinition_id">

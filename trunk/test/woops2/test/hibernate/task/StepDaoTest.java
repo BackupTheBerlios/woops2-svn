@@ -3,8 +3,8 @@ package woops2.test.hibernate.task ;
 
 import java.util.Set ;
 
-import woops2.hibernate.task.SectionDao ;
-import woops2.model.task.Section ;
+import woops2.hibernate.task.StepDao ;
+import woops2.model.task.Step ;
 import woops2.model.task.TaskDefinition ;
 import woops2.test.TestConfiguration ;
 
@@ -14,20 +14,20 @@ import woops2.test.TestConfiguration ;
  * @author garwind
  * 
  */
-public class SectionDaoTest extends TestConfiguration {
+public class StepDaoTest extends TestConfiguration {
 	
-	private SectionDao sectionDao = null ;
+	private StepDao stepDao = null ;
 
-	private Section section = null ;
+	private Step step = null ;
 
 	/**
 	 * attributes from Element
 	 */
 	public static final String ID = "thisId" ;
 
-	public static final String NAME = "thisSection" ;
+	public static final String NAME = "thisStep" ;
 
-	public static final String DESCRIPTION = "section" ;
+	public static final String DESCRIPTION = "step" ;
 
 	/*
 	 * (non-Javadoc)
@@ -39,10 +39,10 @@ public class SectionDaoTest extends TestConfiguration {
 		super.setUp() ;
 
 		// Get the TaskDefinitionDao Singleton for managing TaskDefinition data
-		this.sectionDao = (SectionDao) super.getBeanFactory().getBean("SectionDao") ;
+		this.stepDao = (StepDao) super.getBeanFactory().getBean("StepDao") ;
 
 		// Create empty TaskDefinition
-		this.section = new Section() ;
+		this.step = new Step() ;
 	}
 
 	/*
@@ -56,7 +56,7 @@ public class SectionDaoTest extends TestConfiguration {
 
 		// Delete the tmp task from the database.
 		try{
-			this.sectionDao.getHibernateTemplate().delete(this.section) ;
+			this.stepDao.getHibernateTemplate().delete(this.step) ;
 		}
 		catch(Exception exception){
 			exception.printStackTrace() ;
@@ -67,11 +67,11 @@ public class SectionDaoTest extends TestConfiguration {
 		// Rk: the setUp method is called here.
 
 		// Save the task with the method to test.
-		this.sectionDao.saveOrUpdateSection(this.section) ;
+		this.stepDao.saveOrUpdateStep(this.step) ;
 
 		// Check the saving.
-		String id = section.getId() ;
-		TaskDefinition taskTmp = (TaskDefinition) this.sectionDao.getHibernateTemplate().load(TaskDefinition.class, id) ;
+		String id = step.getId() ;
+		TaskDefinition taskTmp = (TaskDefinition) this.stepDao.getHibernateTemplate().load(TaskDefinition.class, id) ;
 		assertNotNull(taskTmp) ;
 
 		// Rk: the tearDown method is called here.
@@ -81,13 +81,13 @@ public class SectionDaoTest extends TestConfiguration {
 		// Rk: the setUp method is called here.
 
 		// Save the task into the database.
-		this.sectionDao.getHibernateTemplate().saveOrUpdate(this.section) ;
+		this.stepDao.getHibernateTemplate().saveOrUpdate(this.step) ;
 
 		// Look if this task is also into the database and look if the size of
 		// the set is >= 1.
-		Set<Section> sections = this.sectionDao.getAllSection() ;
-		assertNotNull(sections) ;
-		assertTrue(sections.size() >= 1) ;
+		Set<Step> steps = this.stepDao.getAllSteps() ;
+		assertNotNull(steps) ;
+		assertTrue(steps.size() >= 1) ;
 
 		// Rk: the tearDown method is called here.
 	}
@@ -96,22 +96,22 @@ public class SectionDaoTest extends TestConfiguration {
 		// Rk: the setUp method is called here.
 
 		// Add prooperties to the task.
-		this.section.setName(NAME) ;
-		this.section.setDescription(DESCRIPTION) ;
+		this.step.setName(NAME) ;
+		this.step.setDescription(DESCRIPTION) ;
 
 		// Save the task into the database.
-		this.sectionDao.getHibernateTemplate().saveOrUpdate(this.section) ;
-		String id = this.section.getId() ;
+		this.stepDao.getHibernateTemplate().saveOrUpdate(this.step) ;
+		String id = this.step.getId() ;
 
 		// Test the method getTask with an existing task.
-		Section sectionTmp = this.sectionDao.getSection(id) ;
+		Step sectionTmp = this.stepDao.getStep(id) ;
 		assertNotNull(sectionTmp) ;
 		assertEquals("Name", sectionTmp.getName(), NAME) ;
 		assertEquals("Description", sectionTmp.getDescription(), DESCRIPTION) ;
 
 		// Test the method getTask with an unexisting task.
-		this.sectionDao.getHibernateTemplate().delete(section) ;
-		sectionTmp = this.sectionDao.getSection(id) ;
+		this.stepDao.getHibernateTemplate().delete(step) ;
+		sectionTmp = this.stepDao.getStep(id) ;
 		assertNull(sectionTmp) ;
 
 		// Rk: the tearDown method is called here.
@@ -121,19 +121,19 @@ public class SectionDaoTest extends TestConfiguration {
 		// Rk: the setUp method is called here.
 
 		// Save the task into the database.
-		this.sectionDao.getHibernateTemplate().saveOrUpdate(this.section) ;
-		String id = this.section.getId() ;
+		this.stepDao.getHibernateTemplate().saveOrUpdate(this.step) ;
+		String id = this.step.getId() ;
 
 		// Test the method deleteTask with an acitivity existing into the db.
-		this.sectionDao.deleteSection(this.section) ;
+		this.stepDao.deleteStep(this.step) ;
 
 		// See if this.task is now absent in the db.
-		TaskDefinition taskTmp = (TaskDefinition) this.sectionDao.getHibernateTemplate().get(TaskDefinition.class, id) ;
+		TaskDefinition taskTmp = (TaskDefinition) this.stepDao.getHibernateTemplate().get(TaskDefinition.class, id) ;
 		assertNull(taskTmp) ;
 
 		// Test the method deleteTask with a task unexisting into the db.
 		// FIXME Normally here there are no exception thrown.
-		this.sectionDao.deleteSection(this.section) ;
+		this.stepDao.deleteStep(this.step) ;
 
 		// Rk: the tearDown method is called here.
 	}

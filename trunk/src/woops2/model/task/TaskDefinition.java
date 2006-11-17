@@ -16,9 +16,9 @@ import woops2.model.element.Element ;
 public class TaskDefinition extends Element {
 
 	/**
-	 * Collection of Section
+	 * Collection of Step
 	 */
-	private Set<Section> sections ;
+	private Set<Step> steps ;
 
 	/**
 	 * Collection of TaskDescriptor
@@ -30,27 +30,27 @@ public class TaskDefinition extends Element {
 	 */
 	public TaskDefinition() {
 		super() ;
-		this.sections = new HashSet<Section>() ;
+		this.steps = new HashSet<Step>() ;
 		this.taskDescriptors = new HashSet<TaskDescriptor>() ;
 	}
 
 	/**
-	 * Getter of sections.
+	 * Getter of steps.
 	 * 
-	 * @return the sections.
+	 * @return the steps.
 	 */
-	public Set<Section> getSections() {
-		return this.sections ;
+	public Set<Step> getSteps() {
+		return this.steps ;
 	}
 
 	/**
-	 * Setter of sections.
+	 * Setter of steps.
 	 * 
-	 * @param _sections
-	 *            The sections to set.
+	 * @param _steps
+	 *            The steps to set.
 	 */
-	public void setSections(Set<Section> _sections) {
-		this.sections = _sections ;
+	public void setSteps(Set<Step> _steps) {
+		this.steps = _steps ;
 	}
 
 	/**

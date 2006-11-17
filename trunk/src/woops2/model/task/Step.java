@@ -9,7 +9,7 @@ import woops2.model.element.Element ;
  * This class represents a section which represents structural subsections of a taskDefinition TODO
  * 
  */
-public class Section extends Element {
+public class Step extends Element {
 
 	/**
 	 * the attached taskDefinition
@@ -19,7 +19,7 @@ public class Section extends Element {
 	/**
 	 * Default constructor
 	 */
-	public Section() {
+	public Step() {
 	}
 
 	/**

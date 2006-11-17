@@ -35,7 +35,7 @@
 				<value>woops2/model/activity/Activity.hbm.xml</value>
 				<value>woops2/model/task/TaskDescriptor.hbm.xml</value>
 				<value>woops2/model/task/TaskDefinition.hbm.xml</value>
-				<value>woops2/model/task/Section.hbm.xml</value>
+				<value>woops2/model/task/Step.hbm.xml</value>
 				<value>woops2/model/role/RoleDescriptor.hbm.xml</value>
 				<value>woops2/model/role/RoleDefinition.hbm.xml</value>
 			</list>
@@ -127,8 +127,8 @@
 		<property name="hibernateTemplate" ref="hibernateTemplate" />
 	</bean>
 	
-	<bean id="SectionDao"
-		class="woops2.hibernate.task.SectionDao">
+	<bean id="StepDao"
+		class="woops2.hibernate.task.StepDao">
 		<property name="hibernateTemplate" ref="hibernateTemplate" />
 	</bean>
 
