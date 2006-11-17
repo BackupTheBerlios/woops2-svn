@@ -9,7 +9,7 @@ import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 import woops2.model.role.RoleDescriptor;
 
 /**
- * RoleDao manage requests from the system to store Role to the database
+ * RoleDefinitionDao manage requests from the system to store RoleDefinition to the database
  * 
  * @author soosuske
  */

@@ -12,7 +12,7 @@ public class AllTests {
 	public static Test suite () {
 		TestSuite suite = new TestSuite("Test for woops2.test.hibernate.role") ;
 		//$JUnit-BEGIN$
-		suite.addTestSuite(RoleDaoTest.class) ;
+		suite.addTestSuite(RoleDefinitionDaoTest.class) ;
 		suite.addTestSuite(RoleDescriptorDaoTest.class) ;
 		//$JUnit-END$
 		return suite ;

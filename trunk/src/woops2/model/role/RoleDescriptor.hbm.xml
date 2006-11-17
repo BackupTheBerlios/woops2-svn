@@ -9,8 +9,8 @@
 		table="roledescriptor">
 		<key column="roledescriptor_id"></key>
 
-		<many-to-one name="role" class="woops2.model.role.Role"
-			column="role_id">
+		<many-to-one name="roleDefinition" class="woops2.model.role.RoleDefinition"
+			column="roledefinition_id">
 		</many-to-one>
 	</joined-subclass>
 </hibernate-mapping>

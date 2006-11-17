@@ -30,18 +30,14 @@
 		<property name="mappingResources">
 			<list>
 				<value>woops2/model/element/Element.hbm.xml</value>
-				<value>
-					woops2/model/breakdownelement/BreakdownElement.hbm.xml
-				</value>
-				<value>
-					woops2/model/workbreakdownelement/WorkBreakdownElement.hbm.xml
-				</value>
+				<value>woops2/model/breakdownelement/BreakdownElement.hbm.xml</value>
+				<value>woops2/model/workbreakdownelement/WorkBreakdownElement.hbm.xml</value>
 				<value>woops2/model/activity/Activity.hbm.xml</value>
 				<value>woops2/model/task/TaskDescriptor.hbm.xml</value>
 				<value>woops2/model/task/Task.hbm.xml</value>
 				<value>woops2/model/task/Section.hbm.xml</value>
 				<value>woops2/model/role/RoleDescriptor.hbm.xml</value>
-				<value>woops2/model/role/Role.hbm.xml</value>
+				<value>woops2/model/role/RoleDefinition.hbm.xml</value>
 			</list>
 		</property>
 
@@ -122,7 +118,7 @@
 		<property name="hibernateTemplate" ref="hibernateTemplate" />
 	</bean>
 	
-	<bean id="RoleDao" class="woops2.hibernate.role.RoleDao">
+	<bean id="RoleDefinitionDao" class="woops2.hibernate.role.RoleDefinitionDao">
 		<property name="hibernateTemplate" ref="hibernateTemplate" />
 	</bean>
 

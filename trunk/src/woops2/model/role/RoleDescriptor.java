@@ -9,47 +9,47 @@ import woops2.model.task.TaskDescriptor ;
 /**
  * @author deder
  * 
- * A Role Descriptor represents a Role in the context of one specific Activity. Every breakdown
- * structure can define different relationships of Role Descriptors to Task Descriptors and Work
- * Product Descriptors. Therefore one Role can be represented by many Role Descriptors each within
+ * A RoleDefinition Descriptor represents a RoleDefinition in the context of one specific Activity. Every breakdown
+ * structure can define different relationships of RoleDefinition Descriptors to Task Descriptors and Work
+ * Product Descriptors. Therefore one RoleDefinition can be represented by many RoleDefinition Descriptors each within
  * the context of an Activity with its own set of relationships.
  * 
  */
 public class RoleDescriptor extends BreakdownElement {
 
-	private Role role ;
+	private RoleDefinition roleDefinition ;
 
 	public RoleDescriptor() {
 		super() ;
 	}
 
 	/**
-	 * The main tasks of the role
+	 * The main tasks of the roleDefinition
 	 */
 	private Set<TaskDescriptor> primaryTasks ;
 
 	/**
-	 * The additional tasks of the role
+	 * The additional tasks of the roleDefinition
 	 */
 	private Set<TaskDescriptor> additionalTasks ;
 
 	/**
-	 * Getter of role.
+	 * Getter of roleDefinition.
 	 * 
-	 * @return the role.
+	 * @return the roleDefinition.
 	 */
-	public Role getRole() {
-		return this.role ;
+	public RoleDefinition getRoleDefinition() {
+		return this.roleDefinition ;
 	}
 
 	/**
-	 * Setter of role.
+	 * Setter of roleDefinition.
 	 * 
-	 * @param _role
-	 *            The role to set.
+	 * @param _roleDefinition
+	 *            The roleDefinition to set.
 	 */
-	public void setRole(Role _role) {
-		this.role = _role ;
+	public void setRoleDefinition(RoleDefinition _roleDefinition) {
+		this.roleDefinition = _roleDefinition ;
 	}
 
 	/**

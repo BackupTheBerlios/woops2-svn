@@ -4,11 +4,11 @@
     "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
 
 <hibernate-mapping>
-	<joined-subclass name="woops2.model.role.Role"
-		extends="woops2.model.element.Element" table="role">
-		<key column="role_id"></key>
+	<joined-subclass name="woops2.model.role.RoleDefinition"
+		extends="woops2.model.element.Element" table="roledefinition">
+		<key column="roledefinition_id"></key>
 		<set name="roleDescriptors" lazy="false">
-			<key column="role_id" />
+			<key column="roledefinition_id" />
 			<one-to-many class="woops2.model.role.RoleDescriptor"></one-to-many>
 		</set>
 	</joined-subclass>
