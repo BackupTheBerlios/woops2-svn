@@ -13,8 +13,8 @@ chaine1 : C_string := new char_array'(to_c("une phrase longue pour tester le typ
 bs1 : tt_busStop(1, ptr_pos);
 bs2 : tt_busStop(2, ptr_pos1);
 
-info : t_information := (1, 1, chaine);
-info1 : t_information := (1, 89, chaine1);
+info : t_ptr_t_information := new t_information'(1, 1, chaine);
+info1 : t_ptr_t_information := new t_information'(1, 89, chaine1);
 
 begin
 	put_line("Debut");

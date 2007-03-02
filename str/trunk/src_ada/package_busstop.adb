@@ -45,17 +45,17 @@ package body package_busstop is
 
 		boucle : loop
 			select
-				accept receiveInformation(info : t_information)
+				accept receiveInformation(ptr_info : t_ptr_t_information)
 				do
-					put_line("BusStop " & int'image(id) & " reçoit une info sur la ligne " & int'image(info.lineNumber));
+					put_line("BusStop " & int'image(id) & " reçoit une info sur la ligne " & int'image(ptr_info.all.lineNumber));
 					-- gestion du message de maniere asynchrone
 					begin
 						put_line("###### L'information est mise dans le buffer");
 
 						-- on stocke la donnée dans le buffer
-						buffer.put(info);
+						buffer.put(ptr_info.all);
 						-- on affiche la donnée pour le busStop
-						display(info);
+						display(ptr_info.all);
 					end;
 
 				end receiveInformation;
@@ -191,7 +191,7 @@ package body package_busstop is
 					b := get_accepted;
 				end hasInformation;
 			or
-    			   terminate;
+    			  	terminate;
     			end select;
   		end loop;
 	end tt_buffer;

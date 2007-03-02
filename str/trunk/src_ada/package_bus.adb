@@ -1,141 +1,103 @@
-with package_espace,package_constante;
-use package_constante;
-package body package_balise is
+with package_types, Text_io, Ada.Exceptions, interfaces.C, package_constantes;
+use package_types, Text_io, Ada.Exceptions, interfaces.C, package_constantes;
 
+package body package_bus is
+
+	-- task type permettant d'initialiser plusieurs bus sur le reseau
+	task body tt_bus is
 	
-	protected body generateIdMessage is	
-		procedure getIdMessage(id : out int) is
-		begin
-			id := idMess;
-			idMess := idMess + 1;
-		end getIdMessage;
-	end generateIdMessage;
+	id : int := idBus;
+	speed : int := 0;
+	line : t_line := l.all;
+	isStarted : boolean := false;
+	ptr_pos : t_ptr_t_position := initialPosition;
 
-	task body tt_balise is
-		id : int;
-		positionBalise : t_polarPosition;
-		message : t_message;
-		realTime : Time ;
-		timeMessage : t_dateHour;
-		jour : int;
-		mois : int;
-		annee : int;
-		sec : duration;
-		secInt : int;
-		heures : int;
-		minutes : int;
-		secondes : int;
-		
-		isStarted : boolean := false;
-
-		begin
-		
-		-- initialisation de la balise: id et position initiale
-		id := idBalise;
-		positionBalise := positionInitiale.all;
-
+	begin
 		loop
-		select 
-			when not isStarted =>
+			select
 				accept start;
-				put_line("La balise "& int'image(id) & " est lancée.");
+				put_line("Le bus "& int'image(id) & " a démarré");
 				isStarted := true;
-				
+				Sensor.setCurrentPosition(initialPosition.all);				
 			
 			or 
 				when isStarted =>
 				
-				delay(periode);
-				-- envoi d'un nouveau message toutes les 5 secondes
-				-- mise a jour de la position
-				getPosition(positionBalise);
-				
-				-- création du nouveau message : manque la date voir avec modifs alex
-				-- et appeler la methode de fab pour qu'il recoive le message envoyé
-				generateIdMessage.getIdMessage(message.idMessage);
-				message.sender := BALISE;
-				message.position := positionBalise;
-				message.idSender := id;
-				
-				-- on convertit le time en t_dateHour
-				realTime := Clock;
-				jour := int(Day(realTime));
-				mois := int(Month(realTime));
-				annee := int(Year(realTime));
-				sec := Seconds(realTime);
-				secInt := int(sec);
-				heures := secInt/3600;
-				minutes := (secInt mod 3600)/60;
-				secondes := (secInt mod 3600) mod 60;
-				timeMessage.day := jour;
-				timeMessage.month := mois;
-				timeMessage.years := annee;
-				timeMessage.hour := heures;
-				timeMessage.minute := minutes;
-				timeMessage.second := secondes;
-				message.sendingDate := timeMessage;
-				
-				-- affichage pour savoir ce qui se passe et verifier que les valeurs sont bonnes
-				--put_line("");
-				--display(message);
-				--put_line("");
-				
-				--put_line("test envoi du message");
-				package_espace.p_received_message(message);
-				--put_line("reussi");
-			or
+					delay(periode);
+					-- envoi d'un nouveau message toutes les 5 secondes
+					-- mise a jour de la position
+					Sensor.getCurrentPosition(ptr_pos.all);
+					Radio.sendPosition(ptr_pos);
+
 				accept destroy;
-				put_line("destroy");
-				
-				-- destruction du recorder
-				-- recorder.detroy;
-				
-				exit; -- pour sortir de la boucle
-				
-	
-				
-			
-		end select ;
+			end select;
 		end loop;
-	end tt_balise;
+	end tt_bus;
 
-	-- procedure prenant en entrée une position et la mettant a jour
-	procedure getPosition(positionMAJ : IN OUT t_polarPosition) is
+	-- definition d'un objet protege permettant de manipuler
+	-- le compteur de distance du bus
+	protected body Odometer is
+
+		procedure getCurrentDistance(d : out C_float) is
+		begin
+			d := Odometer.currentDistance;
+		end getCurrentDistance;
+
+		procedure setCurrentDistance(d : in C_float) is
+		begin
+			Odometer.currentDistance := d;
+		end setCurrentDistance;
+
+		procedure getTotalCoveredDistance(d : out C_float) is
+		begin
+			d := Odometer.totalCoveredDistance;
+		end getTotalCoveredDistance;
+
+		procedure setTotalCoveredDistance(d : in C_float) is
+		begin
+			Odometer.totalCoveredDistance := d;
+		end setTotalCoveredDistance;
+
+		procedure updateDistance(dis : in out C_float) is
+		begin
+			dis := Odometer.currentDistance;
+		end updateDistance;
+
+	end Odometer;	
+
+	-- definition d'un objet protege permettant de manipuler
+	-- le capteur du bus
+	protected body Sensor is
 	
-	positionInitiale : t_polarPosition;
-	
-	-- int compris entre 0 et 5 pour eviter de deplacer la balise trop loin
-	subtype ChangementAngle is int range 0 .. 6; 
-   	
-	-- afin d'utiliser un random ...
-	package ChangementPosition is new Ada.Numerics.Discrete_Random (ChangementAngle);
-   	use ChangementPosition;    -- Rend Generator, Reset et Random visibles
+		procedure getCurrentPosition(p : out t_position) is
+		begin
+			p := Sensor.currentPosition;
+		end getCurrentPosition;
 
-	p : ChangementAngle;
-	t : ChangementAngle;
-	G : Generator;
+		procedure setCurrentPosition(p : in t_position) is
+		begin
+			Sensor.currentPosition := p;
+		end setCurrentPosition;
 
-	begin
-	
-	positionInitiale := positionMAJ;
- 	Reset (G);          	-- Initialise le générateur (à faire une seule fois)
-   	p := Random (G);    	-- Tire un nombre au hasard entre 0 et 3
-	t := Random (G);	-- Tire un autre nombre au hasard
-   	
-	-- affichage de la position de depart
-	--put("position initiale :");
-	--display(positionInitiale);
-	--put_line("");
+		procedure updateBusStop(bs : in out int) is
+		begin
+			bs := Sensor.currentPosition.busStopId;
+		end updateBusStop;
 
-	-- mise a jour de la nouvelle position avec les valeurs aléatoires
-	positionMAJ.phi := modFloat((positionInitiale.phi + C_float(p)/10.0), 360.0);
-	positionMAJ.theta := modFloat((positionInitiale.theta + C_float(t)/10.0), 360.0);
+	end Sensor;
 
-	-- affichage de la position mise a jour
-	--put("position mise à jour :");
-	--display(positionMAJ);
-	--put_line("");
+	-- definition d'un objet protege permettant de manipuler
+	-- le radio du bus
+	protected body Radio is
+		procedure sendPosition(ptr_pos : out t_ptr_t_position);
+		procedure sendPriorityMessage(ptr_mes : out t_ptr_t_priorityMessage);
+		procedure receiveCommand(ptr_com : in t_ptr_t_action);
+	end Radio;
 
-	end getPosition;
+	procedure p_sendPosition(ptr_pos : out t_ptr_t_position);
+	pragma export(CPP, p_sendPosition, "p_sendPosition");
 
-end package_balise;
+	procedure p_sendPriorityMessage(ptr_mes : out t_ptr_t_priorityMessage);
+	pragma export(CPP, p_sendPriorityMessage, "p_sendPriorityMessage");
+
+end package_bus;

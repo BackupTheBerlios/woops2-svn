@@ -7,7 +7,7 @@ package package_busstop is
 	-- idBusStop est l'identifiant du busStop
 	-- initialPosition est la position du busStop
 	task type tt_busStop (idBusStop : int ; ptr_position : access t_position) is
-		entry receiveInformation (info : t_information);
+		entry receiveInformation (ptr_info : t_ptr_t_information);
 		entry display;
 		entry getPosition(pos : out t_position);
 		entry getId(n : out int);
@@ -15,5 +15,8 @@ package package_busstop is
 	end tt_busStop;
 	
 	type t_ptr_tt_busStop is access tt_busStop;
+	
+	procedure receiveInformation (ptr_info : t_ptr_t_information);
+	pragma import(CPP, ReceiveInformation, "receiveInformation");
 	
 end package_busstop;
