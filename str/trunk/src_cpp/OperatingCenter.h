@@ -23,9 +23,9 @@ using namespace std;
 class OperatingCenter
 {
 	private :
-            	static void* thread_function_initBus(void *a);
-            	static void* thread_function_receive_position(void *a);
-            	static void* thread_function_receive_information(void *a);
+            static  void* thread_function_initBus(void *a);
+            static  void* thread_function_receive_position(void *a);
+            static  void* thread_function_receive_information(void *a);
 	public :
 		OperatingCenter();
 		~OperatingCenter();
