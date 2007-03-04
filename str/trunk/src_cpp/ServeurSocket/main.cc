@@ -14,9 +14,10 @@ int main(int argc, char** argv) {
     NetworkManager nm;
     nm.setRemoteHost("localhost");
     nm.prepareSocket();
+    nm.startListening();
     for (int i = 0 ; i < 4 ; i++)
         nm.sendToRemoteClient("buffer_test\n");
-    nm.closeServer();
+    nm.closeSocket();
     
     return (EXIT_SUCCESS);
     
