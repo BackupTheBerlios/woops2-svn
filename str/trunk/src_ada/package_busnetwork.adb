@@ -35,10 +35,10 @@ package body package_busnetwork is
 		BusNetwork.initBusStop;
 	end p_initBusStop;
     
-    procedure receiveInformation(ptr_info : t_ptr_t_information) is  
-    begin
-        busStop(1).all.receiveInformation(ptr_info : t_ptr_t_information);
-    end receiveInformation;
+--    procedure receiveInformation(ptr_info : in t_ptr_t_information) is  
+--    begin
+--        busStop(1).all.receiveInformation(ptr_info);
+--    end receiveInformation;
 
 end package_busnetwork;
 

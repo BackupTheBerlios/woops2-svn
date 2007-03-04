@@ -44,18 +44,9 @@ package package_bus is
 	-- definition d'un objet protege permettant de manipuler
 	-- le radio du bus
 	protected Radio is
-		--procedure sendPosition(ptr_pos : out t_ptr_t_position);
+		procedure sendPosition(ptr_pos : out t_ptr_t_position);
 		--procedure sendPriorityMessage(ptr_mes : out t_ptr_t_priorityMessage);
-		procedure receiveCommand(ptr_com : in t_ptr_t_action);
+		--procedure receiveCommand(ptr_com : in t_ptr_t_action);
 	end Radio;
-
-	procedure p_sendPosition(ptr_pos : out t_ptr_t_position);
-	pragma export(CPP, p_sendPosition, "p_sendPosition");
-
-	procedure p_sendPriorityMessage(ptr_mes : out t_ptr_t_priorityMessage);
-	pragma export(CPP, p_sendPriorityMessage, "p_sendPriorityMessage");		
-
-	procedure receiveCommand(com : in t_ptr_t_action);
-	pragma import(CPP, ReceiveCommand, "receiveCommand");
 
 end package_bus;
