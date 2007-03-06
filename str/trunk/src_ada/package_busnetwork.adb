@@ -24,9 +24,9 @@ package body package_busnetwork is
 		    ptr_position : t_ptr_t_position := new t_position'(1,0.0);
 		    ptr_bs : t_ptr_tt_busStop;
 		begin
-			put_line("BusNetwork : initBusStop");
+			put_line("### BusNetwork : initBusStop");
             for i in 1..nb_busstop loop
-                ptr_bs := new tt_busStop(nb_busstop, ptr_position);
+                ptr_bs := new tt_busStop(i, ptr_position);
                 busStop(i) := ptr_bs;
             end loop;
             put_line(int'image(nb_busstop));
@@ -48,6 +48,6 @@ package body package_busnetwork is
     end p_initBusStop;
     
 begin
-	put_line("initialisation de ada");
+	put_line("### initialisation de ada ###");
 end package_busnetwork;
 

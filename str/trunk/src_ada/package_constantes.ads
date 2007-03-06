@@ -11,13 +11,13 @@ package package_constantes is
 	capaciteBuffer : constant int := 50;
 
 	-- nombre de lignes sur lesquelles un busStop peut se trouver 
-	nbLines : constant int := 1;
+	nbLines : constant int := 100;
 
 	-- nombre de lignes sur lesquelles un busStop peut se trouver 
-	nbBusStop : constant int := 2;
+	nbBusStop : constant int := 100;
 
 	-- nombre de lignes sur lesquelles un busStop peut se trouver 
-	nbBus : constant int := 1;
+	nbBus : constant int := 100;
 
 	-- periode d'envoi de la position d'un bus au centre (en secondes)
 	periode : constant duration := 20.0;
