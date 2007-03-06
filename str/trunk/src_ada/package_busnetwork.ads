@@ -1,5 +1,5 @@
-with package_types, package_busstop, Text_io, Ada.Exceptions, Ada.Calendar, interfaces.C;
-use package_types, package_busstop, Text_io, Ada.Exceptions, Ada.Calendar, interfaces.C;
+with package_types, package_busstop, Text_io, Ada.Exceptions, interfaces.C;
+use package_types, package_busstop, Text_io, Ada.Exceptions, interfaces.C;
 
 package package_busnetwork is
 
@@ -10,9 +10,6 @@ package package_busnetwork is
     
     procedure receivePosition(ptr_pos : in t_ptr_t_position);
     pragma import(CPP, receivePosition, "receivePosition");
-    
-    procedure toto(nb : in int);
-    pragma import(CPP, toto, "toto");
     
     -- réception des informations relatives à une ligne pour un arrêt de bus
     --procedure receiveInformation (ptr_info : in t_ptr_t_information);

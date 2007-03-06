@@ -19,6 +19,7 @@ package body package_busnetwork is
 
 		procedure initBusStop(nb_busstop : in int) is
 		ptr_position : t_ptr_t_position := new t_position'(1,0.0);
+        s : C_string := new char_array'("troudballe");
 		ptr_bs1 : t_ptr_tt_busStop;
 		begin
 			put_line("BusNetwork initBusStop");
@@ -28,7 +29,7 @@ package body package_busnetwork is
 			--ajout des sat dans le tableau
 			busStop(1) := ptr_bs1;
             put_line("Bus ajoute au tab de bus");
-            toto(1);
+            receivePosition(ptr_position);
 		end initBusStop;
 
 	end BusNetwork;
