@@ -6,14 +6,14 @@ LDFLAGS= -ansi  -lpthread -lstdc++ -lgcc_s
 #LGTKFLAGS= `pkg-config --cflags --libs gtk+-2.0` 
 EXEC=busnetwork.exe
 BIN = OperatingCenter.o  main.o
-BINADA = package_busnetwork.o package_busstop.o package_types.o package_constantes.o 
+BINADA = package_busnetwork.o package_busstop.o package_types.o package_constantes.o
 ALI = package_busnetwork.ali package_busstop.ali package_types.ali package_constantes.ali
 
 all: clean $(EXEC)
 
 $(EXEC) :  $(BIN) $(ALI)
 	gnatbind -n $(ALI)
-	gnatlink  package_busnetwork.ali -g $(BIN)  -o main
+	gnatlink  package_busnetwork.ali -g $(BIN)  -o main --LINK=c++
 
 OperatingCenter.o: OperatingCenter.cpp Types.h
 	$(CC) $(LDFLAGS)-o OperatingCenter.o  -c OperatingCenter.cpp  
