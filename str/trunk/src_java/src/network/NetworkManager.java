@@ -11,80 +11,91 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 
 public class NetworkManager {
-    
-    private static final int portForServer = 3390;
-    
-    private static final int portForClient = 3391;
-    
-    private static final String hostToConnect = "localhost";
-    
-    private Interpretor interpretor;
-    
-    private ServerSocket serverSocket;
-    
-    private Socket clientSocket;
-    
-    public NetworkManager() {
-        try {
-            this.serverSocket = new ServerSocket(portForServer);
-            this.clientSocket = new Socket(hostToConnect, portForClient);
-        } catch (UnknownHostException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        Thread thread = new Thread(){
-            public void run(){
-                listen();
-            }
-        };
-        thread.start();
-    }
-    
-    private void listen() {
-        try {
-            Socket acceptedSocket = this.serverSocket.accept();
-            System.out.println("SOCKET = " + acceptedSocket);
-            BufferedReader fluxEntree;
-            
-            fluxEntree = new BufferedReader(new InputStreamReader(
-                    acceptedSocket.getInputStream()));
-            String str;
-            
-            while (acceptedSocket.isConnected()) {
-                str = fluxEntree.readLine();
-                if (str == null)
-                    break;
-                System.out.println("received : " + str); // trace locale
-            }
-        } catch (IOException e1) {
-            e1.printStackTrace();
-        }
-    }
-    
-    public void sendMessage(String _buffer) {
-        try {
-            PrintWriter printWriter = new PrintWriter(new BufferedWriter(
-                    new OutputStreamWriter(this.clientSocket.getOutputStream())), true);
-            printWriter.println(_buffer);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-    
-    /**
-     * @return the interpretor
-     */
-    public Interpretor getInterpretor() {
-        return interpretor;
-    }
-    
-    /**
-     * @param interpretor
-     *            the interpretor to set
-     */
-    public void setInterpretor(Interpretor interpretor) {
-        this.interpretor = interpretor;
-    }
-    
+
+	private static final int COMMAND_PORT = 3390;
+
+	private static final int DATA_PORT = 3391;
+
+	private static final String hostToConnect = "localhost";
+
+	private Interpretor interpretor;
+
+	private ServerSocket dataSocket;
+
+	private Socket commandSocket;
+
+	public NetworkManager() {
+		try {
+
+			this.dataSocket = new ServerSocket(DATA_PORT);
+
+		} catch (UnknownHostException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		while (true)
+			try {
+				this.commandSocket = new Socket(hostToConnect, COMMAND_PORT);
+				break;
+			} catch (UnknownHostException ex) {
+			} catch (IOException ex) {
+			}
+
+		Thread thread = new Thread() {
+			public void run() {
+				listen();
+			}
+		};
+		thread.start();
+	}
+	
+	public void sendMessage(String _buffer) {
+		System.err.println("commandSocket send : " + _buffer);
+		try {
+			PrintWriter printWriter = new PrintWriter(
+					new BufferedWriter(new OutputStreamWriter(
+							this.commandSocket.getOutputStream())), true);
+			printWriter.println(_buffer);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	private void listen() {
+		try {
+			Socket acceptedDataSocket = this.dataSocket.accept();
+			System.out.println("Socket Acccepted = " + acceptedDataSocket);
+
+			BufferedReader inputDataStream;
+			inputDataStream = new BufferedReader(new InputStreamReader(
+					acceptedDataSocket.getInputStream()));
+			String str;
+
+			while (acceptedDataSocket.isConnected()) {
+				str = inputDataStream.readLine();
+				if (str == null)
+					break;
+				System.out.println("received : " + str);
+				try {
+					Thread.sleep(2);
+				} catch (InterruptedException ex) {
+					ex.printStackTrace();
+				}
+				str = "test";
+				this.sendMessage(str);
+			}
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+	}
+
+	public Interpretor getInterpretor() {
+		return interpretor;
+	}
+
+	public void setInterpretor(Interpretor interpretor) {
+		this.interpretor = interpretor;
+	}
 }
