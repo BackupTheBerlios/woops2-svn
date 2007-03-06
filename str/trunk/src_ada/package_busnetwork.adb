@@ -6,21 +6,24 @@ package body package_busnetwork is
 	--type tabLines is array (1 .. nbLines) of  t_ptr_tt_line;
 	type tabBusStop is array (1 .. nbBusStop) of  t_ptr_tt_busStop;
 	--type tabBus is array (1 .. nbBus) of  t_ptr_tt_bus;
-
-        protected BusNetwork is
-                procedure initBusStop(nb_busstop : in int);
+    
+    protected BusNetwork is
+        
+        procedure initBusStop(nb_busstop : in int);
+        function getBusStop return tabBusStop;
+        
         private
-                --lines : tabLines;
-		busStop : tabBusStop;
-		--bus : tabBus;
-        end BusNetwork;
+            --lines : tabLines;
+            busStop : tabBusStop;
+            --bus : tabBus;
+    end BusNetwork;
 
 	protected body BusNetwork is
 
 		procedure initBusStop(nb_busstop : in int) is
-		ptr_position : t_ptr_t_position := new t_position'(1,0.0);
-        s : C_string := new char_array'("troudballe");
-		ptr_bs1 : t_ptr_tt_busStop;
+		    ptr_position : t_ptr_t_position := new t_position'(1,0.0);
+            s : C_string := new char_array'("troudballe");
+		    ptr_bs1 : t_ptr_tt_busStop;
 		begin
 			put_line("BusNetwork initBusStop");
 			ptr_bs1 := new tt_busStop(nb_busstop, ptr_position);
@@ -31,13 +34,21 @@ package body package_busnetwork is
             put_line("Bus ajoute au tab de bus");
             receivePosition(ptr_position);
 		end initBusStop;
+        
+        function getBusStop return tabBusStop is
+            
+        begin
+            return BusNetwork.busStop;
+        end getBusStop;
 
 	end BusNetwork;
-
-	procedure p_initBusStop(nb_busstop : in int) is
-	begin
-		BusNetwork.initBusStop(nb_busstop);
-	end p_initBusStop;
+    
+    -- definition des fonctions de delegation
+    procedure p_initBusStop(nb_busstop : in int) is
+    begin
+      BusNetwork.initBusStop(nb_busstop);
+    end p_initBusStop;
+    
 begin
 	put_line("initialisation de ada");
 end package_busnetwork;

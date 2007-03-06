@@ -11,6 +11,10 @@ package package_busnetwork is
     procedure receivePosition(ptr_pos : in t_ptr_t_position);
     pragma import(CPP, receivePosition, "receivePosition");
     
+    -- initialisation d'arrêts mainde bus
+    procedure receiveInformation(ptr_info : t_ptr_t_information);
+    pragma import(CPP, receiveInformation, "receiveInformation");
+    
     -- réception des informations relatives à une ligne pour un arrêt de bus
     --procedure receiveInformation (ptr_info : in t_ptr_t_information);
     --pragma import(CPP, ReceiveInformation, "receiveInformation");
@@ -31,5 +35,4 @@ package package_busnetwork is
     --procedure p_sendPriorityMessage(ptr_mes : out t_ptr_t_priorityMessage);
     --pragma export(CPP, p_sendPriorityMessage, "p_sendPriorityMessage");
 
-	
 end package_busnetwork;

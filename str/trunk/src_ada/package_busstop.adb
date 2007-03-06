@@ -45,24 +45,6 @@ package body package_busstop is
 
 		boucle : loop
 			select
-				accept receiveInformation(ptr_info : t_ptr_t_information)
-				do
-					put_line("BusStop " & int'image(id) & " reçoit une info sur la ligne " & int'image(ptr_info.all.lineNumber));
-					-- gestion du message de maniere asynchrone
-					begin
-						put_line("###### L'information est mise dans le buffer");
-
-						-- on stocke la donnée dans le buffer
-						buffer.put(ptr_info.all);
-						-- on affiche la donnée pour le busStop
-						display(ptr_info.all);
-					end;
-
-				end receiveInformation;
-			or
-				accept display;
-
-			or
 				accept getPosition(pos : out t_position)
 				do
 					put_line("BusStop -> getPosition");
@@ -96,13 +78,14 @@ package body package_busstop is
 						put_line("BusStop " & int'image(id) & " : ajout d'une ligne");
 						iTabLines := iTabLines + 1;
 					end;
+            or
+                terminate;
 
 			end select;
 
 		end loop boucle;
-
-
-		put_line("BusStop " & int'image(id) & " se termine");
+        
+        put_line("BusStop " & int'image(id) & " se termine");
 
 	end tt_busStop;
 
