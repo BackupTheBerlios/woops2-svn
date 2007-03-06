@@ -1,7 +1,11 @@
 with package_types, package_busnetwork, Text_io, interfaces.C;
 use package_types, package_busnetwork, Text_io, interfaces.C;
 
-procedure main is	
+procedure main is
+    
+    -- réception des informations relatives à une ligne pour un arrêt de bus
+    procedure initSystem;
+    pragma import(CPP, initSystem, "initSystem");	
 
 -- declaration du pointeur sur le busStop1
 --ptr_pos : t_ptr_t_position := new t_position'(1,0.0);
