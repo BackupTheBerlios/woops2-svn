@@ -5,7 +5,7 @@ procedure main is
     
     -- réception des informations relatives à une ligne pour un arrêt de bus
     procedure initSystem;
-    pragma import(CPP, initSystem, "initSystem");	
+    pragma interface(CPP, initSystem);	
 
 -- declaration du pointeur sur le busStop1
 --ptr_pos : t_ptr_t_position := new t_position'(1,0.0);
@@ -22,7 +22,7 @@ procedure main is
 
 begin
     initSystem;
---	put_line("Debut");
+	put_line("Debut");
 --	bs1.receiveInformation(info);
 --	bs1.display;
 --	bs2.receiveInformation(info1);
