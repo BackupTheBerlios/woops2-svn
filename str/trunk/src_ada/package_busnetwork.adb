@@ -22,17 +22,15 @@ package body package_busnetwork is
 
 		procedure initBusStop(nb_busstop : in int) is
 		    ptr_position : t_ptr_t_position := new t_position'(1,0.0);
-            s : C_string := new char_array'("troudballe");
-		    ptr_bs1 : t_ptr_tt_busStop;
+		    ptr_bs : t_ptr_tt_busStop;
 		begin
-			put_line("BusNetwork initBusStop");
-			ptr_bs1 := new tt_busStop(nb_busstop, ptr_position);
-            put_line("Bus cree");
-			
-			--ajout des sat dans le tableau
-			busStop(1) := ptr_bs1;
-            put_line("Bus ajoute au tab de bus");
-            receivePosition(ptr_position);
+			put_line("BusNetwork : initBusStop");
+            for i in 1..nb_busstop loop
+                ptr_bs := new tt_busStop(nb_busstop, ptr_position);
+                busStop(i) := ptr_bs;
+            end loop;
+            put_line(int'image(nb_busstop));
+            put(" busStop crees");
 		end initBusStop;
         
         function getBusStop return tabBusStop is
