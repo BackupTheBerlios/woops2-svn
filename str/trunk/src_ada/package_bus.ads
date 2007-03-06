@@ -44,7 +44,7 @@ package package_bus is
 	-- definition d'un objet protege permettant de manipuler
 	-- le radio du bus
 	protected Radio is
-		procedure sendPosition(ptr_pos : out t_ptr_t_position);
+		--procedure sendPosition(ptr_pos : out t_ptr_t_position);
 		--procedure sendPriorityMessage(ptr_mes : out t_ptr_t_priorityMessage);
 		--procedure receiveCommand(ptr_com : in t_ptr_t_action);
 	end Radio;

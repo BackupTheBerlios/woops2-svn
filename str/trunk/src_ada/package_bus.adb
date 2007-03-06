@@ -27,7 +27,7 @@ package body package_bus is
 					-- envoi d'un nouveau message toutes les 5 secondes
 					-- mise a jour de la position
 					Sensor.getCurrentPosition(ptr_pos.all);
-					Radio.sendPosition(ptr_pos);
+					--Radio.sendPosition(ptr_pos);
 
 				accept destroy;
 			end select;
