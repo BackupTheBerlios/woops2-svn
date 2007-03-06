@@ -8,7 +8,7 @@ package body package_busnetwork is
 	--type tabBus is array (1 .. nbBus) of  t_ptr_tt_bus;
 
         protected BusNetwork is
-                procedure initBusStop;
+                procedure initBusStop(nb_busstop : in int);
         private
                 --lines : tabLines;
 		busStop : tabBusStop;
@@ -17,24 +17,26 @@ package body package_busnetwork is
 
 	protected body BusNetwork is
 
-		procedure initBusStop is
+		procedure initBusStop(nb_busstop : in int) is
 		ptr_position : t_ptr_t_position := new t_position'(1,0.0);
 		ptr_bs1 : t_ptr_tt_busStop;
 		begin
 			put_line("BusNetwork initBusStop");
-			ptr_bs1 := new tt_busStop(1, ptr_position);
+			ptr_bs1 := new tt_busStop(nb_busstop, ptr_position);
+            put_line("Bus cree");
 			
 			--ajout des sat dans le tableau
 			busStop(1) := ptr_bs1;
+            put_line("Bus ajoute au tab de bus");
 		end initBusStop;
 
 	end BusNetwork;
 
 	procedure p_initBusStop(nb_busstop : in int) is
 	begin
-		BusNetwork.initBusStop;
+		BusNetwork.initBusStop(nb_busstop);
 	end p_initBusStop;
 begin
-	put_line("initialisation ada");
+	put_line("initialisation de ada");
 end package_busnetwork;
 
