@@ -19,6 +19,7 @@ package body package_busstop is
 	-- idBusStop est l'identifiant du busStop
 	-- initialPosition est la position du busStop
 	task body tt_busStop is
+        
 		id : int;
 		position : t_position;
 
@@ -50,11 +51,6 @@ package body package_busstop is
 					put_line("BusStop -> getPosition");
 					pos := position;
 				end getPosition;
-				
-				-- a voir l'utilité
-				begin
-					null;
-				end;
 
 			or
 				accept getId(n : out int)
@@ -62,10 +58,6 @@ package body package_busstop is
 					put_line("BusStop -> getId");
 					n := id;
 				end getId;
-				
-				begin
-					null;
-				end;
 
 			or
 				when iTabLines <= tabLines'last =>
@@ -82,7 +74,6 @@ package body package_busstop is
                 terminate;
 
 			end select;
-
 		end loop boucle;
         
         put_line("BusStop " & int'image(id) & " se termine");

@@ -29,8 +29,7 @@ package body package_busnetwork is
                 ptr_bs := new tt_busStop(i, ptr_position);
                 busStop(i) := ptr_bs;
             end loop;
-            put_line(int'image(nb_busstop));
-            put(" busStop crees");
+            put_line(int'image(nb_busstop) & " busStop crees");
 		end initBusStop;
         
         function getBusStop return tabBusStop is
