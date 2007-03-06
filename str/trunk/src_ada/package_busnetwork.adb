@@ -28,6 +28,7 @@ package body package_busnetwork is
 			--ajout des sat dans le tableau
 			busStop(1) := ptr_bs1;
             put_line("Bus ajoute au tab de bus");
+            toto(1);
 		end initBusStop;
 
 	end BusNetwork;

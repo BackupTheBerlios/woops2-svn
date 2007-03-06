@@ -11,6 +11,9 @@ package package_busnetwork is
     procedure receivePosition(ptr_pos : in t_ptr_t_position);
     pragma import(CPP, receivePosition, "receivePosition");
     
+    procedure toto(nb : in int);
+    pragma import(CPP, toto, "toto");
+    
     -- réception des informations relatives à une ligne pour un arrêt de bus
     --procedure receiveInformation (ptr_info : in t_ptr_t_information);
     --pragma import(CPP, ReceiveInformation, "receiveInformation");
