@@ -27,7 +27,7 @@ package body package_bus is
 					-- envoi d'un nouveau message toutes les 5 secondes
 					-- mise a jour de la position
 					Sensor.getCurrentPosition(ptr_pos.all);
-					--Radio.sendPosition(ptr_pos);
+					Radio.sendPosition(ptr_pos);
 
 				accept destroy;
 			end select;
@@ -89,7 +89,10 @@ package body package_bus is
 	-- definition d'un objet protege permettant de manipuler
 	-- le radio du bus
 	protected body Radio is
-		--procedure sendPosition(ptr_pos : out t_ptr_t_position);
+		procedure sendPosition(ptr_pos : in t_ptr_t_position) is 
+        begin
+                receivePosition(ptr_pos);
+        end sendPosition;
 		--procedure sendPriorityMessage(ptr_mes : out t_ptr_t_priorityMessage);
 		--procedure receiveCommand(ptr_com : in t_ptr_t_action);
 	end Radio;

@@ -7,6 +7,9 @@ package package_busnetwork is
 	procedure p_initBusStop(nb_busstop : in int);
 	pragma export(CPP, p_initBusStop, "p_initBusStop");
     
+    procedure receivePosition(ptr_pos : in t_ptr_t_position);
+    pragma import(CPP, receivePosition, "receivePosition");
+    
     -- réception des informations relatives à une ligne pour un arrêt de bus
     --procedure receiveInformation (ptr_info : in t_ptr_t_information);
     --pragma import(CPP, ReceiveInformation, "receiveInformation");
