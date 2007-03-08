@@ -213,20 +213,20 @@ namespace Network{
     };
     
     class DataSystemObject : public AbstractSystemObject {
-        SystemObject systemObject;
+        SystemObject * systemObject;
         
         public:
-            SystemObject getSystemObject(){return systemObject;}
-            void setSystemObject(SystemObject _s){systemObject = _s;}
+            SystemObject * getSystemObject(){return systemObject;}
+            void setSystemObject(SystemObject * _s){systemObject = _s;}
             
-            virtual void applyToSystem() = 0; // methode abstraite
+            void applyToSystem(){}
             DataSystemObject(string _buff) : AbstractSystemObject(_buff){};
     };
     
     class CommandSystemObject : public AbstractSystemObject {
         public:
             
-            virtual void applyToSystem() = 0; // methode abstraite
+            void applyToSystem(){}
             CommandSystemObject(string _buff) : AbstractSystemObject(_buff){};
     };
     
