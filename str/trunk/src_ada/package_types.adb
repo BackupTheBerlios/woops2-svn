@@ -40,7 +40,7 @@ package body package_types is
 		put(", Bus n°");
 		put(int'image(info.idBus));
 		put(" : ");
-		put(To_ada(info.message.all));
+        put(value(info.message));
 		put(")");
 		new_line;
 	end display;

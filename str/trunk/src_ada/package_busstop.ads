@@ -1,5 +1,5 @@
-with package_types, Text_io, Ada.Exceptions, interfaces.C;
-use package_types, Text_io, Ada.Exceptions, interfaces.C;
+with package_types, package_line, Text_io, Ada.Exceptions, interfaces.C;
+use package_types, package_line, Text_io, Ada.Exceptions, interfaces.C;
 
 package package_busstop is
 
@@ -9,7 +9,7 @@ package package_busstop is
 	task type tt_busStop (idBusStop : int ; ptr_position : access t_position) is
 		entry getPosition(pos : out t_position);
 		entry getId(n : out int);
-		entry addLine(ptr_line : t_ptr_t_line);
+		entry addLine(ptr_line : t_ptr_tt_line);
 	end tt_busStop;
 	
 	type t_ptr_tt_busStop is access tt_busStop;

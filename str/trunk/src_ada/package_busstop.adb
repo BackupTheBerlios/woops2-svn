@@ -3,8 +3,8 @@ use package_types, package_constantes, interfaces.C;
 
 package body package_busstop is
 
-	-- definition d'une tache enregistreur qui permet d'enregister les
-	-- messages non prioritaires
+	-- definition d'une tache buffer qui permet d'enregister les
+	-- messages affichés sur le tableau d'information d'un arrêt de bus
 	task type tt_buffer is
 		entry put(info : in t_information);
 		entry get(info : out t_information);
@@ -23,16 +23,15 @@ package body package_busstop is
 		id : int;
 		position : t_position;
 
-		-- l'enregistreur qui permet de sauvegarder les informations
+		-- le buffer qui permet de sauvegarder les informations
 		buffer : tt_buffer;
 
 		-- variable pour gerer la reception des informations
 		-- de maniere asynchrone
 		--info : t_information;
 
-		-- declaration d'un tableau permettant de stocker les station
-		-- et de savoir si elles sont visible par le satellite
-		tabLines : array(1..nbLines) of t_line;
+		-- declaration d'un tableau permettant de stocker les lignes du réseau
+		tabLines : array(1..nbLines) of t_ptr_tt_line;
 		iTabLines : int := tabLines'first;
 
 		-- variable permettant de savoir s'il y a des messages dans le buffer
@@ -61,9 +60,9 @@ package body package_busstop is
 
 			or
 				when iTabLines <= tabLines'last =>
-					accept addLine(ptr_line : t_ptr_t_line)
+					accept addLine(ptr_line : t_ptr_tt_line)
 					do
-						tabLines(iTabLines) := ptr_line.all;
+						tabLines(iTabLines) := ptr_line;
 					end addLine;
 					
 					begin

@@ -93,8 +93,10 @@ package body package_bus is
         begin
                 receivePosition(ptr_pos);
         end sendPosition;
+        
 		--procedure sendPriorityMessage(ptr_mes : out t_ptr_t_priorityMessage);
 		--procedure receiveCommand(ptr_com : in t_ptr_t_action);
-	end Radio;
+	
+    end Radio;
 
 end package_bus;

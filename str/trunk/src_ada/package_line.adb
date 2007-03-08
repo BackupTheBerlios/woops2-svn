@@ -1,44 +1,43 @@
-with package_types, package_constantes, interfaces.C;
-use package_types, package_constantes, interfaces.C;
+with package_types, package_busstop, package_constantes, interfaces.C;
+use package_types, package_busstop, package_constantes, interfaces.C;
 
 package body package_line is  
 
-    -- definition du type busStop qui est une tache
-    -- idBusStop est l'identifiant du busStop
-    -- initialPosition est la position du busStop
+    -- definition du type Line qui est une tache
+    -- idLine est l'identifiant de la ligne
     task body tt_line is
         
-        number : int;
+        idLine : int;
 
-        -- declaration d'un tableau permettant de stocker les station
-        -- et de savoir si elles sont visible par le satellite
-        tabBusStop : array(1..nbBusStop) of t_busStop;
-        iTabLines : int := tabLines'first;
+        -- declaration d'un tableau permettant de stocker les lignes du réseau
+        tabBusStop : array(1..nbBusStop) of t_ptr_tt_busStop;
+        iTabBusStop : int := tabBusStop'first;
+        
+        -- tableau de bus a faire
 
     begin
-        id := idBusStop;
-        position := ptr_position.all;
+        idLine := number;
 
-        put_line("BusStop n°" & int'image(id) & " créé");
+        put_line("Line n°" & int'image(idLine) & " créée");
 
         boucle : loop
             select
-                accept getPosition(pos : out t_position)
-                do
-                    put_line("BusStop -> getPosition");
-                    pos := position;
-                end getPosition;
-    
+                accept getNumber(n : out int)
+                        do
+                            put_line("Line -> getNumber");
+                            n := idLine;
+                        end getNumber;        
             or
-                when iTabLines <= tabLines'last =>
-                    accept addLine(ptr_line : t_ptr_t_line)
+                
+                when iTabBusStop <= tabBusStop'last =>
+                    accept addBusStop(ptr_busStop : t_ptr_tt_busStop)
                     do
-                        tabLines(iTabLines) := ptr_line.all;
-                    end addLine;
+                        tabBusStop(iTabBusStop) := ptr_busStop;
+                    end addBusStop;
                        
                     begin
-                        put_line("BusStop " & int'image(id) & " : ajout d'une ligne");
-                        iTabLines := iTabLines + 1;
+                        put_line("Line n°" & int'image(idLine) & " : ajout d'un busStop");
+                        iTabBusStop := iTabBusStop + 1;
                     end;
             or
                     terminate;
@@ -46,8 +45,8 @@ package body package_line is
             end select;
         end loop boucle;
             
-        put_line("BusStop " & int'image(id) & " se termine");
+        put_line("Line n°" & int'image(idLine) & " se termine");
     
-     end tt_line;
+    end tt_line;
 
 end package_line;
