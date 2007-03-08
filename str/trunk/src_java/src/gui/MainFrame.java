@@ -17,7 +17,6 @@ public class MainFrame extends javax.swing.JFrame {
    
 	private static final long serialVersionUID = 1L;
 	
-	ClientControler clientControler;
 	
 	/** Creates new form IsiNavBusMainFrame */
     public MainFrame() {
@@ -205,7 +204,7 @@ public class MainFrame extends javax.swing.JFrame {
     }                                            
 
     private void sendCommandButtonActionPerformed(java.awt.event.ActionEvent evt) {                                                  
-        //TODO
+        ClientControler.getInstance().sendMessage();
     }                                                 
 
     private void connectButtonActionPerformed(java.awt.event.ActionEvent evt) {                                              
@@ -238,12 +237,5 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel serverLabel;
     // End of variables declaration                   
 
-	public ClientControler getClientControler() {
-		return clientControler;
-	}
-
-	public void setClientControler(ClientControler clientControler) {
-		this.clientControler = clientControler;
-	}
     
 }
