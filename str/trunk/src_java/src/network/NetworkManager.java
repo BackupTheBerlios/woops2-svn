@@ -50,18 +50,6 @@ public class NetworkManager {
 		};
 		thread.start();
 	}
-	
-	public void sendMessage(String _buffer) {
-		System.err.println("commandSocket send : " + _buffer);
-		try {
-			PrintWriter printWriter = new PrintWriter(
-					new BufferedWriter(new OutputStreamWriter(
-							this.commandSocket.getOutputStream())), true);
-			printWriter.println(_buffer);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
 
 	private void listen() {
 		try {
@@ -88,6 +76,18 @@ public class NetworkManager {
 			}
 		} catch (IOException e1) {
 			e1.printStackTrace();
+		}
+	}
+
+	public void sendMessage(String _buffer) {
+		System.err.println("commandSocket send : " + _buffer);
+		try {
+			PrintWriter printWriter = new PrintWriter(
+					new BufferedWriter(new OutputStreamWriter(
+							this.commandSocket.getOutputStream())), true);
+			printWriter.println(_buffer);
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 	}
 
