@@ -19,7 +19,7 @@ public class ClientControler {
 			}
 		});
 		// test d'envoi
-		Interpretor.getInstance().sendBuffer("test");
+		Interpretor.getInstance().sendBuffer("@Initialize:1;");
 	}
 
 	public MainFrame getMainFrame() {
