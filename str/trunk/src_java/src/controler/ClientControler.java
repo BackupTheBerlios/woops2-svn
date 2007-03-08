@@ -5,13 +5,25 @@ import network.Interpretor;
 
 public class ClientControler {
 	
+	private static ClientControler clientControler;
+	
 	private MainFrame mainFrame;
 
-	public ClientControler() {
-		//None.
+	private ClientControler() {
+		
 	}
-
+	
+	public static ClientControler getInstance(){
+		if (clientControler == null) clientControler = new ClientControler();
+		return clientControler;
+	}
+	
+	public void sendMessage(){
+		Interpretor.getInstance().sendBuffer("@Initialize:1;");
+	}
+	
 	public void startClient() {
+		
 		java.awt.EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				mainFrame = new MainFrame();
@@ -19,7 +31,7 @@ public class ClientControler {
 			}
 		});
 		// test d'envoi
-		Interpretor.getInstance().sendBuffer("@Initialize:1;");
+		
 	}
 
 	public MainFrame getMainFrame() {
