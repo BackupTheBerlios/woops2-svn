@@ -1,5 +1,5 @@
-with package_types, package_busstop, Text_io, Ada.Exceptions, interfaces.C;
-use package_types, package_busstop, Text_io, Ada.Exceptions, interfaces.C;
+with package_types, Text_io, interfaces.C;
+use package_types, Text_io, interfaces.C;
 
 package package_line is
 

@@ -1,7 +1,7 @@
-with package_types, package_constantes, interfaces.C;
-use package_types, package_constantes, interfaces.C;
-
 package body package_busstop is
+    
+    with package_types, package_line, package_constantes, interfaces.C;
+    use package_types, package_line, package_constantes, interfaces.C;
 
 	-- definition d'une tache buffer qui permet d'enregister les
 	-- messages affichés sur le tableau d'information d'un arrêt de bus

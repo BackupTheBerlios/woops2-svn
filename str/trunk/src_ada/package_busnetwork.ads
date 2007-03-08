@@ -1,12 +1,20 @@
-with package_types, package_busstop, Text_io, Ada.Exceptions, interfaces.C;
-use package_types, package_busstop, Text_io, Ada.Exceptions, interfaces.C;
+with package_types, Text_io, Ada.Exceptions, interfaces.C;
+use package_types, Text_io, Ada.Exceptions, interfaces.C;
 
 package package_busnetwork is
 
 	
-    -- initialisation d'arrêts mainde bus
+    -- initialisation des arrêts de bus
 	procedure p_initBusStop(nb_busstop : in int);
 	pragma export(CPP, p_initBusStop, "p_initBusStop");
+    
+    -- initialisation des bus
+    procedure p_initBus(nb_bus : in int);
+    pragma export(CPP, p_initBus, "p_initBus");
+    
+    -- initialisation des lignes
+    procedure p_initLine(nb_line : in int);
+    pragma export(CPP, p_initLine, "p_initLine");
     
     procedure receivePosition(ptr_pos : in t_ptr_t_position);
     pragma import(CPP, receivePosition, "receivePosition");

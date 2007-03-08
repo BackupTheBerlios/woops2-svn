@@ -1,9 +1,8 @@
-with package_types, package_busstop, Text_io, interfaces.C;
-use package_types, package_busstop, Text_io, interfaces.C;
+with package_types, Text_io, interfaces.C;
+use package_types, Text_io, interfaces.C;
 
 -- paquetage contenant les types communs aux elements code en Ada
 package body package_types is
-
 	
 	-- affiche une position
 	procedure display(position : t_position) is

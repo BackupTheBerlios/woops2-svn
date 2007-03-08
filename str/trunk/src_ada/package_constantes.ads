@@ -1,5 +1,5 @@
-with interfaces.C, package_types;
-use interfaces.C, package_types;
+with interfaces.C;
+use interfaces.C;
 
 package package_constantes is
 

@@ -1,7 +1,7 @@
-with package_types, package_busstop, package_constantes, interfaces.C;
-use package_types, package_busstop, package_constantes, interfaces.C;
-
-package body package_line is  
+package body package_line is 
+    
+    with package_types, package_busstop, package_constantes, interfaces.C;
+    use package_types, package_busstop, package_constantes, interfaces.C;
 
     -- definition du type Line qui est une tache
     -- idLine est l'identifiant de la ligne

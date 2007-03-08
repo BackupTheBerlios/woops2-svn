@@ -1,12 +1,10 @@
 with package_types, package_busnetwork, Text_io, Ada.Exceptions, interfaces.C;
 use package_types, package_busnetwork, Text_io, Ada.Exceptions, interfaces.C;
 
-
-
 package package_bus is
 
 	-- task type permettant d'initialiser plusieurs bus sur le reseau
-	task type tt_bus(idBus : int; l : t_ptr_t_line; initialPosition : t_ptr_t_position) is
+	task type tt_bus(idBus : int; l : t_ptr_tt_line; initialPosition : t_ptr_t_position) is
 		entry start;
 		entry destroy;
 	end tt_bus;
