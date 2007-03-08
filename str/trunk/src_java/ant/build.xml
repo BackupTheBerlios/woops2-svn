@@ -15,7 +15,7 @@
         <property name="lib.dir" value="${basedir}/lib" />
         <property name="dist.dir" value="${basedir}/dist" />
         <property name="jar.main-class" value="controler.Main" />
-        <property name="jar.classpath" value="swing-layout-1.0.1.jar"/>
+        <property name="jar.classpath" value="./lib/swing-layout-1.0.1.jar"/>
         
         <path id="classpath">
                 <fileset dir="${lib.dir}">
