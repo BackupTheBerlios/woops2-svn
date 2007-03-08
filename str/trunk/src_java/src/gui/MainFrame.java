@@ -54,7 +54,7 @@ public class MainFrame extends javax.swing.JFrame {
         mainTextArea.setRows(5);
         mainScrollPane.setViewportView(mainTextArea);
 
-        connectButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/resources/connect32x32.jpg")));
+        //connectButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/resources/connect32x32.jpg")));
         connectButton.setText("Connect To Remote Server");
         connectButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -62,7 +62,7 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
-        sendCommandButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/resources/sendCommand.jpg")));
+        //sendCommandButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/resources/sendCommand.jpg")));
         sendCommandButton.setText("Send Command");
         sendCommandButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
