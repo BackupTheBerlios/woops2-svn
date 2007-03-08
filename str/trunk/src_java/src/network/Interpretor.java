@@ -1,47 +1,47 @@
 package network;
 
 public class Interpretor {
-	
-	private NetworkManager networkManager;
-	
-	private AbstractSystemObject abstractSystemObject;
-	
-	public void buildAbstractSystemObject(String _buffer){
-		//TODO !
-	}
-	
-	//to the networkmanager
-	public void interpreteCurrentAbstractSystemObject(){
-		//TODO !
+
+	private static Interpretor interpretor;
+
+	/*
+	 * Public Methods.
+	 */
+
+	/**
+	 * To obliged the unicity of the Interpretor instance.
+	 * 
+	 * @return
+	 */
+	public static Interpretor getInstance() {
+		if (interpretor == null)
+			interpretor = new Interpretor();
+		return interpretor;
 	}
 
 	/**
-	 * @return the networkManager
+	 * Receive the _buffer from the NetworkManager and send 
+	 * good data to the System.
 	 */
-	public NetworkManager getNetworkManager() {
-		return networkManager;
+	public void receiveBuffer(String _buffer) {
+		// temporary !
+		System.out.println("Buuffer received by the Interpretor: " + _buffer);
 	}
 
 	/**
-	 * @param networkManager the networkManager to set
+	 * Receive the _buffer from the System and send 
+	 * good data to the NetworkManager.
 	 */
-	public void setNetworkManager(NetworkManager networkManager) {
-		this.networkManager = networkManager;
+	public void sendBuffer(String _buffer) {
+		// temporary !
+		NetworkManager.getInstance().sendMessage(_buffer);
 	}
 
-	/**
-	 * @return the abstractSystemObject
+	/*
+	 * Private Methods.
 	 */
-	public AbstractSystemObject getAbstractSystemObject() {
-		return abstractSystemObject;
-	}
 
-	/**
-	 * @param abstractSystemObject the abstractSystemObject to set
-	 */
-	public void setAbstractSystemObject(AbstractSystemObject abstractSystemObject) {
-		this.abstractSystemObject = abstractSystemObject;
+	private Interpretor() {
+		// None.
 	}
-
 }
-

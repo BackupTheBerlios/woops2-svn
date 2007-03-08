@@ -18,13 +18,44 @@ public class NetworkManager {
 
 	private static final String hostToConnect = "localhost";
 
-	private Interpretor interpretor;
-
 	private ServerSocket dataSocket;
 
 	private Socket commandSocket;
 
-	public NetworkManager() {
+	private static NetworkManager networkManager;
+
+	/**
+	 * To the send a message through the network.
+	 * 
+	 * @param _buffer
+	 */
+	public void sendMessage(String _buffer) {
+		try {
+			PrintWriter printWriter = new PrintWriter(
+					new BufferedWriter(new OutputStreamWriter(
+							this.commandSocket.getOutputStream())), true);
+			printWriter.println(_buffer);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * To obliged the unicity of the NetworkManager instance.
+	 * 
+	 * @return
+	 */
+	public static NetworkManager getInstance() {
+		if (networkManager == null)
+			networkManager = new NetworkManager();
+		return networkManager;
+	}
+
+	/**
+	 * Private constructor for the Singleton.
+	 * 
+	 */
+	private NetworkManager() {
 		try {
 
 			this.dataSocket = new ServerSocket(DATA_PORT);
@@ -40,7 +71,9 @@ public class NetworkManager {
 				this.commandSocket = new Socket(hostToConnect, COMMAND_PORT);
 				break;
 			} catch (UnknownHostException ex) {
+				// None.
 			} catch (IOException ex) {
+				// None.
 			}
 
 		Thread thread = new Thread() {
@@ -51,10 +84,13 @@ public class NetworkManager {
 		thread.start();
 	}
 
+	/**
+	 * For the listen of the DataSocket.
+	 * 
+	 */
 	private void listen() {
 		try {
 			Socket acceptedDataSocket = this.dataSocket.accept();
-			System.out.println("Socket Acccepted = " + acceptedDataSocket);
 
 			BufferedReader inputDataStream;
 			inputDataStream = new BufferedReader(new InputStreamReader(
@@ -65,37 +101,11 @@ public class NetworkManager {
 				str = inputDataStream.readLine();
 				if (str == null)
 					break;
-				System.out.println("received : " + str);
-				try {
-					Thread.sleep(2);
-				} catch (InterruptedException ex) {
-					ex.printStackTrace();
-				}
-				str = "test";
-				this.sendMessage(str);
+				Interpretor.getInstance().receiveBuffer(str);
 			}
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
 	}
 
-	public void sendMessage(String _buffer) {
-		System.err.println("commandSocket send : " + _buffer);
-		try {
-			PrintWriter printWriter = new PrintWriter(
-					new BufferedWriter(new OutputStreamWriter(
-							this.commandSocket.getOutputStream())), true);
-			printWriter.println(_buffer);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-
-	public Interpretor getInterpretor() {
-		return interpretor;
-	}
-
-	public void setInterpretor(Interpretor interpretor) {
-		this.interpretor = interpretor;
-	}
 }
