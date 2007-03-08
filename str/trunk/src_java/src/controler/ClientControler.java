@@ -1,32 +1,25 @@
 package controler;
 
 import gui.MainFrame;
-import network.NetworkManager;
+import network.Interpretor;
 
 public class ClientControler {
-	NetworkManager networkManager;
-	MainFrame mainFrame;
 	
-	public ClientControler(){}
-	
-	public void startClient(){
-		 java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-            	mainFrame = new MainFrame();
-            	mainFrame.setVisible(true);
-            }
-        });
-		networkManager = new NetworkManager();
-		// test d'envoi
-		networkManager.sendMessage("test");
-	}
-	
-	public NetworkManager getNetworkManager() {
-		return networkManager;
+	private MainFrame mainFrame;
+
+	public ClientControler() {
+		//None.
 	}
 
-	public void setNetworkManager(NetworkManager networkManager) {
-		this.networkManager = networkManager;
+	public void startClient() {
+		java.awt.EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				mainFrame = new MainFrame();
+				mainFrame.setVisible(true);
+			}
+		});
+		// test d'envoi
+		Interpretor.getInstance().sendBuffer("test");
 	}
 
 	public MainFrame getMainFrame() {
