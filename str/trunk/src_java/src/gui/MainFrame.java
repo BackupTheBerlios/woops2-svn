@@ -6,17 +6,18 @@
 
 package gui;
 
+import controler.ClientControler;
+
 /**
  *
  * @author  garwind
  */
 public class MainFrame extends javax.swing.JFrame {
     
-    /**
-	 * 
-	 */
+   
 	private static final long serialVersionUID = 1L;
 	
+	ClientControler clientControler;
 	
 	/** Creates new form IsiNavBusMainFrame */
     public MainFrame() {
@@ -54,7 +55,7 @@ public class MainFrame extends javax.swing.JFrame {
         mainTextArea.setRows(5);
         mainScrollPane.setViewportView(mainTextArea);
 
-        connectButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/isibusnav/resources/connect32x32.jpg")));
+        connectButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/resources/connect32x32.jpg")));
         connectButton.setText("Connect To Remote Server");
         connectButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -62,7 +63,7 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
-        sendCommandButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/isibusnav/resources/sendCommand.jpg")));
+        sendCommandButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/resources/sendCommand.jpg")));
         sendCommandButton.setText("Send Command");
         sendCommandButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -215,11 +216,7 @@ public class MainFrame extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void startGui() {
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new MainFrame().setVisible(true);
-            }
-        });
+        
     }
     
     // Variables declaration - do not modify                     
@@ -240,5 +237,13 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel sendCommandPanel;
     private javax.swing.JLabel serverLabel;
     // End of variables declaration                   
+
+	public ClientControler getClientControler() {
+		return clientControler;
+	}
+
+	public void setClientControler(ClientControler clientControler) {
+		this.clientControler = clientControler;
+	}
     
 }
