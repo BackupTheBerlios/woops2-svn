@@ -40,9 +40,11 @@
 
         <!-- Executable Targets -->
         <target name="build" depends="prepare" description="Compile Java files and copy static files.">
-                <javac srcdir="${src.java.dir}" destdir="${build.dir}/${project.name}/">
+                <javac srcdir="${src.java.dir}" destdir="${build.dir}/${project.name}/" source="1.5">
                         <include name="**/*.java" />
-                        <!--<include name="**/*.xml" />-->
+                        <!--
+                        <include name="**/*.xml" />
+                        -->
                         <classpath refid="classpath" />
                 </javac>
                 <copy todir="${build.dir}/${project.name}/">
