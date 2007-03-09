@@ -1,9 +1,3 @@
-/*
- * IsiNavBusMainFrame.java
- *
- * Created on 26 février 2007, 14:43
- */
-
 package gui;
 
 import controler.ClientControler;
@@ -207,9 +201,10 @@ public class MainFrame extends javax.swing.JFrame {
         String _nb = this.commandTextField.getText();
         //ClientControler.getInstance().sendMessage();
         System.out.println("demande :"+_nb);
-        if (_nb.length() > 0){
+        if (_nb.length() > 0 || _nb != null){
             this.mainTextArea.setText(this.mainTextArea.getText()+"\n demande :"+_nb);
-            ClientControler.getInstance().sendMessage(_nb);
+            //ClientControler.getInstance().sendMessage(_nb);
+            ClientControler.getInstance().createBusStop(new Integer(_nb));
         }
     }                                                 
 

@@ -5,6 +5,11 @@ public class Position implements SystemObject {
 	private BusStop predecessor;
 	
 	private float distance;
+	
+	public Position(BusStop _bs, float _dis) {
+		this.predecessor = _bs;
+		this.distance = _dis;
+	}
 
 	/**
 	 * @return the distance

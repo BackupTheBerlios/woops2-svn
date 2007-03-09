@@ -12,6 +12,11 @@ public class BusStop implements SystemObject {
 	private int id;
 	
 	private Position position;
+	
+	public BusStop(int _id, Position _p) {
+		this.id = _id;
+		this.position = _p;
+	}
 
 	/**
 	 * @return the id
