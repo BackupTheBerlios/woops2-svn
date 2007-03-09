@@ -203,8 +203,14 @@ public class MainFrame extends javax.swing.JFrame {
         System.exit(0);
     }                                            
 
-    private void sendCommandButtonActionPerformed(java.awt.event.ActionEvent evt) {                                                  
-        ClientControler.getInstance().sendMessage();
+    private void sendCommandButtonActionPerformed(java.awt.event.ActionEvent evt) {       
+        String _nb = this.commandTextField.getText();
+        //ClientControler.getInstance().sendMessage();
+        System.out.println("demande :"+_nb);
+        if (_nb.length() > 0){
+            this.mainTextArea.setText(this.mainTextArea.getText()+"\n demande :"+_nb);
+            ClientControler.getInstance().sendMessage(_nb);
+        }
     }                                                 
 
     private void connectButtonActionPerformed(java.awt.event.ActionEvent evt) {                                              

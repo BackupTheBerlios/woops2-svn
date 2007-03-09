@@ -18,8 +18,8 @@ public class ClientControler {
 		return clientControler;
 	}
 	
-	public void sendMessage(){
-		Interpretor.getInstance().sendBuffer("@Initialize:1;");
+	public void sendMessage(String _str){
+		Interpretor.getInstance().sendBuffer("@Initialize:"+_str+";");
 	}
 	
 	public void startClient() {
