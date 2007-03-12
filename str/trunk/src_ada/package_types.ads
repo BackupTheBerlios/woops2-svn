@@ -9,6 +9,8 @@ package package_types is
 	record
 		busStopId : int;
 		distance : C_float;
+        -- speed
+        -- lineNumber ?
 	end record;
 	
 	-- affiche une position
@@ -17,7 +19,7 @@ package package_types is
 	-- definition d'un type pointeur sur une position
 	type t_ptr_t_position is access t_position;
 	
-	-- definition du type information envoyé à un BusStop
+	-- definition du type information envoyé à un BusStop - INUTILE
 	type t_information is 
 	record
 		lineNumber : int;
@@ -50,6 +52,9 @@ package package_types is
 	-- definition du type ligne suivie par un bus
 	type t_line is record 
 		number : int;
+        pos : int; -- temporaire pr eviter l'erreur
+        -- tableau de busstop
+        -- tableau de bus - A VOIR
 	end record;
 	
 	type t_ptr_t_line is access t_line;

@@ -27,22 +27,19 @@ package body package_busnetwork is
 		put_line("### BusNetwork : initBusStop");
 		for i in 1..nb_busstop loop
 			ptr_bs := new tt_busStop(i, ptr_position);
-			receivePosition (ptr_position);
 			busStop(i) := ptr_bs;
 		end loop;
 		put_line(int'image(nb_busstop));
 		put(" busStop crees");
 		returnInitBusStop;
-
-	end initBusStop;
+    end initBusStop;
         
-        function getBusStop return tabBusStop is
-            
-        begin
-            return BusNetwork.busStop;
-        end getBusStop;
+    function getBusStop return tabBusStop is
+    begin
+        return BusNetwork.busStop;
+    end getBusStop;
 
-	end BusNetwork;
+end BusNetwork;
     
 	-- definition des fonctions de delegation
 	procedure p_initBusStop(nb_busstop : in int) is
@@ -51,6 +48,12 @@ package body package_busnetwork is
 	BusNetwork.initBusStop(nb_busstop);
 
 	end p_initBusStop;
+    
+    procedure sendPositionToCenter(ptr_pos : in t_ptr_t_position) is
+    begin
+        receivePosition(ptr_pos);
+        null;
+    end sendPositionToCenter;
     
 begin
 	put_line("### initialisation de ada ###");
