@@ -12,8 +12,18 @@ package gui;
  */
 public class DebugFrame extends javax.swing.JFrame {
     
-    /** Creates new form DebugFrame */
-    public DebugFrame() {
+	
+	private static DebugFrame debugFrame;
+    
+	private static final long serialVersionUID = 1330491168412620095L;
+	
+	public static DebugFrame getInstance(){
+		if (debugFrame == null) debugFrame = new DebugFrame();
+		return debugFrame;
+	}
+	
+	/** Creates new form DebugFrame */
+    private DebugFrame() {
         initComponents();
     }
     
@@ -124,7 +134,7 @@ public class DebugFrame extends javax.swing.JFrame {
 
     private void closeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeButtonActionPerformed
         System.err.println("closeCommand !");
-        System.exit(0);
+        this.dispose();
     }//GEN-LAST:event_closeButtonActionPerformed
 
     private void sendCommandButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendCommandButtonActionPerformed
@@ -134,14 +144,14 @@ public class DebugFrame extends javax.swing.JFrame {
     
     /**
      * @param args the command line arguments
-     */
+     
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new DebugFrame().setVisible(true);
             }
         });
-    }
+    }*/
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton closeButton;
