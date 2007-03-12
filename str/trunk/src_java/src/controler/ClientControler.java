@@ -6,6 +6,8 @@ import gui.MainFrame;
 import java.util.ArrayList;
 import java.util.List;
 
+import common.Constante;
+
 import model.BusStop;
 import model.Position;
 import network.Interpretor;
@@ -27,8 +29,8 @@ public class ClientControler {
 
 	public void sendCreateCommand(int _code, String _str) {
 		switch (_code) {
-			case 0 : Interpretor.getInstance().createBusStop(_str);
-						  break;
+			case Constante.BUS_STOP : Interpretor.getInstance().createBusStop(_str);
+				break;
 		}
 	}
 
