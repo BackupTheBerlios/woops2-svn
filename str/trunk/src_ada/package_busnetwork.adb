@@ -1,5 +1,5 @@
-with package_types, package_busstop, package_constantes, Text_io, interfaces.C;
-use package_types, package_busstop, package_constantes, Text_io, interfaces.C;
+with package_types, package_bus, package_busstop, package_constantes, Text_io, interfaces.C;
+use package_types, package_bus, package_busstop, package_constantes, Text_io, interfaces.C;
 
 package body package_busnetwork is
 
@@ -12,29 +12,47 @@ package body package_busnetwork is
     ----------------------------
     protected BusNetwork is
         
-        procedure initBusStop(nb_busstop : in int);        
+        procedure initBusStop(nb_busstop : in int);
+        procedure initBus(nb_bus : in int; line : in int);    
+                
         private
             --lines : tabLines;
-            busStop : tabBusStop;
+            busStopTable : tabBusStop;
             --bus : tabBus;
     end BusNetwork;
 
 	protected body BusNetwork is
 
-	procedure initBusStop(nb_busstop : in int) is
-		ptr_position : t_ptr_t_position := new t_position'(1,0.0);
-		ptr_bs : t_ptr_tt_busStop;
-	begin
-		put_line("### BusNetwork : initBusStop");
-		for i in 1..nb_busstop loop
-			ptr_bs := new tt_busStop(i, ptr_position);
-			busStop(i) := ptr_bs;
-		end loop;
-		put_line(int'image(nb_busstop));put(" busStop créés");
-		--returnInitBusStop;
-    end initBusStop;
-
-end BusNetwork;
+    	procedure initBusStop(nb_busstop : in int) is
+    		ptr_position : t_ptr_t_position := new t_position'(1,0.0);
+    		ptr_bs : t_ptr_tt_busStop;
+    	begin
+    		put_line("### BusNetwork : initBusStop");
+    		for i in 1..nb_busstop loop
+    			ptr_bs := new tt_busStop(i, ptr_position);
+    			busStopTable(i) := ptr_bs;
+    		end loop;
+    		put_line(int'image(nb_busstop));put(" busStop créés");
+    		--returnInitBusStop;
+        end initBusStop;
+        
+        
+        -- le numero de ligne est utile seulement ici pr ajouter le bus au tableua de ligne
+        -- pas utile dans la tache
+        procedure initBus(nb_bus : in int; line : in int) is
+            ptr_position : t_ptr_t_position := new t_position'(1,0.0);
+            ptr_tt_bus : t_ptr_tt_bus;
+            
+        begin
+            put_line("### BusNetwork : initBus");
+            --for i in 1..nb_bus loop
+                --ptr_tt_bus := new tt_bus(i, ptr_line, ptr_position);
+            --end loop;
+            put_line(int'image(nb_bus));put(" bus créés");
+            --returnInitBusStop;
+        end initBus;
+    
+    end BusNetwork;
     
     
     ----------------------------------------
@@ -42,9 +60,15 @@ end BusNetwork;
     ----------------------------------------
 	procedure p_initBusStop(nb_busstop : in int) is
 	begin
-	   put_line("### BusNetwork : initBusStop");
-	   BusNetwork.initBusStop(nb_busstop);
+        put_line("### BusNetwork : initBusStop");
+        BusNetwork.initBusStop(nb_busstop);
     end p_initBusStop;
+    
+    procedure p_initBus(nb_bus : in int; line : in int) is
+    begin
+        put_line("### BusNetwork : initBus");
+        BusNetwork.initBus(nb_bus, line);
+    end p_initBus;
     
     
     ---------------------------------

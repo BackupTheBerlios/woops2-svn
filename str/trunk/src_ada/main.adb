@@ -6,7 +6,7 @@ procedure main is
     -- declaration du pointeur sur le busStop
     ptr_pos : t_ptr_t_position := new t_position'(1,0.0);
     
-    ptr_line : t_ptr_t_line := new t_line'(1, (1,2,3,4,5));
+    ptr_line : t_ptr_t_line := new t_line'(1, (1,2,3), (1,2,3,4));
     
     bus : tt_bus(1, ptr_line, ptr_pos);
     

@@ -7,6 +7,8 @@ package package_bus is
     -------------
     -- Tâche Bus
     -------------
+    -- A VOIR: DOIT-ON AVOIR UN POINTEUR SUR UNE LIGNE OU SEULEMENT UN NUMERO DE LIGNE ?
+    -- SEMBLE INUTILE DANS LA TACHE
     task type tt_bus(idBus : int; l : access t_line; initialPosition : t_ptr_t_position) is
         entry start;
     end tt_bus;

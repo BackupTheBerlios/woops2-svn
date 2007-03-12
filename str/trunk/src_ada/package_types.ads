@@ -4,7 +4,8 @@ use Text_io, interfaces.C, interfaces.C.strings;
 -- paquetage contenant les types communs aux elements code en Ada
 package package_types is
     
-    type BusStopTabType is array(int range <>) of int;
+    type BusStopTabType is array(int range 1..3) of int;
+    type BusTabType is array(int range 1..4) of int;
     
     --------------------------------
 	-- declaration du type position
@@ -13,7 +14,6 @@ package package_types is
 	record
 		busStopId : int;
 		distance : C_float;
-        -- speed
         -- lineNumber ?
 	end record;
 	
@@ -28,8 +28,8 @@ package package_types is
     ----------------------------------------------
     type t_line is record 
         lineNumber : int;
-        BusStopTable : BusStopTabType(1..5);
-        -- tableau de bus - A VOIR
+        BusStopTable : BusStopTabType;
+        BusTable : BusTabType;
     end record;
     
     type t_ptr_t_line is access t_line;

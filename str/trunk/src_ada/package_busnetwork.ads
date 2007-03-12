@@ -10,6 +10,10 @@ package package_busnetwork is
     -- initialisation des arrêts de bus
 	procedure p_initBusStop(nb_busstop : in int);
 	pragma export(CPP, p_initBusStop, "p_initBusStop");
+    
+    -- initialisation des bus sur une ligne
+    procedure p_initBus(nb_bus : in int; line : in int);
+    pragma export(CPP, p_initBus, "p_initBus");
 
 	-- confirmation de la creation d'arrets de bus.
 	procedure returnInitBusStop;
