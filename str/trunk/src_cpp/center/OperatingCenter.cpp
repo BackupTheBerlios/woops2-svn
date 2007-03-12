@@ -43,11 +43,12 @@ Mise en place des threads
 */
 void* OperatingCenter::thread_function_receive_position(void *a){
 
-	cout<<"Appel des fonctions pour le traitement de la position"<<endl;
-	/*t_position* maposition = (t_position *)a;
-        cout<<"valeur :"<<maposition->busStopId<<endl;*/
+	cout<<"OperatingCenter::thread_function_receive_position:\nPosition recue : "<<endl;
+	t_position* maposition = (t_position *)a;
+    cout<<"Bus Stop Id :"	<<maposition->busStopId	<<endl;
+    cout<<"Distance :"		<<maposition->distance	<<endl;
 
-while(true){}
+//while(true){}
 	
 }
 
@@ -100,27 +101,15 @@ void OperatingCenter::initializeSystem(){
 Méthode qui permet de recevoir la position d'un bus
 */
 void OperatingCenter::receivePosition(t_position* position){
+    int etat;
     
-    
-	int etat;
-        string lol;
-        
-        //p_sendPosition(&maposition);
-        
-	//création du thread pour traiter la position du BUS
+    //création du thread pour traiter la position du BUS
 	pthread_t receive_position_thread;
 
-	// creation du mutex
-    	//etat = pthread_mutex_init (&mutex_position, NULL);	
-    	//if (etat != 0) perror("Erreur lors de l'initialisation du mutex pour la position: %d\n");
-
-	
 	//création du thread
 	etat = pthread_create(&receive_position_thread,NULL,thread_function_receive_position, (void *)position);
-	if (etat != 0) perror("Echec creation de thread pour la réception des positions: %d\n");
-
-	//pthread_mutex_destroy(&mutex_position);
-    
+	if (etat != 0) 
+		perror("Echec creation de thread pour la réception des positions: %d\n");
 }
 
 
