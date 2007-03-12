@@ -1,6 +1,5 @@
 package controler;
 
-import gui.DebugFrame;
 import gui.MainFrame;
 
 import java.util.ArrayList;
@@ -76,13 +75,6 @@ public class ClientControler {
 			}
 		});
 		
-		 java.awt.EventQueue.invokeLater(new Runnable() {
-             public void run() {
-                 DebugFrame debugFrame = DebugFrame.getInstance();
-                 debugFrame.setVisible(true);
-             }
-         });
-		 
 		 NetworkManager.getInstance();
 		 
 	}
