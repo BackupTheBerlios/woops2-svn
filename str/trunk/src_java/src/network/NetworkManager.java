@@ -99,9 +99,10 @@ public class NetworkManager {
 
 			while (acceptedDataSocket.isConnected()) {
 				str = inputDataStream.readLine();
+				System.out.println("received buffer = "+str);
 				if (str == null)
 					break;
-				Interpretor.getInstance().receiveBuffer(str);
+				//Interpretor.getInstance().receiveBuffer(str);
 			}
 		} catch (IOException e1) {
 			e1.printStackTrace();

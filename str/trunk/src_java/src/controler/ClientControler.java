@@ -11,6 +11,7 @@ import common.Constante;
 import model.BusStop;
 import model.Position;
 import network.Interpretor;
+import network.NetworkManager;
 
 public class ClientControler {
 
@@ -61,13 +62,16 @@ public class ClientControler {
                  debugFrame.setVisible(true);
              }
          });
+		 
+		 NetworkManager.getInstance();
+		 
 	}
 
 	/**
 	 * 
 	 * @param _nbBusStop
 	 */
-	public void createBusStop(int _nbBusStop) {
+	private void createBusStop(int _nbBusStop) {
 
 		if (_nbBusStop > 0) {
 			BusStop current = new BusStop(1, null);

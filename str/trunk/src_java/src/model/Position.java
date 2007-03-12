@@ -1,6 +1,6 @@
 package model;
 
-public class Position implements SystemObject {
+public class Position extends SystemObject {
 	
 	private BusStop predecessor;
 	
