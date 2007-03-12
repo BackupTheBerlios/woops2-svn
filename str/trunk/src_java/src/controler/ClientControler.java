@@ -25,8 +25,11 @@ public class ClientControler {
 		return clientControler;
 	}
 
-	public void sendMessage(String _str) {
-		Interpretor.getInstance().sendBuffer("@Initialize:" + _str + ";");
+	public void sendCreateCommand(int _code, String _str) {
+		switch (_code) {
+			case 0 : Interpretor.getInstance().createBusStop(_str);
+						  break;
+		}
 	}
 
 	public void startClient() {

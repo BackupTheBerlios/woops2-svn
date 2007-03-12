@@ -1,5 +1,5 @@
 package model;
 
-public interface SystemObject {
+public abstract class SystemObject {
 
 }

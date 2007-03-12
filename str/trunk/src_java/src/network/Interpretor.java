@@ -3,10 +3,14 @@ package network;
 public class Interpretor {
 
 	private static Interpretor interpretor;
-
-	/*
-	 * Public Methods.
+	
+	/**
+	 * 
+	 *
 	 */
+	private Interpretor() {
+		// None.
+	}
 
 	/**
 	 * To obliged the unicity of the Interpretor instance.
@@ -20,28 +24,12 @@ public class Interpretor {
 	}
 
 	/**
-	 * Receive the _buffer from the NetworkManager and send 
-	 * good data to the System.
-	 */
-	public void receiveBuffer(String _buffer) {
-		// temporary !
-		System.out.println("Buuffer received by the Interpretor: " + _buffer);
-	}
-
-	/**
 	 * Receive the _buffer from the System and send 
 	 * good data to the NetworkManager.
 	 */
-	public void sendBuffer(String _buffer) {
-		// temporary !
-		NetworkManager.getInstance().sendMessage(_buffer);
+	public void createBusStop(String _n) {
+		String tmp = "@createBusStop:" + _n + ";";
+		NetworkManager.getInstance().sendMessage(tmp);
 	}
-
-	/*
-	 * Private Methods.
-	 */
-
-	private Interpretor() {
-		// None.
-	}
+	
 }
