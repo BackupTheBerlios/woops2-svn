@@ -6,22 +6,35 @@ import gui.MainFrame;
 import java.util.ArrayList;
 import java.util.List;
 
-import common.Constante;
-
+import model.Bus;
 import model.BusStop;
+import model.Line;
 import model.Position;
 import network.Interpretor;
 import network.NetworkManager;
+
+import common.Constante;
 
 public class ClientControler {
 
 	private static ClientControler clientControler;
 	
 	private List<BusStop> busStops = new ArrayList<BusStop>();
+	
+	private List<Bus> bus = new ArrayList<Bus>();
+	
+	private List<Line> lines = new ArrayList<Line>();
 
-	private ClientControler() {
-	}
+	/**
+	 * 
+	 *
+	 */
+	private ClientControler() {}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public static ClientControler getInstance() {
 		if (clientControler == null)
 			clientControler = new ClientControler();
@@ -33,12 +46,19 @@ public class ClientControler {
 	 * @param _code
 	 * @param _str
 	 */
-	public void sendCreateCommand(int _code, String _str) {
+	public void sendCreateCommand(int _code, String _nb, String _l) {
+		int nb = new Integer(_nb).intValue();
 		switch (_code) {
-			case Constante.BUS_STOP : 
-				this.createBusStop(new Integer(_str).intValue());
-				Interpretor.getInstance().createBusStop(_str);
+			case Constante.BUS_STOP :
+				Line l = this.lines.get(new Integer(_l).intValue());
+				for (int i = 1;i <= nb;i++) {
+					this.createBusStop(i, l);
+				}
+				Interpretor.getInstance().createBusStop(_nb);
 				break;
+			case Constante.LIGNE :
+				this.lines.add(this.createLine(new Integer(_nb).intValue()));
+				break;	
 			default : break;
 		}
 	}
@@ -71,30 +91,19 @@ public class ClientControler {
 	 * 
 	 * @param _nbBusStop
 	 */
-	private void createBusStop(int _nbBusStop) {
-
-		if (_nbBusStop > 0) {
-			BusStop current = new BusStop(1, null);
-			busStops.add(current);
-			BusStop tmp = current;
-			for (int i = 2; i <= _nbBusStop; i++) {
-				Position pos = new Position(tmp, 1500f);
-				current = new BusStop(i, pos);
-				busStops.add(current);
-				tmp = current;
-			}
-		}
-		
-		for (BusStop tmp : this.busStops) {
-			if (tmp.getPosition() == null) {
-				System.out.println("BusStop " + tmp.getId());
-			} else {
-				System.out.println("BusStop " + tmp.getId()
-						+ " -> predecesseur : "
-						+ tmp.getPosition().getPredecessor().getId() + " a "
-						+ tmp.getPosition().getDistance());
-			}
-		}
+	private BusStop createBusStop(int _id, Line _l) {
+		BusStop tmp = new BusStop(_id);
+		tmp.addLine(_l);
+		return tmp;
 	}
 
+	/**
+	 * Permet de creer une ligne
+	 * @param _n
+	 */
+	private Line createLine(int _n) {
+		Line tmp = new Line(_n);
+		return tmp;
+	}
+	
 }
