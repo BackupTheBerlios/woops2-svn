@@ -27,13 +27,25 @@ public class ClientControler {
 		return clientControler;
 	}
 
+	/**
+	 * fonction de creation universelle de commande "create"
+	 * @param _code
+	 * @param _str
+	 */
 	public void sendCreateCommand(int _code, String _str) {
 		switch (_code) {
-			case Constante.BUS_STOP : Interpretor.getInstance().createBusStop(_str);
+			case Constante.BUS_STOP : 
+				this.createBusStop(new Integer(_str).intValue());
+				Interpretor.getInstance().createBusStop(_str);
 				break;
+			default : break;
 		}
 	}
 
+	/**
+	 * 
+	 *
+	 */
 	public void startClient() {
 
 		java.awt.EventQueue.invokeLater(new Runnable() {
@@ -49,10 +61,12 @@ public class ClientControler {
                  debugFrame.setVisible(true);
              }
          });
-		// test d'envoi
-
 	}
 
+	/**
+	 * 
+	 * @param _nbBusStop
+	 */
 	public void createBusStop(int _nbBusStop) {
 
 		if (_nbBusStop > 0) {
