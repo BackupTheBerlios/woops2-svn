@@ -13,10 +13,6 @@ import network.Interpretor;
 public class ClientControler {
 
 	private static ClientControler clientControler;
-
-	private MainFrame mainFrame;
-	
-	private DebugFrame debugFrame;
 	
 	private List<BusStop> busStops = new ArrayList<BusStop>();
 
@@ -37,14 +33,14 @@ public class ClientControler {
 
 		java.awt.EventQueue.invokeLater(new Runnable() {
 			public void run() {
-				mainFrame = MainFrame.getInstance();
+				MainFrame mainFrame = MainFrame.getInstance();
 				mainFrame.setVisible(true);
 			}
 		});
 		
 		 java.awt.EventQueue.invokeLater(new Runnable() {
              public void run() {
-                 debugFrame = DebugFrame.getInstance();
+                 DebugFrame debugFrame = DebugFrame.getInstance();
                  debugFrame.setVisible(true);
              }
          });
@@ -78,19 +74,4 @@ public class ClientControler {
 		}
 	}
 
-	public MainFrame getMainFrame() {
-		return mainFrame;
-	}
-
-	public void setMainFrame(MainFrame mainFrame) {
-		this.mainFrame = mainFrame;
-	}
-
-	public DebugFrame getDebugFrame() {
-		return debugFrame;
-	}
-
-	public void setDebugFrame(DebugFrame debugFrame) {
-		this.debugFrame = debugFrame;
-	}
 }

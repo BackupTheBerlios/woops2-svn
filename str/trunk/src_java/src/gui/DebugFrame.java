@@ -6,6 +6,8 @@
 
 package gui;
 
+import controler.ClientControler;
+
 /**
  *
  * @author  garwind
@@ -138,9 +140,15 @@ public class DebugFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_closeButtonActionPerformed
 
     private void sendCommandButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendCommandButtonActionPerformed
-        // TODO add your handling code here:
+        
         System.err.println("sendCommand !");
+        this.addToLog(this.commandTextField.getText());
+        //ClientControler.getInstance().sendMessage(this.commandTextField.getText());
     }//GEN-LAST:event_sendCommandButtonActionPerformed
+    
+    public void addToLog(String _txt){
+    	this.jTextArea1.setText(this.jTextArea1.getText()+_txt);
+    }
     
     /**
      * @param args the command line arguments
