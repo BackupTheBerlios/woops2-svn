@@ -2,22 +2,12 @@ with interfaces.C, package_types;
 use interfaces.C, package_types;
 
 package package_constantes is
+    
+	nbLines : constant int := 5;
+    
+	nbBusStop : constant int := 20;
 
-	------------------------------------------------------
-	-- constante utilisees par les busStops
-	------------------------------------------------------
-	
-	-- capacite maximal du recorder
-	capaciteBuffer : constant int := 50;
-
-	-- nombre de lignes sur lesquelles un busStop peut se trouver 
-	nbLines : constant int := 100;
-
-	-- nombre de lignes sur lesquelles un busStop peut se trouver 
-	nbBusStop : constant int := 100;
-
-	-- nombre de lignes sur lesquelles un busStop peut se trouver 
-	nbBus : constant int := 100;
+	nbBus : constant int := 10;
 
 	-- periode d'envoi de la position d'un bus au centre (en secondes)
 	periode : constant duration := 20.0;

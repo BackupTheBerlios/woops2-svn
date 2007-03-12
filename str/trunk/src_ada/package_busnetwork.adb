@@ -1,5 +1,5 @@
-with package_types, package_busstop, package_constantes, Text_io, Ada.Exceptions, Ada.Calendar, interfaces.C;
-use package_types, package_busstop, package_constantes, Text_io, Ada.Exceptions, Ada.Calendar, interfaces.C;
+with package_types, package_busstop, package_constantes, Text_io, interfaces.C;
+use package_types, package_busstop, package_constantes, Text_io, interfaces.C;
 
 package body package_busnetwork is
 
@@ -7,11 +7,12 @@ package body package_busnetwork is
 	type tabBusStop is array (1 .. nbBusStop) of  t_ptr_tt_busStop;
 	--type tabBus is array (1 .. nbBus) of  t_ptr_tt_bus;
     
+    ----------------------------
+    -- objet protégé BusNetwork
+    ----------------------------
     protected BusNetwork is
         
-        procedure initBusStop(nb_busstop : in int);
-        function getBusStop return tabBusStop;
-        
+        procedure initBusStop(nb_busstop : in int);        
         private
             --lines : tabLines;
             busStop : tabBusStop;
@@ -29,33 +30,35 @@ package body package_busnetwork is
 			ptr_bs := new tt_busStop(i, ptr_position);
 			busStop(i) := ptr_bs;
 		end loop;
-		put_line(int'image(nb_busstop));
-		put(" busStop crees");
-		returnInitBusStop;
+		put_line(int'image(nb_busstop));put(" busStop créés");
+		--returnInitBusStop;
     end initBusStop;
-        
-    function getBusStop return tabBusStop is
-    begin
-        return BusNetwork.busStop;
-    end getBusStop;
 
 end BusNetwork;
     
-	-- definition des fonctions de delegation
+    
+    ----------------------------------------
+    -- Définition des pragma par délégation
+    ----------------------------------------
 	procedure p_initBusStop(nb_busstop : in int) is
 	begin
-	put_line("### BusNetwork : initBusStop");
-	BusNetwork.initBusStop(nb_busstop);
-
-	end p_initBusStop;
+	   put_line("### BusNetwork : initBusStop");
+	   BusNetwork.initBusStop(nb_busstop);
+    end p_initBusStop;
     
+    
+    ---------------------------------
+    -- fonctions internes au package
+    ---------------------------------
     procedure sendPositionToCenter(ptr_pos : in t_ptr_t_position) is
     begin
-        receivePosition(ptr_pos);
-        null;
+        put_line("sendPositionToCenter");
+        --receivePosition(ptr_pos);
     end sendPositionToCenter;
     
 begin
-	put_line("### initialisation de ada ###");
+    
+	put_line("### initialisation des objets Ada ###");
+
 end package_busnetwork;
 

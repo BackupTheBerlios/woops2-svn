@@ -1,10 +1,13 @@
-with package_types, package_busstop, Text_io, Ada.Exceptions, interfaces.C;
-use package_types, package_busstop, Text_io, Ada.Exceptions, interfaces.C;
+with package_types, package_busstop, interfaces.C;
+use package_types, package_busstop, interfaces.C;
 
 package package_busnetwork is
     
-    ------------ PRAGMA  ----------
-    -- initialisation d'arrêts mainde bus
+    --------------------------
+    -- Déclaration des pragma
+    --------------------------
+    
+    -- initialisation des arrêts de bus
 	procedure p_initBusStop(nb_busstop : in int);
 	pragma export(CPP, p_initBusStop, "p_initBusStop");
 
@@ -12,14 +15,13 @@ package package_busnetwork is
 	procedure returnInitBusStop;
 	pragma import(CPP, returnInitBusStop, "returnInitBusStop");
     
+    -- reception de la position d'un bus par le centre
 	procedure receivePosition(ptr_pos : in t_ptr_t_position);
 	pragma import(CPP, receivePosition, "receivePosition");
 
-	-- initialisation d'arrêts mainde bus
-	procedure receiveInformation(ptr_info : t_ptr_t_information);
-	pragma import(CPP, receiveInformation, "receiveInformation");
-
-    ------------ fonctions internes ----------
+    ---------------------------------
+    -- fonctions internes au package
+    ---------------------------------
     procedure sendPositionToCenter(ptr_pos : in t_ptr_t_position);
     
 	-- initialisation de bus

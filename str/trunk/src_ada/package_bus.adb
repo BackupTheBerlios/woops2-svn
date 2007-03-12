@@ -1,10 +1,12 @@
 -- Author: eperico
-with package_types, package_busstop, package_busnetwork, package_constantes, Text_io, interfaces.C;
-use package_types, package_busstop, package_busnetwork, package_constantes, Text_io, interfaces.C;
+with package_types, package_busnetwork, Text_io;
+use package_types, package_busnetwork, Text_io;
 
 package body package_bus is
 	
-    -- task type permettant d'initialiser plusieurs bus sur le reseau
+    -------------
+    -- Tâche Bus
+    -------------
     task body tt_bus is
     
         id : int := idBus;
@@ -13,6 +15,9 @@ package body package_bus is
         isStarted : boolean := false;
         ptr_pos : t_ptr_t_position := initialPosition;
 
+        ------------------------------------------------
+        -- tâche cyclique d'envoi de la position du bus
+        ------------------------------------------------
         task tt_sendPosition;
         
         task body tt_sendPosition is
@@ -37,10 +42,9 @@ package body package_bus is
         end loop;
     end tt_bus;
 
-    
-    
-    -- definition d'un objet protege permettant de manipuler
-    -- le compteur de distance du bus
+    --------------------------
+    -- objet protégé Odomètre
+    --------------------------
     protected body Odometer is
         
         procedure getCurrentDistance(d : out C_float) is
@@ -70,10 +74,9 @@ package body package_bus is
 
     end Odometer;   
 
-    
-    
-    -- definition d'un objet protege permettant de manipuler
-    -- le capteur du bus
+    -------------------------
+    -- objet protégé Capteur
+    -------------------------
     protected body Sensor is
    
         procedure getCurrentPosition(p : out t_position) is
@@ -93,11 +96,11 @@ package body package_bus is
 
     end Sensor;
 
-    
-    
-    -- definition d'un objet protege permettant de manipuler
-    -- le radio du bus
+    -----------------------
+    -- objet protégé Radio
+    -----------------------
     protected body Radio is
+        
         procedure sendPositionToBusNetwork(ptr_pos : in t_ptr_t_position) is
         begin
             sendPositionToCenter(ptr_pos);

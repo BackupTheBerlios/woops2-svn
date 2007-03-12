@@ -16,15 +16,15 @@ package body package_types is
 		new_line;
 	end display;
 	
-	-- affiche une information
-	procedure display(info : t_information) is
+	-- affiche les informations d'une ligne
+	procedure display(line : t_line) is
 	begin
-		put("(Line n°");
-		put(int'image(info.lineNumber));
-		put(", Bus n°");
-		put(int'image(info.idBus));
-		put(" : ");
-		put(To_ada(value(info.message)));
+		put("(Line n° ");
+		put(int'image(line.lineNumber));
+        put("liste arrets => ");
+        for i in 1..line.BusStopTable'Length loop
+            put(integer'image(i));
+        end loop;
 		put(")");
 		new_line;
 	end display;

@@ -3,12 +3,9 @@ use package_types, Text_io, Ada.Exceptions, interfaces.C;
 
 package package_busstop is
 
-	-- definition du type busStop qui est une tache
-	-- idBusStop est l'identifiant du busStop
-	-- initialPosition est la position du busStop
 	task type tt_busStop (idBusStop : int ; ptr_position : access t_position) is
+        entry getId(n : out int);
 		entry getPosition(pos : out t_position);
-		entry getId(n : out int);
 		entry addLine(ptr_line : t_ptr_t_line);
 	end tt_busStop;
 	
