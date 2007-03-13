@@ -121,7 +121,7 @@ public class MainFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void createBusStopButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createBusStopButtonActionPerformed
-        ClientControler.getInstance().sendCreateCommand(Constante.BUS_STOP,"1","1");
+        ClientControler.getInstance().initialisation();
     }//GEN-LAST:event_createBusStopButtonActionPerformed
 
     private void exitItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitItemActionPerformed
