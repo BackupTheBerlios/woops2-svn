@@ -49,12 +49,10 @@ package body package_busnetwork is
         procedure initBus(nb_bus : in int; line : in int) is
             ptr_position : t_ptr_t_position := new t_position'(1,0.0);
             --ptr_tt_bus : t_ptr_tt_bus;
-            
+            bus : tt_bus(8, ptr_position);
         begin
             put_line("### BusNetwork : initBus");
-            --for i in 1..nb_bus loop
-                --ptr_tt_bus := new tt_bus(i, ptr_line, ptr_position);
-            --end loop;
+            bus.start;
             put_line(int'image(nb_bus));put(" bus créés");
         end initBus;
     
