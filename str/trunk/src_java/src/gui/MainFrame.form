@@ -83,7 +83,7 @@
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="425" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="426" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
       </Layout>
@@ -93,19 +93,19 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
+              <Group type="102" alignment="1" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="createBusStopButton" pref="180" max="32767" attributes="0"/>
+                  <Component id="createBusStopButton" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace max="-2" attributes="0"/>
+              <Group type="102" alignment="1" attributes="0">
+                  <EmptySpace pref="377" max="32767" attributes="0"/>
                   <Component id="createBusStopButton" min="-2" pref="37" max="-2" attributes="0"/>
-                  <EmptySpace pref="376" max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -114,9 +114,9 @@
         <Component class="javax.swing.JButton" name="createBusStopButton">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/resources/images/iconBus_small.jpg"/>
+              <Image iconType="3" name="/resources/images/connect32x32.jpg"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Create BusStop"/>
+            <Property name="text" type="java.lang.String" value="Connect to Station"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="createBusStopButtonActionPerformed"/>

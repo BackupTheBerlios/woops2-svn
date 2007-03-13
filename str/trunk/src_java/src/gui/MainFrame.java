@@ -53,11 +53,11 @@ public class MainFrame extends javax.swing.JFrame {
         );
         mainPanelLayout.setVerticalGroup(
             mainPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 425, Short.MAX_VALUE)
+            .add(0, 426, Short.MAX_VALUE)
         );
 
-        createBusStopButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/iconBus_small.jpg")));
-        createBusStopButton.setText("Create BusStop");
+        createBusStopButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/connect32x32.jpg")));
+        createBusStopButton.setText("Connect to Station");
         createBusStopButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 createBusStopButtonActionPerformed(evt);
@@ -68,17 +68,17 @@ public class MainFrame extends javax.swing.JFrame {
         buttonsPanel.setLayout(buttonsPanelLayout);
         buttonsPanelLayout.setHorizontalGroup(
             buttonsPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(buttonsPanelLayout.createSequentialGroup()
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, buttonsPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .add(createBusStopButton, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
+                .add(createBusStopButton, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         buttonsPanelLayout.setVerticalGroup(
             buttonsPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(buttonsPanelLayout.createSequentialGroup()
-                .addContainerGap()
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, buttonsPanelLayout.createSequentialGroup()
+                .addContainerGap(377, Short.MAX_VALUE)
                 .add(createBusStopButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 37, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(376, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         applicationMenu.setLabel("Application");
