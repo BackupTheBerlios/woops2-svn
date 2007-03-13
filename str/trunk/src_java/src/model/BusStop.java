@@ -27,6 +27,7 @@ public class BusStop extends SystemObject {
 	public BusStop(int _id) {
 		this.id = _id;
 		this.lines = new ArrayList<Line>();
+		positions = new HashMap<Integer, Position>();
 	}
 	
 	/**
@@ -35,9 +36,9 @@ public class BusStop extends SystemObject {
 	 */
 	public void addLine(Line _l) {
 		this.getLines().add(_l);
-		Position pos = new Position(_l.getBusStops().get(_l.getBusStops().size()),1500f);
-		this.getPositions().put(_l.getNumber(), pos);
 		_l.getBusStops().add(this);
+		Position pos = new Position(_l.getBusStops().get(_l.getBusStops().size() - 1),1500f);
+		this.getPositions().put(_l.getNumber(), pos);
 	}
 	
 	/**
