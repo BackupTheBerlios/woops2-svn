@@ -49,13 +49,14 @@ public class MainFrame extends javax.swing.JFrame {
         mainPanel.setLayout(mainPanelLayout);
         mainPanelLayout.setHorizontalGroup(
             mainPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 606, Short.MAX_VALUE)
+            .add(0, 592, Short.MAX_VALUE)
         );
         mainPanelLayout.setVerticalGroup(
             mainPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(0, 425, Short.MAX_VALUE)
         );
 
+        createBusStopButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/iconBus_small.jpg")));
         createBusStopButton.setText("Create BusStop");
         createBusStopButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -69,7 +70,7 @@ public class MainFrame extends javax.swing.JFrame {
             buttonsPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(buttonsPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .add(createBusStopButton, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
+                .add(createBusStopButton, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
                 .addContainerGap())
         );
         buttonsPanelLayout.setVerticalGroup(
@@ -81,6 +82,7 @@ public class MainFrame extends javax.swing.JFrame {
         );
 
         applicationMenu.setLabel("Application");
+        exitItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/exit.gif")));
         exitItem.setText("Quitter");
         exitItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -115,7 +117,7 @@ public class MainFrame extends javax.swing.JFrame {
                 .addContainerGap())
         );
         java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
-        setBounds((screenSize.width-800)/2, (screenSize.height-500)/2, 800, 500);
+        setBounds((screenSize.width-836)/2, (screenSize.height-500)/2, 836, 500);
     }// </editor-fold>//GEN-END:initComponents
 
     private void createBusStopButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createBusStopButtonActionPerformed
