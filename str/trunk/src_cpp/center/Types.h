@@ -16,8 +16,9 @@ using namespace std;
 Structure qui correspond a la position d'un bus.
 */
 typedef struct t_position {
+	int lineNumber;
     int busStopId;
-    float distance;
+    float distance;//en metre.
 }t_position;
 
 /**
