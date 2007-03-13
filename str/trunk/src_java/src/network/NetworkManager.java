@@ -102,7 +102,7 @@ public class NetworkManager {
 				System.out.println("received buffer = "+str);
 				if (str == null)
 					break;
-				//Interpretor.getInstance().receiveBuffer(str);
+				Interpretor.getInstance().receiveMessage(str);
 			}
 		} catch (IOException e1) {
 			e1.printStackTrace();

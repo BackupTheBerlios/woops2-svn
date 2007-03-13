@@ -47,4 +47,11 @@ public class Interpretor {
 		NetworkManager.getInstance().sendMessage(tmp);
 	}
 	
+	/**
+	 * Reception d'un message
+	 */
+	public void receiveMessage(String _str) {
+				
+	}
+	
 }
