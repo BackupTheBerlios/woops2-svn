@@ -64,15 +64,15 @@ public class ClientControler {
 		switch (_code) {
 			case Constante.BUS_STOP :
 				this.busStops.add(this.createBusStop(new Integer(_id).intValue(), l));
-				//Interpretor.getInstance().sendCreateBusStop(_id, l);
+				Interpretor.getInstance().sendCreateBusStop(_id, l);
 				break;
 			case Constante.LIGNE :
 				this.lines.put(id, this.createLine(id));
-				//Interpretor.getInstance().sendCreateLine(_id);
+				Interpretor.getInstance().sendCreateLine(_id);
 				break;
 			case Constante.BUS :
 				this.bus.add(this.createBus(id, l));
-				//Interpretor.getInstance().sendCreateBus(_id, l);
+				Interpretor.getInstance().sendCreateBus(_id, l);
 				break;		
 			default : break;
 		}
