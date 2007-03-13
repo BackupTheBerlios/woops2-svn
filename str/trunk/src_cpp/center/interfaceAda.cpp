@@ -22,7 +22,6 @@ extern "C"{
 	void p_initBusStop(int nombre);
 	void p_initBus(int nombre, int ligne);
 	void receivePosition(t_position *pos);
-	void returnInitBusStop();
 }
 
 /**
@@ -43,23 +42,14 @@ void adainit_busStop(int nombre)
 	p_initBus(5,3);
 }
 
-void adainit_bus(int nombre, int ligne)
+void adainit_bus(int nombre)
 {
-	p_initBus(nombre,ligne);
+	p_initBusStop(nombre);
 }
 
 
 //-------------------------------------- Méthode que Ada appelle ---------------------------------------
-void returnInitBusStop()
-{
-	//OperatingCenter* oc = new OperatingCenter();
-	//oc->returnInitBusStop();
-	cout<<"Retour dans le C++"<<endl;
-
-	cout<<"Pid"<<getpid()<<endl;
-	NetworkManager::getInstance();
-}
-
+//None.
 
 
 //main qui initialise le system
@@ -69,9 +59,7 @@ int main ()
 	adainit();
 	cout<<"Pid"<<getpid()<<endl;
 	
-  	NetworkManager* nm = NetworkManager::getInstance();
-	NetworkManager* nm1 = NetworkManager::getInstance();
-	nm->initNetwork();
+  	NetworkManager::getInstance()->initNetwork();
         while(1){}
 	adafinal();
 }
