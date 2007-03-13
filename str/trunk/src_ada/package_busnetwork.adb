@@ -12,6 +12,7 @@ package body package_busnetwork is
     ----------------------------
     protected BusNetwork is
         
+        procedure initLine(nb_line : in int);
         procedure initBusStop(nb_busstop : in int);
         procedure initBus(nb_bus : in int; line : in int);    
                 
@@ -23,6 +24,12 @@ package body package_busnetwork is
 
 	protected body BusNetwork is
 
+        procedure initLine(nb_line : in int) is
+        begin
+            put_line("### BusNetwork : initLine");
+            put_line(int'image(nb_line));put(" lignes créées");
+        end initLine;
+        
     	procedure initBusStop(nb_busstop : in int) is
     		ptr_position : t_ptr_t_position := new t_position'(1,0.0);
     		ptr_bs : t_ptr_tt_busStop;
@@ -33,7 +40,7 @@ package body package_busnetwork is
     			busStopTable(i) := ptr_bs;
     		end loop;
     		put_line(int'image(nb_busstop));put(" busStop créés");
-    		--returnInitBusStop;
+    		returnInitBusStop;
         end initBusStop;
         
         
@@ -41,7 +48,7 @@ package body package_busnetwork is
         -- pas utile dans la tache
         procedure initBus(nb_bus : in int; line : in int) is
             ptr_position : t_ptr_t_position := new t_position'(1,0.0);
-            ptr_tt_bus : t_ptr_tt_bus;
+            --ptr_tt_bus : t_ptr_tt_bus;
             
         begin
             put_line("### BusNetwork : initBus");
@@ -49,7 +56,6 @@ package body package_busnetwork is
                 --ptr_tt_bus := new tt_bus(i, ptr_line, ptr_position);
             --end loop;
             put_line(int'image(nb_bus));put(" bus créés");
-            --returnInitBusStop;
         end initBus;
     
     end BusNetwork;
@@ -58,15 +64,21 @@ package body package_busnetwork is
     ----------------------------------------
     -- Définition des pragma par délégation
     ----------------------------------------
+    procedure p_initLine(nb_line : in int) is
+    begin
+        put_line("### busNetwork : p_initLine");
+        BusNetwork.initLine(nb_line);
+    end p_initLine;
+    
 	procedure p_initBusStop(nb_busstop : in int) is
 	begin
-        put_line("### BusNetwork : initBusStop");
+        put_line("### busNetwork : p_initBusStop");
         BusNetwork.initBusStop(nb_busstop);
     end p_initBusStop;
     
     procedure p_initBus(nb_bus : in int; line : in int) is
     begin
-        put_line("### BusNetwork : initBus");
+        put_line("### busNetwork : p_initBus");
         BusNetwork.initBus(nb_bus, line);
     end p_initBus;
     
@@ -77,7 +89,7 @@ package body package_busnetwork is
     procedure sendPositionToCenter(ptr_pos : in t_ptr_t_position) is
     begin
         put_line("sendPositionToCenter");
-        --receivePosition(ptr_pos);
+        receivePosition(ptr_pos);
     end sendPositionToCenter;
     
 begin
