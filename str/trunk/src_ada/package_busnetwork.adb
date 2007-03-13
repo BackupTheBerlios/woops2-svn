@@ -7,19 +7,21 @@ package body package_busnetwork is
 	type tabBusStop is array (1 .. nbBusStop) of  t_ptr_tt_busStop;
 	--type tabBus is array (1 .. nbBus) of  t_ptr_tt_bus;
     
+    
     ----------------------------
     -- objet protégé BusNetwork
     ----------------------------
     protected BusNetwork is
         
-        procedure initLine(nb_line : in int);
-        procedure initBusStop(nb_busstop : in int);
-        procedure initBus(nb_bus : in int; line : in int);    
-                
+        --procedure initLine(nb_line : in int);
+        --creation des getter sur line_1 et line_2  
+              
         private
-            --lines : tabLines;
-            busStopTable : tabBusStop;
-            --bus : tabBus;
+            -- L'OBJET BUSNETWORK PERMET DE PARTAGER LES DONNEES ENTRE LES TACHES
+            -- LES 2 LIGNES DU RESEAU DOIVENT ETRE PARTAGÉES (TYPE T_LINE)
+            -- UNE LIGNE POSSEDE LE TABLEAU DE BUSSTOP ET LE TABLEAU DE BUS
+            line_1 : t_line;
+            line_2 : t_line;
     end BusNetwork;
 
 	protected body BusNetwork is
@@ -29,32 +31,6 @@ package body package_busnetwork is
             put_line("### BusNetwork : initLine");
             put_line(int'image(nb_line));put(" lignes créées");
         end initLine;
-        
-    	procedure initBusStop(nb_busstop : in int) is
-    		ptr_position : t_ptr_t_position := new t_position'(1,0.0);
-    		ptr_bs : t_ptr_tt_busStop;
-    	begin
-    		put_line("### BusNetwork : initBusStop");
-    		for i in 1..nb_busstop loop
-    			ptr_bs := new tt_busStop(i, ptr_position);
-    			busStopTable(i) := ptr_bs;
-    		end loop;
-    		put_line(int'image(nb_busstop));put(" busStop créés");
-    		returnInitBusStop;
-        end initBusStop;
-        
-        
-        -- le numero de ligne est utile seulement ici pr ajouter le bus au tableua de ligne
-        -- pas utile dans la tache
-        procedure initBus(nb_bus : in int; line : in int) is
-            ptr_position : t_ptr_t_position := new t_position'(1,0.0);
-            --ptr_tt_bus : t_ptr_tt_bus;
-            bus : tt_bus(8, ptr_position);
-        begin
-            put_line("### BusNetwork : initBus");
-            bus.start;
-            put_line(int'image(nb_bus));put(" bus créés");
-        end initBus;
     
     end BusNetwork;
     
@@ -62,32 +38,46 @@ package body package_busnetwork is
     ----------------------------------------
     -- Définition des pragma par délégation
     ----------------------------------------
-    procedure p_initLine(nb_line : in int) is
+    
+    -- initialisation d'une ligne
+    procedure p_initLine(id_line : in int) is
     begin
         put_line("### busNetwork : p_initLine");
-        BusNetwork.initLine(nb_line);
+        put_line("creation du busStop n° ");put_line(int'image(id_line));
     end p_initLine;
     
-	procedure p_initBusStop(nb_busstop : in int) is
-	begin
+    
+    -- initialisation d'un arrêt de bus
+	procedure p_initBusStop(id_busstop : in int; line : in int) is
+        ptr_position : t_ptr_t_position := new t_position'(1, 1, 0.0);
+        ptr_bs : t_ptr_tt_busStop;
+    begin
         put_line("### busNetwork : p_initBusStop");
-        BusNetwork.initBusStop(nb_busstop);
+        ptr_bs := new tt_busStop(id_busstop, ptr_position);
+        -- TODO ajout du busstop créé sur la ligne line
+        put_line("creation du busStop n° ");put_line(int'image(id_busstop));
     end p_initBusStop;
     
-    procedure p_initBus(nb_bus : in int; line : in int) is
+    
+    -- initialisation d'un bus
+    procedure p_initBus(id_bus : in int; line : in int) is
+        ptr_position : t_ptr_t_position := new t_position'(1, 1, 0.0);
+        bus : tt_bus(id_bus, ptr_position);
     begin
         put_line("### busNetwork : p_initBus");
-        BusNetwork.initBus(nb_bus, line);
+        -- TODO ajout du bus créé sur la ligne line
+        bus.start;
+        put_line("creation du bus n° ");put_line(int'image(id_bus));
     end p_initBus;
     
     
     ---------------------------------
     -- fonctions internes au package
     ---------------------------------
-    procedure sendPositionToCenter(ptr_pos : in t_ptr_t_position) is
+    procedure sendPositionToCenter(ptr_pos : in t_ptr_t_position; speed : in int; busId : in int) is
     begin
         put_line("sendPositionToCenter");
-        receivePosition(ptr_pos);
+        receivePosition(ptr_pos, speed, busId);
     end sendPositionToCenter;
     
 begin

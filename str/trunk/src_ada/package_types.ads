@@ -12,9 +12,9 @@ package package_types is
     --------------------------------
 	type t_position is 
 	record
+        lineNumber : int;
 		busStopId : int;
 		distance : C_float;
-        -- lineNumber ?
 	end record;
 	
     -- definition d'un type pointeur sur une position

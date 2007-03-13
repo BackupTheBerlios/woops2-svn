@@ -53,7 +53,7 @@ package package_bus is
     -- objet protégé Radio
     -----------------------
     protected Radio is
-        procedure sendPositionToBusNetwork(ptr_pos : in t_ptr_t_position);
+        procedure sendPositionToBusNetwork(ptr_pos : in t_ptr_t_position; speed : in int; busId : in int);
         --procedure sendPriorityMessage(ptr_mes : out t_ptr_t_priorityMessage);
         --procedure receiveCommand(ptr_com : in t_ptr_t_action);
     end Radio;

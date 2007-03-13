@@ -8,7 +8,9 @@ package body package_types is
 	-- affiche une position
 	procedure display(position : t_position) is
 	begin
-		put("(busStopId => ");
+        put("( lineNumber => ");
+        put(int'image(position.lineNumber));
+		put(", busStopId => ");
 		put(int'image(position.busStopId));
 		put(", distance => ");
 		put(C_float'image(position.distance));

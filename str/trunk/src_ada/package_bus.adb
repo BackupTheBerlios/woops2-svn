@@ -11,9 +11,9 @@ package body package_bus is
     
         id : int := idBus;
         ptr_pos : t_ptr_t_position := initialPosition;
+        speed : int := 0;
         
-        isStarted : boolean := false;
-        --speed : int := 0;
+        isStarted : boolean := false;        
         
         ------------------------------------------------
         -- tâche cyclique d'envoi de la position du bus
@@ -28,12 +28,13 @@ package body package_bus is
                 -- envoi de la position toutes les 20 secondes
                 --delay(periode);                
                 --Sensor.getCurrentPosition(ptr_pos);
-                Radio.sendPositionToBusNetwork(ptr_pos);
+                Radio.sendPositionToBusNetwork(ptr_pos, speed, id);
                 
             end loop;
         end tt_sendPosition;
         
     begin
+        
         loop
             accept start;
                 put_line("tt_bus: Le bus"& int'image(id) & " a démarré");
@@ -101,9 +102,9 @@ package body package_bus is
     -----------------------
     protected body Radio is
         
-        procedure sendPositionToBusNetwork(ptr_pos : in t_ptr_t_position) is
+        procedure sendPositionToBusNetwork(ptr_pos : in t_ptr_t_position; speed : in int; busId : in int) is
         begin
-            sendPositionToCenter(ptr_pos);
+            sendPositionToCenter(ptr_pos, speed, busId);
         end sendPositionToBusNetwork;
         
         --procedure sendPriorityMessage(ptr_mes : out t_ptr_t_priorityMessage);

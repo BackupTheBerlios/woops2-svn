@@ -4,7 +4,7 @@ use package_types, package_busstop, package_bus, Text_io, interfaces.C, interfac
 procedure main is   
     
     -- declaration du pointeur sur le busStop
-    ptr_pos : t_ptr_t_position := new t_position'(1,0.0);
+    ptr_pos : t_ptr_t_position := new t_position'(1, 1, 0.0);
     
     ptr_line : t_ptr_t_line := new t_line'(1, (1,2,3), (1,2,3,4));
     
