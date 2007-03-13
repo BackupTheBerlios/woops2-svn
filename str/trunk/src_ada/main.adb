@@ -8,7 +8,7 @@ procedure main is
     
     ptr_line : t_ptr_t_line := new t_line'(1, (1,2,3), (1,2,3,4));
     
-    bus : tt_bus(1, ptr_line, ptr_pos);
+    bus : tt_bus(1, ptr_pos);
     
     --chaine : chars_ptr := new_string("pouet");
     --chaine1 : chars_ptr := new_string("une phrase longue pour tester le type");
