@@ -5,7 +5,7 @@ CFLAGS= -ansi
 LDFLAGS= -ansi  -lpthread -lstdc++ -lgcc_s 
 #LGTKFLAGS= `pkg-config --cflags --libs gtk+-2.0` 
 EXEC=busnetwork.exe
-BIN = Network.o OperatingCenter.o  interfaceAda.o
+BIN = NetworkManager.o OperatingCenter.o  interfaceAda.o Interpretor.o
 #BINADA = package_busnetwork.o package_busstop.o package_types.o package_constantes.o mainada.o
 ALI = package_busnetwork.ali #package_busstop.ali package_types.ali package_constantes.ali
 
@@ -18,8 +18,11 @@ $(EXEC) :  $(BIN) $(ALI)
 OperatingCenter.o: ../src_cpp/center/OperatingCenter.h ../src_cpp/center/interfaceAda.h ../src_cpp/center/Types.h
 	$(CC) $(LDFLAGS)-o OperatingCenter.o  -c ../src_cpp/center/OperatingCenter.cpp  
 
-Network.o: ../src_cpp/network/Network.h
-	$(CC) $(LDFLAGS)-o Network.o  -c ../src_cpp/network/Network.cpp  
+NetworkManager.o: ../src_cpp/network/NetworkManager.h
+	$(CC) $(LDFLAGS)-o NetworkManager.o  -c ../src_cpp/network/NetworkManager.cpp  
+
+Interpretor.o: ../src_cpp/network/Interpretor.h
+	$(CC) $(LDFLAGS)-o Interpretor.o  -c ../src_cpp/network/Interpretor.cpp  
 
 interfaceAda.o: ../src_cpp/center/interfaceAda.cpp ../src_cpp/center/OperatingCenter.h ../src_cpp/center/Types.h
 	$(CC) $(CFLAGS) -o interfaceAda.o -c ../src_cpp/center/interfaceAda.cpp
