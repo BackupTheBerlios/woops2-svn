@@ -134,9 +134,18 @@ void OperatingCenter::receiveInformation(t_information* t_ptr_t_information){
 }
 
 /*------------------------------------------ Java -----------------------------------------------*/
-void OperatingCenter::java_init_bus(int nombre)
+void OperatingCenter::java_init_busStop(int nombre)
 {
-	adainit_bus(nombre);
+	adainit_busStop(nombre);
+}
+
+void OperatingCenter::java_init_line(int line)
+{
+}
+
+void OperatingCenter::java_init_bus(int nombre, int ligne)
+{
+	adainit_bus(nombre,ligne);
 }
 
 /*------------------------------ methodes que ADA appelle ---------------------- */

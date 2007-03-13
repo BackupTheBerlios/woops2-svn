@@ -20,6 +20,7 @@ extern "C"{
 	void adainit();	
 	void adafinal();
 	void p_initBusStop(int nombre);
+	void p_initBus(int nombre, int ligne);
 	void receivePosition(t_position *pos);
 	void returnInitBusStop();
 }
@@ -36,9 +37,15 @@ void receivePosition(t_position *pos)
 
 //------------------------------------- Methode qui se trouve dans Ada et appelé par le C++ ---------------------
 
-void adainit_bus(int nombre)
+void adainit_busStop(int nombre)
 {
-	p_initBusStop(nombre);
+	//p_initBusStop(nombre);
+	p_initBus(5,3);
+}
+
+void adainit_bus(int nombre, int ligne)
+{
+	p_initBus(nombre,ligne);
 }
 
 

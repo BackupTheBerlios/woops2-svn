@@ -10,6 +10,8 @@ class Interpretor {
 	private:
 		Interpretor();
 		void createBusStop(string buffer);
+		void createLine(string buffer);
+		void createBus(string buffer);
         public:
 	  ~Interpretor();
            static Interpretor* getInstance();

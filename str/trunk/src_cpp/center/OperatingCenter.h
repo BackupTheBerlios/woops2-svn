@@ -51,7 +51,9 @@ class OperatingCenter
                 void receiveInformation(t_information* t_ptr_t_information);
 
 		//--------------- méthode qui viennent de Java -------------
-		void java_init_bus(int nombre);
+		void java_init_busStop(int nombre);
+		void java_init_line(int line);
+		void java_init_bus(int nombre, int ligne);
 
 		//------- méthode qui ada appelle et qui créée les threads
 		void returnInitBusStop();
