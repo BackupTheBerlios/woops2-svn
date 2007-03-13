@@ -37,7 +37,12 @@ public class BusStop extends SystemObject {
 	public void addLine(Line _l) {
 		this.getLines().add(_l);
 		_l.getBusStops().add(this);
-		Position pos = new Position(_l.getBusStops().get(_l.getBusStops().size() - 1),1500f);
+		Position pos = null;
+		if (_l.getBusStops().size() == 1) {
+			pos = new Position(this, 0f);
+		} else {
+			pos = new Position(_l.getBusStops().get(_l.getBusStops().size() - 2), 1500f);
+		}
 		this.getPositions().put(_l.getNumber(), pos);
 	}
 	

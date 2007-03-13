@@ -9,8 +9,6 @@ import java.util.List;
 import model.Bus;
 import model.BusStop;
 import model.Line;
-import model.Position;
-import network.Interpretor;
 import network.NetworkManager;
 
 import common.Constante;
@@ -48,6 +46,10 @@ public class ClientControler {
 		this.sendCreateCommand(Constante.BUS_STOP, "5", "24");
 		this.sendCreateCommand(Constante.BUS, "45", "24");
 		this.sendCreateCommand(Constante.BUS, "98", "24");
+		
+		System.out.println("nb ligne->"+ this.lines.size());
+		System.out.println("nb busStop->"+ this.busStops.size());
+		System.out.println("nb bus->"+ this.bus.size());
 	}
 
 	/**
