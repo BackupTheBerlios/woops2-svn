@@ -1,6 +1,6 @@
 package gui.sprite.entities;
 
-import gui.sprite.Displayer;
+import gui.sprite.SpriteDisplayerCanvas;
 
 /**
  * Representation graphique d'un Bus
@@ -9,7 +9,7 @@ import gui.sprite.Displayer;
  */
 public class BusEntity extends Entity{
 	
-	private Displayer busDisplayer;
+	private SpriteDisplayerCanvas displayer;
 	
 	public BusEntity(String ref, int x, int y) {
 		super(ref, x, y);
@@ -20,12 +20,12 @@ public class BusEntity extends Entity{
 		// TODO Notifier le systeme
 	}
 
-	public Displayer getBusDisplayer() {
-		return busDisplayer;
+	public SpriteDisplayerCanvas getBusDisplayer() {
+		return displayer;
 	}
 
-	public void setBusDisplayer(Displayer busDisplayer) {
-		this.busDisplayer = busDisplayer;
+	public void setBusDisplayer(SpriteDisplayerCanvas busDisplayer) {
+		this.displayer = busDisplayer;
 	}
 
 }

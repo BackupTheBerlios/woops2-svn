@@ -9,7 +9,7 @@ import java.awt.image.BufferStrategy;
 import java.util.ArrayList;
 
 
-public class Displayer extends Canvas {
+public class SpriteDisplayerCanvas extends Canvas {
 
 	private static final long serialVersionUID = -4224371663864342517L;
 	
@@ -38,7 +38,7 @@ public class Displayer extends Canvas {
 	/**
 	 * Construct our game and set it running.
 	 */
-	public Displayer() {
+	public SpriteDisplayerCanvas() {
 		// create the buffering strategy which will allow AWT
 		// to manage our accelerated graphics
 		createBufferStrategy(2);
@@ -239,7 +239,7 @@ public class Displayer extends Canvas {
 	 * @param argv The arguments that are passed into our game
 	 */
 	public static void main(String argv[]) {
-		Displayer g =new Displayer();
+		SpriteDisplayerCanvas g =new SpriteDisplayerCanvas();
 
 		// Start the main game loop, note: this method will not
 		// return until the game has finished running. Hence we are
