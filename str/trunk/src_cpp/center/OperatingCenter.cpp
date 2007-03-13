@@ -5,6 +5,7 @@
  */
 
 #include "OperatingCenter.h"
+#include "../Interpretor.h"
 
 
 void initSystem()
@@ -40,16 +41,20 @@ Mise en place des threads
 
 /**fonction de thread pour l'écoute de la réception de bus.
 *@Param : 
+* speed en Km/heure
 */
-void* OperatingCenter::thread_function_receive_position(void *a){
+void* OperatingCenter::thread_function_receive_position(void *position, int speed, int busId){
 
-	cout<<"Appel des fonctions pour le traitement de la position"<<endl;
-	t_position* maposition = (t_position *)a;
-    cout<<"Bus Stop Id :"	<<maposition->busStopId	<<endl;
-    cout<<"Distance :"		<<maposition->distance	<<endl;
-
-//while(true){}
-	
+	cout<<"OperatingCenter::Appel des fonctions pour le traitement de la position"<<endl;
+	t_position* maposition = (t_position *)position;
+    cout<<"Bus Stop Id :"			<< maposition->busStopId		<<endl;
+    cout<<"Distance :"				<< maposition->distance			<<endl;
+	cout<<"Speed :"					<< speed						<<endl;
+	cout<<"BusId :"					<< busId						<<endl;
+	int speedInMeterPerSeconde = maposition->distance*1000/3600;
+	int timeInSeconde = speedInMeterPerSeconde / speed ;
+	cout<<"Time (sec) calculee :"	<<  	timeInSeconde			<<endl;
+	Interpretor::getInstance()->sendPosition(maposition->lineNumber, busId, maposition->busStopId, timeInSeconde);
 }
 
 /**fonction de thread pour l'écoute de la réception d'information.
@@ -139,13 +144,9 @@ void OperatingCenter::java_init_busStop(int nombre)
 	adainit_busStop(nombre);
 }
 
-void OperatingCenter::java_init_line(int line)
+void OperatingCenter::java_init_bus(int nombre)
 {
-}
-
-void OperatingCenter::java_init_bus(int nombre, int ligne)
-{
-	adainit_bus(nombre,ligne);
+	adainit_bus(nombre);
 }
 
 /*------------------------------ methodes que ADA appelle ---------------------- */
