@@ -1,4 +1,7 @@
-package gui.sprite;
+package gui.sprite.entities;
+
+import gui.sprite.Sprite;
+import gui.sprite.SpriteFactory;
 
 import java.awt.Graphics;
 import java.awt.Rectangle;
