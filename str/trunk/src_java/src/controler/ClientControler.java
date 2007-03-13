@@ -3,6 +3,7 @@ package controler;
 import gui.MainFrame;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import model.Bus;
@@ -22,7 +23,7 @@ public class ClientControler {
 	
 	private List<Bus> bus = new ArrayList<Bus>();
 	
-	private List<Line> lines = new ArrayList<Line>();
+	private HashMap<Integer,Line> lines = new HashMap<Integer, Line>();
 
 	/**
 	 * 
@@ -39,25 +40,40 @@ public class ClientControler {
 			clientControler = new ClientControler();
 		return clientControler;
 	}
+	
+	public void initialisation() {
+		this.sendCreateCommand(Constante.LIGNE, "24", "null");
+		this.sendCreateCommand(Constante.BUS_STOP, "1", "24");
+		this.sendCreateCommand(Constante.BUS_STOP, "3", "24");
+		this.sendCreateCommand(Constante.BUS_STOP, "5", "24");
+		this.sendCreateCommand(Constante.BUS, "45", "24");
+		this.sendCreateCommand(Constante.BUS, "98", "24");
+	}
 
 	/**
 	 * fonction de creation universelle de commande "create"
 	 * @param _code
 	 * @param _str
 	 */
-	public void sendCreateCommand(int _code, String _nb, String _l) {
-		int nb = new Integer(_nb).intValue();
+	public void sendCreateCommand(int _code, String _id, String _l) {
+		Line l = null;
+		int id = new Integer(_id).intValue();
+		if (!_l.equals("null")) {
+			l = this.lines.get(new Integer(_l).intValue());
+		}
 		switch (_code) {
 			case Constante.BUS_STOP :
-				Line l = this.lines.get(new Integer(_l) - 1); // attention aux tailles de tableaux !
-				for (int i = 1;i <= nb;i++) {
-					this.createBusStop(i, l);
-				}
-				Interpretor.getInstance().createBusStop(_nb);
+				this.busStops.add(this.createBusStop(new Integer(_id).intValue(), l));
+				Interpretor.getInstance().sendCreateBusStop(_id, l);
 				break;
 			case Constante.LIGNE :
-				this.lines.add(this.createLine(new Integer(_nb).intValue()));
-				break;	
+				this.lines.put(id, this.createLine(id));
+				Interpretor.getInstance().sendCreateLine(_id);
+				break;
+			case Constante.BUS :
+				this.bus.add(this.createBus(id, l));
+				Interpretor.getInstance().sendCreateBus(_id, l);
+				break;		
 			default : break;
 		}
 	}
@@ -76,14 +92,15 @@ public class ClientControler {
 		});
 		
 		 NetworkManager.getInstance();
-		 
-		 // creation d'une ligne n°1
-		 this.sendCreateCommand(Constante.LIGNE,"1",null);
+	 
+
 	}
 
 	/**
-	 * 
-	 * @param _nbBusStop
+	 * Permet de creer un arret de bus
+	 * @param _id id de l arret
+	 * @param _l ligne de l'arret
+	 * @return un arret de bus
 	 */
 	private BusStop createBusStop(int _id, Line _l) {
 		BusStop tmp = new BusStop(_id);
@@ -93,10 +110,22 @@ public class ClientControler {
 
 	/**
 	 * Permet de creer une ligne
-	 * @param _n
+	 * @param _n numero de la ligne
+	 * @return une ligne
 	 */
 	private Line createLine(int _n) {
 		Line tmp = new Line(_n);
+		return tmp;
+	}
+	
+	/**
+	 * Permet de creer un Bus
+	 * @param _id id du bus
+	 * @param _l ligne du bus
+	 * @return un bus
+	 */
+	private Bus createBus(int _id, Line _l) {
+		Bus tmp = new Bus(_id, _l);
 		return tmp;
 	}
 	
