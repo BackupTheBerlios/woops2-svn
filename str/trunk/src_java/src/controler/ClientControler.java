@@ -49,7 +49,7 @@ public class ClientControler {
 		int nb = new Integer(_nb).intValue();
 		switch (_code) {
 			case Constante.BUS_STOP :
-				Line l = this.lines.get(new Integer(_l).intValue());
+				Line l = this.lines.get(new Integer(_l) - 1); // attention aux tailles de tableaux !
 				for (int i = 1;i <= nb;i++) {
 					this.createBusStop(i, l);
 				}
@@ -77,6 +77,8 @@ public class ClientControler {
 		
 		 NetworkManager.getInstance();
 		 
+		 // creation d'une ligne n°1
+		 this.sendCreateCommand(Constante.LIGNE,"1",null);
 	}
 
 	/**
