@@ -32,31 +32,41 @@ void Interpretor::receiveInformation(char* buffer)
 
 	string buf = (string)buffer;
 	int index = buf.find(";",0);
-	while(index != -1)
+	if(index != -1)
 	{
-		string commande = buf.substr(0,index);
-		cout<<"commande :"<<commande<<endl;
-		int i = commande.find(":",0);
-		cout << "receiveInformation : " << commande.substr(1,i) << endl;
+		while(index != -1)
+		{
+			int indexaroba = buf.find("@",0);
+			cout<<"index de l'@" << indexaroba <<endl;
+			
+			string commande = buf.substr(0,index);
+			cout<<"commande :"<<commande<<endl;
+			int i = commande.find(":",0);
+			cout << "receiveInformation : " << commande.substr(1,i) << endl;
 	
-		//traitement des différents cas
-		if(commande.substr(1,i) == "createBusStop:")
-		{
-			createBusStop(commande.substr(i+1,commande.length()-1));
+			//traitement des différents cas
+			if(commande.substr(1,i) == "createBusStop:")
+			{
+				createBusStop(commande.substr(i+1,commande.length()-1));
+			}
+			if(commande.substr(1,i) == "createLine:")
+			{
+				createLine(commande.substr(i+1,commande.length()-1));
+			}
+			if(commande.substr(1,i) == "createBus:")
+			{
+				createBus(commande.substr(i+1,commande.length()-1));
+			}
+			buf = buf.substr(index+2, buf.length());
+			cout<<"buf"<<buf<<endl;
+			index = 0;
+			index = buf.find(";",index);
+			cout<<"index:"<<index<<endl;
 		}
-		if(commande.substr(1,i) == "createLine:")
-		{
-			createLine(commande.substr(i+1,commande.length()-1));
-		}
-		if(commande.substr(1,i) == "createBus:")
-		{
-			createBus(commande.substr(i+1,commande.length()-1));
-		}
-		buf = buf.substr(index+2, buf.length());
-		cout<<"buf"<<buf<<endl;
-		index = 0;
-		index = buf.find(";",index);
-cout<<"index:"<<index<<endl;
+	}
+	else
+	{
+		cout<<"le forme du paquet recu est incorrect"<<endl;
 	}
 }
 

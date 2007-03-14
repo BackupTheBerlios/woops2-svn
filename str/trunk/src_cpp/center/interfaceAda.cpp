@@ -45,7 +45,6 @@ void adainit_busStop(int nombre, int ligne)
 void adainit_bus(int nombre, int ligne)
 {
 	p_initBus(5,3);
-	//p_initBusStop(nombre,ligne);
 }
 
 
