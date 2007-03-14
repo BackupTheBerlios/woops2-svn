@@ -116,8 +116,8 @@ void OperatingCenter::receivePosition(t_position* position){
 
 	//création du thread
 	//etat = pthread_create(&receive_position_thread,NULL,thread_function_receive_position, (void *)position);
-	if (etat != 0) 
-		perror("Echec creation de thread pour la réception des positions: %d\n");
+	/* if (etat != 0) 
+		perror("Echec creation de thread pour la réception des positions: %d\n"); */
     
 }
 
