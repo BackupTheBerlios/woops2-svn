@@ -42,15 +42,11 @@ package body package_busnetwork is
     
     -- initialisation d'un arrêt de bus
     procedure p_initBusStop(id_busstop : in int; line : in int) is
-        --ptr_position : t_ptr_t_position := new t_position'(1, 1, 0.0);
-        --ptr_bs : t_ptr_tt_busStop;
-        --busstop : tt_busStop;
         busstop : pt_BusStop;
         lineTmp : t_line;
     
     begin
         put_line("### busNetwork : p_initBusStop");
-        --ptr_bs := new tt_busStop(id_busstop, ptr_position);
         busstop.setBusStopId(id_busstop);
         busstop.setLineId(line);
         
@@ -60,8 +56,9 @@ package body package_busnetwork is
         else
             lineTmp := BusNetwork.getLine_2;
         end if;
-        put_line("taille du tableau de busstop: "); put_line(int'image(lineTmp.BusStopTable'length));
-        lineTmp.BusStopTable(lineTmp.BusStopTable'length) := id_busstop;
+        put("taille du tableau de busstop: "); put_line(int'image(lineTmp.BusStopTable'length));
+        lineTmp.BusStopTable(lineTmp.BusStopTable'last) := id_busstop;
+        put("acces a l'element 1: "); put_line(int'image(lineTmp.BusStopTable(1)));
         
         put("busStop n° ");put(int'image(id_busstop));
         put(" ajouté sur la ligne ");put_line(int'image(line));
