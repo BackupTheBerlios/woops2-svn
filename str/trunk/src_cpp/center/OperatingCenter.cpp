@@ -56,7 +56,7 @@ void* OperatingCenter::thread_function_receive_position(void *structPosition){
 	int speedInMeterPerSeconde = (int)maposition->distance*1000/3600;
 	int timeInSeconde = speedInMeterPerSeconde / maStructPosition->speed ;
 	cout<<"Time (sec) calculee :"	<<  	timeInSeconde			<<endl;
-	Interpretor::getInstance()->sendPosition(maposition->lineNumber, maStructPosition->busId, maposition->busStopId, timeInSeconde);
+	//Interpretor::getInstance()->sendPosition(maposition->lineNumber, maStructPosition->busId, maposition->busStopId, timeInSeconde);
 }
 
 /**fonction de thread pour l'écoute de la réception d'information.

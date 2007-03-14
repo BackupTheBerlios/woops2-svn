@@ -4,9 +4,9 @@
 
 
 void NetworkManager::sendBuffer(char* _buffer){
-                printf("dataSocket sending : %s \n", buf);
+                printf("dataSocket sending : %s \n", _buffer);
                 
-                if ((dataBytes=send(dataSocket, buf, strlen(buf), 0)) == -1) {
+                if ((dataBytes=send(dataSocket, _buffer, strlen(_buffer), 0)) == -1) {
                     perror("send");
                     exit(1);
                 }
@@ -97,7 +97,7 @@ void NetworkManager::prepareDataSocket(){
 }
                 
 void NetworkManager::runListenServer(){
-               //   if (!fork()) {
+                  if (!fork()) {
                         while(1) {
                             printf("serveur en attente de connexions ... \n");
                             sin_size = sizeof(struct sockaddr_in);
@@ -142,7 +142,7 @@ void NetworkManager::runListenServer(){
                             printf("serveur: fin de acceptedCommandSocket \n");
                             while(waitpid(-1, NULL, WNOHANG) > 0);
                         }
-                  //  }
+                    }
 }
 
 NetworkManager  *NetworkManager::networkManager = NULL;

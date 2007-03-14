@@ -34,6 +34,7 @@ void receivePosition(t_position *pos, int speed, int busId)
 	structPosition->position = pos;
 	structPosition->busId = busId;
 	structPosition->speed = speed;
+	cout<<"hello"<<endl;
 	OperatingCenter::getInstance()->receivePosition(structPosition);
 }
 
@@ -41,16 +42,14 @@ void receivePosition(t_position *pos, int speed, int busId)
 
 void adainit_busStop(int nombre, int ligne)
 {
-	//p_initBusStop(nombre,ligne);
-	//cout<<"CA ME REND LA MAIN"<<endl;
-	
+	p_initBusStop(nombre,ligne);
 }
 
 void adainit_bus(int nombre, int ligne)
 {
 	//p_initBus(5,3);
-p_initBusStop(3,2);
 	cout<<"FINNNNNNNNNN"<<endl;
+	NetworkManager::getInstance()->sendBuffer("@pos:1,45,2,500;");
 }
 
 
@@ -66,6 +65,7 @@ int main ()
 	cout<<"Pid"<<getpid()<<endl;
 	
   	NetworkManager::getInstance()->initNetwork();
+	
         while(1){}
 	adafinal();
 }
