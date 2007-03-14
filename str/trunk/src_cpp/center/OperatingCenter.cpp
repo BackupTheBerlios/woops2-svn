@@ -43,20 +43,20 @@ Mise en place des threads
 *@Param : 
 * speed en Km/heure
 */
-
-/*void* OperatingCenter::thread_function_receive_position(void *position, int speed, int busId){
+void* OperatingCenter::thread_function_receive_position(void *structPosition){
 
 	cout<<"OperatingCenter::Appel des fonctions pour le traitement de la position"<<endl;
-	t_position* maposition = (t_position *)position;
+	t_structReceivePosition *maStructPosition = (t_structReceivePosition *)structPosition;
+	t_position* maposition = (t_position *)maStructPosition->position;
     cout<<"Bus Stop Id :"			<< maposition->busStopId		<<endl;
     cout<<"Distance :"				<< maposition->distance			<<endl;
-	cout<<"Speed :"					<< speed						<<endl;
-	cout<<"BusId :"					<< busId						<<endl;
+	cout<<"Speed :"					<< maStructPosition->speed		<<endl;
+	cout<<"BusId :"					<< maStructPosition->busId		<<endl;
 	int speedInMeterPerSeconde = maposition->distance*1000/3600;
-	int timeInSeconde = speedInMeterPerSeconde / speed ;
+	int timeInSeconde = speedInMeterPerSeconde / maStructPosition->speed ;
 	cout<<"Time (sec) calculee :"	<<  	timeInSeconde			<<endl;
-	Interpretor::getInstance()->sendPosition(maposition->lineNumber, busId, maposition->busStopId, timeInSeconde);
-}*/
+	Interpretor::getInstance()->sendPosition(maposition->lineNumber, maStructPosition->busId, maposition->busStopId, timeInSeconde);
+}
 
 /**fonction de thread pour l'écoute de la réception d'information.
 *@Param : 
@@ -107,7 +107,7 @@ void OperatingCenter::initializeSystem(){
 /**
 Méthode qui permet de recevoir la position d'un bus
 */
-void OperatingCenter::receivePosition(t_position* position){
+void OperatingCenter::receivePosition(t_structReceivePosition* position){
     
     int etat;
     
@@ -115,9 +115,9 @@ void OperatingCenter::receivePosition(t_position* position){
 	pthread_t receive_position_thread;
 
 	//création du thread
-	//etat = pthread_create(&receive_position_thread,NULL,thread_function_receive_position, (void *)position);
-	/* if (etat != 0) 
-		perror("Echec creation de thread pour la réception des positions: %d\n"); */
+	etat = pthread_create(&receive_position_thread,NULL,thread_function_receive_position, (void *)position);
+	if (etat != 0) 
+		perror("Echec creation de thread pour la réception des positions: %d\n");
     
 }
 
