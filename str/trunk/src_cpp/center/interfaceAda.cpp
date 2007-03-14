@@ -28,10 +28,13 @@ extern "C"{
 methode qui permet de recevoir la position d'un bus
 param : la position pos qui est un pointeur sur la struture position
 */
-void receivePosition(t_position *pos)
+void receivePosition(t_position *pos, int speed, int busId)
 {
-	OperatingCenter* oc = OperatingCenter::getInstance();
-	oc->receivePosition(pos);
+	t_structReceivePosition *structPosition = (t_structReceivePosition *)malloc(sizeof(t_structReceivePosition));
+	structPosition->position = pos;
+	structPosition->busId = busId;
+	structPosition->speed = speed;
+	OperatingCenter::getInstance()->receivePosition(structPosition);
 }
 
 //------------------------------------- Methode qui se trouve dans Ada et appelé par le C++ ---------------------

@@ -22,6 +22,15 @@ typedef struct t_position {
 }t_position;
 
 /**
+Structure pour passer au thred receivePosition
+*/
+typedef struct t_structReceivePosition {
+	t_position *position;
+	int speed;
+    int busId;
+}t_structReceivePosition;
+
+/**
 structure pour la mise enum place des dates
 */
 typedef struct t_dateHour {
