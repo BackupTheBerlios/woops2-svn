@@ -1,10 +1,13 @@
 package gui.sprite;
 
+import gui.MainFrame;
+import gui.sprite.entities.BusEntity;
 import gui.sprite.entities.Entity;
 
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.Rectangle;
 import java.awt.image.BufferStrategy;
 import java.util.ArrayList;
 
@@ -13,39 +16,46 @@ public class SpriteDisplayerCanvas extends Canvas {
 
 	private static final long serialVersionUID = -4224371663864342517L;
 	
+	private static SpriteDisplayerCanvas spriteDisplayerCanvas;
+	
 	/** The stragey that allows us to use accelerate page flipping */
 	private BufferStrategy strategy;
 	/** True if the game is currently "running", i.e. the game loop is looping */
 	private boolean gameRunning = true;
 	/** The list of all the entities that exist in our game */
-	private ArrayList entities = new ArrayList();
+	private ArrayList<Entity> entities = new ArrayList<Entity>();
 	/** The list of entities that need to be removed from the game this loop */
 	private ArrayList removeList = new ArrayList();
+
 	/** The entity representing the player */
 	//private Entity ship;
 	/** The speed at which the player's ship should move (pixels/sec) */
-	private double moveSpeed = 300;
+	//private double moveSpeed = 300;
 	/** The time at which last fired a shot */
-	private long lastFire = 0;
+	//private long lastFire = 0;
 	/** The interval between our players shot (ms) */
-	private long firingInterval = 500;
+	//private long firingInterval = 500;
 	/** The number of aliens left on the screen */
-	private int alienCount;
+	//private int alienCount;
 
 	/** True if game logic needs to be applied this loop, normally as a result of a game event */
 	private boolean logicRequiredThisLoop = false;
 	
+	public static SpriteDisplayerCanvas getInstance(){
+		if (spriteDisplayerCanvas == null){
+			spriteDisplayerCanvas = new SpriteDisplayerCanvas();
+		}
+		return spriteDisplayerCanvas;
+	}
+	
 	/**
 	 * Construct our game and set it running.
 	 */
-	public SpriteDisplayerCanvas() {
-		// create the buffering strategy which will allow AWT
-		// to manage our accelerated graphics
-		createBufferStrategy(2);
-		strategy = getBufferStrategy();
+	private SpriteDisplayerCanvas() {
+		//setIgnoreRepaint(true);
+		//Rectangle r = MainFrame.getInstance().getMainPanel().getBounds();
+		//setBounds(0,0,592,426);
 		
-		// initialise the entities in our game so there's something
-		// to see at startup
 		initEntities();
 	}
 	
@@ -53,7 +63,7 @@ public class SpriteDisplayerCanvas extends Canvas {
 	 * Start a fresh game, this should clear out any old data and
 	 * create a new set.
 	 */
-	private void startGame() {
+	private void startDisplayer() {
 		// clear out any existing entities and intialise a new set
 		entities.clear();
 		initEntities();
@@ -65,19 +75,9 @@ public class SpriteDisplayerCanvas extends Canvas {
 	 * entitiy will be added to the overall list of entities in the game.
 	 */
 	private void initEntities() {
-		// create the player ship and place it roughly in the center of the screen
-		//ship = new ShipEntity(this,"sprites/ship.gif",370,550);
-		//entities.add(ship);
-		
-		// create a block of aliens (5 rows, by 12 aliens, spaced evenly)
-		alienCount = 0;
-		for (int row=0;row<5;row++) {
-			for (int x=0;x<12;x++) {
-				//Entity alien = new AlienEntity(this,"sprites/alien.gif",100+(x*50),(50)+row*30);
-				//entities.add(alien);
-				alienCount++;
-			}
-		}
+
+		Entity bus = new BusEntity(this,"resources/images/iconBus_small.jpg",100,100);
+		entities.add(bus);
 	}
 	
 	/**
@@ -100,46 +100,6 @@ public class SpriteDisplayerCanvas extends Canvas {
 	}
 
 	/**
-	 * Notification that an alien has been killed
-	 */
-	public void notifyAlienKilled() {
-		// reduce the alient count, if there are none left, the player has won!
-		alienCount--;
-		
-		if (alienCount == 0) {
-			//notifyWin();
-		}
-		
-		// if there are still some aliens left then they all need to get faster, so
-		// speed up all the existing aliens
-		for (int i=0;i<entities.size();i++) {
-			Entity entity = (Entity) entities.get(i);
-			
-			/*if (entity instanceof AlienEntity) {
-				// speed up by 2%
-				entity.setHorizontalMovement(entity.getHorizontalMovement() * 1.02);
-			}*/
-		}
-	}
-	
-	/**
-	 * Attempt to fire a shot from the player. Its called "try"
-	 * since we must first check that the player can fire at this 
-	 * point, i.e. has he/she waited long enough between shots
-	 */
-	public void tryToFire() {
-		// check that we have waiting long enough to fire
-		if (System.currentTimeMillis() - lastFire < firingInterval) {
-			return;
-		}
-		
-		// if we waited long enough, create the shot entity, and record the time.
-		lastFire = System.currentTimeMillis();
-		//ShotEntity shot = new ShotEntity(this,"sprites/shot.gif",ship.getX()+10,ship.getY()-30);
-		//entities.add(shot);
-	}
-	
-	/**
 	 * The main game loop. This loop is running during all game
 	 * play as is responsible for the following activities:
 	 * <p>
@@ -150,7 +110,7 @@ public class SpriteDisplayerCanvas extends Canvas {
 	 * - Checking Input
 	 * <p>
 	 */
-	public void gameLoop() {
+	public void mainLoop() {
 		long lastLoopTime = System.currentTimeMillis();
 		
 		// keep looping round til the game ends
@@ -165,7 +125,7 @@ public class SpriteDisplayerCanvas extends Canvas {
 			// surface and blank it out
 			Graphics2D g = (Graphics2D) strategy.getDrawGraphics();
 			g.setColor(Color.black);
-			g.fillRect(0,0,800,600);
+			g.fillRect(0,0,500,300);
 
 			
 			// cycle round drawing all the entities we have in the game
@@ -230,20 +190,12 @@ public class SpriteDisplayerCanvas extends Canvas {
 			try { Thread.sleep(10); } catch (Exception e) {}
 		}
 	}
+	
+	public BufferStrategy getStrategy() {
+		return strategy;
+	}
 
-	/**
-	 * The entry point into the game. We'll simply create an
-	 * instance of class which will start the display and game
-	 * loop.
-	 * 
-	 * @param argv The arguments that are passed into our game
-	 */
-	public static void main(String argv[]) {
-		SpriteDisplayerCanvas g =new SpriteDisplayerCanvas();
-
-		// Start the main game loop, note: this method will not
-		// return until the game has finished running. Hence we are
-		// using the actual main thread to run the game.
-		g.gameLoop();
+	public void setStrategy(BufferStrategy strategy) {
+		this.strategy = strategy;
 	}
 }
