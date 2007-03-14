@@ -19,7 +19,7 @@ Fichier qui sert d'interface entre ada et C qui permet a l'ada d'appeler des fon
 extern "C"{ 
 	void adainit();	
 	void adafinal();
-	void p_initBusStop(int nombre);
+	void p_initBusStop(int nombre,int ligne);
 	void p_initBus(int nombre, int ligne);
 	void receivePosition(t_position *pos);
 }
@@ -36,15 +36,16 @@ void receivePosition(t_position *pos)
 
 //------------------------------------- Methode qui se trouve dans Ada et appelé par le C++ ---------------------
 
-void adainit_busStop(int nombre)
+void adainit_busStop(int nombre, int ligne)
 {
 	//p_initBusStop(nombre);
-	p_initBus(5,3);
+	
 }
 
-void adainit_bus(int nombre)
+void adainit_bus(int nombre, int ligne)
 {
-	p_initBusStop(nombre);
+	p_initBus(5,3);
+	//p_initBusStop(nombre,ligne);
 }
 
 

@@ -5,7 +5,7 @@
  */
 
 #include "OperatingCenter.h"
-#include "../Interpretor.h"
+#include "../network/Interpretor.h"
 
 
 void initSystem()
@@ -43,7 +43,8 @@ Mise en place des threads
 *@Param : 
 * speed en Km/heure
 */
-void* OperatingCenter::thread_function_receive_position(void *position, int speed, int busId){
+
+/*void* OperatingCenter::thread_function_receive_position(void *position, int speed, int busId){
 
 	cout<<"OperatingCenter::Appel des fonctions pour le traitement de la position"<<endl;
 	t_position* maposition = (t_position *)position;
@@ -55,7 +56,7 @@ void* OperatingCenter::thread_function_receive_position(void *position, int spee
 	int timeInSeconde = speedInMeterPerSeconde / speed ;
 	cout<<"Time (sec) calculee :"	<<  	timeInSeconde			<<endl;
 	Interpretor::getInstance()->sendPosition(maposition->lineNumber, busId, maposition->busStopId, timeInSeconde);
-}
+}*/
 
 /**fonction de thread pour l'écoute de la réception d'information.
 *@Param : 
@@ -114,7 +115,7 @@ void OperatingCenter::receivePosition(t_position* position){
 	pthread_t receive_position_thread;
 
 	//création du thread
-	etat = pthread_create(&receive_position_thread,NULL,thread_function_receive_position, (void *)position);
+	//etat = pthread_create(&receive_position_thread,NULL,thread_function_receive_position, (void *)position);
 	if (etat != 0) 
 		perror("Echec creation de thread pour la réception des positions: %d\n");
     
@@ -139,14 +140,14 @@ void OperatingCenter::receiveInformation(t_information* t_ptr_t_information){
 }
 
 /*------------------------------------------ Java -----------------------------------------------*/
-void OperatingCenter::java_init_busStop(int nombre)
+void OperatingCenter::java_init_busStop(int nombre, int ligne)
 {
-	adainit_busStop(nombre);
+	adainit_busStop(nombre, ligne);
 }
 
-void OperatingCenter::java_init_bus(int nombre)
+void OperatingCenter::java_init_bus(int nombre, int ligne)
 {
-	adainit_bus(nombre);
+	adainit_bus(nombre,ligne);
 }
 
 /*------------------------------ methodes que ADA appelle ---------------------- */

@@ -14,8 +14,8 @@ class Interpretor {
 		void createBus(string buffer);
    	public:
 	  	~Interpretor();
-       	static Interpretor* getInstance();
-      	void receiveInformation(char* buffer);
+       		static Interpretor* getInstance();
+      		void receiveInformation(char* buffer);
 		void sendPosition(int lineId, int busId, int busStopId, int time);
     };
 

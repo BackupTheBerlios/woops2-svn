@@ -1,6 +1,5 @@
 #include "Interpretor.h"
 #include "../center/OperatingCenter.h"
-#include "NetworkManager.h"
 
 Interpretor::Interpretor()
 {
@@ -28,49 +27,52 @@ Interpretor* Interpretor::getInstance()
 /*
 méthode qui parse les informations reçues
 */
-void Interpretor::receiveInformation(char* buffer){
+void Interpretor::receiveInformation(char* buffer)
+{
+
 	string buf = (string)buffer;
-	int i = buf.find(":",0);
-	cout << "receiveInformation : " << buf.substr(1,i) << endl;
-	if(buf.substr(1,i) == "createBusStop:"){
-
-	//traitement des différents cas
-
-	//traitement des différents cas
-	if(buf.substr(1,i) == "createBusStop:")
+	int index = buf.find(";",0);
+	while(index != -1)
 	{
-		createBusStop(buf.substr(i+1,buf.length()-1));
-		createBus("12,4");
+		string commande = buf.substr(0,index);
+		cout<<"commande :"<<commande<<endl;
+		int i = commande.find(":",0);
+		cout << "receiveInformation : " << commande.substr(1,i) << endl;
+	
+		//traitement des différents cas
+		if(commande.substr(1,i) == "createBusStop:")
+		{
+			createBusStop(commande.substr(i+1,commande.length()-1));
+		}
+		if(commande.substr(1,i) == "createLine:")
+		{
+			createLine(commande.substr(i+1,commande.length()-1));
+		}
+		if(commande.substr(1,i) == "createBus:")
+		{
+			createBus(commande.substr(i+1,commande.length()-1));
+		}
+		buf = buf.substr(index+2, buf.length());
+		cout<<"buf"<<buf<<endl;
+		index = 0;
+		index = buf.find(";",index);
+cout<<"index:"<<index<<endl;
 	}
-	if(buf.substr(1,i) == "createLine:"){
-		//createLine(buf.substr(i+1,buf.length()-1));
-	if(buf.substr(1,i) == "createLine:")
-	{
-		createLine(buf.substr(i+1,buf.length()-1));
-	}
-	if(buf.substr(1,i) == "createBus:")
-	{
-		createBus(buf.substr(i+1,buf.length()-1));
-	}
-}
-
-void Interpretor::sendPosition(int lineId, int busId, int busStopId, int time){
-	string buffer = "buffer to build";
-	NetworkManager::getInstance()->sendBuffer(buffer);
 }
 
 /*
 méthode qui va créer les bus stop.
 */
-void Interpretor::createBusStop(string buffer){
-	cout<<"Appel a la methode ada avec comme param"<<buffer<<endl;
-	OperatingCenter::getInstance()->java_init_bus(atoi(buffer.c_str()));
+void Interpretor::createBusStop(string buffer)
+{
+	cout<<"Appel a la methode create bus stop avec comme param"<<buffer<<endl;
+	//OperatingCenter::getInstance()->java_init_busStop(atoi(buffer.c_str()));
 }
 
 void Interpretor::createLine(string buffer)
 {
-	cout<<"Appel a la methode ada avec comme param"<<buffer<<endl;
-	OperatingCenter::getInstance()->java_init_line(atoi(buffer.c_str()));
+	cout<<"Appel a la methode create line avec comme param"<<buffer<<endl;
+	//OperatingCenter::getInstance()->java_init_line(atoi(buffer.c_str()));
 }
 
 void Interpretor::createBus(string buffer)
