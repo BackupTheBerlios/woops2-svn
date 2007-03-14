@@ -1,3 +1,4 @@
+-- Author: eperico
 with package_types, package_busstop, Text_io, interfaces.C;
 use package_types, package_busstop, Text_io, interfaces.C;
 
@@ -21,11 +22,11 @@ package body package_types is
 	-- affiche les informations d'une ligne
 	procedure display(line : t_line) is
 	begin
-		put("(Line n° ");
+		put("(Line n°");
 		put(int'image(line.lineNumber));
-        put("liste arrets => ");
+        put(", liste arrets => ");
         for i in 1..line.BusStopTable'Length loop
-            put(integer'image(i));
+            put(int'image(line.busStopTable(i)));
         end loop;
 		put(")");
 		new_line;

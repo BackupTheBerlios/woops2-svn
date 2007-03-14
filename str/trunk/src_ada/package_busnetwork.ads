@@ -1,3 +1,4 @@
+-- Author: eperico
 with package_types, package_busstop, interfaces.C;
 use package_types, package_busstop, interfaces.C;
 
@@ -19,10 +20,6 @@ package package_busnetwork is
 	procedure receivePosition(ptr_pos : in t_ptr_t_position; speed : in int; busId : in int);
 	pragma import(CPP, receivePosition, "receivePosition");
 
-    ---------------------------------
-    -- fonctions internes au package
-    ---------------------------------
-    
 	-- envoie d'un message d'urgence au centre d'exploitation en cas de problème
 	--procedure p_sendPriorityMessage(ptr_mes : out t_ptr_t_priorityMessage);
 	--pragma export(CPP, p_sendPriorityMessage, "p_sendPriorityMessage");

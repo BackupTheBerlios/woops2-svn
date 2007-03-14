@@ -1,3 +1,4 @@
+-- Author: eperico
 with package_types, Text_io, Ada.Exceptions, interfaces.C;
 use package_types, Text_io, Ada.Exceptions, interfaces.C;
 
@@ -16,7 +17,7 @@ package package_busstop is
         
     private
         BusStopId : int;
-        LineId : int; -- sera peut-etre un tableau de lignes
+        LineId : int; -- sera plus tard un tableau de lignes
     end pt_BusStop;
 	
 end package_busstop;

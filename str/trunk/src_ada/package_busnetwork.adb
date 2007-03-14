@@ -1,28 +1,33 @@
+-- Author: eperico
 with package_types, package_bus, package_busstop, package_constantes, Text_io, interfaces.C;
 use package_types, package_bus, package_busstop, package_constantes, Text_io, interfaces.C;
 
 package body package_busnetwork is
     
+    invalidLineNumber : exception;
+    index : integer;
+    --l'index pointe sur la première case vide (ici vide = 0) du tableau d'arrêts de bus
+    
     ----------------------------
     -- objet protégé BusNetwork
     ----------------------------
+    -- l'objet BusNetwork permet de partager les données entre les tâches
+    -- les lignes du réseau doivent être paratgées
     protected BusNetwork is
         
         function getLine_1 return t_line;
-        function getLine_2 return t_line; 
-              
-        private
-            -- L'OBJET BUSNETWORK PERMET DE PARTAGER LES DONNEES ENTRE LES TACHES
-            -- LES 2 LIGNES DU RESEAU DOIVENT ETRE PARTAGÉES (TYPE T_LINE)
-            -- UNE LIGNE POSSEDE LE TABLEAU DE BUSSTOP ET PEUT-ETRE LE TABLEAU DE BUS
+        function getLine_2 return t_line;
         
-            -- TODO initialer les 2 lignes
-            line_1 : t_line; -- := (lineNumber => 1 ,BusStopTable => (0,0,0,0,0));
-            line_2 : t_line;
+        procedure setLine_1(line : in t_line); 
+        procedure setLine_2(line : in t_line);       
+        
+        private
+            line_1 : t_line := (lineNumber => 1, busStopTable => (others => 0));
+            line_2 : t_line := (lineNumber => 2, busStopTable => (others => 0));
     end BusNetwork;
 
 	protected body BusNetwork is
-                
+        
         function getLine_1 return t_line is
         begin
             return line_1;
@@ -32,10 +37,19 @@ package body package_busnetwork is
         begin
             return line_2;
         end getLine_2;
+        
+        procedure setLine_1(line : in t_line) is
+        begin
+            line_1 := line;
+        end setLine_1; 
+        
+        procedure setLine_2(line : in t_line) is
+        begin
+            line_2 := line;
+        end setLine_2;
     
     end BusNetwork;
-    
-    
+        
     -------------------------
     -- Définition des pragma 
     -------------------------
@@ -43,7 +57,7 @@ package body package_busnetwork is
     -- initialisation d'un arrêt de bus
     procedure p_initBusStop(id_busstop : in int; line : in int) is
         busstop : pt_BusStop;
-        lineTmp : t_line;
+        concernedLine : t_line;
     
     begin
         put_line("### busNetwork : p_initBusStop");
@@ -52,35 +66,61 @@ package body package_busnetwork is
         
         --ajout du busstop créé sur la ligne passée en paramètre
         if line = 1 then
-            lineTmp := BusNetwork.getLine_1;
+            concernedLine := BusNetwork.getLine_1;
+            index := concernedLine.busStopTable'first;
+            concernedLine.busStopTable(index) := id_busstop;
+            BusNetwork.setLine_1(concernedLine);
+            put("acces a l'element"& integer'image(index)); put_line(int'image(BusNetwork.getLine_1.BusStopTable(index)));
+        elsif line = 2 then
+            concernedLine := BusNetwork.getLine_2;
+            index := concernedLine.busStopTable'first;
+            concernedLine.busStopTable(index) := id_busstop;
+            BusNetwork.setLine_2(concernedLine);
+            put("acces a l'element"& integer'image(index)); put_line(int'image(BusNetwork.getLine_2.BusStopTable(index)));
         else
-            lineTmp := BusNetwork.getLine_2;
+            raise invalidLineNumber;
         end if;
-        put("taille du tableau de busstop: "); put_line(int'image(lineTmp.BusStopTable'length));
-        lineTmp.BusStopTable(lineTmp.BusStopTable'last) := id_busstop;
-        put("acces a l'element 1: "); put_line(int'image(lineTmp.BusStopTable(1)));
         
-        put("busStop n° ");put(int'image(id_busstop));
-        put(" ajouté sur la ligne ");put_line(int'image(line));
+        index := index + 1;
+        put("busStop n°");put(int'image(id_busstop));
+        put(" ajouté sur la ligne");put_line(int'image(line));
+        
+        exception
+            when invalidLineNumber => put_line("Numéro de ligne invalide");
+    
     end p_initBusStop;
     
     
     -- initialisation d'un bus
     procedure p_initBus(id_bus : in int; line : in int) is
-        ptr_position : t_ptr_t_position := new t_position'(1, 1, 0.0);
+        startingBusStop : int;
+        ptr_position : t_ptr_t_position;
         ptr_bus : t_ptr_tt_bus;
     begin
         put_line("### busNetwork : p_initBus");
-        -- TODO ajout du bus créé sur la ligne line
+        -- on prend le premier arrêt de bus de la ligne passée en paramètre
+        if (line = 1) then
+            startingBusStop := BusNetwork.getLine_1.busStopTable(1); 
+        elsif (line = 2) then
+            startingBusStop := BusNetwork.getLine_2.busStopTable(1);
+        else
+            raise invalidLineNumber;        
+        end if;    
+        -- on positionne le bus en début de ligne
+        ptr_position := new t_position'(line, startingBusStop, 0.0); 
+        
+        put("creation du bus n°");put(int'image(id_bus)); 
+        put(" sur la ligne");put_line(int'image(line));  
+        
         ptr_bus := new tt_bus(id_bus, ptr_position);
+        -- démarrage du bus
         ptr_bus.all.start;
-        put("creation du bus n° ");put_line(int'image(id_bus));
+        -- TODO ajout du bus créé sur la ligne passée en paramètre
+        
+        exception
+            when invalidLineNumber => put_line("Numéro de ligne invalide");
+            
     end p_initBus;
-    
-    
-    ---------------------------------
-    -- fonctions internes au package
-    ---------------------------------
     
 begin
     

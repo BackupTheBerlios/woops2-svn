@@ -22,11 +22,14 @@ package body package_bus is
         task body tt_sendPosition is
         begin
             loop
-                -- envoi de la position toutes les 20 secondes
-                delay(periode);                
-                --Sensor.getCurrentPosition(ptr_pos);
-                put_line("tt_bus: envoi de la position");
-                Radio.sendPositionToCenter(ptr_pos, speed, id);                
+                if (isStarted) then
+                    -- envoi de la position toutes les 2 secondes
+                    delay(periode);                
+                    --Sensor.getCurrentPosition(ptr_pos);
+                    put_line("tt_bus: envoi de la position");
+                    display(ptr_pos.all);
+                    Radio.sendPositionToCenter(ptr_pos, speed, id); 
+                end if;               
             end loop;
         end tt_sendPosition;
         
@@ -36,7 +39,12 @@ package body package_bus is
             accept start;
                 put_line("tt_bus: Le bus"& int'image(id) & " a démarré");
                 isStarted := true;
-                Sensor.setCurrentPosition(initialPosition.all);            
+                --Sensor.setCurrentPosition(initialPosition.all);
+            
+            accept stop;
+                isStarted := false;
+                put_line("tt_bus: Le bus"& int'image(id) & " est arrêté");
+                --Sensor.setCurrentPosition(initialPosition.all);            
         end loop;
     end tt_bus;
 

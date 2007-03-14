@@ -1,11 +1,12 @@
+-- Author: eperico
 with Text_io, interfaces.C, interfaces.C.strings;
 use Text_io, interfaces.C, interfaces.C.strings;
 
 -- paquetage contenant les types communs aux elements code en Ada
 package package_types is
     
-    type BusStopTabType is array(int range 1..5) of int;
-    type BusTabType is array(int range 1..4) of int;
+    type BusStopTabType is array(integer range 1..5) of int;
+    --type BusTabType is array(integer range 1..4) of int;
     
     --------------------------------
 	-- declaration du type position
