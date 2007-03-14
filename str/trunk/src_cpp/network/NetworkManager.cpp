@@ -10,6 +10,7 @@ void NetworkManager::sendBuffer(char* _buffer){
                     perror("send");
                     exit(1);
                 }
+		cout<<"FIN de L'ENVOIEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE"<<endl;
 }
 
  void NetworkManager::closeSockets(){

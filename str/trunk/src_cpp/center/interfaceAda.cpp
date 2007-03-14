@@ -47,9 +47,8 @@ void adainit_busStop(int nombre, int ligne)
 
 void adainit_bus(int nombre, int ligne)
 {
-	//p_initBus(5,3);
-	cout<<"FINNNNNNNNNN"<<endl;
-	NetworkManager::getInstance()->sendBuffer("@pos:1,45,2,500;");
+	p_initBus(5,3);
+	//NetworkManager::getInstance()->sendBuffer("@pos:1,45,2,500;");
 }
 
 

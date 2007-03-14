@@ -38,6 +38,8 @@ class OperatingCenter
       		static void* thread_function_receive_position(void *position);
       		static void* thread_function_receive_information(void *a);
 		static void* thread_function_returnInitBusStop(void *a);
+		static void* thread_function_miseajour(void* a);
+		static void* thread_function_getvaleur(void* a);
 
 		//mise en place du singleton
 		static OperatingCenter * operatingCenter;

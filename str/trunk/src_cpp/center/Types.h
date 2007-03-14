@@ -22,12 +22,22 @@ typedef struct t_position {
 }t_position;
 
 /**
+Structure qui correspond a la mémoire partagée.
+*/
+typedef struct t_memoire {
+	int ligne;
+	int busStop;
+	int bus;
+	int time;
+}t_memoire;
+
+/**
 Structure pour passer au thred receivePosition
 */
 typedef struct t_structReceivePosition {
 	t_position *position;
 	int speed;
-    int busId;
+   	int busId;
 }t_structReceivePosition;
 
 /**
