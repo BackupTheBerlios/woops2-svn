@@ -42,13 +42,17 @@ package body package_busnetwork is
     
     -- initialisation d'un arrêt de bus
     procedure p_initBusStop(id_busstop : in int; line : in int) is
-        ptr_position : t_ptr_t_position := new t_position'(1, 1, 0.0);
-        ptr_bs : t_ptr_tt_busStop;
+        --ptr_position : t_ptr_t_position := new t_position'(1, 1, 0.0);
+        --ptr_bs : t_ptr_tt_busStop;
+        --busstop : tt_busStop;
+        busstop : pt_BusStop;
         lineTmp : t_line;
     
     begin
         put_line("### busNetwork : p_initBusStop");
-        ptr_bs := new tt_busStop(id_busstop, ptr_position);
+        --ptr_bs := new tt_busStop(id_busstop, ptr_position);
+        busstop.setBusStopId(id_busstop);
+        busstop.setLineId(line);
         
         --ajout du busstop créé sur la ligne passée en paramètre
         if line = 1 then
@@ -67,14 +71,12 @@ package body package_busnetwork is
     -- initialisation d'un bus
     procedure p_initBus(id_bus : in int; line : in int) is
         ptr_position : t_ptr_t_position := new t_position'(1, 1, 0.0);
-        --bus : tt_bus(id_bus, ptr_position);
         ptr_bus : t_ptr_tt_bus;
     begin
         put_line("### busNetwork : p_initBus");
+        -- TODO ajout du bus créé sur la ligne line
         ptr_bus := new tt_bus(id_bus, ptr_position);
         ptr_bus.all.start;
-        -- TODO ajout du bus créé sur la ligne line
-        --bus.start;
         put("creation du bus n° ");put_line(int'image(id_bus));
     end p_initBus;
     

@@ -44,7 +44,7 @@ package package_bus is
         procedure setCurrentPosition(p : in t_position);
         
         -- modifie le busStopId de la position courante du bus
-        procedure updateBusStop(bs : in out int);
+        procedure updateBusPosition(bs : in out int);
     private
         currentPosition : t_position;
     end Sensor;    

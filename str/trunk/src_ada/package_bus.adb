@@ -12,7 +12,6 @@ package body package_bus is
         id : int := idBus;
         ptr_pos : t_ptr_t_position := initialPosition;
         speed : int := 0;
-        
         isStarted : boolean := false;        
         
         ------------------------------------------------
@@ -88,10 +87,10 @@ package body package_bus is
             Sensor.currentPosition := p;
         end setCurrentPosition;
 
-        procedure updateBusStop(bs : in out int) is
+        procedure updateBusPosition(bs : in out int) is
         begin
             bs := Sensor.currentPosition.busStopId;
-        end updateBusStop;
+        end updateBusPosition;
 
     end Sensor;
 

@@ -3,13 +3,20 @@ use package_types, Text_io, Ada.Exceptions, interfaces.C;
 
 package package_busstop is
 
-    -- id de la ligne à ajouter a la tache
-	task type tt_busStop (idBusStop : int ; ptr_position : access t_position) is
-        entry getId(n : out int);
-		entry getPosition(pos : out t_position);
-		entry addLine(ptr_line : t_ptr_t_line);
-	end tt_busStop;
-	
-	type t_ptr_tt_busStop is access tt_busStop;
+    --------------------------
+    -- objet protégé BusStop
+    --------------------------
+    protected type pt_BusStop is
+        
+        function getBusStopId return int;
+        function getLineId return int;
+        
+        procedure setBusStopId(id : in int);
+        procedure setLineId(id : in int);              
+        
+    private
+        BusStopId : int;
+        LineId : int; -- sera peut-etre un tableau de lignes
+    end pt_BusStop;
 	
 end package_busstop;
