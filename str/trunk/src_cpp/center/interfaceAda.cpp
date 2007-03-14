@@ -21,7 +21,7 @@ extern "C"{
 	void adafinal();
 	void p_initBusStop(int nombre,int ligne);
 	void p_initBus(int nombre, int ligne);
-	void receivePosition(t_position *pos);
+	void receivePosition(t_position *pos, int speed, int busId);
 }
 
 /**
@@ -41,13 +41,16 @@ void receivePosition(t_position *pos, int speed, int busId)
 
 void adainit_busStop(int nombre, int ligne)
 {
-	//p_initBusStop(nombre);
+	//p_initBusStop(nombre,ligne);
+	//cout<<"CA ME REND LA MAIN"<<endl;
 	
 }
 
 void adainit_bus(int nombre, int ligne)
 {
-	p_initBus(5,3);
+	//p_initBus(5,3);
+p_initBusStop(3,2);
+	cout<<"FINNNNNNNNNN"<<endl;
 }
 
 

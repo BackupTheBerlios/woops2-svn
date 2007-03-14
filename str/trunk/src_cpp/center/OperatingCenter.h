@@ -29,12 +29,14 @@
 
 using namespace std;
 
+
+
 class OperatingCenter
     {
 	private :
    		static void* thread_function_initBus(void *a);
-      	static void* thread_function_receive_position(void *position);
-      	static void* thread_function_receive_information(void *a);
+      		static void* thread_function_receive_position(void *position);
+      		static void* thread_function_receive_information(void *a);
 		static void* thread_function_returnInitBusStop(void *a);
 
 		//mise en place du singleton
@@ -44,10 +46,10 @@ class OperatingCenter
 	public :
 		
 		~OperatingCenter();
-       	static OperatingCenter* getInstance ();
+       		static OperatingCenter* getInstance ();
 		void initializeSystem();
-		void receivePosition(t_position* position);
-      	void p_sendPriorityMessage();
+		void receivePosition(t_structReceivePosition* position);
+      		void p_sendPriorityMessage();
    		void receiveInformation(t_information* t_ptr_t_information);
 
 		//--------------- méthode qui viennent de Java -------------

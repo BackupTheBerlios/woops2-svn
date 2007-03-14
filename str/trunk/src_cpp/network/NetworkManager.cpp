@@ -113,7 +113,7 @@ void NetworkManager::runListenServer(){
                             
                             
                             while(1) {
-                                printf("receiving commands ...\n");
+                                printf("receiving commands ...\n\n");
                                 
                                 if ((numbytes=recv(acceptedCommandSocket, buf, MAX_BUFFER_SIZE, 0)) == -1) {
                                     perror("recv");

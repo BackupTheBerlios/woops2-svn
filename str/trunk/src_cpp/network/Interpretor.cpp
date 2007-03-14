@@ -76,7 +76,11 @@ méthode qui va créer les bus stop.
 void Interpretor::createBusStop(string buffer)
 {
 	cout<<"Appel a la methode create bus stop avec comme param"<<buffer<<endl;
-	//OperatingCenter::getInstance()->java_init_busStop(atoi(buffer.c_str()));
+	int index = buffer.find(",",0);
+	int nombre = atoi(buffer.substr(0,index).c_str());
+	int num_ligne = atoi(buffer.substr(index+1,buffer.length()-1).c_str());
+	cout<<"valeur "<<nombre<<"Num ligne:"<<num_ligne<<"buffer"<<buffer<<endl;
+	OperatingCenter::getInstance()->java_init_busStop(nombre,num_ligne);
 }
 
 void Interpretor::createLine(string buffer)
@@ -95,6 +99,9 @@ void Interpretor::createBus(string buffer)
 	OperatingCenter::getInstance()->java_init_bus(nombre,num_ligne);
 }
 
+void Interpretor::sendPosition(int lineId, int busId, int busStopId, int time)
+{
+}
 
 Interpretor  *Interpretor::interpretor = NULL;
 

@@ -7,6 +7,7 @@
 #include "OperatingCenter.h"
 #include "../network/Interpretor.h"
 
+int variable = 0;
 
 void initSystem()
 {
@@ -52,7 +53,7 @@ void* OperatingCenter::thread_function_receive_position(void *structPosition){
     cout<<"Distance :"				<< maposition->distance			<<endl;
 	cout<<"Speed :"					<< maStructPosition->speed		<<endl;
 	cout<<"BusId :"					<< maStructPosition->busId		<<endl;
-	int speedInMeterPerSeconde = maposition->distance*1000/3600;
+	int speedInMeterPerSeconde = (int)maposition->distance*1000/3600;
 	int timeInSeconde = speedInMeterPerSeconde / maStructPosition->speed ;
 	cout<<"Time (sec) calculee :"	<<  	timeInSeconde			<<endl;
 	Interpretor::getInstance()->sendPosition(maposition->lineNumber, maStructPosition->busId, maposition->busStopId, timeInSeconde);
