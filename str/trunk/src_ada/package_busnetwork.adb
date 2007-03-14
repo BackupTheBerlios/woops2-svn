@@ -17,7 +17,7 @@ package body package_busnetwork is
             -- UNE LIGNE POSSEDE LE TABLEAU DE BUSSTOP ET PEUT-ETRE LE TABLEAU DE BUS
         
             -- TODO initialer les 2 lignes
-            line_1 : t_line;
+            line_1 : t_line; -- := (lineNumber => 1 ,BusStopTable => (0,0,0,0,0));
             line_2 : t_line;
     end BusNetwork;
 

@@ -28,7 +28,7 @@ package package_types is
     ----------------------------------------------
     type t_line is record 
         lineNumber : int;
-        BusStopTable : BusStopTabType;
+        busStopTable : BusStopTabType;
         --BusTable : BusTabType;
     end record;
     
