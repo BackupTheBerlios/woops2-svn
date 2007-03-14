@@ -11,11 +11,14 @@ public class BusEntity extends Entity{
 	
 	private SpriteDisplayerCanvas displayer;
 	
-	public BusEntity(String ref, int x, int y) {
+	public BusEntity(SpriteDisplayerCanvas _d, String ref, int x, int y) {
 		super(ref, x, y);
-		
+		displayer = _d;
 	}
 	
+	/**
+	 * Collision detected
+	 */
 	public void collidedWith(Entity other) {
 		// TODO Notifier le systeme
 	}
