@@ -1,16 +1,23 @@
 package network;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 import model.Line;
 
 public class Interpretor {
 
 	private static Interpretor interpretor;
 	
+	private Queue<String> messagesFromNetwork;
+	
 	/**
 	 * 
 	 *
 	 */
-	private Interpretor() {}
+	private Interpretor() {
+		this.messagesFromNetwork = new LinkedList<String>();
+	}
 
 	/**
 	 * To obliged the unicity of the Interpretor instance.
@@ -51,7 +58,27 @@ public class Interpretor {
 	 * Reception d'un message
 	 */
 	public void receiveMessage(String _str) {
-				
+		String tmp = _str;
+		if (tmp.length() > 0) {
+			int deb = tmp.indexOf('@');
+			int fin = tmp.indexOf(';');
+			this.messagesFromNetwork.offer(tmp.substring(deb - 1, fin + 1));
+			tmp = tmp.substring(fin);
+		}
+	}
+
+	/**
+	 * @return the messagesFromNetwork
+	 */
+	public Queue<String> getMessagesFromNetwork() {
+		return messagesFromNetwork;
+	}
+
+	/**
+	 * @param messagesFromNetwork the messagesFromNetwork to set
+	 */
+	public void setMessagesFromNetwork(Queue<String> messagesFromNetwork) {
+		this.messagesFromNetwork = messagesFromNetwork;
 	}
 	
 }

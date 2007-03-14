@@ -5,6 +5,7 @@ import gui.MainFrame;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Queue;
 
 import model.Bus;
 import model.BusStop;
@@ -80,6 +81,19 @@ public class ClientControler {
 			default : break;
 		}
 	}
+	
+	/**
+	 * 
+	 * @param cmds
+	 */
+	public void networkCommandTreatment() {
+		Queue<String> q = Interpretor.getInstance().getMessagesFromNetwork();
+		while (!q.isEmpty()) {
+			String s = q.remove();
+			System.out.println("Taille de la file network : "+ q.size());
+			System.out.println(s);
+		}
+	}
 
 	/**
 	 * 
@@ -95,6 +109,20 @@ public class ClientControler {
 		});
 		
 		 NetworkManager.getInstance();
+		 
+		 Thread threadNetworkMessages = new Thread() {
+				public void run() {
+					while (true) {
+						networkCommandTreatment();
+						try {
+							Thread.sleep(500);
+						} catch (InterruptedException e) {
+							e.printStackTrace();
+						}
+					}
+				}
+			};
+			threadNetworkMessages.start();
 		 
 	}
 

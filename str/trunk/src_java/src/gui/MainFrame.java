@@ -6,7 +6,6 @@
 
 package gui;
 
-import common.Constante;
 import controler.ClientControler;
 
 /**
