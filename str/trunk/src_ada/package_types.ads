@@ -29,7 +29,7 @@ package package_types is
     type t_line is record 
         lineNumber : int;
         BusStopTable : BusStopTabType;
-        BusTable : BusTabType;
+        --BusTable : BusTabType;
     end record;
     
     type t_ptr_t_line is access t_line;

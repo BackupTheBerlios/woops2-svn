@@ -7,10 +7,6 @@ package package_busnetwork is
     -- Déclaration des pragma
     --------------------------
     
-    -- initialisation de lignes de bus
-    procedure p_initLine(id_line : in int);
-    pragma export(CPP, p_initLine, "p_initLine");
-    
     -- initialisation des arrêts de bus
 	procedure p_initBusStop(id_busstop : in int; line : in int);
 	pragma export(CPP, p_initBusStop, "p_initBusStop");
@@ -26,8 +22,7 @@ package package_busnetwork is
     ---------------------------------
     -- fonctions internes au package
     ---------------------------------
-    procedure sendPositionToCenter(ptr_pos : in t_ptr_t_position; speed : in int; busId : in int);
-
+    
 	-- envoie d'un message d'urgence au centre d'exploitation en cas de problème
 	--procedure p_sendPriorityMessage(ptr_mes : out t_ptr_t_priorityMessage);
 	--pragma export(CPP, p_sendPriorityMessage, "p_sendPriorityMessage");

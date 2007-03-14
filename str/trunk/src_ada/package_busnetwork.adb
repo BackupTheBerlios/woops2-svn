@@ -2,83 +2,86 @@ with package_types, package_bus, package_busstop, package_constantes, Text_io, i
 use package_types, package_bus, package_busstop, package_constantes, Text_io, interfaces.C;
 
 package body package_busnetwork is
-
-	--type tabLines is array (1 .. nbLines) of  t_ptr_tt_line;
-	type tabBusStop is array (1 .. nbBusStop) of  t_ptr_tt_busStop;
-	--type tabBus is array (1 .. nbBus) of  t_ptr_tt_bus;
-    
     
     ----------------------------
     -- objet protégé BusNetwork
     ----------------------------
     protected BusNetwork is
         
-        --procedure initLine(nb_line : in int);
-        --creation des getter sur line_1 et line_2  
+        function getLine_1 return t_line;
+        function getLine_2 return t_line; 
               
         private
             -- L'OBJET BUSNETWORK PERMET DE PARTAGER LES DONNEES ENTRE LES TACHES
             -- LES 2 LIGNES DU RESEAU DOIVENT ETRE PARTAGÉES (TYPE T_LINE)
-            -- UNE LIGNE POSSEDE LE TABLEAU DE BUSSTOP ET LE TABLEAU DE BUS
+            -- UNE LIGNE POSSEDE LE TABLEAU DE BUSSTOP ET PEUT-ETRE LE TABLEAU DE BUS
+        
+            -- TODO initialer les 2 lignes
             line_1 : t_line;
             line_2 : t_line;
     end BusNetwork;
 
 	protected body BusNetwork is
-
-        procedure initLine(nb_line : in int) is
+                
+        function getLine_1 return t_line is
         begin
-            put_line("### BusNetwork : initLine");
-            put_line(int'image(nb_line));put(" lignes créées");
-        end initLine;
+            return line_1;
+        end getLine_1;
+        
+        function getLine_2 return t_line is
+        begin
+            return line_2;
+        end getLine_2;
     
     end BusNetwork;
     
     
-    ----------------------------------------
-    -- Définition des pragma par délégation
-    ----------------------------------------
-    
-    -- initialisation d'une ligne
-    procedure p_initLine(id_line : in int) is
-    begin
-        put_line("### busNetwork : p_initLine");
-        put_line("creation du busStop n° ");put_line(int'image(id_line));
-    end p_initLine;
-    
+    -------------------------
+    -- Définition des pragma 
+    -------------------------
     
     -- initialisation d'un arrêt de bus
-	procedure p_initBusStop(id_busstop : in int; line : in int) is
+    procedure p_initBusStop(id_busstop : in int; line : in int) is
         ptr_position : t_ptr_t_position := new t_position'(1, 1, 0.0);
         ptr_bs : t_ptr_tt_busStop;
+        lineTmp : t_line;
+    
     begin
         put_line("### busNetwork : p_initBusStop");
         ptr_bs := new tt_busStop(id_busstop, ptr_position);
-        -- TODO ajout du busstop créé sur la ligne line
-        put_line("creation du busStop n° ");put_line(int'image(id_busstop));
+        
+        --ajout du busstop créé sur la ligne passée en paramètre
+        if line = 1 then
+            lineTmp := BusNetwork.getLine_1;
+        else
+            lineTmp := BusNetwork.getLine_2;
+        end if;
+        put_line("taille du tableau de busstop: "); put_line(int'image(lineTmp.BusStopTable'length));
+        lineTmp.BusStopTable(lineTmp.BusStopTable'length) := id_busstop;
+        
+        put("busStop n° ");put(int'image(id_busstop));
+        put(" ajouté sur la ligne ");put_line(int'image(line));
     end p_initBusStop;
     
     
     -- initialisation d'un bus
     procedure p_initBus(id_bus : in int; line : in int) is
         ptr_position : t_ptr_t_position := new t_position'(1, 1, 0.0);
-        bus : tt_bus(id_bus, ptr_position);
+        --bus : tt_bus(id_bus, ptr_position);
+        ptr_bus : t_ptr_tt_bus;
     begin
         put_line("### busNetwork : p_initBus");
+        ptr_bus := new tt_bus(id_bus, ptr_position);
+        ptr_bus.all.start;
         -- TODO ajout du bus créé sur la ligne line
-        bus.start;
-        put_line("creation du bus n° ");put_line(int'image(id_bus));
+        --bus.start;
+        put("creation du bus n° ");put_line(int'image(id_bus));
     end p_initBus;
     
     
     ---------------------------------
     -- fonctions internes au package
     ---------------------------------
-    procedure sendPositionToCenter(ptr_pos : in t_ptr_t_position; speed : in int; busId : in int) is
-    begin
-        put_line("sendPositionToCenter");
-        receivePosition(ptr_pos, speed, busId);
-    end sendPositionToCenter;
     
 begin
     

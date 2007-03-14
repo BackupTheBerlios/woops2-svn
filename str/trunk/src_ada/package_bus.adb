@@ -1,6 +1,6 @@
 -- Author: eperico
-with package_types, package_busnetwork, Text_io;
-use package_types, package_busnetwork, Text_io;
+with package_types, package_busnetwork, package_constantes, Text_io;
+use package_types, package_busnetwork, package_constantes, Text_io;
 
 package body package_bus is
 	
@@ -23,13 +23,11 @@ package body package_bus is
         task body tt_sendPosition is
         begin
             loop
-                delay(5.0);
-                put_line("tt_bus: envoi de la position");
                 -- envoi de la position toutes les 20 secondes
-                --delay(periode);                
+                delay(periode);                
                 --Sensor.getCurrentPosition(ptr_pos);
-                Radio.sendPositionToBusNetwork(ptr_pos, speed, id);
-                
+                put_line("tt_bus: envoi de la position");
+                Radio.sendPositionToCenter(ptr_pos, speed, id);                
             end loop;
         end tt_sendPosition;
         
@@ -102,10 +100,12 @@ package body package_bus is
     -----------------------
     protected body Radio is
         
-        procedure sendPositionToBusNetwork(ptr_pos : in t_ptr_t_position; speed : in int; busId : in int) is
+        procedure sendPositionToCenter(ptr_pos : in t_ptr_t_position; speed : in int; busId : in int) is
         begin
-            sendPositionToCenter(ptr_pos, speed, busId);
-        end sendPositionToBusNetwork;
+            -- le centre recoit la position du bus
+            --receivePosition(ptr_pos, speed, busId);
+            null;
+        end sendPositionToCenter;
         
         --procedure sendPriorityMessage(ptr_mes : out t_ptr_t_priorityMessage);
         --procedure receiveCommand(ptr_com : in t_ptr_t_action);
