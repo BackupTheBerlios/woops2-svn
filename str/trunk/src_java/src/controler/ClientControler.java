@@ -1,5 +1,6 @@
 package controler;
 
+import gui.BusDisplayerFrame;
 import gui.MainFrame;
 
 import java.util.ArrayList;
@@ -100,13 +101,21 @@ public class ClientControler {
 	 *
 	 */
 	public void startClient() {
-
+		
 		java.awt.EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				MainFrame mainFrame = MainFrame.getInstance();
 				mainFrame.setVisible(true);
 			}
 		});
+		
+		Thread threadDisplayer = new Thread() {
+			public void run() {
+				BusDisplayerFrame bd = new BusDisplayerFrame();
+				bd.mainLoop();
+			}
+		};
+		threadDisplayer.start();
 		
 		 NetworkManager.getInstance();
 		 

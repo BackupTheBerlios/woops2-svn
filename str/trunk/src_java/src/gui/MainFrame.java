@@ -24,6 +24,7 @@ public class MainFrame extends javax.swing.JFrame {
     /** Creates new form MainFrame */
     private MainFrame() {
         initComponents();
+       
     }
     
     /** This method is called from within the constructor to

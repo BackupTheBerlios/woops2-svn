@@ -1,61 +1,84 @@
-package gui.sprite;
+package gui;
 
-import gui.MainFrame;
 import gui.sprite.entities.BusEntity;
 import gui.sprite.entities.Entity;
 
 import java.awt.Canvas;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics2D;
-import java.awt.Rectangle;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.awt.image.BufferStrategy;
 import java.util.ArrayList;
 
+import javax.swing.JFrame;
+import javax.swing.JPanel;
 
-public class SpriteDisplayerCanvas extends Canvas {
+import org.newdawn.spaceinvaders.AlienEntity;
+import org.newdawn.spaceinvaders.ShipEntity;
 
-	private static final long serialVersionUID = -4224371663864342517L;
+
+@SuppressWarnings("serial")
+public class BusDisplayerFrame extends Canvas {
 	
-	private static SpriteDisplayerCanvas spriteDisplayerCanvas;
+	private static final int REFRESH_TIME = 500; // millisec
+	private final static int X_WINDOW = 500;
+	private final static int Y_WINDOW = 400;
 	
 	/** The stragey that allows us to use accelerate page flipping */
 	private BufferStrategy strategy;
 	/** True if the game is currently "running", i.e. the game loop is looping */
-	private boolean gameRunning = true;
+	private boolean isRunning = true;
 	/** The list of all the entities that exist in our game */
 	private ArrayList<Entity> entities = new ArrayList<Entity>();
 	/** The list of entities that need to be removed from the game this loop */
 	private ArrayList removeList = new ArrayList();
-
-	/** The entity representing the player */
-	//private Entity ship;
-	/** The speed at which the player's ship should move (pixels/sec) */
-	//private double moveSpeed = 300;
-	/** The time at which last fired a shot */
-	//private long lastFire = 0;
-	/** The interval between our players shot (ms) */
-	//private long firingInterval = 500;
-	/** The number of aliens left on the screen */
-	//private int alienCount;
-
-	/** True if game logic needs to be applied this loop, normally as a result of a game event */
-	private boolean logicRequiredThisLoop = false;
-	
-	public static SpriteDisplayerCanvas getInstance(){
-		if (spriteDisplayerCanvas == null){
-			spriteDisplayerCanvas = new SpriteDisplayerCanvas();
-		}
-		return spriteDisplayerCanvas;
-	}
 	
 	/**
 	 * Construct our game and set it running.
 	 */
-	private SpriteDisplayerCanvas() {
-		//setIgnoreRepaint(true);
-		//Rectangle r = MainFrame.getInstance().getMainPanel().getBounds();
-		//setBounds(0,0,592,426);
+	public BusDisplayerFrame() {
+		// create a frame to contain our game
+		JFrame container = new JFrame("ISI Bus Navigator - DISPLAY");
 		
+		
+		// get hold the content of the frame and set up the resolution of the game
+		JPanel panel = (JPanel) container.getContentPane();
+		panel.setPreferredSize(new Dimension(X_WINDOW,Y_WINDOW));
+		panel.setLayout(null);
+		
+		// setup our canvas size and put it into the content of the frame
+		setBounds(0,0,X_WINDOW,Y_WINDOW);
+		panel.add(this);
+		
+		// Tell AWT not to bother repainting our canvas since we're
+		// going to do that our self in accelerated mode
+		setIgnoreRepaint(true);
+		
+		// finally make the window visible 
+		container.pack();
+		container.setResizable(false);
+		container.setVisible(true);
+		container.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+		
+		// add a listener to respond to the user closing the window. If they
+		// do we'd like to exit the game
+		container.addWindowListener(new WindowAdapter() {
+			public void windowClosing(WindowEvent e) {
+				System.exit(0);
+			}
+		});
+
+		// create the buffering strategy which will allow AWT
+		// to manage our accelerated graphics
+		createBufferStrategy(2);
+		strategy = getBufferStrategy();
+		
+		// initialise the entities in our game so there's something
+		// to see at startup
 		initEntities();
 	}
 	
@@ -63,7 +86,7 @@ public class SpriteDisplayerCanvas extends Canvas {
 	 * Start a fresh game, this should clear out any old data and
 	 * create a new set.
 	 */
-	private void startDisplayer() {
+	private void startGame() {
 		// clear out any existing entities and intialise a new set
 		entities.clear();
 		initEntities();
@@ -75,18 +98,12 @@ public class SpriteDisplayerCanvas extends Canvas {
 	 * entitiy will be added to the overall list of entities in the game.
 	 */
 	private void initEntities() {
+		// create the player ship and place it roughly in the center of the screen
+		//ShipEntity ship = new ShipEntity(this,"sprites/ship.gif",370,550);
+		BusEntity be = new BusEntity("resources/images/iconBus_small.jpg",100,100);
+		
+		entities.add(be);
 
-		Entity bus = new BusEntity(this,"resources/images/iconBus_small.jpg",100,100);
-		entities.add(bus);
-	}
-	
-	/**
-	 * Notification from a game entity that the logic of the game
-	 * should be run at the next opportunity (normally as a result of some
-	 * game event)
-	 */
-	public void updateLogic() {
-		logicRequiredThisLoop = true;
 	}
 	
 	/**
@@ -98,7 +115,8 @@ public class SpriteDisplayerCanvas extends Canvas {
 	public void removeEntity(Entity entity) {
 		removeList.add(entity);
 	}
-
+	
+	
 	/**
 	 * The main game loop. This loop is running during all game
 	 * play as is responsible for the following activities:
@@ -114,7 +132,7 @@ public class SpriteDisplayerCanvas extends Canvas {
 		long lastLoopTime = System.currentTimeMillis();
 		
 		// keep looping round til the game ends
-		while (gameRunning) {
+		while (isRunning) {
 			// work out how long its been since the last update, this
 			// will be used to calculate how far the entities should
 			// move this loop
@@ -125,13 +143,12 @@ public class SpriteDisplayerCanvas extends Canvas {
 			// surface and blank it out
 			Graphics2D g = (Graphics2D) strategy.getDrawGraphics();
 			g.setColor(Color.black);
-			g.fillRect(0,0,500,300);
-
+			g.fillRect(0,0,800,600);
+			
 			
 			// cycle round drawing all the entities we have in the game
 			for (int i=0;i<entities.size();i++) {
 				Entity entity = (Entity) entities.get(i);
-				
 				entity.draw(g);
 			}
 			
@@ -154,48 +171,17 @@ public class SpriteDisplayerCanvas extends Canvas {
 			entities.removeAll(removeList);
 			removeList.clear();
 
-			// if a game event has indicated that game logic should
-			// be resolved, cycle round every entity requesting that
-			// their personal logic should be considered.
-			if (logicRequiredThisLoop) {
-				for (int i=0;i<entities.size();i++) {
-					Entity entity = (Entity) entities.get(i);
-					entity.doLogic();
-				}
-				
-				logicRequiredThisLoop = false;
-			}
+			
 			
 			// finally, we've completed drawing so clear up the graphics
 			// and flip the buffer over
 			g.dispose();
 			strategy.show();
 			
-			// resolve the movement of the ship. First assume the ship 
-			// isn't moving. If either cursor key is pressed then
-			// update the movement appropraitely
-			/*
-			ship.setHorizontalMovement(0);
 			
-			if ((leftPressed) && (!rightPressed)) {
-				ship.setHorizontalMovement(-moveSpeed);
-			} else if ((rightPressed) && (!leftPressed)) {
-				ship.setHorizontalMovement(moveSpeed);
-			}
-			*/
-			
-			// finally pause for a bit. Note: this should run us at about
-			// 100 fps but on windows this might vary each loop due to
-			// a bad implementation of timer
-			try { Thread.sleep(10); } catch (Exception e) {}
+			try { Thread.sleep(REFRESH_TIME); } catch (Exception e) {}
 		}
 	}
 	
-	public BufferStrategy getStrategy() {
-		return strategy;
-	}
-
-	public void setStrategy(BufferStrategy strategy) {
-		this.strategy = strategy;
-	}
+	
 }
