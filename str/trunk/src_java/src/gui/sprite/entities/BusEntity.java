@@ -1,5 +1,7 @@
 package gui.sprite.entities;
 
+import gui.BusDisplayerFrame;
+
 
 /**
  * Representation graphique d'un Bus
@@ -8,7 +10,7 @@ package gui.sprite.entities;
  */
 public class BusEntity extends Entity{
 	
-	private double moveSpeed = 10;
+	private double moveSpeed = 30;
 	
 	public BusEntity( String ref, int x, int y) {
 		super(ref, x, y);
@@ -38,7 +40,11 @@ public class BusEntity extends Entity{
 			this.doLogic();
 		}
 		// and vice vesa, if we have reached the right hand side of 
-
+		// the screen and are moving right, request a logic update
+		if ((dx > 0) && (x > BusDisplayerFrame.X_WINDOW)) {
+			this.doLogic();
+		}
+		
 		// proceed with normal move
 		super.move(delta);
 	}
