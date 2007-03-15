@@ -29,7 +29,7 @@ public class BusEntity extends Entity{
 		// swap over horizontal movement and move down the
 		// screen a bit
 		dx = -dx;
-		y += 3;
+		y += 5;
 		
 	}
 	

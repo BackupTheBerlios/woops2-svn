@@ -20,7 +20,7 @@ public class BusDisplayerFrame extends Canvas {
 
 	private static BusDisplayerFrame busDisplayerFrame;
 
-	public static final int REFRESH_TIME = 500; // millisec
+	public static final int REFRESH_TIME = 300; // millisec
 
 	public static final int X_WINDOW = 500;
 
