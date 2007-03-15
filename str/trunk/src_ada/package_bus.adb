@@ -24,9 +24,13 @@ package body package_bus is
             loop
                 if (isStarted) then
                     -- envoi de la position toutes les 2 secondes
-                    delay(periode);                
+                    delay(periode);
+                    if speed < 30 then
+                        speed := speed + 5;
+                    end if;                
                     --Sensor.getCurrentPosition(ptr_pos);
                     put_line("tt_bus: envoi de la position");
+                    put("vitesse du bus: ");put_line(int'image(speed));
                     display(ptr_pos.all);
                     Radio.sendPositionToCenter(ptr_pos, speed, id); 
                 end if;               
