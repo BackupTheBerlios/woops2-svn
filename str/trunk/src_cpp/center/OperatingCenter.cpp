@@ -5,11 +5,16 @@
  */
 
 #include "OperatingCenter.h"
+#include "util.h"
+#include "fstream"
+#include <stdio.h>
+#include <stdlib.h>
 #include "../network/Interpretor.h"
 
 t_memoire* memoire[50];
 int taillememoire = 0;
 static pthread_mutex_t mutex;
+static pthread_mutex_t mutex_fichier;
 
 void initSystem()
 {
@@ -23,6 +28,8 @@ OperatingCenter::OperatingCenter()
 {
  	//initialisation du mutex pour lexclusion lors de la mise a jour de lespace mémoire commun
 	pthread_mutex_init (&mutex, NULL);
+	//initialisation du mutex pour l"ecriture dans le fichier
+	pthread_mutex_init (&mutex_fichier, NULL);
 }
 
 OperatingCenter::~OperatingCenter()
@@ -61,6 +68,27 @@ void* OperatingCenter::thread_function_miseajour(void* a){
 
 	//on rend le jeton
 	pthread_mutex_unlock (&mutex);
+}
+
+void* OperatingCenter::thread_function_archivage(void* a){
+	//on prend un jeton	
+	t_archivage *structarch = (t_archivage *)a;
+	pthread_mutex_lock (&mutex_fichier);
+	char* buffer;	
+	//itoa (structarch->ligne,buffer,10);
+	string chaine = " Bus :"+ stringify((double)structarch->ligne);
+	chaine += ", BusStop :"+stringify(structarch->busStop) ;
+	chaine += ", Ligne :"+stringify(structarch->ligne);
+	chaine += " , distance :"+stringify((double)structarch->distance);
+	chaine += "\n";
+	ofstream fichier;
+	fichier.open("archive.txt", ios::app);
+	if(fichier.is_open())
+	{
+		cout<<"la chaine :"<<chaine<<endl;
+		fichier<<chaine;
+	}
+	pthread_mutex_unlock (&mutex_fichier);
 }
 
 /**
@@ -106,7 +134,8 @@ void* OperatingCenter::thread_function_receive_position(void *structPosition){
 	int speedInMeterPerSeconde = (int)maposition->distance*1000/3600;
 	int timeInSeconde = speedInMeterPerSeconde / maStructPosition->speed ;
 	cout<<"Time (sec) calculee :"	<<  	timeInSeconde			<<endl;
-
+	//mise en place de lecriture dans le fichier pour larchivage
+	
 	//création de la structure qui va se trouver dans la mémoire partagé
 	t_memoire *structmem = (t_memoire *)malloc(sizeof(t_memoire));
 	structmem->ligne = 1;
@@ -117,6 +146,16 @@ void* OperatingCenter::thread_function_receive_position(void *structPosition){
 	pthread_t thread;
 	etat = pthread_create(&thread,NULL,thread_function_miseajour, (void*)structmem);
 	if (etat != 0) cout<<"Echec creation de thread pour l'initialisation des bus: %d"<<endl;
+
+	//mise en place des threads pour l'archivage
+	t_archivage *structarch = (t_archivage *)malloc(sizeof(t_archivage));
+	structarch->ligne = 1;
+	cout<<"STRUCTURE"<<structarch->ligne<<endl<<endl;
+	structarch->busStop = maposition->busStopId ;
+	structarch->bus = maStructPosition->busId;
+	structarch->distance = maposition->distance;
+	pthread_t thread_fichier;
+	etat = pthread_create(&thread_fichier,NULL,thread_function_archivage, (void*)structarch);
 	//Interpretor::getInstance()->sendPosition(maposition->lineNumber, maStructPosition->busId, maposition->busStopId, timeInSeconde);
 }
 

@@ -32,6 +32,16 @@ typedef struct t_memoire {
 }t_memoire;
 
 /**
+Structure qui correspond a l'archivage des données
+*/
+typedef struct t_archivage {
+	int ligne;
+	int busStop;
+	int bus;
+	float distance;
+}t_archivage;
+
+/**
 Structure pour passer au thred receivePosition
 */
 typedef struct t_structReceivePosition {

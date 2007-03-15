@@ -12,6 +12,7 @@ Fichier qui sert d'interface entre ada et C qui permet a l'ada d'appeler des fon
 #include "OperatingCenter.h"
 #include "../network/NetworkManager.h"
 #include <stdlib.h>
+#include <fstream>
 #include <unistd.h>
 
 
@@ -47,7 +48,7 @@ void adainit_busStop(int nombre, int ligne)
 
 void adainit_bus(int nombre, int ligne)
 {
-	p_initBus(5,3);
+	p_initBus(5,1);
 	//NetworkManager::getInstance()->sendBuffer("@pos:1,45,2,500;");
 }
 
@@ -61,7 +62,7 @@ int main ()
 {
 	cout<<"main c"<<endl;
 	adainit();
-	cout<<"Pid"<<getpid()<<endl;
+	
 	
   	NetworkManager::getInstance()->initNetwork();
 	
