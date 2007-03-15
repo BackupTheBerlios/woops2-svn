@@ -9,7 +9,8 @@ BIN = NetworkManager.o OperatingCenter.o  interfaceAda.o Interpretor.o
 #BINADA = package_busnetwork.o package_busstop.o package_types.o package_constantes.o mainada.o
 ALI = package_busnetwork.ali #package_busstop.ali package_types.ali package_constantes.ali
 
-all: clean $(EXEC)
+#all: clean $(EXEC)
+all: $(EXEC)
 
 $(EXEC) :  $(BIN) $(ALI)
 	gnatbind -n $(ALI)
@@ -42,6 +43,8 @@ package_busnetwork.ali : ../src_ada/package_busnetwork.adb
 clean:
 	rm -rf *.o
 	rm -rf *.ali
+	rm -rf b~*
+	rm main
 
 #tar:
 #	tar -cvf busnetwork.tar Makefile *.ads *.adb *.hpp *.cpp *.gif *.jpg
