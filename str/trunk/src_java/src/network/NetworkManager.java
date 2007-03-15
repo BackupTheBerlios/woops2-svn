@@ -89,15 +89,17 @@ public class NetworkManager {
 	 * 
 	 */
 	private void listen() {
+		System.out.println("listening ...");
 		try {
 			Socket acceptedDataSocket = this.dataSocket.accept();
-
+			System.out.println("accepted connection");
 			BufferedReader inputDataStream;
 			inputDataStream = new BufferedReader(new InputStreamReader(
 					acceptedDataSocket.getInputStream()));
 			String str;
 
 			while (acceptedDataSocket.isConnected()) {
+				System.out.println("getting buffer ... ");
 				str = inputDataStream.readLine();
 				System.out.println("received buffer = "+str);
 				if (str == null)

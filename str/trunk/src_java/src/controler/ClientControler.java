@@ -19,18 +19,19 @@ import common.Constante;
 public class ClientControler {
 
 	private static ClientControler clientControler;
-	
+
 	private List<BusStop> busStops = new ArrayList<BusStop>();
-	
+
 	private List<Bus> bus = new ArrayList<Bus>();
-	
-	private HashMap<Integer,Line> lines = new HashMap<Integer, Line>();
+
+	private HashMap<Integer, Line> lines = new HashMap<Integer, Line>();
 
 	/**
 	 * 
 	 *
 	 */
-	private ClientControler() {}
+	private ClientControler() {
+	}
 
 	/**
 	 * 
@@ -41,7 +42,7 @@ public class ClientControler {
 			clientControler = new ClientControler();
 		return clientControler;
 	}
-	
+
 	public void initialisation() {
 		this.sendCreateCommand(Constante.LIGNE, "24", "null");
 		this.sendCreateCommand(Constante.BUS_STOP, "1", "24");
@@ -49,10 +50,10 @@ public class ClientControler {
 		this.sendCreateCommand(Constante.BUS_STOP, "5", "24");
 		this.sendCreateCommand(Constante.BUS, "45", "24");
 		this.sendCreateCommand(Constante.BUS, "98", "24");
-		
-		System.out.println("nb ligne->"+ this.lines.size());
-		System.out.println("nb busStop->"+ this.busStops.size());
-		System.out.println("nb bus->"+ this.bus.size());
+
+		System.out.println("nb ligne->" + this.lines.size());
+		System.out.println("nb busStop->" + this.busStops.size());
+		System.out.println("nb bus->" + this.bus.size());
 	}
 
 	/**
@@ -67,22 +68,24 @@ public class ClientControler {
 			l = this.lines.get(new Integer(_l).intValue());
 		}
 		switch (_code) {
-			case Constante.BUS_STOP :
-				this.busStops.add(this.createBusStop(new Integer(_id).intValue(), l));
-				Interpretor.getInstance().sendCreateBusStop(_id, l);
-				break;
-			case Constante.LIGNE :
-				this.lines.put(id, this.createLine(id));
-				Interpretor.getInstance().sendCreateLine(_id);
-				break;
-			case Constante.BUS :
-				this.bus.add(this.createBus(id, l));
-				Interpretor.getInstance().sendCreateBus(_id, l);
-				break;		
-			default : break;
+		case Constante.BUS_STOP:
+			this.busStops.add(this
+					.createBusStop(new Integer(_id).intValue(), l));
+			Interpretor.getInstance().sendCreateBusStop(_id, l);
+			break;
+		case Constante.LIGNE:
+			this.lines.put(id, this.createLine(id));
+			Interpretor.getInstance().sendCreateLine(_id);
+			break;
+		case Constante.BUS:
+			this.bus.add(this.createBus(id, l));
+			Interpretor.getInstance().sendCreateBus(_id, l);
+			break;
+		default:
+			break;
 		}
 	}
-	
+
 	/**
 	 * 
 	 * @param cmds
@@ -91,7 +94,7 @@ public class ClientControler {
 		Queue<String> q = Interpretor.getInstance().getMessagesFromNetwork();
 		while (!q.isEmpty()) {
 			String s = q.remove();
-			System.out.println("Taille de la file network : "+ q.size());
+			System.out.println("Taille de la file network : " + q.size());
 			System.out.println(s);
 		}
 	}
@@ -101,38 +104,36 @@ public class ClientControler {
 	 *
 	 */
 	public void startClient() {
-		
+
 		java.awt.EventQueue.invokeLater(new Runnable() {
 			public void run() {
-				MainFrame mainFrame = MainFrame.getInstance();
-				mainFrame.setVisible(true);
+				MainFrame.getInstance().setVisible(true);
 			}
 		});
-		
+
 		Thread threadDisplayer = new Thread() {
 			public void run() {
-				BusDisplayerFrame bd = new BusDisplayerFrame();
-				bd.mainLoop();
+				BusDisplayerFrame.getInstance().mainLoop();
 			}
 		};
 		threadDisplayer.start();
-		
-		 NetworkManager.getInstance();
-		 
-		 Thread threadNetworkMessages = new Thread() {
-				public void run() {
-					while (true) {
-						networkCommandTreatment();
-						try {
-							Thread.sleep(500);
-						} catch (InterruptedException e) {
-							e.printStackTrace();
-						}
+
+		NetworkManager.getInstance();
+
+		Thread threadNetworkMessages = new Thread() {
+			public void run() {
+				while (true) {
+					networkCommandTreatment();
+					try {
+						Thread.sleep(500);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
 					}
 				}
-			};
-			threadNetworkMessages.start();
-		 
+			}
+		};
+		threadNetworkMessages.start();
+
 	}
 
 	/**
@@ -156,7 +157,7 @@ public class ClientControler {
 		Line tmp = new Line(_n);
 		return tmp;
 	}
-	
+
 	/**
 	 * Permet de creer un Bus
 	 * @param _id id du bus
@@ -167,5 +168,5 @@ public class ClientControler {
 		Bus tmp = new Bus(_id, _l);
 		return tmp;
 	}
-	
+
 }

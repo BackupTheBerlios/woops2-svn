@@ -1,5 +1,7 @@
 package org.newdawn.spaceinvaders;
 
+import gui.BusDisplayerFrame;
+
 /**
  * The entity that represents the players ship
  * 
@@ -23,6 +25,10 @@ public class ShipEntity extends Entity {
 		this.game = game;
 	}
 	
+	public ShipEntity(BusDisplayerFrame frame, String ref, int x, int y) {
+		super(ref,x,y);
+	}
+
 	/**
 	 * Request that the ship move itself based on an elapsed ammount of
 	 * time

@@ -1,5 +1,7 @@
 package org.newdawn.spaceinvaders;
 
+import gui.BusDisplayerFrame;
+
 /**
  * An entity which represents one of our space invader aliens.
  * 
@@ -24,6 +26,10 @@ public class AlienEntity extends Entity {
 		
 		this.game = game;
 		dx = -moveSpeed;
+	}
+
+	public AlienEntity(BusDisplayerFrame frame, String ref, int x, int y) {
+		super(ref,x,y);
 	}
 
 	/**

@@ -24,23 +24,28 @@ import org.newdawn.spaceinvaders.ShipEntity;
 @SuppressWarnings("serial")
 public class BusDisplayerFrame extends Canvas {
 	
+	private static BusDisplayerFrame busDisplayerFrame;
+	
+	
+	
 	private static final int REFRESH_TIME = 500; // millisec
 	private final static int X_WINDOW = 500;
 	private final static int Y_WINDOW = 400;
 	
-	/** The stragey that allows us to use accelerate page flipping */
 	private BufferStrategy strategy;
-	/** True if the game is currently "running", i.e. the game loop is looping */
 	private boolean isRunning = true;
-	/** The list of all the entities that exist in our game */
+
 	private ArrayList<Entity> entities = new ArrayList<Entity>();
-	/** The list of entities that need to be removed from the game this loop */
+
 	private ArrayList removeList = new ArrayList();
 	
-	/**
-	 * Construct our game and set it running.
-	 */
-	public BusDisplayerFrame() {
+	public static BusDisplayerFrame getInstance(){
+		if (busDisplayerFrame == null) busDisplayerFrame = new BusDisplayerFrame();
+		return busDisplayerFrame;
+	}
+
+
+	private BusDisplayerFrame() {
 		// create a frame to contain our game
 		JFrame container = new JFrame("ISI Bus Navigator - DISPLAY");
 		
@@ -82,11 +87,8 @@ public class BusDisplayerFrame extends Canvas {
 		initEntities();
 	}
 	
-	/**
-	 * Start a fresh game, this should clear out any old data and
-	 * create a new set.
-	 */
-	private void startGame() {
+	
+	private void reInit() {
 		// clear out any existing entities and intialise a new set
 		entities.clear();
 		initEntities();
@@ -149,12 +151,14 @@ public class BusDisplayerFrame extends Canvas {
 			// cycle round drawing all the entities we have in the game
 			for (int i=0;i<entities.size();i++) {
 				Entity entity = (Entity) entities.get(i);
+				entity.move(delta);
 				entity.draw(g);
 			}
 			
 			// brute force collisions, compare every entity against
 			// every other entity. If any of them collide notify 
 			// both entities that the collision has occured
+			/*
 			for (int p=0;p<entities.size();p++) {
 				for (int s=p+1;s<entities.size();s++) {
 					Entity me = (Entity) entities.get(p);
@@ -165,7 +169,7 @@ public class BusDisplayerFrame extends Canvas {
 						him.collidedWith(me);
 					}
 				}
-			}
+			}*/
 			
 			// remove any entity that has been marked for clear up
 			entities.removeAll(removeList);
