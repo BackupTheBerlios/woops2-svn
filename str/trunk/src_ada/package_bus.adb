@@ -12,8 +12,8 @@ package body package_bus is
         id : int := idBus;
         ptr_pos : t_ptr_t_position := initialPosition;
         speed : int := 0;
-        isStarted : boolean := false;        
-        
+        isStarted : boolean := false;
+                
         ------------------------------------------------
         -- tâche cyclique d'envoi de la position du bus
         ------------------------------------------------
@@ -28,7 +28,7 @@ package body package_bus is
                     if speed < 30 then
                         speed := speed + 5;
                     end if;                
-                    --Sensor.getCurrentPosition(ptr_pos);
+                    --Sensor.getCurrentPosition(ptr_pos.all);
                     put_line("tt_bus: envoi de la position");
                     put("vitesse du bus: ");put_line(int'image(speed));
                     display(ptr_pos.all);
@@ -36,6 +36,24 @@ package body package_bus is
                 end if;               
             end loop;
         end tt_sendPosition;
+        
+        -----------------------------------------------
+        -- tâche cyclique pour le compteur de distance
+        -----------------------------------------------
+        task tt_Odometer;
+        
+        task body tt_Odometer is
+            distanceMeterPerSecond : int;
+        begin
+            loop
+                if (isStarted) then
+                    -- calcul de la distance parcourue
+                    distanceMeterPerSecond := speed * 1000/3600;
+                    ptr_pos.all.distance := C_float(distanceMeterPerSecond);
+                    delay(1.0);                    
+                end if;               
+            end loop;
+        end tt_Odometer;
         
     begin
         
@@ -52,37 +70,37 @@ package body package_bus is
         end loop;
     end tt_bus;
 
-    --------------------------
-    -- objet protégé Odomètre
-    --------------------------
-    protected body Odometer is
-        
-        procedure getCurrentDistance(d : out C_float) is
-        begin
-            d := Odometer.currentDistance;
-        end getCurrentDistance;
-
-        procedure setCurrentDistance(d : in C_float) is
-        begin
-            Odometer.currentDistance := d;
-        end setCurrentDistance;
-
-        procedure getTotalCoveredDistance(d : out C_float) is
-        begin
-            d := Odometer.totalCoveredDistance;
-        end getTotalCoveredDistance;
-
-        procedure setTotalCoveredDistance(d : in C_float) is
-        begin
-            Odometer.totalCoveredDistance := d;
-        end setTotalCoveredDistance;
-
-        procedure updateDistance(dis : in out C_float) is
-        begin
-            dis := Odometer.currentDistance;
-        end updateDistance;
-
-    end Odometer;   
+--    --------------------------
+--    -- objet protégé Odomètre
+--    --------------------------
+--    protected body Odometer is
+--        
+--        procedure getCurrentDistance(d : out C_float) is
+--        begin
+--            d := Odometer.currentDistance;
+--        end getCurrentDistance;
+--
+--        procedure setCurrentDistance(d : in C_float) is
+--        begin
+--            Odometer.currentDistance := d;
+--        end setCurrentDistance;
+--
+--        procedure getTotalCoveredDistance(d : out C_float) is
+--        begin
+--            d := Odometer.totalCoveredDistance;
+--        end getTotalCoveredDistance;
+--
+--        procedure setTotalCoveredDistance(d : in C_float) is
+--        begin
+--            Odometer.totalCoveredDistance := d;
+--        end setTotalCoveredDistance;
+--
+--        procedure updateDistance(dis : in out C_float) is
+--        begin
+--            dis := Odometer.currentDistance;
+--        end updateDistance;
+--
+--    end Odometer;   
 
     -------------------------
     -- objet protégé Capteur

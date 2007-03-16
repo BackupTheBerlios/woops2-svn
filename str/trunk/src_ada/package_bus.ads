@@ -15,28 +15,29 @@ package package_bus is
 
     type t_ptr_tt_bus is access tt_bus;
     
-    --------------------------
-    -- objet protégé Odomètre
-    --------------------------
-    -- permet de manipuler le compteur de distance du bus
-    protected Odometer is
-        
-        procedure getCurrentDistance(d : out C_float);
-        procedure setCurrentDistance(d : in C_float);
-        
-        procedure getTotalCoveredDistance(d : out C_float);
-        procedure setTotalCoveredDistance(d : in C_float);
-        
-        -- modifie la distance de la position courante du bus
-        procedure updateDistance(dis : in out C_float);
-    private
-        currentDistance : C_float := 0.0;
-        totalCoveredDistance : C_float := 0.0;
-    end Odometer;
+--    --------------------------
+--    -- objet protégé Odomètre
+--    --------------------------
+--    -- permet de manipuler le compteur de distance du bus
+--    protected Odometer is
+--        
+--        procedure getCurrentDistance(d : out C_float);
+--        procedure setCurrentDistance(d : in C_float);
+--        
+--        procedure getTotalCoveredDistance(d : out C_float);
+--        procedure setTotalCoveredDistance(d : in C_float);
+--        
+--        -- modifie la distance de la position courante du bus
+--        procedure updateDistance(dis : in out C_float);
+--    private
+--        currentDistance : C_float := 0.0;
+--        totalCoveredDistance : C_float := 0.0;
+--    end Odometer;
     
     -------------------------
     -- objet protégé Capteur
     -------------------------
+    -- VOIR L'UTILITÉ D'UN OBJET PROTEGÉ POUR ACCEDER A LA POSITION DU BUS
     protected Sensor is
         
         procedure getCurrentPosition(p : out t_position);
