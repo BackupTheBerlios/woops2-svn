@@ -6,7 +6,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
-import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
@@ -14,11 +13,11 @@ public class NetworkManager {
 
 	private static final int COMMAND_PORT = 3390;
 
-	private static final int DATA_PORT = 3391;
+	//private static final int DATA_PORT = 3391;
 
 	private static final String hostToConnect = "localhost";
 
-	private ServerSocket dataSocket;
+	//private ServerSocket dataSocket;
 
 	private Socket commandSocket;
 
@@ -56,16 +55,7 @@ public class NetworkManager {
 	 * 
 	 */
 	private NetworkManager() {
-		try {
-
-			this.dataSocket = new ServerSocket(DATA_PORT);
-
-		} catch (UnknownHostException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
+		
 		while (true)
 			try {
 				this.commandSocket = new Socket(hostToConnect, COMMAND_PORT);
@@ -91,14 +81,14 @@ public class NetworkManager {
 	private void listen() {
 		System.out.println("listening ...");
 		try {
-			Socket acceptedDataSocket = this.dataSocket.accept();
-			System.out.println("accepted connection");
+			//Socket acceptedDataSocket = this.dataSocket.accept();
+			//System.out.println("accepted connection");
 			BufferedReader inputDataStream;
 			inputDataStream = new BufferedReader(new InputStreamReader(
-					acceptedDataSocket.getInputStream()));
+					commandSocket.getInputStream()));
 			String str;
 
-			while (acceptedDataSocket.isConnected()) {
+			while (commandSocket.isConnected()) {
 				System.out.println("getting buffer ... ");
 				str = inputDataStream.readLine();
 				System.out.println("received buffer = "+str);
