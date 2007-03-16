@@ -52,23 +52,32 @@ public class NetworkManager {
 
 	/**
 	 * Private constructor for the Singleton.
+	 * @throws  
 	 * 
 	 */
 	private NetworkManager() {
+		System.out.println("creation NM");
 		
 		while (true)
 			try {
 				this.commandSocket = new Socket(hostToConnect, COMMAND_PORT);
+				//Thread.sleep(100);
 				break;
 			} catch (UnknownHostException ex) {
 				// None.
 			} catch (IOException ex) {
 				// None.
-			}
+			}/* catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}*/
 
 		Thread thread = new Thread() {
 			public void run() {
-				listen();
+				for (int i = 0; i < 10; i++){
+					listen();
+				}
+				System.out.println("fin listen");
 			}
 		};
 		thread.start();
@@ -88,13 +97,13 @@ public class NetworkManager {
 					commandSocket.getInputStream()));
 			String str;
 
-			while (commandSocket.isConnected()) {
+			while (true) {
 				System.out.println("getting buffer ... ");
 				str = inputDataStream.readLine();
 				System.out.println("received buffer = "+str);
 				if (str == null)
 					break;
-				Interpretor.getInstance().receiveMessage(str);
+				//Interpretor.getInstance().receiveMessage(str);
 			}
 		} catch (IOException e1) {
 			e1.printStackTrace();
