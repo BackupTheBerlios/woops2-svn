@@ -62,9 +62,8 @@ public class Interpretor {
 		if (tmp.length() > 0) {
 			int deb = tmp.indexOf('@');
 			int fin = tmp.indexOf(';');
-			//this.messagesFromNetwork.offer(tmp.substring(deb - 1, fin + 1)); // FIXME java.lang.StringIndexOutOfBoundsException
-			this.messagesFromNetwork.offer(tmp.substring(deb , fin ));
-			tmp = tmp.substring(fin);
+			this.messagesFromNetwork.offer(tmp.substring(deb , fin));
+			tmp = tmp.substring(fin + 1);
 		}
 	}
 
