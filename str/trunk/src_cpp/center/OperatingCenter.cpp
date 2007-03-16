@@ -131,8 +131,11 @@ void* OperatingCenter::thread_function_receive_position(void *structPosition){
     	cout<<"Distance :"				<< maposition->distance			<<endl;
 	cout<<"Speed :"					<< maStructPosition->speed		<<endl;
 	cout<<"BusId :"					<< maStructPosition->busId		<<endl;
-	int speedInMeterPerSeconde = (int)maposition->distance*1000/3600;
-	int timeInSeconde = speedInMeterPerSeconde / maStructPosition->speed ;
+	int remainingDistance = 1000 - (int)maposition->distance;
+	int speedInMeterPerSeconde = maStructPosition->speed*1000/3600;
+	int timeInSeconde = 0;
+	if(speedInMeterPerSeconde != 0)
+		timeInSeconde = remainingDistance / speedInMeterPerSeconde ;
 	cout<<"Time (sec) calculee :"	<<  	timeInSeconde			<<endl;
 	//mise en place de lecriture dans le fichier pour larchivage
 	
