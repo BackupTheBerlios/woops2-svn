@@ -43,13 +43,14 @@ package body package_bus is
         task tt_Odometer;
         
         task body tt_Odometer is
-            distanceMeterPerSecond : int;
+            distanceMeterPerSecond : C_float;
         begin
             loop
                 if (isStarted) then
                     -- calcul de la distance parcourue
-                    distanceMeterPerSecond := speed * 1000/3600;
-                    ptr_pos.all.distance := C_float(distanceMeterPerSecond);
+                    -- A VOIR
+                    distanceMeterPerSecond := C_float(speed) * 1000.0/3600.0;
+                    ptr_pos.all.distance := ptr_pos.all.distance + distanceMeterPerSecond;
                     delay(1.0);                    
                 end if;               
             end loop;
