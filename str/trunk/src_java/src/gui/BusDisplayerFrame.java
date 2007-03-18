@@ -1,7 +1,9 @@
 package gui;
 
 import gui.sprite.entities.BusEntity;
+import gui.sprite.entities.BusStopEntity;
 import gui.sprite.entities.Entity;
+import gui.sprite.entities.MapEntity;
 
 import java.awt.Canvas;
 import java.awt.Color;
@@ -22,9 +24,9 @@ public class BusDisplayerFrame extends Canvas {
 
 	public static final int REFRESH_TIME = 300; // millisec
 
-	public static final int X_WINDOW = 500;
+	public static final int X_WINDOW = 904;
 
-	public static final int Y_WINDOW = 400;
+	public static final int Y_WINDOW = 376;
 
 	private BufferStrategy strategy;
 
@@ -96,11 +98,18 @@ public class BusDisplayerFrame extends Canvas {
 	private void initEntities() {
 		// create the player ship and place it roughly in the center of the screen
 		//ShipEntity ship = new ShipEntity(this,"sprites/ship.gif",370,550);
+		MapEntity me = new MapEntity("resources/images/plan_bus.png",0,0);
 		BusEntity be = new BusEntity("resources/images/iconBus_small.jpg", 100,
 				100);
-
+		BusStopEntity bse1 = new BusStopEntity("resources/images/bs_small.jpg", 150,
+				100);
+		BusStopEntity bse2 = new BusStopEntity("resources/images/bs_small.jpg", 300,
+				100);
+		
+		entities.add(me);
 		entities.add(be);
-
+		entities.add(bse1);
+		entities.add(bse2);
 	}
 
 	/**
@@ -138,7 +147,7 @@ public class BusDisplayerFrame extends Canvas {
 			// Get hold of a graphics context for the accelerated 
 			// surface and blank it out
 			Graphics2D g = (Graphics2D) strategy.getDrawGraphics();
-			g.setColor(Color.black);
+			g.setColor(Color.white);
 			g.fillRect(0, 0, 800, 600);
 
 			// cycle round drawing all the entities we have in the game

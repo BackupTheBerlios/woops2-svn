@@ -1,8 +1,8 @@
 package gui.sprite.entities;
 
-public class BusStopEntity extends Entity{
+public class MapEntity extends Entity{
 
-	public BusStopEntity(String ref, int x, int y) {
+	public MapEntity(String ref, int x, int y) {
 		super(ref, x, y);
 	}
 
