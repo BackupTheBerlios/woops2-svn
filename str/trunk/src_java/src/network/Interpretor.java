@@ -65,11 +65,15 @@ public class Interpretor {
 	 */
 	public void receiveMessage(String _str) {
 		String tmp = _str;
-		if (tmp.length() > 0) {
-			int deb = tmp.indexOf('@');
-			int fin = tmp.indexOf(';');
-			this.messagesFromNetwork.offer(tmp.substring(deb , fin));
-			tmp = tmp.substring(fin + 1);
+		try {
+			if (tmp.length() > 0) {
+				int deb = tmp.indexOf('@');
+				int fin = tmp.indexOf(';');
+				this.messagesFromNetwork.offer(tmp.substring(deb , fin));
+				tmp = tmp.substring(fin + 1);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 
