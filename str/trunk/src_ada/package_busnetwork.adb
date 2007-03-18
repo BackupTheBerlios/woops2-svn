@@ -9,7 +9,6 @@ package body package_busnetwork is
     ----------------------------
     -- objet protégé BusNetwork
     ----------------------------
-    -- TESTER LE NOUVEAU GETTER ET SETTER
 	protected body BusNetwork is
         
         function getLine(lineId : in int) return t_line is
@@ -70,7 +69,7 @@ package body package_busnetwork is
         
         put("busStop n°");put(int'image(id_busstop));
         put(" ajouté sur la ligne");put_line(int'image(line));
-        put("Etat de la ligne: ");display(BusNetwork.getLine(1));
+        put("Etat de la ligne: ");display(BusNetwork.getLine(line));
         
         exception
             when invalidLineNumber => put_line("Numéro de ligne invalide");
@@ -101,7 +100,6 @@ package body package_busnetwork is
         ptr_bus := new tt_bus(id_bus, ptr_position);
         -- démarrage du bus
         ptr_bus.all.start;
-        -- TODO ajout du bus créé sur la ligne passée en paramètre
         
         exception
             when invalidLineNumber => put_line("Numéro de ligne invalide");

@@ -16,7 +16,6 @@ procedure main is
 begin
         put_line("Main => Debut");
         display(ligne);
-        put_line(int'image(ligne.busStopTable(ligne.busStopTable'first)));
         display(ptr_pos.all);
         bus.start;
         --delay(11.0);

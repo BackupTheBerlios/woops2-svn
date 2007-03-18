@@ -27,6 +27,7 @@ package body package_bus is
                 if (isStarted) then
                     -- envoi de la position toutes les 2 secondes
                     delay(periode);
+                    -- TEMPORAIRE: la vitesse n'augmente pas dans la tache d'envoie de la position
                     if speed < 30 then
                       speed := speed + 5;
                     end if;                
@@ -52,39 +53,35 @@ package body package_bus is
                     -- calcul de la distance parcourue
                     distanceMeterPerSecond := C_float(speed) * 1000.0/3600.0;
                     ptr_pos.all.distance := ptr_pos.all.distance + distanceMeterPerSecond;
-                    delay(1.0);
-                    if ptr_pos.all.distance >= 100.0 then
-                        put_line("ON y EST");
-                        stop;
-                    end if;     
+                    delay(1.0);   
                 end if;               
             end loop;
         end t_Odometer;
         
         
-        -----------------------------------------------
+        ----------------------------------
         -- tâche cyclique pour le capteur
-        -----------------------------------------------
+        ----------------------------------
         task t_Sensor;
         
         task body t_Sensor is
             currentLine : t_line;
         begin
             loop
-                if (not isStarted) and (ptr_pos.all.distance >= 100.0) then
-                    put_line("ON EST A L'ARRET");
+                if (isStarted) and (ptr_pos.all.distance >= 100.0) then
+                    put_line("Distance > 100m");
                     stop;
---                elsif (not isStarted) then
---                    put_line("MISE A JOUR DE LA POSITION");
---                    -- TESTER LA MISE A JOUR DE LA POSITION
---                    -- le bus est arrêté
---                    -- on met a jour la position du bus
---                    ptr_pos.all.distance := 0.0;
---                    currentLine := BusNetwork.getLine(ptr_pos.all.lineNumber);
---                    IndexOfCurrentBusStop := IndexOfCurrentBusStop + 1; 
---                    ptr_pos.all.busStopId := currentLine.busStopTable(IndexOfCurrentBusStop);
---                    -- on simule l'entrée de passagers dans le bus
---                    delay(5.0);
+                elsif (not isStarted) and (ptr_pos.all.distance > 0.0) then
+                    put_line("MISE A JOUR DE LA POSITION");
+                    -- TESTER LA MISE A JOUR DE LA POSITION
+                    -- le bus est arrêté
+                    -- on met a jour la position du bus
+                    ptr_pos.all.distance := 0.0;
+                    currentLine := BusNetwork.getLine(ptr_pos.all.lineNumber);
+                    IndexOfCurrentBusStop := IndexOfCurrentBusStop + 1; 
+                    ptr_pos.all.busStopId := currentLine.busStopTable(IndexOfCurrentBusStop);
+                    -- on simule l'entrée de passagers dans le bus
+                    delay(5.0);
                 end if;               
             end loop;
         end t_Sensor;
@@ -98,6 +95,8 @@ package body package_bus is
             
             accept stop;
                 isStarted := false;
+                -- TEMPORAIRE: arrêt net du bus
+                speed := 0;
                 put_line("tt_bus: Le bus"& int'image(id) & " est arrêté");
                 --Sensor.setCurrentPosition(initialPosition.all);            
         end loop;
