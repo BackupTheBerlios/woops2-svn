@@ -56,7 +56,7 @@ public class NetworkManager {
 	 * 
 	 */
 	private NetworkManager() {
-		System.out.println("creation NM");
+		System.out.println("creation NetworkManager");
 		
 		while (true)
 			try {

@@ -50,10 +50,6 @@ public class ClientControler {
 		this.sendCreateCommand(Constante.BUS_STOP, "5", "24");
 		this.sendCreateCommand(Constante.BUS, "45", "24");
 		this.sendCreateCommand(Constante.BUS, "98", "24");
-
-		System.out.println("nb ligne->" + this.lines.size());
-		System.out.println("nb busStop->" + this.busStops.size());
-		System.out.println("nb bus->" + this.bus.size());
 	}
 
 	/**
@@ -98,6 +94,20 @@ public class ClientControler {
 			System.out.println(s);
 		}
 	}
+	
+	/**
+	 * 
+	 * @param cmds
+	 */
+	public void interfaceCommandTreatment() {
+		Queue<String> q = Interpretor.getInstance().getMessagesFromInterface();
+		while (!q.isEmpty()) {
+			String s = q.remove();
+			System.out.println("Taille de la file interface : " + q.size());
+			System.out.println("envoi de la commande : "+s);
+			NetworkManager.getInstance().sendMessage(s);
+		}
+	}
 
 	/**
 	 * 
@@ -133,6 +143,20 @@ public class ClientControler {
 			}
 		};
 		threadNetworkMessages.start();
+		
+		Thread threadInterfaceMessages = new Thread() {
+			public void run() {
+				while (true) {
+					interfaceCommandTreatment();
+					try {
+						Thread.sleep(500);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+				}
+			}
+		};
+		threadInterfaceMessages.start();
 
 	}
 
