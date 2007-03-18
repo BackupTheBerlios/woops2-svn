@@ -17,21 +17,6 @@ package package_bus is
 
     type t_ptr_tt_bus is access tt_bus;
     
-    -------------------------
-    -- objet protégé Capteur
-    -------------------------
-    -- VOIR L'UTILITÉ D'UN OBJET PROTEGÉ POUR ACCEDER A LA POSITION DU BUS
-    protected Sensor is
-        
-        procedure getCurrentPosition(p : out t_position);
-        procedure setCurrentPosition(p : in t_position);
-        
-        -- modifie le busStopId de la position courante du bus
-        procedure updateBusPosition(bs : in out int);
-    private
-        currentPosition : t_position;
-    end Sensor;    
-    
     -----------------------
     -- objet protégé Radio
     -----------------------

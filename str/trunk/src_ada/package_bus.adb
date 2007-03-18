@@ -13,7 +13,7 @@ package body package_bus is
         ptr_pos : t_ptr_t_position := initialPosition;
         speed : int := 0;
         isStarted : boolean := false;
-        
+        -- l'index précise l'index du dernier arrêt auquel le bus s'est arrêté
         IndexOfCurrentBusStop : integer := 1;
                 
         ------------------------------------------------
@@ -31,7 +31,6 @@ package body package_bus is
                     if speed < 30 then
                       speed := speed + 5;
                     end if;                
-                    --Sensor.getCurrentPosition(ptr_pos.all);
                     put_line("tt_bus: envoi de la position");
                     put("vitesse du bus: ");put_line(int'image(speed));
                     display(ptr_pos.all);
@@ -71,9 +70,9 @@ package body package_bus is
                 if (isStarted) and (ptr_pos.all.distance >= 100.0) then
                     put_line("Distance > 100m");
                     stop;
+                    delay(1.0);
                 elsif (not isStarted) and (ptr_pos.all.distance > 0.0) then
                     put_line("MISE A JOUR DE LA POSITION");
-                    -- TESTER LA MISE A JOUR DE LA POSITION
                     -- le bus est arrêté
                     -- on met a jour la position du bus
                     ptr_pos.all.distance := 0.0;
@@ -81,7 +80,10 @@ package body package_bus is
                     IndexOfCurrentBusStop := IndexOfCurrentBusStop + 1; 
                     ptr_pos.all.busStopId := currentLine.busStopTable(IndexOfCurrentBusStop);
                     -- on simule l'entrée de passagers dans le bus
-                    delay(5.0);
+                    put_line("Les passagers montent dans le bus....");
+                    delay(8.0);
+                    put_line("tt_bus: Le bus" & int'image(id) & " quitte l'arrêt " & int'image(ptr_pos.all.busStopId));
+                    start;
                 end if;               
             end loop;
         end t_Sensor;
@@ -91,38 +93,14 @@ package body package_bus is
             accept start;
                 put_line("tt_bus: Le bus"& int'image(id) & " a démarré");
                 isStarted := true;
-                --Sensor.setCurrentPosition(initialPosition.all);
-            
+                        
             accept stop;
                 isStarted := false;
                 -- TEMPORAIRE: arrêt net du bus
                 speed := 0;
-                put_line("tt_bus: Le bus"& int'image(id) & " est arrêté");
-                --Sensor.setCurrentPosition(initialPosition.all);            
+                put_line("tt_bus: Le bus"& int'image(id) & " est arrêté");       
         end loop;
     end tt_bus;
-
-    -------------------------
-    -- objet protégé Capteur
-    -------------------------
-    protected body Sensor is
-   
-        procedure getCurrentPosition(p : out t_position) is
-        begin
-            p := Sensor.currentPosition;
-        end getCurrentPosition;
-
-        procedure setCurrentPosition(p : in t_position) is
-        begin
-            Sensor.currentPosition := p;
-        end setCurrentPosition;
-
-        procedure updateBusPosition(bs : in out int) is
-        begin
-            bs := Sensor.currentPosition.busStopId;
-        end updateBusPosition;
-
-    end Sensor;
 
     -----------------------
     -- objet protégé Radio

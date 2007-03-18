@@ -91,13 +91,9 @@ package body package_busnetwork is
         put("starting busstop de la ligne 1: ");put_line(int'image(startingBusStop));
         ptr_position := new t_position'(line, startingBusStop, 0.0); 
         
-        -- on fournit la position intiale du bus au capteur
-        --Sensor.setCurrentPosition(ptr_position.all);
-        
+        ptr_bus := new tt_bus(id_bus, ptr_position);
         put("creation du bus n°");put(int'image(id_bus)); 
         put(" sur la ligne");put_line(int'image(line));  
-        
-        ptr_bus := new tt_bus(id_bus, ptr_position);
         -- démarrage du bus
         ptr_bus.all.start;
         
