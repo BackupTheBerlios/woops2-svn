@@ -6,19 +6,7 @@ import gui.sprite.SpriteFactory;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
-/**
- * An entity represents any element that appears in the game. The
- * entity is responsible for resolving collisions and movement
- * based on a set of properties defined either by subclass or externally.
- * 
- * Note that doubles are used for positions. This may seem strange
- * given that pixels locations are integers. However, using double means
- * that an entity can move a partial pixel. It doesn't of course mean that
- * they will be display half way through a pixel but allows us not lose
- * accuracy as we move.
- * 
- * @author Kevin Glass
- */
+
 public abstract class Entity {
 	/** The current x location of this entity */ 
 	protected double x;
