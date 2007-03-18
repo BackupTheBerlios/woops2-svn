@@ -23,5 +23,20 @@ package package_busnetwork is
 	-- envoie d'un message d'urgence au centre d'exploitation en cas de problème
 	--procedure p_sendPriorityMessage(ptr_mes : out t_ptr_t_priorityMessage);
 	--pragma export(CPP, p_sendPriorityMessage, "p_sendPriorityMessage");
+    
+    ---------------------------------------------
+    -- Déclaration de l'objet protégé BusNetwork
+    ---------------------------------------------
+    -- l'objet BusNetwork permet de partager les données entre les tâches
+    -- dans notre cas, les lignes du réseau doivent être partagées
+    protected BusNetwork is
+        
+        function getLine(lineId : in int) return t_line;        
+        procedure setLine(lineId : in int; line : in t_line);        
+        
+        private
+            line_1 : t_line := (lineNumber => 1, busStopTable => (others => 0));
+            line_2 : t_line := (lineNumber => 2, busStopTable => (others => 0));
+    end BusNetwork;
 
 end package_busnetwork;

@@ -13,20 +13,22 @@ package body package_bus is
         ptr_pos : t_ptr_t_position := initialPosition;
         speed : int := 0;
         isStarted : boolean := false;
+        
+        IndexOfCurrentBusStop : integer := 1;
                 
         ------------------------------------------------
         -- tâche cyclique d'envoi de la position du bus
         ------------------------------------------------
-        task tt_sendPosition;
+        task t_sendPosition;
         
-        task body tt_sendPosition is
+        task body t_sendPosition is
         begin
             loop
                 if (isStarted) then
                     -- envoi de la position toutes les 2 secondes
                     delay(periode);
                     if speed < 30 then
-                        speed := speed + 5;
+                      speed := speed + 5;
                     end if;                
                     --Sensor.getCurrentPosition(ptr_pos.all);
                     put_line("tt_bus: envoi de la position");
@@ -35,29 +37,59 @@ package body package_bus is
                     Radio.sendPositionToCenter(ptr_pos, speed, id); 
                 end if;               
             end loop;
-        end tt_sendPosition;
+        end t_sendPosition;
         
         -----------------------------------------------
         -- tâche cyclique pour le compteur de distance
         -----------------------------------------------
-        task tt_Odometer;
+        task t_Odometer;
         
-        task body tt_Odometer is
+        task body t_Odometer is
             distanceMeterPerSecond : C_float;
         begin
             loop
                 if (isStarted) then
                     -- calcul de la distance parcourue
-                    -- A VOIR
                     distanceMeterPerSecond := C_float(speed) * 1000.0/3600.0;
                     ptr_pos.all.distance := ptr_pos.all.distance + distanceMeterPerSecond;
-                    delay(1.0);                    
+                    delay(1.0);
+                    if ptr_pos.all.distance >= 100.0 then
+                        put_line("ON y EST");
+                        stop;
+                    end if;     
                 end if;               
             end loop;
-        end tt_Odometer;
+        end t_Odometer;
         
-    begin
         
+        -----------------------------------------------
+        -- tâche cyclique pour le capteur
+        -----------------------------------------------
+        task t_Sensor;
+        
+        task body t_Sensor is
+            currentLine : t_line;
+        begin
+            loop
+                if (not isStarted) and (ptr_pos.all.distance >= 100.0) then
+                    put_line("ON EST A L'ARRET");
+                    stop;
+--                elsif (not isStarted) then
+--                    put_line("MISE A JOUR DE LA POSITION");
+--                    -- TESTER LA MISE A JOUR DE LA POSITION
+--                    -- le bus est arrêté
+--                    -- on met a jour la position du bus
+--                    ptr_pos.all.distance := 0.0;
+--                    currentLine := BusNetwork.getLine(ptr_pos.all.lineNumber);
+--                    IndexOfCurrentBusStop := IndexOfCurrentBusStop + 1; 
+--                    ptr_pos.all.busStopId := currentLine.busStopTable(IndexOfCurrentBusStop);
+--                    -- on simule l'entrée de passagers dans le bus
+--                    delay(5.0);
+                end if;               
+            end loop;
+        end t_Sensor;
+        
+    begin        
         loop
             accept start;
                 put_line("tt_bus: Le bus"& int'image(id) & " a démarré");
@@ -70,38 +102,6 @@ package body package_bus is
                 --Sensor.setCurrentPosition(initialPosition.all);            
         end loop;
     end tt_bus;
-
---    --------------------------
---    -- objet protégé Odomètre
---    --------------------------
---    protected body Odometer is
---        
---        procedure getCurrentDistance(d : out C_float) is
---        begin
---            d := Odometer.currentDistance;
---        end getCurrentDistance;
---
---        procedure setCurrentDistance(d : in C_float) is
---        begin
---            Odometer.currentDistance := d;
---        end setCurrentDistance;
---
---        procedure getTotalCoveredDistance(d : out C_float) is
---        begin
---            d := Odometer.totalCoveredDistance;
---        end getTotalCoveredDistance;
---
---        procedure setTotalCoveredDistance(d : in C_float) is
---        begin
---            Odometer.totalCoveredDistance := d;
---        end setTotalCoveredDistance;
---
---        procedure updateDistance(dis : in out C_float) is
---        begin
---            dis := Odometer.currentDistance;
---        end updateDistance;
---
---    end Odometer;   
 
     -------------------------
     -- objet protégé Capteur

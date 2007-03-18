@@ -19,7 +19,7 @@ begin
         put_line(int'image(ligne.busStopTable(ligne.busStopTable'first)));
         display(ptr_pos.all);
         bus.start;
-        delay(11.0);
-        bus.stop;
+        --delay(11.0);
+        --bus.stop;
 end main;
     

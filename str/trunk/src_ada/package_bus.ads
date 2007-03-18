@@ -11,28 +11,11 @@ package package_bus is
     task type tt_bus(idBus : int; initialPosition : t_ptr_t_position) is
         entry start;
         entry stop;
+        -- entry accelerate;
+        -- entry decelerate;
     end tt_bus;
 
     type t_ptr_tt_bus is access tt_bus;
-    
---    --------------------------
---    -- objet protégé Odomètre
---    --------------------------
---    -- permet de manipuler le compteur de distance du bus
---    protected Odometer is
---        
---        procedure getCurrentDistance(d : out C_float);
---        procedure setCurrentDistance(d : in C_float);
---        
---        procedure getTotalCoveredDistance(d : out C_float);
---        procedure setTotalCoveredDistance(d : in C_float);
---        
---        -- modifie la distance de la position courante du bus
---        procedure updateDistance(dis : in out C_float);
---    private
---        currentDistance : C_float := 0.0;
---        totalCoveredDistance : C_float := 0.0;
---    end Odometer;
     
     -------------------------
     -- objet protégé Capteur
