@@ -162,6 +162,20 @@ public class ClientControler {
 		};
 		threadNetworkMessages.start();
 		
+		Thread threadCartesianPositionUpdate = new Thread() {
+			public void run() {
+				while (true) {
+					cartesianPositionUpdate();
+					try {
+						Thread.sleep(500);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+				}
+			}
+		};
+		threadCartesianPositionUpdate.start();
+		
 		Thread threadInterfaceMessages = new Thread() {
 			public void run() {
 				while (true) {
@@ -178,6 +192,19 @@ public class ClientControler {
 
 	}
 
+	/**
+	 * Methode pour traiter les cartesianPosition et mettre à jours le 
+	 * modèle
+	 */
+	private void cartesianPositionUpdate() {
+		for (CartesianPosition cp : this.cartesianPositionQueue){
+			Bus b = this.bus.get(cp.getBus().getId());
+			b.getRepresentation().setX(cp.getX());
+			b.getRepresentation().setY(cp.getY());
+		}
+	}
+	
+	
 	/**
 	 * Permet de creer un arret de bus
 	 * @param _id id de l arret
