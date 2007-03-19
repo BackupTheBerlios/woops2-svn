@@ -13,7 +13,7 @@
 
 using namespace std;
 
-
+int commandSocket, acceptedCommandSocket;
 
 class NetworkManager {
         
@@ -29,7 +29,6 @@ class NetworkManager {
         //int commandSocket, acceptedCommandSocket;
         int numbytes,dataBytes;
 		int i;
-		int commandSocket, acceptedCommandSocket;
 
 		char buf[MAX_BUFFER_SIZE];
         char* buf2;
@@ -128,7 +127,7 @@ class NetworkManager {
 
             void sendBuffer(char* _buffer){
                 printf("sending : %s \n", _buffer);
-                _buffer[strlen(_buffer)] = '\n'; // position '\n'
+                //_buffer[strlen(_buffer)] = '\n'; // position '\n'
 				
                 if ((send(acceptedCommandSocket, _buffer, strlen(_buffer), 0)) <= 0 ) {
                     perror("send");
