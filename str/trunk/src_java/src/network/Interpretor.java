@@ -87,8 +87,8 @@ public class Interpretor {
 	/**
 	 * @param messagesFromNetwork the messagesFromNetwork to set
 	 */
-	public void setMessagesFromNetwork(Queue<String> messagesFromNetwork) {
-		this.messagesFromNetwork = messagesFromNetwork;
+	public void setMessagesFromNetwork(Queue<String> _messagesFromNetwork) {
+		this.messagesFromNetwork = _messagesFromNetwork;
 	}
 
 	/**
