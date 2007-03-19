@@ -1,7 +1,9 @@
 #ifndef _Interpretor_H
 #define _Interpretor_H
 
-#include "../center/OperatingCenter.h"
+#include <iostream>
+
+using namespace std;
 
 class Interpretor {
 

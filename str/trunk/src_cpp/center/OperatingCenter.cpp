@@ -10,6 +10,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "../network/Interpretor.h"
+#include "interfaceAda.h"
 
 t_memoire* memoire[50];
 int taillememoire = 0;
@@ -159,7 +160,7 @@ void* OperatingCenter::thread_function_receive_position(void *structPosition){
 	structarch->distance = maposition->distance;
 	pthread_t thread_fichier;
 	etat = pthread_create(&thread_fichier,NULL,thread_function_archivage, (void*)structarch);
-	//Interpretor::getInstance()->sendPosition(maposition->lineNumber, maStructPosition->busId, maposition->busStopId, timeInSeconde);
+	Interpretor::getInstance()->sendPosition(maposition->lineNumber, maStructPosition->busId, maposition->busStopId, (int)maposition->distance );
 }
 
 /**fonction de thread pour l'écoute de la réception d'information.

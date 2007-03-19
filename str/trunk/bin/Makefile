@@ -5,7 +5,7 @@ CFLAGS= -ansi
 LDFLAGS= -ansi  -lpthread -lstdc++ -lgcc_s 
 #LGTKFLAGS= `pkg-config --cflags --libs gtk+-2.0` 
 EXEC=busnetwork.exe
-BIN = NetworkManager.o OperatingCenter.o  interfaceAda.o Interpretor.o
+BIN = NetworkManager.o Interpretor.o OperatingCenter.o  interfaceAda.o
 #BINADA = package_busnetwork.o package_busstop.o package_types.o package_constantes.o mainada.o
 ALI = package_busnetwork.ali #package_busstop.ali package_types.ali package_constantes.ali
 
@@ -25,7 +25,7 @@ NetworkManager.o: ../src_cpp/network/NetworkManager.h
 Interpretor.o: ../src_cpp/network/Interpretor.h
 	$(CC) $(LDFLAGS)-o Interpretor.o  -c ../src_cpp/network/Interpretor.cpp  
 
-interfaceAda.o: ../src_cpp/center/interfaceAda.cpp ../src_cpp/center/OperatingCenter.h ../src_cpp/center/Types.h
+interfaceAda.o: ../src_cpp/center/interfaceAda.h ../src_cpp/center/OperatingCenter.h ../src_cpp/center/Types.h ../src_cpp/network/NetworkManager.h
 	$(CC) $(CFLAGS) -o interfaceAda.o -c ../src_cpp/center/interfaceAda.cpp
 
 #package_busstop.ali : package_busstop.ads package_busstop.adb

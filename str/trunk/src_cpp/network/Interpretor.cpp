@@ -1,5 +1,7 @@
 #include "Interpretor.h"
 #include "../center/OperatingCenter.h"
+#include "NetworkManager.h"
+#include "../center/util.h"
 
 Interpretor::Interpretor()
 {
@@ -47,11 +49,7 @@ void Interpretor::receiveInformation(char* buffer)
 			//traitement des différents cas
 			if(commande.substr(1,i) == "createBusStop:")
 			{
-				createBusStop(commande.substr(i+1,commande.length()-1));
-			}
-			if(commande.substr(1,i) == "createLine:")
-			{
-				createLine(commande.substr(i+1,commande.length()-1));
+			//	createBusStop(commande.substr(i+1,commande.length()-1));
 			}
 			if(commande.substr(1,i) == "createBus:")
 			{
@@ -101,6 +99,14 @@ void Interpretor::createBus(string buffer)
 
 void Interpretor::sendPosition(int lineId, int busId, int busStopId, int time)
 {
+	string chaine = "@position:"+ stringify((double)lineId);
+	chaine += ","+stringify((double)busId) ;
+	chaine += ","+stringify((double)busStopId);
+	chaine += ","+stringify((double)time);
+	chaine += ";\n";
+	char * chainechar = (char*)chaine.c_str();
+	cout<<"Chaine char"<<chainechar<<endl;
+	NetworkManager::getInstance()->sendBuffer(chainechar);
 }
 
 Interpretor  *Interpretor::interpretor = NULL;
