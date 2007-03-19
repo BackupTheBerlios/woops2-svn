@@ -43,11 +43,15 @@ void receivePosition(t_position *pos, int speed, int busId)
 
 void adainit_busStop(int nombre, int ligne)
 {
-	p_initBusStop(nombre,ligne);
+	//p_initBusStop(nombre,ligne);
+	
 }
 
 void adainit_bus(int nombre, int ligne)
 {
+	p_initBusStop(1,1);
+	p_initBusStop(2,1);
+	p_initBusStop(3,1);
 	p_initBus(5,1);
 }
 

@@ -12,6 +12,7 @@
 #include "../network/Interpretor.h"
 #include "interfaceAda.h"
 
+int DISTANCE_BETWEEN_TO_STOP = 100;
 t_memoire* memoire[50];
 int taillememoire = 0;
 static pthread_mutex_t mutex;
@@ -101,7 +102,8 @@ void* OperatingCenter::thread_function_getvaleur(void* a){
 		sleep(10);
 		for(int i=0;i<taillememoire;i++)
 		{
-			cout<<"Bus Stop pour JAAAVVVAAAAA"<<memoire[i]->busStop<<endl;		
+			cout<<"Envoie des informations"<<memoire[i]->busStop<<endl;	
+			//Interpretor.getinstance()->	
 		}
 
 	}
@@ -160,7 +162,7 @@ void* OperatingCenter::thread_function_receive_position(void *structPosition){
 	structarch->distance = maposition->distance;
 	pthread_t thread_fichier;
 	etat = pthread_create(&thread_fichier,NULL,thread_function_archivage, (void*)structarch);
-	Interpretor::getInstance()->sendPosition(maposition->lineNumber, maStructPosition->busId, maposition->busStopId, (int)maposition->distance );
+	Interpretor::getInstance()->sendPosition(maposition->lineNumber, maStructPosition->busId, maposition->busStopId, ((int)maposition->distance*100)/DISTANCE_BETWEEN_TO_STOP );
 }
 
 /**fonction de thread pour l'écoute de la réception d'information.

@@ -12,6 +12,9 @@
 
 using namespace std;
 
+
+
+
 /**
 Structure qui correspond a la position d'un bus.
 */
