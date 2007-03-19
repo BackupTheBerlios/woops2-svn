@@ -11,6 +11,7 @@ import java.util.Queue;
 
 import model.Bus;
 import model.BusStop;
+import model.CartesianPosition;
 import model.Line;
 import network.Interpretor;
 import network.NetworkManager;
@@ -28,6 +29,8 @@ public class ClientControler {
 	private HashMap<Integer, Line> lines = new HashMap<Integer, Line>();
 	
 	private Queue<String> messagesFromInterface;
+	
+	private Queue<CartesianPosition> cartesianPositionQueue;
 
 	/**
 	 * 
@@ -35,6 +38,7 @@ public class ClientControler {
 	 */
 	private ClientControler() {
 		this.messagesFromInterface = new LinkedList<String>();
+		this.cartesianPositionQueue = new LinkedList<CartesianPosition>();
 	}
 
 	/**
@@ -221,6 +225,21 @@ public class ClientControler {
 	 */
 	public void setMessagesFromInterface(Queue<String> _messagesFromInterface) {
 		this.messagesFromInterface = _messagesFromInterface;
+	}
+
+	/**
+	 * @return the cartesianPositionQueue
+	 */
+	public Queue<CartesianPosition> getCartesianPositionQueue() {
+		return cartesianPositionQueue;
+	}
+
+	/**
+	 * @param cartesianPositionQueue the cartesianPositionQueue to set
+	 */
+	public void setCartesianPositionQueue(
+			Queue<CartesianPosition> cartesianPositionQueue) {
+		this.cartesianPositionQueue = cartesianPositionQueue;
 	}
 
 }
