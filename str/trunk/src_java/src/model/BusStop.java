@@ -3,6 +3,8 @@
  */
 package model;
 
+import gui.sprite.entities.BusStopEntity;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -19,15 +21,18 @@ public class BusStop extends SystemObject {
 	
 	private List<Line> lines;
 	
+	private BusStopEntity representation;
+	
 	/**
 	 * Constructeur par defaut
 	 * @param _id
 	 * @param _p
 	 */
-	public BusStop(int _id) {
+	public BusStop(int _id, int _x, int _y) {
 		this.id = _id;
 		this.lines = new ArrayList<Line>();
-		positions = new HashMap<Integer, Position>();
+		this.positions = new HashMap<Integer, Position>();
+		this.representation = new BusStopEntity("resources/images/dot_bs.png", _x, _y);
 	}
 	
 	/**
@@ -96,5 +101,19 @@ public class BusStop extends SystemObject {
 	 */
 	public void setLines(List<Line> lines) {
 		this.lines = lines;
+	}
+
+	/**
+	 * @return the representation
+	 */
+	public BusStopEntity getRepresentation() {
+		return this.representation;
+	}
+
+	/**
+	 * @param representation the representation to set
+	 */
+	public void setRepresentation(BusStopEntity _representation) {
+		this.representation = _representation;
 	}
 }

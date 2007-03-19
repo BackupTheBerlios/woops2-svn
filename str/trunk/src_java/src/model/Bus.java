@@ -1,18 +1,23 @@
 package model;
 
+import gui.sprite.entities.BusEntity;
+
 public class Bus extends SystemObject {
 	
 	private int id;
 	
 	private Line line;
 	
+	private BusEntity representation;
+	
 	/**
 	 * 
 	 * @param _id
 	 */
-	public Bus(int _id, Line _l) {
+	public Bus(int _id, Line _l, int _x, int _y) {
 		this.id = _id;
 		this.line = _l;
+		this.representation = new BusEntity("resources/images/dot_b.png", _x, _y);
 	}
 
 	/**
@@ -41,6 +46,20 @@ public class Bus extends SystemObject {
 	 */
 	public void setLine(Line line) {
 		this.line = line;
+	}
+
+	/**
+	 * @return the representation
+	 */
+	public BusEntity getRepresentation() {
+		return representation;
+	}
+
+	/**
+	 * @param representation the representation to set
+	 */
+	public void setRepresentation(BusEntity representation) {
+		this.representation = representation;
 	}
 	
 }

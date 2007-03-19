@@ -1,7 +1,5 @@
 package gui;
 
-import gui.sprite.entities.BusEntity;
-import gui.sprite.entities.BusStopEntity;
 import gui.sprite.entities.Entity;
 import gui.sprite.entities.MapEntity;
 
@@ -34,7 +32,7 @@ public class BusDisplayerFrame extends Canvas {
 
 	private ArrayList<Entity> entities = new ArrayList<Entity>();
 
-	private ArrayList removeList = new ArrayList();
+	private ArrayList<Entity> removeList = new ArrayList<Entity>();
 
 	public static BusDisplayerFrame getInstance() {
 		if (busDisplayerFrame == null)
@@ -84,11 +82,11 @@ public class BusDisplayerFrame extends Canvas {
 		initEntities();
 	}
 
+	@SuppressWarnings("unused")
 	private void reInit() {
 		// clear out any existing entities and intialise a new set
 		entities.clear();
 		initEntities();
-
 	}
 
 	/**
@@ -99,50 +97,7 @@ public class BusDisplayerFrame extends Canvas {
 		// create the player ship and place it roughly in the center of the screen
 		//ShipEntity ship = new ShipEntity(this,"sprites/ship.gif",370,550);
 		MapEntity me = new MapEntity("resources/images/plan_bus.png",0,0);
-		BusEntity be = new BusEntity("resources/images/dot_b.png", 100,
-				100);
-		BusStopEntity bse1 = new BusStopEntity("resources/images/dot_bs.png", 104,
-				37);
-		BusStopEntity bse2 = new BusStopEntity("resources/images/dot_bs.png", 160,
-				75);
-		BusStopEntity bse3 = new BusStopEntity("resources/images/dot_bs.png", 110,
-				69);
-		BusStopEntity bse4 = new BusStopEntity("resources/images/dot_bs.png", 209,
-				45);
-		BusStopEntity bse5 = new BusStopEntity("resources/images/dot_bs.png", 309,
-				79);
-		BusStopEntity bse6 = new BusStopEntity("resources/images/dot_bs.png", 383,
-				84);
-		BusStopEntity bse7 = new BusStopEntity("resources/images/dot_bs.png", 438,
-				83);
-		BusStopEntity bse8 = new BusStopEntity("resources/images/dot_bs.png", 546,
-				28);
-		BusStopEntity bse9 = new BusStopEntity("resources/images/dot_bs.png", 603,
-				44);
-		BusStopEntity bse10 = new BusStopEntity("resources/images/dot_bs.png", 689,
-				121);
-		BusStopEntity bse11 = new BusStopEntity("resources/images/dot_bs.png", 755,
-				181);
-		BusStopEntity bse12 = new BusStopEntity("resources/images/dot_bs.png", 774,
-				243);
-		BusStopEntity bse13 = new BusStopEntity("resources/images/dot_bs.png", 816,
-				230);
-		
 		entities.add(me);
-		entities.add(be);
-		entities.add(bse1);
-		entities.add(bse2);
-		entities.add(bse3);
-		entities.add(bse4);
-		entities.add(bse5);
-		entities.add(bse6);
-		entities.add(bse7);
-		entities.add(bse8);
-		entities.add(bse9);
-		entities.add(bse10);
-		entities.add(bse11);
-		entities.add(bse12);
-		entities.add(bse13);
 	}
 
 	/**
@@ -220,6 +175,20 @@ public class BusDisplayerFrame extends Canvas {
 			} catch (Exception e) {
 			}
 		}
+	}
+
+	/**
+	 * @return the entities
+	 */
+	public ArrayList<Entity> getEntities() {
+		return entities;
+	}
+
+	/**
+	 * @param entities the entities to set
+	 */
+	public void setEntities(ArrayList<Entity> entities) {
+		this.entities = entities;
 	}
 
 }

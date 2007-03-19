@@ -44,12 +44,22 @@ public class ClientControler {
 	}
 
 	public void initialisation() {
-		this.sendCreateCommand(Constante.LIGNE, "24", "null");
-		this.sendCreateCommand(Constante.BUS_STOP, "1", "24");
-		this.sendCreateCommand(Constante.BUS_STOP, "3", "24");
-		this.sendCreateCommand(Constante.BUS_STOP, "5", "24");
-		this.sendCreateCommand(Constante.BUS, "45", "24");
-		this.sendCreateCommand(Constante.BUS, "98", "24");
+		this.sendCreateCommand(Constante.LIGNE, "24", "null", 0, 0);
+		this.sendCreateCommand(Constante.BUS_STOP, "1", "12", 104, 37);
+		this.sendCreateCommand(Constante.BUS_STOP, "2", "12", 110, 69);
+		this.sendCreateCommand(Constante.BUS_STOP, "3", "12", 160, 75);
+		this.sendCreateCommand(Constante.BUS_STOP, "4", "12", 209, 45);
+		this.sendCreateCommand(Constante.BUS_STOP, "5", "12", 309, 79);
+		this.sendCreateCommand(Constante.BUS_STOP, "6", "12", 383, 84);
+		this.sendCreateCommand(Constante.BUS_STOP, "7", "12", 438, 83);
+		this.sendCreateCommand(Constante.BUS_STOP, "8", "12", 546, 28);
+		this.sendCreateCommand(Constante.BUS_STOP, "9", "12", 603, 44);
+		this.sendCreateCommand(Constante.BUS_STOP, "10", "12", 689, 121);
+		this.sendCreateCommand(Constante.BUS_STOP, "11", "12", 755, 181);
+		this.sendCreateCommand(Constante.BUS_STOP, "12", "12", 774, 243);
+		this.sendCreateCommand(Constante.BUS_STOP, "13", "12", 816, 230);
+		this.sendCreateCommand(Constante.BUS, "45", "12", 104, 37);
+		this.sendCreateCommand(Constante.BUS, "98", "12", 104, 37);		
 	}
 
 	/**
@@ -57,7 +67,7 @@ public class ClientControler {
 	 * @param _code
 	 * @param _str
 	 */
-	public void sendCreateCommand(int _code, String _id, String _l) {
+	public void sendCreateCommand(int _code, String _id, String _l, int _x, int _y) {
 		Line l = null;
 		int id = new Integer(_id).intValue();
 		if (!_l.equals("null")) {
@@ -66,7 +76,7 @@ public class ClientControler {
 		switch (_code) {
 		case Constante.BUS_STOP:
 			this.busStops.add(this
-					.createBusStop(new Integer(_id).intValue(), l));
+					.createBusStop(new Integer(_id).intValue(), l, _x, _y));
 			Interpretor.getInstance().sendCreateBusStop(_id, l);
 			break;
 		case Constante.LIGNE:
@@ -74,7 +84,7 @@ public class ClientControler {
 			Interpretor.getInstance().sendCreateLine(_id);
 			break;
 		case Constante.BUS:
-			this.bus.add(this.createBus(id, l));
+			this.bus.add(this.createBus(id, l, _x, _y));
 			Interpretor.getInstance().sendCreateBus(_id, l);
 			break;
 		default:
@@ -166,9 +176,10 @@ public class ClientControler {
 	 * @param _l ligne de l'arret
 	 * @return un arret de bus
 	 */
-	private BusStop createBusStop(int _id, Line _l) {
-		BusStop tmp = new BusStop(_id);
+	private BusStop createBusStop(int _id, Line _l, int _x, int _y) {
+		BusStop tmp = new BusStop(_id, _x, _y);
 		tmp.addLine(_l);
+		BusDisplayerFrame.getInstance().getEntities().add(tmp.getRepresentation());
 		return tmp;
 	}
 
@@ -188,8 +199,9 @@ public class ClientControler {
 	 * @param _l ligne du bus
 	 * @return un bus
 	 */
-	private Bus createBus(int _id, Line _l) {
-		Bus tmp = new Bus(_id, _l);
+	private Bus createBus(int _id, Line _l, int _x, int _y) {
+		Bus tmp = new Bus(_id, _l, _x, _y);
+		BusDisplayerFrame.getInstance().getEntities().add(tmp.getRepresentation());
 		return tmp;
 	}
 
