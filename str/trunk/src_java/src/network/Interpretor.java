@@ -3,6 +3,9 @@ package network;
 import java.util.LinkedList;
 import java.util.Queue;
 
+import controler.ClientControler;
+
+import model.CartesianPosition;
 import model.Line;
 
 public class Interpretor {
@@ -28,6 +31,21 @@ public class Interpretor {
 		if (interpretor == null)
 			interpretor = new Interpretor();
 		return interpretor;
+	}
+	
+	/**
+	 * 
+	 * @param cmds
+	 */
+	public void networkCommandTreatment() {
+		Queue<CartesianPosition> dest = ClientControler.getInstance().getCartesianPositionQueue();
+		while (!this.getMessagesFromNetwork().isEmpty()) {
+			String s = this.getMessagesFromNetwork().remove();
+			String tmp = s;
+			if (s.contains("@position")) {
+				//TODO a faire
+			}
+		}
 	}
 
 	/**

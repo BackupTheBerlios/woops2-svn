@@ -42,6 +42,18 @@ public class Line extends SystemObject {
 	}
 	
 	/**
+	 * 
+	 * @param number
+	 * @return
+	 */
+	public BusStop nextBusStop(BusStop _bs) {
+		for (BusStop tmp : this.busStops) {
+			if (_bs.getId() == tmp.getId()) return tmp;
+		}
+		return null;
+	}
+	
+	/**
 	 * @return the number
 	 */
 	public int getNumber() {

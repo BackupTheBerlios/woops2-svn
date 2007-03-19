@@ -104,19 +104,6 @@ public class ClientControler {
 	 * 
 	 * @param cmds
 	 */
-	public void networkCommandTreatment() {
-		Queue<String> q = Interpretor.getInstance().getMessagesFromNetwork();
-		while (!q.isEmpty()) {
-			String s = q.remove();
-			System.out.println("Taille de la file network : " + q.size());
-			System.out.println(s);
-		}
-	}
-	
-	/**
-	 * 
-	 * @param cmds
-	 */
 	public void interfaceCommandTreatment() {
 		Queue<String> q = this.getMessagesFromInterface();
 		while (!q.isEmpty()) {
@@ -151,7 +138,7 @@ public class ClientControler {
 		Thread threadNetworkMessages = new Thread() {
 			public void run() {
 				while (true) {
-					networkCommandTreatment();
+					Interpretor.getInstance().networkCommandTreatment();
 					try {
 						Thread.sleep(500);
 					} catch (InterruptedException e) {
