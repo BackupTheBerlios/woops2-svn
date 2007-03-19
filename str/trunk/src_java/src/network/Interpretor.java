@@ -5,6 +5,7 @@ import java.util.Queue;
 
 import controler.ClientControler;
 
+import model.Bus;
 import model.CartesianPosition;
 import model.Line;
 
@@ -41,11 +42,22 @@ public class Interpretor {
 		Queue<CartesianPosition> dest = ClientControler.getInstance().getCartesianPositionQueue();
 		while (!this.getMessagesFromNetwork().isEmpty()) {
 			String s = this.getMessagesFromNetwork().remove();
-			String tmp = s;
 			if (s.contains("@position")) {
-				//TODO a faire
+				dest.offer(this.positionTreatment(s));
 			}
 		}
+	}
+	
+	/**
+	 * 
+	 * @param _s
+	 * @return
+	 */
+	public CartesianPosition positionTreatment(String _s) {
+		String[] portions = _s.split(",");
+		Line l = ClientControler.getInstance().getLines().get(new Integer(portions[0].substring(portions[0].indexOf(":") + 1)));
+		Bus b = ClientControler.getInstance().getBus().get(new Integer(portions[1]));		
+		return new CartesianPosition(l, b, new Integer(portions[2]), new Integer(portions[3]));
 	}
 
 	/**

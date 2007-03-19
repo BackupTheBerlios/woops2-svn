@@ -22,11 +22,11 @@ public class ClientControler {
 
 	private static ClientControler clientControler;
 
-	private List<BusStop> busStops = new ArrayList<BusStop>();
+	private List<BusStop> busStops;
 
-	private List<Bus> bus = new ArrayList<Bus>();
+	private HashMap<Integer, Bus> bus;
 
-	private HashMap<Integer, Line> lines = new HashMap<Integer, Line>();
+	private HashMap<Integer, Line> lines; 
 	
 	private Queue<String> messagesFromInterface;
 	
@@ -37,6 +37,9 @@ public class ClientControler {
 	 *
 	 */
 	private ClientControler() {
+		this.bus = new HashMap<Integer, Bus>();
+		this.busStops = new ArrayList<BusStop>();
+		this.lines = new HashMap<Integer, Line>();
 		this.messagesFromInterface = new LinkedList<String>();
 		this.cartesianPositionQueue = new LinkedList<CartesianPosition>();
 	}
@@ -92,7 +95,7 @@ public class ClientControler {
 				Interpretor.getInstance().sendCreateLine(_id);
 				break;
 			case Constante.BUS:
-				this.bus.add(this.createBus(id, l, _x, _y));
+				this.bus.put(id, this.createBus(id, l, _x, _y));
 				Interpretor.getInstance().sendCreateBus(_id, l);
 				break;
 			default:
@@ -254,6 +257,48 @@ public class ClientControler {
 	public void setCartesianPositionQueue(
 			Queue<CartesianPosition> cartesianPositionQueue) {
 		this.cartesianPositionQueue = cartesianPositionQueue;
+	}
+
+	/**
+	 * @return the lines
+	 */
+	public HashMap<Integer, Line> getLines() {
+		return this.lines;
+	}
+
+	/**
+	 * @param _lines the lines to set
+	 */
+	public void setLines(HashMap<Integer, Line> _lines) {
+		this.lines = _lines;
+	}
+
+	/**
+	 * @return the busStops
+	 */
+	public List<BusStop> getBusStops() {
+		return this.busStops;
+	}
+
+	/**
+	 * @param _busStops the busStops to set
+	 */
+	public void setBusStops(List<BusStop> _busStops) {
+		this.busStops = _busStops;
+	}
+
+	/**
+	 * @return the bus
+	 */
+	public HashMap<Integer, Bus> getBus() {
+		return this.bus;
+	}
+
+	/**
+	 * @param _bus the bus to set
+	 */
+	public void setBus(HashMap<Integer, Bus> _bus) {
+		this.bus = _bus;
 	}
 
 }
