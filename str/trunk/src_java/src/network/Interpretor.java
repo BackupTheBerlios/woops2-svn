@@ -11,15 +11,12 @@ public class Interpretor {
 	
 	private Queue<String> messagesFromNetwork;
 	
-	private Queue<String> messagesFromInterface;
-	
 	/**
 	 * 
 	 *
 	 */
 	private Interpretor() {
 		this.messagesFromNetwork = new LinkedList<String>();
-		this.messagesFromInterface = new LinkedList<String>();
 	}
 
 	/**
@@ -39,7 +36,7 @@ public class Interpretor {
 	public void sendCreateBusStop(String _n, Line _l) {
 		String tmp = "@createBusStop:" + _n + "," + _l.getNumber() + ";";
 		System.out.println("creation de la commande : "+tmp);
-		this.messagesFromInterface.offer(tmp);
+		NetworkManager.getInstance().sendMessage(tmp);
 	}
 	
 	/**
@@ -48,7 +45,7 @@ public class Interpretor {
 	public void sendCreateBus(String _n, Line _l) {
 		String tmp = "@createBus:" + _n + "," + _l.getNumber() + ";";
 		System.out.println("creation de la commande : "+tmp);
-		this.messagesFromInterface.offer(tmp);
+		NetworkManager.getInstance().sendMessage(tmp);
 	}
 	
 	/**
@@ -57,7 +54,7 @@ public class Interpretor {
 	public void sendCreateLine(String _n) {
 		String tmp = "@createLine:" + _n + ";";
 		System.out.println("creation de la commande : "+tmp);
-		this.messagesFromInterface.offer(tmp);
+		NetworkManager.getInstance().sendMessage(tmp);
 	}
 	
 	/**
@@ -90,19 +87,5 @@ public class Interpretor {
 	public void setMessagesFromNetwork(Queue<String> _messagesFromNetwork) {
 		this.messagesFromNetwork = _messagesFromNetwork;
 	}
-
-	/**
-	 * @return the messagesFromInterface
-	 */
-	public Queue<String> getMessagesFromInterface() {
-		return this.messagesFromInterface;
-	}
-
-	/**
-	 * @param _messagesFromInterface the messagesFromInterface to set
-	 */
-	public void setMessagesFromInterface(Queue<String> _messagesFromInterface) {
-		this.messagesFromInterface = _messagesFromInterface;
-	}
-	
+		
 }

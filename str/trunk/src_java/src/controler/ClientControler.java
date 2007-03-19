@@ -5,6 +5,7 @@ import gui.MainFrame;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
@@ -25,12 +26,15 @@ public class ClientControler {
 	private List<Bus> bus = new ArrayList<Bus>();
 
 	private HashMap<Integer, Line> lines = new HashMap<Integer, Line>();
+	
+	private Queue<String> messagesFromInterface;
 
 	/**
 	 * 
 	 *
 	 */
 	private ClientControler() {
+		this.messagesFromInterface = new LinkedList<String>();
 	}
 
 	/**
@@ -44,7 +48,7 @@ public class ClientControler {
 	}
 
 	public void initialisation() {
-		this.sendCreateCommand(Constante.LIGNE, "24", "null", 0, 0);
+		this.sendCreateCommand(Constante.LIGNE, "12", "null", 0, 0);
 		this.sendCreateCommand(Constante.BUS_STOP, "1", "12", 104, 37);
 		this.sendCreateCommand(Constante.BUS_STOP, "2", "12", 110, 69);
 		this.sendCreateCommand(Constante.BUS_STOP, "3", "12", 160, 75);
@@ -59,7 +63,7 @@ public class ClientControler {
 		this.sendCreateCommand(Constante.BUS_STOP, "12", "12", 774, 243);
 		this.sendCreateCommand(Constante.BUS_STOP, "13", "12", 816, 230);
 		this.sendCreateCommand(Constante.BUS, "45", "12", 104, 37);
-		this.sendCreateCommand(Constante.BUS, "98", "12", 104, 37);		
+		this.sendCreateCommand(Constante.BUS, "98", "12", 104, 37);
 	}
 
 	/**
@@ -74,21 +78,21 @@ public class ClientControler {
 			l = this.lines.get(new Integer(_l).intValue());
 		}
 		switch (_code) {
-		case Constante.BUS_STOP:
-			this.busStops.add(this
+			case Constante.BUS_STOP:
+				this.busStops.add(this
 					.createBusStop(new Integer(_id).intValue(), l, _x, _y));
-			Interpretor.getInstance().sendCreateBusStop(_id, l);
-			break;
-		case Constante.LIGNE:
-			this.lines.put(id, this.createLine(id));
-			Interpretor.getInstance().sendCreateLine(_id);
-			break;
-		case Constante.BUS:
-			this.bus.add(this.createBus(id, l, _x, _y));
-			Interpretor.getInstance().sendCreateBus(_id, l);
-			break;
-		default:
-			break;
+				Interpretor.getInstance().sendCreateBusStop(_id, l);
+				break;
+			case Constante.LIGNE:
+				this.lines.put(id, this.createLine(id));
+				Interpretor.getInstance().sendCreateLine(_id);
+				break;
+			case Constante.BUS:
+				this.bus.add(this.createBus(id, l, _x, _y));
+				Interpretor.getInstance().sendCreateBus(_id, l);
+				break;
+			default:
+				break;
 		}
 	}
 
@@ -110,7 +114,7 @@ public class ClientControler {
 	 * @param cmds
 	 */
 	public void interfaceCommandTreatment() {
-		Queue<String> q = Interpretor.getInstance().getMessagesFromInterface();
+		Queue<String> q = this.getMessagesFromInterface();
 		while (!q.isEmpty()) {
 			String s = q.remove();
 			System.out.println("Taille de la file interface : " + q.size());
@@ -203,6 +207,20 @@ public class ClientControler {
 		Bus tmp = new Bus(_id, _l, _x, _y);
 		BusDisplayerFrame.getInstance().getEntities().add(tmp.getRepresentation());
 		return tmp;
+	}
+	
+	/**
+	 * @return the messagesFromInterface
+	 */
+	public Queue<String> getMessagesFromInterface() {
+		return this.messagesFromInterface;
+	}
+
+	/**
+	 * @param _messagesFromInterface the messagesFromInterface to set
+	 */
+	public void setMessagesFromInterface(Queue<String> _messagesFromInterface) {
+		this.messagesFromInterface = _messagesFromInterface;
 	}
 
 }
