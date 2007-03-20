@@ -32,7 +32,7 @@ public class BusEntity extends Entity{
 		y += 5;
 		
 	}
-	
+	/*
 	public void move(long delta) {
 		// if we have reached the left hand side of the screen and
 		// are moving left then request a logic update 
@@ -47,6 +47,6 @@ public class BusEntity extends Entity{
 		
 		// proceed with normal move
 		super.move(delta);
-	}
+	}*/
 
 }

@@ -141,7 +141,7 @@ public class BusDisplayerFrame extends Canvas {
 			// cycle round drawing all the entities we have in the game
 			for (int i = 0; i < entities.size(); i++) {
 				Entity entity = (Entity) entities.get(i);
-				entity.move(delta);
+				//entity.move(delta);
 				entity.draw(g);
 			}
 
