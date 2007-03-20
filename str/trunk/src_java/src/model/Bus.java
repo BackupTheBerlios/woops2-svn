@@ -10,7 +10,7 @@ public class Bus extends SystemObject {
 	
 	private BusEntity representation;
 	
-	private boolean isRunning;
+	
 	
 	/**
 	 * 
@@ -20,7 +20,7 @@ public class Bus extends SystemObject {
 		this.id = _id;
 		this.line = _l;
 		this.representation = new BusEntity("resources/images/dot_b.png", _x, _y);
-		this.isRunning = false;
+		
 	}
 
 	/**
@@ -63,20 +63,6 @@ public class Bus extends SystemObject {
 	 */
 	public void setRepresentation(BusEntity representation) {
 		this.representation = representation;
-	}
-
-	/**
-	 * @return the isRunning
-	 */
-	public boolean isRunning() {
-		return isRunning;
-	}
-
-	/**
-	 * @param isRunning the isRunning to set
-	 */
-	public void setRunning(boolean isRunning) {
-		this.isRunning = isRunning;
 	}
 	
 }

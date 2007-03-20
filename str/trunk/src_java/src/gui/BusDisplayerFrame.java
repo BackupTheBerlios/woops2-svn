@@ -1,5 +1,6 @@
 package gui;
 
+import gui.sprite.entities.BusEntity;
 import gui.sprite.entities.Entity;
 import gui.sprite.entities.MapEntity;
 
@@ -129,7 +130,7 @@ public class BusDisplayerFrame extends Canvas {
 			// work out how long its been since the last update, this
 			// will be used to calculate how far the entities should
 			// move this loop
-			long delta = System.currentTimeMillis() - lastLoopTime;
+			//long delta = System.currentTimeMillis() - lastLoopTime;
 			lastLoopTime = System.currentTimeMillis();
 
 			// Get hold of a graphics context for the accelerated 
@@ -142,7 +143,8 @@ public class BusDisplayerFrame extends Canvas {
 			for (int i = 0; i < entities.size(); i++) {
 				Entity entity = (Entity) entities.get(i);
 				//entity.move(delta);
-				entity.draw(g);
+				if (entity instanceof BusEntity && entity.getIsRunning()) entity.draw(g);
+				else entity.draw(g);
 			}
 
 			// brute force collisions, compare every entity against
@@ -176,7 +178,7 @@ public class BusDisplayerFrame extends Canvas {
 			}
 		}
 	}
-
+	
 	/**
 	 * @return the entities
 	 */

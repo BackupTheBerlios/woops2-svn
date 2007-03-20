@@ -23,6 +23,8 @@ public abstract class Entity {
 	/** The rectangle used for other entities during collision resolution */
 	private Rectangle him = new Rectangle();
 	
+	private boolean isRunning;
+	
 	/**
 	 * Construct a entity based on a sprite image and a location.
 	 * 
@@ -34,6 +36,7 @@ public abstract class Entity {
 		this.sprite = SpriteFactory.getInstance().getSprite(ref);
 		this.x = x;
 		this.y = y;
+		this.isRunning = false;
 	}
 	
 	/**
@@ -144,5 +147,19 @@ public abstract class Entity {
 
 	public void setY(double y) {
 		this.y = y;
+	}
+	
+	/**
+	 * @return the isRunning
+	 */
+	public boolean getIsRunning() {
+		return isRunning;
+	}
+
+	/**
+	 * @param isRunning the isRunning to set
+	 */
+	public void setIsRunning(boolean isRunning) {
+		this.isRunning = isRunning;
 	}
 }

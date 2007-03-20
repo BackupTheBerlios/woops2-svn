@@ -6,6 +6,12 @@
 
 package gui;
 
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+
+import model.Bus;
+import common.Constante;
+
 import controler.ClientControler;
 
 /**
@@ -89,32 +95,8 @@ public class MainFrame extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        busTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
-            },
-            new String [] {
-                "Bus", "Ligne", "Démarré", "X", "Y"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.Boolean.class, java.lang.Integer.class, java.lang.Integer.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
+        //busTable.setModel(new BusTableModel(ClientControler.getInstance().getBus()));
+        
         busTableScrollPane.setViewportView(busTable);
 
         startBusButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/iconBus_small.jpg")));
@@ -168,9 +150,9 @@ public class MainFrame extends javax.swing.JFrame {
 
         createBusLabel.setText("Identifiant du bus : ");
 
-        busLineLabel.setText("Liste des lignes de bus : ");
+        busLineLabel.setText("Lignes de bus : ");
 
-        busLinesComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "ligne 12" }));
+        busLinesComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "12" }));
 
         org.jdesktop.layout.GroupLayout creationPanel1Layout = new org.jdesktop.layout.GroupLayout(creationPanel1);
         creationPanel1.setLayout(creationPanel1Layout);
@@ -297,16 +279,21 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_stopBusButtonActionPerformed
 
     private void startBusButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startBusButtonActionPerformed
-        // TODO add your handling code here:
+        int rownb = this.busTable.getSelectedRow();
+        int busId = (Integer) ((BusTableModel) this.busTable.getModel()).getValueAt(rownb, 0);
+        Bus b = ClientControler.getInstance().getBus().get(busId);
+        b.getRepresentation().setIsRunning(true);
+        
     }//GEN-LAST:event_startBusButtonActionPerformed
 
     private void createBusButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createBusButtonActionPerformed
-        // TODO add your handling code here:
+    	ClientControler.getInstance().sendCreateCommand(Constante.BUS, this.busIdInoutText.getText().trim(), (String) this.busLinesComboBox.getSelectedItem() , 104, 37);
     }//GEN-LAST:event_createBusButtonActionPerformed
 
     private void connectButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_connectButtonActionPerformed
         ClientControler.getInstance().initialisation();
         this.connectButton.setEnabled(false);
+        busTable.setModel(new BusTableModel(ClientControler.getInstance().getBus()));
     }//GEN-LAST:event_connectButtonActionPerformed
 
     private void exitItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitItemActionPerformed
@@ -314,16 +301,10 @@ public class MainFrame extends javax.swing.JFrame {
        System.exit(0);
     }//GEN-LAST:event_exitItemActionPerformed
     
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new MainFrame().setVisible(true);
-            }
-        });
-    }
+    public void initBusTable(){
+    	int i = 0;
+		
+	}
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu applicationMenu;
