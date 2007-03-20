@@ -156,11 +156,11 @@ void* OperatingCenter::thread_function_receive_position(void *structPosition){
 	int percent = ((int)maposition->distance*100)/DISTANCE_BETWEEN_2_STOP;
 	if(TIME_BETWEEN_2_STOP - timeInSeconde > 1){
 		//le bus est en retard, il faut lui demander d'accelerer.
-		adaaccelerate_bus(maposition->busStopId, maposition->lineNumber);
+		adaaccelerate_bus(maposition->busStopId);
 	}
 	else if(TIME_BETWEEN_2_STOP - timeInSeconde < -1){
 		//le bus est en avance, il faut lui demander de decelerer.
-		adadecelerate_bus(maposition->busStopId, maposition->lineNumber);
+		adadecelerate_bus(maposition->busStopId);
 	}
 		
 	//mise en place de lecriture dans le fichier pour larchivage

@@ -22,10 +22,10 @@ extern "C"{
 	void adafinal();
 	void p_initBusStop(int nombre,int ligne);
 	void p_initBus(int nombre, int ligne);
-	void p_startBus(int busId, int lineId);
-	void p_stopBus(int busId, int lineId);
-	void p_accelerateBus(int busId, int lineId);
-	void p_adadecelerateBus(int busId, int lineId);
+	void p_startBus(int busId);
+	void p_stopBus(int busId);
+	void p_accelerateBus(int busId);
+	void p_adadecelerateBus(int busId);
 	void p_receivePosition(t_position *pos, int speed, int busId);
 }
 
@@ -56,24 +56,24 @@ void adainit_bus(int nombre, int ligne)
 	//NetworkManager::getInstance()->sendBuffer("@pos:1,45,2,500;");
 }
 
-void adastart_bus(int busId, int lineId);
+void adastart_bus(int busId);
 {
-	//p_startBus(busId,ligneId);
+	//p_startBus(busId);
 }
 
-void adastop_bus(int busId, int lineId);
+void adastop_bus(int busId);
 {
-	//p_stopBus(busId,ligneId);
+	//p_stopBus(busId);
 }
 
-void adaaccelerate_bus(int busId, int lineId);
+void adaaccelerate_bus(int busId);
 {
-	//p_accelerateBus(busId,ligneId);
+	//p_accelerateBus(busId);
 }
 
-void adadecelerate_bus(int busId, int lineId);
+void adadecelerate_bus(int busId);
 {
-	//p_decelerateBus(busId,ligneId);
+	//p_decelerateBus(busId);
 }
 
 
