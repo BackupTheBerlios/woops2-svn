@@ -107,7 +107,7 @@ void* OperatingCenter::thread_function_getvaleur(void* a){
 		sleep(10);
 		for(int i=0;i<taillememoire;i++)
 		{
-			Interpretor::getInstance()->sendInformation(memoire[i]->ligne,memoire[i]->bus,memoire[i]->busStop,memoire[i]->time);
+			//Interpretor::getInstance()->sendInformation(memoire[i]->ligne,memoire[i]->bus,memoire[i]->busStop,memoire[i]->time);
 		}
 
 	}
@@ -207,7 +207,7 @@ OperatingCenter * OperatingCenter::getInstance ()
 }
 
 void OperatingCenter::initializeSystem(){
-//déclaration
+	//déclaration
 	int etat;
 	pthread_t bus_thread;
 	
