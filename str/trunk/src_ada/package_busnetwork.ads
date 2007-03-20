@@ -60,12 +60,10 @@ package package_busnetwork is
         procedure setLine(lineId : in int; line : in t_line); 
         
         function getBusTable return BusTabType;
+        function getBusById(id : in int) return t_ptr_tt_bus;
         
         procedure addBus(bus : in t_ptr_tt_bus);
         procedure addBusStopOnLine(id_busStop : in int; id_line : in int);
-        
-        -- A TESTER       
-        function getBusById(id : in int) return t_ptr_tt_bus;
         
         private
             line_12 : t_line := (lineNumber => 12, busStopTable => (others => 0));

@@ -98,22 +98,23 @@ package body package_bus is
         
     begin        
         loop
-            accept getBusId(id : out int)
-            do
-                put_line("accept getBusId");
-                id :=  busId;
-            end getBusId;
-            
-            accept start;
-                put_line("tt_bus: Le bus"& int'image(busId) & " a démarré");
-                isStarted := true;
-                                    
-            accept stop;
-                isStarted := false;
-                -- TEMPORAIRE: arrêt net du bus
-                speed := 0;
-                put_line("tt_bus: Le bus"& int'image(busId) & " est arrêté");
-                                            
+            select
+                accept getBusId(id : out int)
+                do
+                    put_line("accept getBusId");
+                    id :=  busId;
+                end getBusId;
+            or    
+                accept start;
+                    put_line("tt_bus: Le bus"& int'image(busId) & " a démarré");
+                    isStarted := true;
+            or                            
+                accept stop;
+                    isStarted := false;
+                    -- TEMPORAIRE: arrêt net du bus
+                    speed := 0;
+                    put_line("tt_bus: Le bus"& int'image(busId) & " est arrêté");
+            end select;                              
         end loop;
     end tt_bus;
 
@@ -126,7 +127,7 @@ package body package_bus is
         begin
             -- le centre recoit la position du bus
             receivePosition(ptr_pos, speed, busId);
-            null;
+            --null;
         end sendPositionToCenter;
         
         --procedure sendPriorityMessage(ptr_mes : out t_ptr_t_priorityMessage);
