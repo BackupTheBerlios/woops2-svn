@@ -50,6 +50,7 @@ public class Line extends SystemObject {
 		int i = 0;
 		while (i < this.busStops.size() - 1) {
 			if (this.busStops.get(i).getId() == _bs.getId()) return this.busStops.get(i + 1);
+			i++;
 		}
 		return this.busStops.get(i);
 	}
