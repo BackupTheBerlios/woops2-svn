@@ -44,6 +44,7 @@ package body package_busnetwork is
     index1 : integer := BusNetwork.getLine(12).busStopTable'first;
     index2 : integer := BusNetwork.getLine(24).busStopTable'first;
     
+    -- ### Initialisation des objets ADA
     -- initialisation d'un arrêt de bus
     procedure p_initBusStop(id_busstop : in int; line : in int) is
         busstop : pt_BusStop;
@@ -101,6 +102,23 @@ package body package_busnetwork is
             when invalidLineNumber => put_line("Numéro de ligne invalide");
             
     end p_initBus;
+    
+    -- ### Commandes des bus
+--    procedure p_startBus(id_bus : in int) is
+--    begin
+--    end p_startBus;
+--    
+--    procedure p_stopBus(id_bus : in int) is
+--    begin
+--    end p_stopBus;
+--    
+--    procedure p_accelerateBus(id_bus : in int) is
+--    begin
+--    end p_accelerateBus;
+--    
+--    procedure p_decelerateBus(id_bus : in int) is
+--    begin
+--    end p_decelerateBus;
     
 begin
     

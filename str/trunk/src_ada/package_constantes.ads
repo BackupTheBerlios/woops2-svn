@@ -11,7 +11,7 @@ package package_constantes is
 	-- periode d'envoi de la position d'un bus au centre (en secondes)
 	periode : constant duration := 2.0;
     
-    -- distance totale entre deux arrêts de bus (1000m)
-    --totalDistance : constant int := 1000;
+    -- distance totale entre deux arrêts de bus (100m)
+    totalDistance : constant C_float := 100.0;
 	
 end package_constantes; 
