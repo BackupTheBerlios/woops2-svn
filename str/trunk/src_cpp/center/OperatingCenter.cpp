@@ -303,7 +303,7 @@ methode qui start un bus
 
 void start_busStop(int num_bus)
 {
-	ada_startBus(num_bus);
+	//ada_startBus(num_bus);
 }
 
 /*------------------------------ methodes que ADA appelle ---------------------- */
