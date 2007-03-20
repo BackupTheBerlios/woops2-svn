@@ -125,7 +125,7 @@ package body package_bus is
         begin
             -- le centre recoit la position du bus
             --receivePosition(ptr_pos, speed, busId);
-            null;
+            --null;
         end sendPositionToCenter;
         
         --procedure sendPriorityMessage(ptr_mes : out t_ptr_t_priorityMessage);

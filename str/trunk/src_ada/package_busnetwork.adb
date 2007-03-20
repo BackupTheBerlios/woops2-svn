@@ -47,6 +47,7 @@ package body package_busnetwork is
             return BusTable;
         end getBusTable;
         
+        -- retourne le pointeur sur la tache d'un bus concerné par l'id en paramètre
         function getBusById(id : in int) return t_ptr_tt_bus is
         currentBusId : int;
         begin
@@ -60,6 +61,7 @@ package body package_busnetwork is
             return null;
         end getBusById;
         
+        -- ajoute un bus dans le tableau de Bus
         procedure addBus(bus : in t_ptr_tt_bus) is
         begin
             if indexBus = NB_BUS then
@@ -69,6 +71,27 @@ package body package_busnetwork is
             put_line("Ajout d'un bus à la position "&integer'image(indexBus));
             indexBus := indexBus + 1;  
         end addBus;
+        
+        -- ajoute un arrêt de bus dans la tableau de la ligne passée en paramètre
+        procedure addBusStopOnLine(id_busStop : in int; id_line : in int) is
+            concernedLine : t_line; 
+        begin
+            concernedLine := BusNetwork.getLine(id_line);
+            if id_line = 12 then
+                concernedLine.busStopTable(index1) := id_busStop;
+                index1 := index1 + 1;
+            elsif id_line = 24 then            
+                concernedLine.busStopTable(index2) := id_busStop;
+                index2 := index2 + 1;
+            else
+                raise invalidLineNumber;
+            end if;
+                BusNetwork.setLine(id_line, concernedLine);
+            
+            put("busStop n°");put(int'image(id_busStop));
+            put(" ajouté sur la ligne");put_line(int'image(id_line));
+            put("Etat de la ligne: ");display(BusNetwork.getLine(id_line));
+        end addBusStopOnLine;
     
     end BusNetwork;
         
@@ -83,7 +106,7 @@ package body package_busnetwork is
     -- initialisation d'un arrêt de bus
     procedure p_initBusStop(id_busstop : in int; line : in int) is
         busstop : pt_BusStop;
-        concernedLine : t_line;
+        --concernedLine : t_line;
     
     begin
         put_line("### busNetwork : p_initBusStop");
@@ -91,22 +114,8 @@ package body package_busnetwork is
         busstop.setLineId(line);
         
         --ajout du busstop créé sur la ligne passée en paramètre
-        concernedLine := BusNetwork.getLine(line);
-        if line = 12 then
-            concernedLine.busStopTable(index1) := id_busstop;
-            index1 := index1 + 1;
-        elsif line = 24 then            
-            concernedLine.busStopTable(index2) := id_busstop;
-            index2 := index2 + 1;
-        else
-            raise invalidLineNumber;
-        end if;
-            BusNetwork.setLine(line, concernedLine);
-        
-        put("busStop n°");put(int'image(id_busstop));
-        put(" ajouté sur la ligne");put_line(int'image(line));
-        put("Etat de la ligne: ");display(BusNetwork.getLine(line));
-        
+        BusNetwork.addBusStopOnLine(id_busstop, line);
+                
         exception
             when invalidLineNumber => put_line("Numéro de ligne invalide");
             when BusTableIsFull => put_line("Le tableau de bus est plein");
@@ -134,9 +143,9 @@ package body package_busnetwork is
         
         -- ajout du bus créé dans le tableau de bus du réseau   
         BusNetwork.addBus(ptr_bus);
-        
+                
         -- TEMPORAIRE démarrage du bus
-        ptr_bus.all.start;
+        --ptr_bus.all.start;
         
         exception
             when invalidLineNumber => put_line("Numéro de ligne invalide");
@@ -147,9 +156,10 @@ package body package_busnetwork is
     -- Commandes des bus
     ---------------------
     
---    procedure p_startBus(id_bus : in int) is
---    begin
---    end p_startBus;
+    procedure p_startBus(id_bus : in int) is
+    begin
+        BusNetwork.getBusById(id_bus).all.start;
+    end p_startBus;
 --    
 --    procedure p_stopBus(id_bus : in int) is
 --    begin

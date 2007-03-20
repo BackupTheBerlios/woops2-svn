@@ -23,9 +23,9 @@ package package_busnetwork is
     ---------------------
     -- Commandes des bus
     ---------------------
---    procedure p_startBus(id_bus : in int);
---    pragma export(CPP, p_startBus, "p_startBus");
---    
+    procedure p_startBus(id_bus : in int);
+    pragma export(CPP, p_startBus, "p_startBus");
+        
 --    procedure p_stopBus(id_bus : in int);
 --    pragma export(CPP, p_stopBus, "p_stopBus");
 --    
@@ -59,12 +59,13 @@ package package_busnetwork is
         function getLine(lineId : in int) return t_line;        
         procedure setLine(lineId : in int; line : in t_line); 
         
-        -- A TESTER
         function getBusTable return BusTabType;
+        
         procedure addBus(bus : in t_ptr_tt_bus);
-               
+        procedure addBusStopOnLine(id_busStop : in int; id_line : in int);
+        
+        -- A TESTER       
         function getBusById(id : in int) return t_ptr_tt_bus;
-        -- peut-être ajout d'un arret dans la ligne
         
         private
             line_12 : t_line := (lineNumber => 12, busStopTable => (others => 0));
