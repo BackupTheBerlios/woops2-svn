@@ -43,18 +43,18 @@ public class MainFrame extends javax.swing.JFrame {
         createBusStopButton = new javax.swing.JButton();
         tabbedPane = new javax.swing.JTabbedPane();
         controlePanel = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        busTableScrollPane = new javax.swing.JScrollPane();
+        busTable = new javax.swing.JTable();
         startBusButton = new javax.swing.JButton();
         stopBusButton = new javax.swing.JButton();
         busListLabel = new javax.swing.JLabel();
         creationPanel = new javax.swing.JPanel();
-        jPanel1 = new javax.swing.JPanel();
+        creationPanel1 = new javax.swing.JPanel();
         createBusLabel = new javax.swing.JLabel();
         busIdInoutText = new javax.swing.JTextField();
         busLineLabel = new javax.swing.JLabel();
         busLinesComboBox = new javax.swing.JComboBox();
-        jPanel2 = new javax.swing.JPanel();
+        creationPanel2 = new javax.swing.JPanel();
         createBusButton = new javax.swing.JButton();
         menuBar = new javax.swing.JMenuBar();
         applicationMenu = new javax.swing.JMenu();
@@ -89,7 +89,7 @@ public class MainFrame extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        busTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -115,7 +115,7 @@ public class MainFrame extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        busTableScrollPane.setViewportView(busTable);
 
         startBusButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/iconBus_small.jpg")));
         startBusButton.setText(" Demarrer un Bus");
@@ -143,7 +143,7 @@ public class MainFrame extends javax.swing.JFrame {
                 .addContainerGap()
                 .add(controlePanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(busListLabel)
-                    .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 381, Short.MAX_VALUE))
+                    .add(busTableScrollPane, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 381, Short.MAX_VALUE))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(controlePanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING, false)
                     .add(stopBusButton, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -161,7 +161,7 @@ public class MainFrame extends javax.swing.JFrame {
                         .add(startBusButton)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                         .add(stopBusButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 48, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                    .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 321, Short.MAX_VALUE))
+                    .add(busTableScrollPane, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 321, Short.MAX_VALUE))
                 .addContainerGap())
         );
         tabbedPane.addTab("Contr\u00f4le", controlePanel);
@@ -172,32 +172,32 @@ public class MainFrame extends javax.swing.JFrame {
 
         busLinesComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "ligne 12" }));
 
-        org.jdesktop.layout.GroupLayout jPanel1Layout = new org.jdesktop.layout.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(jPanel1Layout.createSequentialGroup()
+        org.jdesktop.layout.GroupLayout creationPanel1Layout = new org.jdesktop.layout.GroupLayout(creationPanel1);
+        creationPanel1.setLayout(creationPanel1Layout);
+        creationPanel1Layout.setHorizontalGroup(
+            creationPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(creationPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(jPanel1Layout.createSequentialGroup()
+                .add(creationPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(creationPanel1Layout.createSequentialGroup()
                         .add(createBusLabel)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                         .add(busIdInoutText, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 33, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                    .add(jPanel1Layout.createSequentialGroup()
+                    .add(creationPanel1Layout.createSequentialGroup()
                         .add(busLineLabel)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                         .add(busLinesComboBox, 0, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap(145, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(jPanel1Layout.createSequentialGroup()
+        creationPanel1Layout.setVerticalGroup(
+            creationPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(creationPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                .add(creationPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(createBusLabel)
                     .add(busIdInoutText, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 19, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                .add(creationPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(busLineLabel)
                     .add(busLinesComboBox, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(42, Short.MAX_VALUE))
@@ -211,18 +211,18 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
-        org.jdesktop.layout.GroupLayout jPanel2Layout = new org.jdesktop.layout.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(jPanel2Layout.createSequentialGroup()
+        org.jdesktop.layout.GroupLayout creationPanel2Layout = new org.jdesktop.layout.GroupLayout(creationPanel2);
+        creationPanel2.setLayout(creationPanel2Layout);
+        creationPanel2Layout.setHorizontalGroup(
+            creationPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(creationPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .add(createBusButton, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
                 .addContainerGap())
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(jPanel2Layout.createSequentialGroup()
+        creationPanel2Layout.setVerticalGroup(
+            creationPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(creationPanel2Layout.createSequentialGroup()
                 .add(21, 21, 21)
                 .add(createBusButton)
                 .addContainerGap(32, Short.MAX_VALUE))
@@ -234,9 +234,9 @@ public class MainFrame extends javax.swing.JFrame {
             creationPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(creationPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .add(jPanel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .add(creationPanel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jPanel2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .add(creationPanel2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         creationPanelLayout.setVerticalGroup(
@@ -245,10 +245,10 @@ public class MainFrame extends javax.swing.JFrame {
                 .addContainerGap()
                 .add(creationPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(creationPanelLayout.createSequentialGroup()
-                        .add(jPanel2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .add(creationPanel2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())
                     .add(creationPanelLayout.createSequentialGroup()
-                        .add(jPanel1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .add(creationPanel1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addContainerGap(251, Short.MAX_VALUE))))
         );
         tabbedPane.addTab("Creation", creationPanel);
@@ -331,17 +331,17 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel busLineLabel;
     private javax.swing.JComboBox busLinesComboBox;
     private javax.swing.JLabel busListLabel;
+    private javax.swing.JTable busTable;
+    private javax.swing.JScrollPane busTableScrollPane;
     private javax.swing.JPanel buttonsPanel;
     private javax.swing.JPanel controlePanel;
     private javax.swing.JButton createBusButton;
     private javax.swing.JLabel createBusLabel;
     private javax.swing.JButton createBusStopButton;
     private javax.swing.JPanel creationPanel;
+    private javax.swing.JPanel creationPanel1;
+    private javax.swing.JPanel creationPanel2;
     private javax.swing.JMenuItem exitItem;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JButton startBusButton;
     private javax.swing.JButton stopBusButton;
