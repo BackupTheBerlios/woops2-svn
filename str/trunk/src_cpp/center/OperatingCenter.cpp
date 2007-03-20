@@ -134,10 +134,13 @@ void* OperatingCenter::thread_function_receive_position(void *structPosition){
 	cout<<"OperatingCenter::Appel des fonctions pour le traitement de la position"<<endl;
 	t_structReceivePosition *maStructPosition = (t_structReceivePosition *)structPosition;
 	t_position* maposition = (t_position *)maStructPosition->position;
-    	cout<<"Bus Stop Id :"			<< maposition->busStopId		<<endl;
-    	cout<<"Distance :"				<< maposition->distance			<<endl;
-	cout<<"Speed :"					<< maStructPosition->speed		<<endl;
-	cout<<"BusId :"					<< maStructPosition->busId		<<endl;
+
+	cout<<"Position recue par le centre: ";
+	cout<<"(lineNumber => " << maposition->lineNumber;
+	cout<<", busStopId => " << maposition->busStopId;
+	cout<<", distance => " << maposition->distance << ")" << endl;
+	cout<<"vitesse du bus " << maStructPosition->busId << ": " << maStructPosition->speed << endl;
+    	
 	int remainingDistance = 1000 - (int)maposition->distance;
 	int speedInMeterPerSeconde = maStructPosition->speed*1000/3600;
 	int timeInSeconde = 0;
