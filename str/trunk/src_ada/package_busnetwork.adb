@@ -13,10 +13,10 @@ package body package_busnetwork is
         
         function getLine(lineId : in int) return t_line is
         begin
-            if lineId = 1 then
-                return line_1;
-            elsif lineId = 2 then
-                return line_2;
+            if lineId = 12 then
+                return line_12;
+            elsif lineId = 24 then
+                return line_24;
             else
                 raise invalidLineNumber;
             end if;
@@ -24,10 +24,10 @@ package body package_busnetwork is
         
         procedure setLine(lineId : in int; line : in t_line) is
         begin
-            if lineId = 1 then
-                line_1 := line;
-            elsif lineId = 2 then
-                line_2 := line;
+            if lineId = 12 then
+                line_12 := line;
+            elsif lineId = 24 then
+                line_24 := line;
             else
                 raise invalidLineNumber;
             end if;
@@ -41,8 +41,8 @@ package body package_busnetwork is
     
     -- les index 1 et 2 pointent respectivement sur la première case vide (ici vide = 0) 
     -- du tableau d'arrêts de bus de la ligne concernée
-    index1 : integer := BusNetwork.getLine(1).busStopTable'first;
-    index2 : integer := BusNetwork.getLine(2).busStopTable'first;
+    index1 : integer := BusNetwork.getLine(12).busStopTable'first;
+    index2 : integer := BusNetwork.getLine(24).busStopTable'first;
     
     -- initialisation d'un arrêt de bus
     procedure p_initBusStop(id_busstop : in int; line : in int) is
@@ -56,10 +56,10 @@ package body package_busnetwork is
         
         --ajout du busstop créé sur la ligne passée en paramètre
         concernedLine := BusNetwork.getLine(line);
-        if line = 1 then
+        if line = 12 then
             concernedLine.busStopTable(index1) := id_busstop;
             index1 := index1 + 1;
-        elsif line = 2 then            
+        elsif line = 24 then            
             concernedLine.busStopTable(index2) := id_busstop;
             index2 := index2 + 1;
         else
@@ -88,7 +88,7 @@ package body package_busnetwork is
         startingBusStop := BusNetwork.getLine(line).busStopTable(1); 
         
         -- on positionne le bus en début de ligne
-        put("starting busstop de la ligne 1: ");put_line(int'image(startingBusStop));
+        put("starting busstop de la ligne "&int'image(line)&": ");put_line(int'image(startingBusStop));
         ptr_position := new t_position'(line, startingBusStop, 0.0); 
         
         ptr_bus := new tt_bus(id_bus, ptr_position);

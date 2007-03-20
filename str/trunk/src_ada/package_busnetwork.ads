@@ -35,8 +35,8 @@ package package_busnetwork is
         procedure setLine(lineId : in int; line : in t_line);        
         
         private
-            line_1 : t_line := (lineNumber => 1, busStopTable => (others => 0));
-            line_2 : t_line := (lineNumber => 2, busStopTable => (others => 0));
+            line_12 : t_line := (lineNumber => 12, busStopTable => (others => 0));
+            line_24 : t_line := (lineNumber => 24, busStopTable => (others => 0));
     end BusNetwork;
 
 end package_busnetwork;
