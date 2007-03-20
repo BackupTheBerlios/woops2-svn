@@ -123,7 +123,6 @@ void Interpretor::sendPosition(int lineId, int busId, int busStopId, int positio
 	chaine += ","+stringify((double)position);
 	chaine += ";\n";
 	char * chainechar = (char*)chaine.c_str();
-	cout<<"Chaine char"<<chainechar<<endl;
 	NetworkManager::getInstance()->sendBuffer(chainechar);
 }
 

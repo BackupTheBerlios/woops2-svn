@@ -14,17 +14,17 @@
 
 int DISTANCE_BETWEEN_2_STOP = 100;
 int TIME_BETWEEN_2_STOP = 12;
-t_memoire* memoire[50];
-int taillememoire = 0;
+int envoieJava = 0;
 static pthread_mutex_t mutex;
 static pthread_mutex_t mutex_fichier;
+
 
 //variable qui indique si on a deja créée un bus.
 int init_bus = 0;
 
 void initSystem()
 {
-    cout<<"hello"<<endl;
+
 }
 
 /**
@@ -50,35 +50,7 @@ Mise en place des threads
 
 ----------------------------------------------------------------------------------*/
 
-/**
-Thread qui permet de mettre a jour l'espace memoire commun pour laffichage des temps
-*/
-void* OperatingCenter::thread_function_miseajour(void* a){
-	//on prend un jeton	
-	t_memoire *structmem = (t_memoire *)a;
-	pthread_mutex_lock (&mutex);
-	
-	//traitement pour la mise a jour de l'espace mémoire.
-	cout<<"on rentre dans le mutex"<<endl;	
-	bool trouver = false;
-	for(int i=0;i<taillememoire;i++)
-	{
-		if(memoire[i]->busStop == structmem->busStop )
-		{
-			memoire[i] = structmem;
-			trouver = true;
-		}
-	}
-	if(!trouver)
-	{
-		memoire[taillememoire] = structmem;
-		taillememoire ++;
-	}
 
-	//on rend le jeton
-	free(structmem);
-	pthread_mutex_unlock (&mutex);
-}
 /**
 thread qui permet l'archivage des positions d'un bus dans un fichier
 */
@@ -100,6 +72,7 @@ void* OperatingCenter::thread_function_archivage(void* a){
 		cout<<"la chaine :"<<chaine<<endl;
 		fichier<<chaine;
 	}
+	free(structarch);
 	pthread_mutex_unlock (&mutex_fichier);
 }
 
@@ -110,11 +83,9 @@ void* OperatingCenter::thread_function_getvaleur(void* a){
 	while(1)
 	{
 		sleep(10);
-		for(int i=0;i<taillememoire;i++)
-		{
-			//Interpretor::getInstance()->sendInformation(memoire[i]->ligne,memoire[i]->bus,memoire[i]->busStop,memoire[i]->time);
-		}
-
+		envoieJava = 1;
+		sleep(2);
+		envoieJava = 0;
 	}
 }
 
@@ -122,11 +93,6 @@ void* OperatingCenter::thread_function_getvaleur(void* a){
 *@Param : 
 */
  void* OperatingCenter::thread_function_initBus(void *a){
-
-	//appel de la fonction ADA
-	//TODO lors de la mise en place de l'ADA	
-	//initBus();
-	cout<<"Appel a la fonction d'initialisation des bus \n"<<endl;
 	
 }
 
@@ -167,30 +133,24 @@ void* OperatingCenter::thread_function_receive_position(void *structPosition){
 	//mise en place de lecriture dans le fichier pour larchivage
 	
 	//création de la structure qui va se trouver dans la mémoire partagé
-	t_memoire *structmem = (t_memoire *)malloc(sizeof(t_memoire));
-	structmem->ligne = 1;
-	structmem->busStop = maposition->busStopId ;
-	structmem->bus = maStructPosition->busId;
-	structmem->time = timeInSeconde;
-	int etat;
-	pthread_t thread;
-	//etat = pthread_create(&thread,NULL,thread_function_miseajour, (void*)structmem);
-	//if (etat != 0) cout<<"Echec creation de thread pour l'initialisation des bus: %d"<<endl;
+	if(envoieJava == 1)
+	{
+		Interpretor::getInstance()->sendInformation(maposition->lineNumber,maStructPosition->busId,maposition->busStopId,timeInSeconde);
+	}
 
 	//mise en place des threads pour l'archivage
 	t_archivage *structarch = (t_archivage *)malloc(sizeof(t_archivage));
 	structarch->ligne = 1;
-	cout<<"STRUCTURE"<<structarch->ligne<<endl<<endl;
 	structarch->busStop = maposition->busStopId ;
 	structarch->bus = maStructPosition->busId;
 	structarch->distance = maposition->distance;
 	pthread_t thread_fichier;
-	//etat = pthread_create(&thread_fichier,NULL,thread_function_archivage, (void*)structarch);
+	int etat = pthread_create(&thread_fichier,NULL,thread_function_archivage, (void*)structarch);
+	if (etat != 0) cout<<"Echec creation de thread pour larchivage"<<endl;
 	Interpretor::getInstance()->sendPosition(maposition->lineNumber, maStructPosition->busId, maposition->busStopId, percent );
-	cout<<"-----------------------------------------------------------------------"<<endl;
-	cout<<"FIN DUN THREAD"<<endl;
-	cout<<"On libere"<<endl;
 	free(maStructPosition);
+
+	cout<<"FINNN DU THREAD"<<endl<<endl;
 
 }
 
@@ -233,7 +193,6 @@ void OperatingCenter::initializeSystem(){
 	int etat;
 	pthread_t bus_thread;
 	
-	cout<<"hello";
 	//Création des différents thread.
 	// Mise en place du Thread pour le bus
 	etat = pthread_create(&bus_thread,NULL,thread_function_initBus, NULL);

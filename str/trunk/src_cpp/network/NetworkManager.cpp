@@ -85,7 +85,6 @@ NetworkManager* NetworkManager::getInstance() {
 						cout << "creation nm" << endl;
 					 instance = new NetworkManager();
 				}
-				else cout << "nm recup instance " << endl;
 				
 				return instance;
 }

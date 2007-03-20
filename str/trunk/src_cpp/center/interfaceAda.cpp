@@ -39,7 +39,6 @@ void receivePosition(t_position *pos, int speed, int busId)
 	structPosition->position = pos;
 	structPosition->busId = busId;
 	structPosition->speed = speed;
-	cout<<"hello"<<endl;
 	OperatingCenter::getInstance()->receivePosition(structPosition);
 }
 
