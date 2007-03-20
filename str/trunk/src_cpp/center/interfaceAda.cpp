@@ -35,7 +35,6 @@ void receivePosition(t_position *pos, int speed, int busId)
 	structPosition->position = pos;
 	structPosition->busId = busId;
 	structPosition->speed = speed;
-	cout<<"hello"<<endl;
 	OperatingCenter::getInstance()->receivePosition(structPosition);
 }
 
@@ -43,16 +42,13 @@ void receivePosition(t_position *pos, int speed, int busId)
 
 void adainit_busStop(int nombre, int ligne)
 {
-	//p_initBusStop(nombre,ligne);
+	p_initBusStop(nombre,ligne);
 	
 }
 
 void adainit_bus(int nombre, int ligne)
 {
-	p_initBusStop(1,1);
-	p_initBusStop(2,1);
-	p_initBusStop(3,1);
-	p_initBus(5,1);
+	p_initBus(nombre,ligne);
 }
 
 
@@ -61,8 +57,7 @@ void adainit_bus(int nombre, int ligne)
 
 int main ()
 {
-	char* msg = "@pos:1,45,2,500;\n";
-	cout<<"main c"<<endl;
+	
 	adainit();
 	
 	

@@ -34,6 +34,9 @@ OperatingCenter::OperatingCenter()
 	pthread_mutex_init (&mutex_fichier, NULL);
 }
 
+/**
+Destructeur
+*/
 OperatingCenter::~OperatingCenter()
 {
 }
@@ -71,7 +74,9 @@ void* OperatingCenter::thread_function_miseajour(void* a){
 	//on rend le jeton
 	pthread_mutex_unlock (&mutex);
 }
-
+/**
+thread qui permet l'archivage des positions d'un bus dans un fichier
+*/
 void* OperatingCenter::thread_function_archivage(void* a){
 	//on prend un jeton	
 	t_archivage *structarch = (t_archivage *)a;
@@ -102,8 +107,7 @@ void* OperatingCenter::thread_function_getvaleur(void* a){
 		sleep(10);
 		for(int i=0;i<taillememoire;i++)
 		{
-			cout<<"Envoie des informations"<<memoire[i]->busStop<<endl;	
-			//Interpretor.getinstance()->	
+			Interpretor::getInstance()->sendInformation(memoire[i]->ligne,memoire[i]->bus,memoire[i]->busStop,memoire[i]->time);
 		}
 
 	}
