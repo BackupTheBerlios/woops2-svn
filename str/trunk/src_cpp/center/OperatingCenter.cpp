@@ -12,7 +12,8 @@
 #include "../network/Interpretor.h"
 #include "interfaceAda.h"
 
-int DISTANCE_BETWEEN_TO_STOP = 100;
+int DISTANCE_BETWEEN_2_STOP = 100;
+int TIME_BETWEEN_2_STOP = 12;
 t_memoire* memoire[50];
 int taillememoire = 0;
 static pthread_mutex_t mutex;
@@ -150,6 +151,18 @@ void* OperatingCenter::thread_function_receive_position(void *structPosition){
 	if(speedInMeterPerSeconde != 0)
 		timeInSeconde = remainingDistance / speedInMeterPerSeconde ;
 	cout<<"Time (sec) calculee :"	<<  	timeInSeconde			<<endl;
+	
+	//calcule du pourcenetage de l'evolution du bus entre 2 bus stop.
+	int percent = ((int)maposition->distance*100)/DISTANCE_BETWEEN_2_STOP;
+	if(TIME_BETWEEN_2_STOP - timeInSeconde > 1){
+		//le bus est en retard, il faut lui demander d'accelerer.
+		adaaccelerate_bus(maposition->busStopId, maposition->lineNumber);
+	}
+	else if(TIME_BETWEEN_2_STOP - timeInSeconde < -1){
+		//le bus est en avance, il faut lui demander de decelerer.
+		adadecelerate_bus(maposition->busStopId, maposition->lineNumber);
+	}
+		
 	//mise en place de lecriture dans le fichier pour larchivage
 	
 	//création de la structure qui va se trouver dans la mémoire partagé
@@ -172,7 +185,7 @@ void* OperatingCenter::thread_function_receive_position(void *structPosition){
 	structarch->distance = maposition->distance;
 	pthread_t thread_fichier;
 	etat = pthread_create(&thread_fichier,NULL,thread_function_archivage, (void*)structarch);
-	Interpretor::getInstance()->sendPosition(maposition->lineNumber, maStructPosition->busId, maposition->busStopId, ((int)maposition->distance*100)/DISTANCE_BETWEEN_TO_STOP );
+	Interpretor::getInstance()->sendPosition(maposition->lineNumber, maStructPosition->busId, maposition->busStopId, percent );
 }
 
 /**fonction de thread pour l'écoute de la réception d'information.
