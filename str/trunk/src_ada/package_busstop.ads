@@ -17,7 +17,8 @@ package package_busstop is
         
     private
         BusStopId : int;
-        LineId : int; -- sera plus tard un tableau de lignes
+        LineId : int; 
+        -- L'attribut sera un tableau de lignes dans le cas ou les lignes se croisent
     end pt_BusStop;
 	
 end package_busstop;

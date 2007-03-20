@@ -4,14 +4,16 @@ use interfaces.C;
 
 package package_constantes is
     
-	nbBusStop : constant integer := 13;
+    -- nombre d'arrêts de bus contenu sur une ligne
+	NB_BUSSTOP : constant integer := 13;
 
-	nbBus : constant int := 20;
+    -- nombre de bus dans le résau
+	NB_BUS : constant integer := 20;
 
 	-- periode d'envoi de la position d'un bus au centre (en secondes)
-	periode : constant duration := 2.0;
+	PERIODE : constant duration := 2.0;
     
     -- distance totale entre deux arrêts de bus (100m)
-    totalDistance : constant C_float := 100.0;
+    TOTALDISTANCE : constant C_float := 100.0;
 	
 end package_constantes; 

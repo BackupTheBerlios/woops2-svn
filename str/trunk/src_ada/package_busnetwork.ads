@@ -1,6 +1,6 @@
 -- Author: eperico
-with package_types, package_busstop, interfaces.C;
-use package_types, package_busstop, interfaces.C;
+with package_types, package_busstop, package_bus, interfaces.C, package_constantes;
+use package_types, package_busstop, package_bus, interfaces.C, package_constantes;
 
 package package_busnetwork is
     
@@ -8,7 +8,10 @@ package package_busnetwork is
     -- Déclaration des pragma
     --------------------------
     
-    -- ### Initialisation des objets ADA
+    ---------------------------------
+    -- Initialisation des objets ADA
+    ---------------------------------
+    
     -- initialisation des arrêts de bus
 	procedure p_initBusStop(id_busstop : in int; line : in int);
 	pragma export(CPP, p_initBusStop, "p_initBusStop");
@@ -17,7 +20,9 @@ package package_busnetwork is
     procedure p_initBus(id_bus : in int; line : in int);
     pragma export(CPP, p_initBus, "p_initBus");
     
---    -- ### Commandes des bus
+    ---------------------
+    -- Commandes des bus
+    ---------------------
 --    procedure p_startBus(id_bus : in int);
 --    pragma export(CPP, p_startBus, "p_startBus");
 --    
@@ -44,14 +49,25 @@ package package_busnetwork is
     ---------------------------------------------
     -- l'objet BusNetwork permet de partager les données entre les tâches
     -- dans notre cas, les lignes du réseau doivent être partagées
+    
+    -- type tableau de pointeurs sur des tâches bus
+    -- le tableau contient tout les bus du réseau
+    type BusTabType is array(integer range 1..NB_BUS) of t_ptr_tt_bus;
+    
     protected BusNetwork is
         
         function getLine(lineId : in int) return t_line;        
-        procedure setLine(lineId : in int; line : in t_line);        
+        procedure setLine(lineId : in int; line : in t_line); 
+        
+        --function getBusTable return BusTabType;       
+        
+        -- fonction d'acces a un t_ptr_tbus
+        -- peut-être ajout d'une tache bus dans le tableau et aussi ajout d'un arret dans la ligne
         
         private
             line_12 : t_line := (lineNumber => 12, busStopTable => (others => 0));
             line_24 : t_line := (lineNumber => 24, busStopTable => (others => 0));
+            BusTable : BusTabType := (others => null);
     end BusNetwork;
 
 end package_busnetwork;

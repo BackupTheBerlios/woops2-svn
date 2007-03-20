@@ -44,7 +44,13 @@ package body package_busnetwork is
     index1 : integer := BusNetwork.getLine(12).busStopTable'first;
     index2 : integer := BusNetwork.getLine(24).busStopTable'first;
     
-    -- ### Initialisation des objets ADA
+    -- indexBus pointe sur la première case vide (=0) du tableau de pointeur sur les tâches bus
+    indexBus : integer := 1;
+    
+    ---------------------------------
+    -- Initialisation des objets ADA
+    ---------------------------------
+    
     -- initialisation d'un arrêt de bus
     procedure p_initBusStop(id_busstop : in int; line : in int) is
         busstop : pt_BusStop;
@@ -90,12 +96,15 @@ package body package_busnetwork is
         
         -- on positionne le bus en début de ligne
         put("starting busstop de la ligne "&int'image(line)&": ");put_line(int'image(startingBusStop));
-        ptr_position := new t_position'(line, startingBusStop, 0.0); 
+        ptr_position := new t_position'(line, startingBusStop, 0.0);
         
-        ptr_bus := new tt_bus(id_bus, ptr_position);
+        -- TODO ajout du bus créé dans le tableau 
+        
+        ptr_bus := new tt_bus(id_bus, ptr_position, line);
         put("creation du bus n°");put(int'image(id_bus)); 
         put(" sur la ligne");put_line(int'image(line));  
-        -- démarrage du bus
+        
+        -- TEMPORAIRE démarrage du bus
         ptr_bus.all.start;
         
         exception
@@ -103,7 +112,10 @@ package body package_busnetwork is
             
     end p_initBus;
     
-    -- ### Commandes des bus
+    ---------------------
+    -- Commandes des bus
+    ---------------------
+    
 --    procedure p_startBus(id_bus : in int) is
 --    begin
 --    end p_startBus;

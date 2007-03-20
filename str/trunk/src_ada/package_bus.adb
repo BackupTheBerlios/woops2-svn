@@ -9,8 +9,10 @@ package body package_bus is
     -------------
     task body tt_bus is
     
-        id : int := idBus;
+        busId : int := idBus;
         ptr_pos : t_ptr_t_position := initialPosition;
+        lineId : int := idLine;
+        
         speed : int := 0;
         isStarted : boolean := false;
         -- l'index précise l'index du dernier arrêt auquel le bus s'est arrêté
@@ -26,15 +28,15 @@ package body package_bus is
             loop
                 if (isStarted) then
                     -- envoi de la position toutes les 2 secondes
-                    delay(periode);                
+                    delay(PERIODE);                
                     put_line("tt_bus: envoi de la position");
-                    put("vitesse du bus "&int'image(id)&": ");put_line(int'image(speed));
+                    put("vitesse du bus "&int'image(busId)&": ");put_line(int'image(speed));
                     -- on simule l'accélération du bus
                     if speed < 30 then
                         speed := speed + 10;
                     end if;
                     display(ptr_pos.all);
-                    Radio.sendPositionToCenter(ptr_pos, speed, id); 
+                    Radio.sendPositionToCenter(ptr_pos, speed, busId); 
                 end if;               
             end loop;
         end t_sendPosition;
@@ -65,24 +67,30 @@ package body package_bus is
         
         task body t_Sensor is
             currentLine : t_line;
+            nextBusStop : int;
         begin
             loop
-                if (isStarted) and (ptr_pos.all.distance >= totalDistance) then
+                if (isStarted) and (ptr_pos.all.distance >= TOTALDISTANCE) then
                     put_line("Distance > 100m");
                     stop;
                     delay(1.0);
                 elsif (not isStarted) and (ptr_pos.all.distance > 0.0) then
+                    
+                    -- TODO FAIRE UNE METHODE UPDATE BUS POSITION
                     put_line("MISE A JOUR DE LA POSITION");
-                    -- le bus est arrêté
-                    -- on met a jour la position du bus
+                    -- le bus est arrêté, on met a jour la position du bus
                     ptr_pos.all.distance := 0.0;
                     currentLine := BusNetwork.getLine(ptr_pos.all.lineNumber);
                     IndexOfCurrentBusStop := IndexOfCurrentBusStop + 1; 
-                    ptr_pos.all.busStopId := currentLine.busStopTable(IndexOfCurrentBusStop);
+                    nextBusStop := currentLine.busStopTable(IndexOfCurrentBusStop);
+                    
+                    -- TODO si nextBusStop = 0 alors fin de ligne on reppart en debut de ligne
+                    ptr_pos.all.busStopId := nextBusStop;
+                    
                     -- on simule l'entrée de passagers dans le bus
                     put_line("Les passagers montent dans le bus....");
                     delay(8.0);
-                    put_line("tt_bus: Le bus" & int'image(id) & " quitte l'arrêt " & int'image(ptr_pos.all.busStopId));
+                    put_line("tt_bus: Le bus" & int'image(busId) & " quitte l'arrêt " & int'image(ptr_pos.all.busStopId));
                     start;
                 end if;               
             end loop;
@@ -91,14 +99,14 @@ package body package_bus is
     begin        
         loop
             accept start;
-                put_line("tt_bus: Le bus"& int'image(id) & " a démarré");
+                put_line("tt_bus: Le bus"& int'image(busId) & " a démarré");
                 isStarted := true;
                                     
             accept stop;
                 isStarted := false;
                 -- TEMPORAIRE: arrêt net du bus
                 speed := 0;
-                put_line("tt_bus: Le bus"& int'image(id) & " est arrêté");                
+                put_line("tt_bus: Le bus"& int'image(busId) & " est arrêté");                
         end loop;
     end tt_bus;
 
@@ -110,8 +118,8 @@ package body package_bus is
         procedure sendPositionToCenter(ptr_pos : in t_ptr_t_position; speed : in int; busId : in int) is
         begin
             -- le centre recoit la position du bus
-            receivePosition(ptr_pos, speed, busId);
-            --null;
+            --receivePosition(ptr_pos, speed, busId);
+            null;
         end sendPositionToCenter;
         
         --procedure sendPriorityMessage(ptr_mes : out t_ptr_t_priorityMessage);

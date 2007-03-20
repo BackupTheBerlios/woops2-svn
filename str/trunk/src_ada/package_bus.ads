@@ -8,14 +8,15 @@ package package_bus is
     -- Tâche Bus
     -------------
     -- le numéro de ligne sur laquelle se trouve le bus est renseignée dans la position
-    task type tt_bus(idBus : int; initialPosition : t_ptr_t_position) is
+    task type tt_bus(idBus : int; initialPosition : t_ptr_t_position; idLine : int) is
         entry start;
         entry stop;
-        entry accelerate;
-        entry decelerate;
+        --entry accelerate;
+        --entry decelerate;
     end tt_bus;
 
     type t_ptr_tt_bus is access tt_bus;
+    
     
     -----------------------
     -- objet protégé Radio
