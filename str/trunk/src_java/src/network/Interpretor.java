@@ -60,8 +60,9 @@ public class Interpretor {
 		BusStop pred = ClientControler.getInstance().getBusStops().get(new Integer(portions[2]));
 		BusStop next = l.nextBusStop(pred);
 		int pourcentage = new Integer(portions[3]);
-		int x = (next.getRepresentation().getX() - pred.getRepresentation().getX()) * pourcentage / 100;
-		int y = (next.getRepresentation().getY() - pred.getRepresentation().getY()) * pourcentage / 100;
+		int x = b.getRepresentation().getX() + ((next.getRepresentation().getX() - pred.getRepresentation().getX()) * pourcentage / 100);
+		int y = b.getRepresentation().getY() + ((next.getRepresentation().getY() - pred.getRepresentation().getY()) * pourcentage / 100);
+		System.out.println("nouvel coord b="+b.getId()+" x:"+x+" y:"+y);
 		return new CartesianPosition(l, b, x, y);
 	}
 

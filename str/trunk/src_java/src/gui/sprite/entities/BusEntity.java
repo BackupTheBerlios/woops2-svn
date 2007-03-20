@@ -1,6 +1,5 @@
 package gui.sprite.entities;
 
-import gui.BusDisplayerFrame;
 
 
 /**

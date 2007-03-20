@@ -47,10 +47,11 @@ public class Line extends SystemObject {
 	 * @return
 	 */
 	public BusStop nextBusStop(BusStop _bs) {
-		for (BusStop tmp : this.busStops) {
-			if (_bs.getId() == tmp.getId()) return tmp;
+		int i = 0;
+		while (i < this.busStops.size() - 1) {
+			if (this.busStops.get(i).getId() == _bs.getId()) return this.busStops.get(i + 1);
 		}
-		return null;
+		return this.busStops.get(i);
 	}
 	
 	/**

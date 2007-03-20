@@ -184,13 +184,15 @@ public class ClientControler {
 	}
 
 	/**
-	 * Methode pour traiter les cartesianPosition et mettre �� jours le mod��le
+	 * Methode pour traiter les cartesianPosition et mettre a jours le modele
 	 */
 	private void cartesianPositionUpdate() {
-		for (CartesianPosition cp : this.cartesianPositionQueue) {
+		while (!this.cartesianPositionQueue.isEmpty()) {
+			CartesianPosition cp = this.cartesianPositionQueue.remove();
 			Bus b = this.bus.get(cp.getBus().getId());
 			b.getRepresentation().setX(cp.getX());
 			b.getRepresentation().setY(cp.getY());
+			System.out.println("==> b :"+b.getId()+" x:"+b.getRepresentation().getX()+" y:"+b.getRepresentation().getY());
 		}
 	}
 
