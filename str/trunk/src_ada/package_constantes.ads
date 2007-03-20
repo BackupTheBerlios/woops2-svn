@@ -1,10 +1,10 @@
 -- Author: eperico
-with interfaces.C, package_types;
-use interfaces.C, package_types;
+with interfaces.C;
+use interfaces.C;
 
 package package_constantes is
     
-	nbBusStop : constant int := 10;
+	nbBusStop : constant integer := 13;
 
 	nbBus : constant int := 20;
 
@@ -12,6 +12,6 @@ package package_constantes is
 	periode : constant duration := 2.0;
     
     -- distance totale entre deux arrêts de bus (1000m)
-    totalDistance : constant int := 1000;
+    --totalDistance : constant int := 1000;
 	
 end package_constantes; 

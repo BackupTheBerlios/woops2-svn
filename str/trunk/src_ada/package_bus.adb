@@ -26,13 +26,9 @@ package body package_bus is
             loop
                 if (isStarted) then
                     -- envoi de la position toutes les 2 secondes
-                    delay(periode);
-                    -- TEMPORAIRE: la vitesse n'augmente pas dans la tache d'envoie de la position
-                    if speed < 30 then
-                      speed := speed + 5;
-                    end if;                
+                    delay(periode);                
                     put_line("tt_bus: envoi de la position");
-                    put("vitesse du bus: ");put_line(int'image(speed));
+                    put("vitesse du bus "&int'image(id)&": ");put_line(int'image(speed));
                     display(ptr_pos.all);
                     Radio.sendPositionToCenter(ptr_pos, speed, id); 
                 end if;               
@@ -93,7 +89,12 @@ package body package_bus is
             accept start;
                 put_line("tt_bus: Le bus"& int'image(id) & " a démarré");
                 isStarted := true;
-                        
+                loop
+                    if speed < 30 then
+                        speed := speed + 5;
+                    end if;    
+                end loop;
+                                        
             accept stop;
                 isStarted := false;
                 -- TEMPORAIRE: arrêt net du bus

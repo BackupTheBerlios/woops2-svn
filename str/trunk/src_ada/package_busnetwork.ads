@@ -19,6 +19,8 @@ package package_busnetwork is
     -- reception de la position d'un bus par le centre
 	procedure receivePosition(ptr_pos : in t_ptr_t_position; speed : in int; busId : in int);
 	pragma import(CPP, receivePosition, "receivePosition");
+    
+    -- creer les pragma start, stop, accelerate, decelerate
 
 	-- envoie d'un message d'urgence au centre d'exploitation en cas de problème
 	--procedure p_sendPriorityMessage(ptr_mes : out t_ptr_t_priorityMessage);

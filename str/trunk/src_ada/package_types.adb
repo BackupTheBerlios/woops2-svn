@@ -9,7 +9,8 @@ package body package_types is
 	-- affiche une position
 	procedure display(position : t_position) is
 	begin
-        put("( lineNumber => ");
+        put("Affichage position en Ada: ");
+        put("(lineNumber => ");
         put(int'image(position.lineNumber));
 		put(", busStopId => ");
 		put(int'image(position.busStopId));
@@ -22,6 +23,7 @@ package body package_types is
 	-- affiche les informations d'une ligne
 	procedure display(line : t_line) is
 	begin
+        put("Affichage ligne en Ada: ");
 		put("(Line n°");
 		put(int'image(line.lineNumber));
         put(", liste arrets => ");
