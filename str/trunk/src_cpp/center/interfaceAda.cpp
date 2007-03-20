@@ -57,7 +57,7 @@ void adainit_bus(int nombre, int ligne)
 
 void adastart_bus(int busId)
 {
-	//p_startBus(busId);
+	p_startBus(busId);
 }
 
 void adastop_bus(int busId)
