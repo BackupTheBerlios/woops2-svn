@@ -40,7 +40,7 @@ public class MainFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc=" Generated Code ">//GEN-BEGIN:initComponents
     private void initComponents() {
         buttonsPanel = new javax.swing.JPanel();
-        createBusStopButton = new javax.swing.JButton();
+        connectButton = new javax.swing.JButton();
         tabbedPane = new javax.swing.JTabbedPane();
         controlePanel = new javax.swing.JPanel();
         busTableScrollPane = new javax.swing.JScrollPane();
@@ -64,11 +64,11 @@ public class MainFrame extends javax.swing.JFrame {
         setTitle("ISI Bus Navigator");
         setName("ISI Bus Navigator");
         setResizable(false);
-        createBusStopButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/connect32x32.jpg")));
-        createBusStopButton.setText("Connect");
-        createBusStopButton.addActionListener(new java.awt.event.ActionListener() {
+        connectButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/connect32x32.jpg")));
+        connectButton.setText("Connect");
+        connectButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                createBusStopButtonActionPerformed(evt);
+                connectButtonActionPerformed(evt);
             }
         });
 
@@ -78,14 +78,14 @@ public class MainFrame extends javax.swing.JFrame {
             buttonsPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(buttonsPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .add(createBusStopButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 136, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .add(connectButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 136, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(504, Short.MAX_VALUE))
         );
         buttonsPanelLayout.setVerticalGroup(
             buttonsPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(org.jdesktop.layout.GroupLayout.TRAILING, buttonsPanelLayout.createSequentialGroup()
                 .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .add(createBusStopButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 37, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .add(connectButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 37, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -304,10 +304,10 @@ public class MainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_createBusButtonActionPerformed
 
-    private void createBusStopButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createBusStopButtonActionPerformed
+    private void connectButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_connectButtonActionPerformed
         ClientControler.getInstance().initialisation();
         this.createBusStopButton.setEnabled(false);
-    }//GEN-LAST:event_createBusStopButtonActionPerformed
+    }//GEN-LAST:event_connectButtonActionPerformed
 
     private void exitItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitItemActionPerformed
        System.out.println("exiting ...");
@@ -334,10 +334,10 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JTable busTable;
     private javax.swing.JScrollPane busTableScrollPane;
     private javax.swing.JPanel buttonsPanel;
+    private javax.swing.JButton connectButton;
     private javax.swing.JPanel controlePanel;
     private javax.swing.JButton createBusButton;
     private javax.swing.JLabel createBusLabel;
-    private javax.swing.JButton createBusStopButton;
     private javax.swing.JPanel creationPanel;
     private javax.swing.JPanel creationPanel1;
     private javax.swing.JPanel creationPanel2;
