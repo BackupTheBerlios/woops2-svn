@@ -118,7 +118,6 @@ package body package_busnetwork is
                 
         exception
             when invalidLineNumber => put_line("Numéro de ligne invalide");
-            when BusTableIsFull => put_line("Le tableau de bus est plein");
     
     end p_initBusStop;
     
@@ -149,6 +148,7 @@ package body package_busnetwork is
         
         exception
             when invalidLineNumber => put_line("Numéro de ligne invalide");
+            when BusTableIsFull => put_line("Le tableau de bus est plein");
             
     end p_initBus;
     
@@ -158,6 +158,7 @@ package body package_busnetwork is
     
     procedure p_startBus(id_bus : in int) is
     begin
+        put_line("### busNetwork : p_startBus");
         BusNetwork.getBusById(id_bus).all.start;
     end p_startBus;
 --    
