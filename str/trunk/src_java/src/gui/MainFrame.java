@@ -42,16 +42,20 @@ public class MainFrame extends javax.swing.JFrame {
         buttonsPanel = new javax.swing.JPanel();
         createBusStopButton = new javax.swing.JButton();
         tabbedPane = new javax.swing.JTabbedPane();
-        creationPanel = new javax.swing.JPanel();
-        createBusLabel = new javax.swing.JLabel();
-        idInputTxt = new javax.swing.JTextField();
-        createBusButton = new javax.swing.JButton();
         controlePanel = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList();
         startBusButton = new javax.swing.JButton();
         stopBusButton = new javax.swing.JButton();
         busListLabel = new javax.swing.JLabel();
+        creationPanel = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
+        createBusLabel = new javax.swing.JLabel();
+        idInputTxt = new javax.swing.JTextField();
+        busLineLabel = new javax.swing.JLabel();
+        busLinesComboBox = new javax.swing.JComboBox();
+        jPanel2 = new javax.swing.JPanel();
+        createBusButton = new javax.swing.JButton();
         menuBar = new javax.swing.JMenuBar();
         applicationMenu = new javax.swing.JMenu();
         exitItem = new javax.swing.JMenuItem();
@@ -75,7 +79,7 @@ public class MainFrame extends javax.swing.JFrame {
             .add(buttonsPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .add(createBusStopButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 136, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(256, Short.MAX_VALUE))
+                .addContainerGap(252, Short.MAX_VALUE))
         );
         buttonsPanelLayout.setVerticalGroup(
             buttonsPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -85,47 +89,10 @@ public class MainFrame extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        createBusLabel.setText("Identifiant du bus : ");
-
-        createBusButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/add.png")));
-        createBusButton.setText("Create Bus");
-        createBusButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                createBusButtonActionPerformed(evt);
-            }
-        });
-
-        org.jdesktop.layout.GroupLayout creationPanelLayout = new org.jdesktop.layout.GroupLayout(creationPanel);
-        creationPanel.setLayout(creationPanelLayout);
-        creationPanelLayout.setHorizontalGroup(
-            creationPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(creationPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .add(creationPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(createBusLabel)
-                    .add(idInputTxt, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(createBusButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 171, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-        creationPanelLayout.setVerticalGroup(
-            creationPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(creationPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .add(creationPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
-                    .add(org.jdesktop.layout.GroupLayout.LEADING, creationPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                        .add(createBusButton, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .add(idInputTxt, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                    .add(org.jdesktop.layout.GroupLayout.LEADING, createBusLabel))
-                .add(314, 314, 314))
-        );
-        tabbedPane.addTab("Creation", creationPanel);
-
         jScrollPane1.setViewportView(jList1);
 
         startBusButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/iconBus_small.jpg")));
         startBusButton.setText(" Demarrer un Bus");
-        startBusButton.setActionCommand(" Demarrer un Bus");
         startBusButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 startBusButtonActionPerformed(evt);
@@ -153,8 +120,8 @@ public class MainFrame extends javax.swing.JFrame {
                     .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 178, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(controlePanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
-                    .add(startBusButton, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE)
-                    .add(stopBusButton, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE))
+                    .add(startBusButton, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .add(stopBusButton, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE))
                 .addContainerGap())
         );
         controlePanelLayout.setVerticalGroup(
@@ -172,6 +139,83 @@ public class MainFrame extends javax.swing.JFrame {
                 .addContainerGap(90, Short.MAX_VALUE))
         );
         tabbedPane.addTab("Contr\u00f4le", controlePanel);
+
+        createBusLabel.setText("Identifiant du bus : ");
+
+        busLineLabel.setText("Liste ligne de bus : ");
+
+        org.jdesktop.layout.GroupLayout jPanel1Layout = new org.jdesktop.layout.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(busLinesComboBox, 0, 191, Short.MAX_VALUE)
+                    .add(jPanel1Layout.createSequentialGroup()
+                        .add(createBusLabel)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(idInputTxt, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 56, Short.MAX_VALUE))
+                    .add(busLineLabel))
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                    .add(createBusLabel)
+                    .add(idInputTxt, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 19, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(busLineLabel)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(busLinesComboBox, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        createBusButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/add.png")));
+        createBusButton.setText("Create Bus");
+        createBusButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                createBusButtonActionPerformed(evt);
+            }
+        });
+
+        org.jdesktop.layout.GroupLayout jPanel2Layout = new org.jdesktop.layout.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(createBusButton)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(jPanel2Layout.createSequentialGroup()
+                .add(21, 21, 21)
+                .add(createBusButton)
+                .addContainerGap(23, Short.MAX_VALUE))
+        );
+
+        org.jdesktop.layout.GroupLayout creationPanelLayout = new org.jdesktop.layout.GroupLayout(creationPanel);
+        creationPanel.setLayout(creationPanelLayout);
+        creationPanelLayout.setHorizontalGroup(
+            creationPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(creationPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .add(jPanel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(jPanel2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(17, Short.MAX_VALUE))
+        );
+        creationPanelLayout.setVerticalGroup(
+            creationPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(creationPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .add(creationPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING, false)
+                    .add(org.jdesktop.layout.GroupLayout.LEADING, jPanel2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .add(org.jdesktop.layout.GroupLayout.LEADING, jPanel1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(260, Short.MAX_VALUE))
+        );
+        tabbedPane.addTab("Creation", creationPanel);
 
         applicationMenu.setLabel("Application");
         exitItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/exit.gif")));
@@ -195,8 +239,8 @@ public class MainFrame extends javax.swing.JFrame {
             .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
-                    .add(org.jdesktop.layout.GroupLayout.LEADING, buttonsPanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .add(org.jdesktop.layout.GroupLayout.LEADING, tabbedPane, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 404, Short.MAX_VALUE))
+                    .add(org.jdesktop.layout.GroupLayout.LEADING, tabbedPane, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
+                    .add(org.jdesktop.layout.GroupLayout.LEADING, buttonsPanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -209,7 +253,7 @@ public class MainFrame extends javax.swing.JFrame {
                 .addContainerGap())
         );
         java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
-        setBounds((screenSize.width-438)/2, (screenSize.height-535)/2, 438, 535);
+        setBounds((screenSize.width-434)/2, (screenSize.height-535)/2, 434, 535);
     }// </editor-fold>//GEN-END:initComponents
 
     private void stopBusButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stopBusButtonActionPerformed
@@ -247,6 +291,8 @@ public class MainFrame extends javax.swing.JFrame {
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu applicationMenu;
+    private javax.swing.JLabel busLineLabel;
+    private javax.swing.JComboBox busLinesComboBox;
     private javax.swing.JLabel busListLabel;
     private javax.swing.JPanel buttonsPanel;
     private javax.swing.JPanel controlePanel;
@@ -257,6 +303,8 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JMenuItem exitItem;
     private javax.swing.JTextField idInputTxt;
     private javax.swing.JList jList1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JButton startBusButton;
