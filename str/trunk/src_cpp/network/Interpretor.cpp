@@ -118,8 +118,7 @@ methode qui permet d'envoyer la position d'un bus a java.
 void Interpretor::sendPosition(int lineId, int busId, int busStopId, int position)
 {
 	string chaine = "@position:"+ stringify((double)lineId);
-	//chaine += ","+stringify((double)busId) ;
-	chaine += ", 12" ;
+	chaine += ","+stringify((double)busId) ;
 	chaine += ","+stringify((double)busStopId);
 	chaine += ","+stringify((double)position);
 	chaine += ";\n";

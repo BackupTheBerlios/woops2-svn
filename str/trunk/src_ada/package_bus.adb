@@ -111,7 +111,7 @@ package body package_bus is
         procedure sendPositionToCenter(ptr_pos : in t_ptr_t_position; speed : in int; busId : in int) is
         begin
             -- le centre recoit la position du bus
-            --receivePosition(ptr_pos, speed, busId);
+            receivePosition(ptr_pos, speed, busId);
             null;
         end sendPositionToCenter;
         
