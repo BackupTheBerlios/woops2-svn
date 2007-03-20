@@ -306,7 +306,7 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void connectButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_connectButtonActionPerformed
         ClientControler.getInstance().initialisation();
-        this.createBusStopButton.setEnabled(false);
+        this.connectButton.setEnabled(false);
     }//GEN-LAST:event_connectButtonActionPerformed
 
     private void exitItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitItemActionPerformed
@@ -347,5 +347,13 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JButton stopBusButton;
     private javax.swing.JTabbedPane tabbedPane;
     // End of variables declaration//GEN-END:variables
+
+	public javax.swing.JTable getBusTable() {
+		return busTable;
+	}
+
+	public void setBusTable(javax.swing.JTable busTable) {
+		this.busTable = busTable;
+	}
     
 }
