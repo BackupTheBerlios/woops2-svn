@@ -98,23 +98,7 @@ package body package_bus is
                 isStarted := false;
                 -- TEMPORAIRE: arrêt net du bus
                 speed := 0;
-                put_line("tt_bus: Le bus"& int'image(id) & " est arrêté");
-            
-            accept accelerate;
-                if speed = 50 then
-                    put_line("tt_bus: Le bus"& int'image(id) & " a atteind la vitesse limite");
-                else
-                    put_line("tt_bus: Le bus"& int'image(id) & " accelère");
-                    speed := speed + 10;
-                end if;
-                                
-            accept decelerate;
-                if speed = 0 then
-                    put_line("tt_bus: Le bus"& int'image(id) & " est arrêté");
-                else
-                    put_line("tt_bus: Le bus"& int'image(id) & " décélère");
-                    speed := speed - 10;
-                end if;                       
+                put_line("tt_bus: Le bus"& int'image(id) & " est arrêté");                
         end loop;
     end tt_bus;
 
