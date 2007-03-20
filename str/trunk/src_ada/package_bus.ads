@@ -23,7 +23,7 @@ package package_bus is
     protected Radio is
         procedure sendPositionToCenter(ptr_pos : in t_ptr_t_position; speed : in int; busId : in int);
         --procedure sendPriorityMessage(ptr_mes : out t_ptr_t_priorityMessage);
-        --procedure receiveCommand(ptr_com : in t_ptr_t_action);
+        -- procedure receiveCommand(ptr_com : in t_ptr_t_action);
     end Radio;
     
 end package_bus;
