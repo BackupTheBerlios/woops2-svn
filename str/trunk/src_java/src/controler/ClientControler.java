@@ -13,6 +13,7 @@ import javax.swing.event.ListDataListener;
 import model.Bus;
 import model.BusStop;
 import model.CartesianPosition;
+import model.Information;
 import model.Line;
 import network.Interpretor;
 import network.NetworkManager;
@@ -32,6 +33,8 @@ public class ClientControler implements ListDataListener{
 	private Queue<String> messagesFromInterface;
 
 	private Queue<CartesianPosition> cartesianPositionQueue;
+	
+	private Queue<Information> informationsQueue;
 
 	/**
 	 * 
@@ -333,6 +336,20 @@ public class ClientControler implements ListDataListener{
 	public void intervalRemoved(ListDataEvent e) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	/**
+	 * @return the informationsQueue
+	 */
+	public Queue<Information> getInformationsQueue() {
+		return this.informationsQueue;
+	}
+
+	/**
+	 * @param _informationsQueue the informationsQueue to set
+	 */
+	public void setInformationsQueue(Queue<Information> _informationsQueue) {
+		this.informationsQueue = _informationsQueue;
 	}
 
 }

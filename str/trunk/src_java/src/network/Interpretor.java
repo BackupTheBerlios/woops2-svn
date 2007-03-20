@@ -6,6 +6,7 @@ import java.util.Queue;
 import model.Bus;
 import model.BusStop;
 import model.CartesianPosition;
+import model.Information;
 import model.Line;
 import controler.ClientControler;
 
@@ -40,11 +41,14 @@ public class Interpretor {
 	 */
 	public void networkCommandTreatment() {
 		Queue<CartesianPosition> dest = ClientControler.getInstance().getCartesianPositionQueue();
+		Queue<Information> info = ClientControler.getInstance().getInformationsQueue();
 		System.out.println("file network"+this.getMessagesFromNetwork().size());
 		while (!this.getMessagesFromNetwork().isEmpty()) {
 			String s = this.getMessagesFromNetwork().remove();
 			if (s.contains("@position")) {
 				dest.offer(this.positionTreatment(s));
+			} else if (s.contains("@information")) {
+				info.offer(this.informationTreatment(s));
 			}
 		}
 	}
@@ -55,22 +59,34 @@ public class Interpretor {
 	 * @return
 	 */
 	public CartesianPosition positionTreatment(String _s) {
-		System.out.println("positionTreatment : file mesg CC :"+ClientControler.getInstance().getCartesianPositionQueue().size());
 		String[] portions = _s.split(",");
 		Line l = ClientControler.getInstance().getLines().get(new Integer(portions[0].substring(portions[0].indexOf(":") + 1)));
-		System.out.println("line "+l.getNumber());
 		Bus b = ClientControler.getInstance().getBus().get(new Integer(portions[1]));
-		System.out.println("bus "+b.getId());
 		BusStop pred = ClientControler.getInstance().getBusStops().get(new Integer(portions[2]));
-		System.out.println("pred "+pred.getId());
 		BusStop next = l.nextBusStop(pred);
-		System.out.println("next "+next.getId());
 		int pourcentage = new Integer(portions[3]);
-		System.out.println("% "+pourcentage);
 		int x = pred.getRepresentation().getX() + ((next.getRepresentation().getX() - pred.getRepresentation().getX()) * pourcentage / 100);
 		int y = pred.getRepresentation().getY() + ((next.getRepresentation().getY() - pred.getRepresentation().getY()) * pourcentage / 100);
 		System.out.println("nouvel coord b="+b.getId()+" x:"+x+" y:"+y);
 		return new CartesianPosition(l, b, x, y);
+	}
+	
+	/**
+	 * 
+	 * @param _s
+	 * @return
+	 */
+	public Information informationTreatment(String _s) {
+		String[] portions = _s.split(",");
+		String num = portions[0].substring(portions[0].indexOf(":") + 1);
+		Line l = ClientControler.getInstance().getLines().get(new Integer(num));
+		BusStop pred = ClientControler.getInstance().getBusStops().get(new Integer(portions[2]));
+		BusStop next = l.nextBusStop(pred);
+		int tps = new Integer(portions[3]);
+		int min = tps / 60;
+		int sec = tps % 60;
+		String s = "Ligne "+num+" : le bus n°"+portions[1]+" arrive dans "+min+" min "+sec+" sec.";
+		return new Information(next, s);
 	}
 
 	/**
