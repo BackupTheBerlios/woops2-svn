@@ -76,6 +76,7 @@ void* OperatingCenter::thread_function_miseajour(void* a){
 	}
 
 	//on rend le jeton
+	free(structmem);
 	pthread_mutex_unlock (&mutex);
 }
 /**
@@ -173,8 +174,8 @@ void* OperatingCenter::thread_function_receive_position(void *structPosition){
 	structmem->time = timeInSeconde;
 	int etat;
 	pthread_t thread;
-	etat = pthread_create(&thread,NULL,thread_function_miseajour, (void*)structmem);
-	if (etat != 0) cout<<"Echec creation de thread pour l'initialisation des bus: %d"<<endl;
+	//etat = pthread_create(&thread,NULL,thread_function_miseajour, (void*)structmem);
+	//if (etat != 0) cout<<"Echec creation de thread pour l'initialisation des bus: %d"<<endl;
 
 	//mise en place des threads pour l'archivage
 	t_archivage *structarch = (t_archivage *)malloc(sizeof(t_archivage));
@@ -184,10 +185,12 @@ void* OperatingCenter::thread_function_receive_position(void *structPosition){
 	structarch->bus = maStructPosition->busId;
 	structarch->distance = maposition->distance;
 	pthread_t thread_fichier;
-	etat = pthread_create(&thread_fichier,NULL,thread_function_archivage, (void*)structarch);
+	//etat = pthread_create(&thread_fichier,NULL,thread_function_archivage, (void*)structarch);
 	Interpretor::getInstance()->sendPosition(maposition->lineNumber, maStructPosition->busId, maposition->busStopId, percent );
 	cout<<"-----------------------------------------------------------------------"<<endl;
 	cout<<"FIN DUN THREAD"<<endl;
+	cout<<"On libere"<<endl;
+	free(maStructPosition);
 
 }
 
@@ -250,7 +253,7 @@ void OperatingCenter::receivePosition(t_structReceivePosition* position){
 	//création du thread
 	etat = pthread_create(&receive_position_thread,NULL,thread_function_receive_position, (void *)position);
 	if (etat != 0) 
-		perror("Echec creation de thread pour la réception des positions: %d\n");
+		perror("Echec creation de thread pour la réception des positions\n");
     
 }
 
