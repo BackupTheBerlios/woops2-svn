@@ -11,7 +11,10 @@ package package_constantes is
 	NB_BUS : constant integer := 20;
 
 	-- periode d'envoi de la position d'un bus au centre (en secondes)
-	PERIODE : constant duration := 2.0;
+	PERIOD : constant duration := 2.0;
+    
+    -- delai d'attente d'un bus à un arrêt de bus
+    WAITING_TIME : constant duration := 6.0;
     
     -- distance totale entre deux arrêts de bus (100m)
     TOTALDISTANCE : constant C_float := 100.0;

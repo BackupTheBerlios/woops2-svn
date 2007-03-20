@@ -5,6 +5,15 @@ use package_types, package_bus, package_busstop, package_constantes, Text_io, in
 package body package_busnetwork is
     
     invalidLineNumber : exception;
+    BusTableIsFull : exception;
+    
+    -- indexBus pointe sur la première case vide (=0) du tableau de pointeur sur les tâches bus
+    indexBus : integer := 1;
+    
+    -- les index 1 et 2 pointent respectivement sur la première case vide (ici vide = 0) 
+    -- du tableau d'arrêts de bus de la ligne concernée
+    index1 : integer := 1;
+    index2 : integer := 1;
     
     ----------------------------
     -- objet protégé BusNetwork
@@ -32,20 +41,40 @@ package body package_busnetwork is
                 raise invalidLineNumber;
             end if;
         end setLine;
+        
+        function getBusTable return BusTabType is
+        begin
+            return BusTable;
+        end getBusTable;
+        
+        function getBusById(id : in int) return t_ptr_tt_bus is
+        currentBusId : int;
+        begin
+            for i in BusTable'first..BusTable'last loop
+                BusTable(i).all.getBusId(currentBusId);
+                if currentBusId = id then
+                    put_line("Le bus trouvé est à la position "&integer'image(i));
+                    return BusTable(i);
+                end if;
+            end loop;
+            return null;
+        end getBusById;
+        
+        procedure addBus(bus : in t_ptr_tt_bus) is
+        begin
+            if indexBus = NB_BUS then
+                raise BusTableIsFull;
+            end if;
+            BusTable(indexBus) := bus;
+            put_line("Ajout d'un bus à la position "&integer'image(indexBus));
+            indexBus := indexBus + 1;  
+        end addBus;
     
     end BusNetwork;
         
     -------------------------
     -- Définition des pragma 
     -------------------------
-    
-    -- les index 1 et 2 pointent respectivement sur la première case vide (ici vide = 0) 
-    -- du tableau d'arrêts de bus de la ligne concernée
-    index1 : integer := BusNetwork.getLine(12).busStopTable'first;
-    index2 : integer := BusNetwork.getLine(24).busStopTable'first;
-    
-    -- indexBus pointe sur la première case vide (=0) du tableau de pointeur sur les tâches bus
-    indexBus : integer := 1;
     
     ---------------------------------
     -- Initialisation des objets ADA
@@ -80,6 +109,7 @@ package body package_busnetwork is
         
         exception
             when invalidLineNumber => put_line("Numéro de ligne invalide");
+            when BusTableIsFull => put_line("Le tableau de bus est plein");
     
     end p_initBusStop;
     
@@ -97,12 +127,13 @@ package body package_busnetwork is
         -- on positionne le bus en début de ligne
         put("starting busstop de la ligne "&int'image(line)&": ");put_line(int'image(startingBusStop));
         ptr_position := new t_position'(line, startingBusStop, 0.0);
-        
-        -- TODO ajout du bus créé dans le tableau 
-        
+             
         ptr_bus := new tt_bus(id_bus, ptr_position, line);
         put("creation du bus n°");put(int'image(id_bus)); 
-        put(" sur la ligne");put_line(int'image(line));  
+        put(" sur la ligne");put_line(int'image(line));
+        
+        -- ajout du bus créé dans le tableau de bus du réseau   
+        BusNetwork.addBus(ptr_bus);
         
         -- TEMPORAIRE démarrage du bus
         ptr_bus.all.start;

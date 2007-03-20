@@ -59,10 +59,12 @@ package package_busnetwork is
         function getLine(lineId : in int) return t_line;        
         procedure setLine(lineId : in int; line : in t_line); 
         
-        --function getBusTable return BusTabType;       
-        
-        -- fonction d'acces a un t_ptr_tbus
-        -- peut-être ajout d'une tache bus dans le tableau et aussi ajout d'un arret dans la ligne
+        -- A TESTER
+        function getBusTable return BusTabType;
+        procedure addBus(bus : in t_ptr_tt_bus);
+               
+        function getBusById(id : in int) return t_ptr_tt_bus;
+        -- peut-être ajout d'un arret dans la ligne
         
         private
             line_12 : t_line := (lineNumber => 12, busStopTable => (others => 0));
