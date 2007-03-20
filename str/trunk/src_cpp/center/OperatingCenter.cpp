@@ -18,6 +18,9 @@ int taillememoire = 0;
 static pthread_mutex_t mutex;
 static pthread_mutex_t mutex_fichier;
 
+//variable qui indique si on a deja créée un bus.
+int init_bus = 0;
+
 void initSystem()
 {
     cout<<"hello"<<endl;
@@ -268,15 +271,26 @@ méthode pour initialiser les bus
 void OperatingCenter::java_init_bus(int nombre, int ligne)
 {
 	adainit_bus(nombre,ligne);
-	int etat;
-
-	//création du thread pour traiter l'information
-	pthread_t sendinfo_thread;
-
-	//création du thread
-	etat = pthread_create(&sendinfo_thread,NULL,thread_function_getvaleur, NULL);
-	if (etat != 0) perror("Echec creation de thread pour la réception des positions: %d\n");
 	
+	if (init_bus == 0)
+	{
+		int etat;
+		pthread_t sendinfo_thread;
+
+		//création du thread
+		etat = pthread_create(&sendinfo_thread,NULL,thread_function_getvaleur, NULL);
+		if (etat != 0) perror("Echec creation de thread pour la réception des positions: %d\n");
+		init_bus = 1;
+	}	
+}
+
+/**
+methode qui start un bus
+*/
+
+void start_busStop(int num_bus)
+{
+	ada_startBus(num_bus);
 }
 
 /*------------------------------ methodes que ADA appelle ---------------------- */

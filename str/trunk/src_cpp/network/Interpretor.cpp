@@ -57,7 +57,7 @@ void Interpretor::receiveInformation(char* buffer)
 			}
 			if(commande.substr(1,i) == "startBus:")
 			{
-				//startBus(commande.substr(i+1,commande.length()-1));
+				startBus(commande.substr(i+1,commande.length()-1));
 			}
 			buf = buf.substr(index+2, buf.length());
 			cout<<"buf"<<buf<<endl;
@@ -87,7 +87,7 @@ void Interpretor::createBusStop(string buffer)
 /**
 méthode qui va starter les bus
 */
-/*
+
 void Interpretor::startBus(string buffer)
 {
 	cout<<"Appel a la methode create bus stop avec comme param"<<buffer<<endl;
@@ -95,7 +95,7 @@ void Interpretor::startBus(string buffer)
 	int num_bus = atoi(buffer.substr(0,index).c_str());
 	cout<<"valeur "<<num_bus<<endl;
 	//OperatingCenter::getInstance()->start_busStop(num_bus);
-}*/
+}
 void Interpretor::createLine(string buffer)
 {
 	cout<<"Appel a la methode create line avec comme param"<<buffer<<endl;

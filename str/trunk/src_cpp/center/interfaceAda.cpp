@@ -51,6 +51,10 @@ void adainit_bus(int nombre, int ligne)
 	p_initBus(nombre,ligne);
 }
 
+void ada_startBus(int id)
+{
+}
+
 
 //-------------------------------------- Méthode que Ada appelle ---------------------------------------
 //None.
@@ -59,13 +63,8 @@ int main ()
 {
 	
 	adainit();
-	
-	
   	NetworkManager::getInstance()->initNet();
 	
-    while(1){
-		//sleep(5);
-		//NetworkManager::getInstance()->sendBuffer(msg);
-	}
+    while(1){	}
 	adafinal();
 }
