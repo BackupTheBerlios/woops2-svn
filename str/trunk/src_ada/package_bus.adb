@@ -28,7 +28,7 @@ package body package_bus is
             loop
                 if (isStarted) then
                     -- envoi de la position toutes les 2 secondes
-                    delay(PERIODE);                
+                    delay(PERIOD);                
                     put_line("tt_bus: envoi de la position");
                     put("vitesse du bus "&int'image(busId)&": ");put_line(int'image(speed));
                     -- on simule l'accélération du bus
@@ -89,7 +89,7 @@ package body package_bus is
                     
                     -- on simule l'entrée de passagers dans le bus
                     put_line("Les passagers montent dans le bus....");
-                    delay(8.0);
+                    delay(WAITING_TIME);
                     put_line("tt_bus: Le bus" & int'image(busId) & " quitte l'arrêt " & int'image(ptr_pos.all.busStopId));
                     start;
                 end if;               
@@ -106,7 +106,13 @@ package body package_bus is
                 isStarted := false;
                 -- TEMPORAIRE: arrêt net du bus
                 speed := 0;
-                put_line("tt_bus: Le bus"& int'image(busId) & " est arrêté");                
+                put_line("tt_bus: Le bus"& int'image(busId) & " est arrêté");
+            
+            accept getBusId(id : out int)
+            do
+                id :=  busId;
+            end getBusId;
+                                
         end loop;
     end tt_bus;
 
@@ -118,7 +124,7 @@ package body package_bus is
         procedure sendPositionToCenter(ptr_pos : in t_ptr_t_position; speed : in int; busId : in int) is
         begin
             -- le centre recoit la position du bus
-            receivePosition(ptr_pos, speed, busId);
+            --receivePosition(ptr_pos, speed, busId);
             null;
         end sendPositionToCenter;
         
