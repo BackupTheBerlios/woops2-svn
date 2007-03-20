@@ -186,6 +186,9 @@ void* OperatingCenter::thread_function_receive_position(void *structPosition){
 	pthread_t thread_fichier;
 	etat = pthread_create(&thread_fichier,NULL,thread_function_archivage, (void*)structarch);
 	Interpretor::getInstance()->sendPosition(maposition->lineNumber, maStructPosition->busId, maposition->busStopId, percent );
+	cout<<"-----------------------------------------------------------------------"<<endl;
+	cout<<"FIN DUN THREAD"<<endl;
+
 }
 
 /**fonction de thread pour l'écoute de la réception d'information.

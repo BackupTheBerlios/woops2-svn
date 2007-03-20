@@ -52,7 +52,7 @@ void adainit_busStop(int nombre, int ligne)
 
 void adainit_bus(int nombre, int ligne)
 {
-	p_initBus(5,1);
+	p_initBus(nombre,ligne);
 	//NetworkManager::getInstance()->sendBuffer("@pos:1,45,2,500;");
 }
 
