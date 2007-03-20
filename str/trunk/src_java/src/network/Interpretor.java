@@ -3,11 +3,11 @@ package network;
 import java.util.LinkedList;
 import java.util.Queue;
 
-import controler.ClientControler;
-
 import model.Bus;
+import model.BusStop;
 import model.CartesianPosition;
 import model.Line;
+import controler.ClientControler;
 
 public class Interpretor {
 
@@ -56,8 +56,13 @@ public class Interpretor {
 	public CartesianPosition positionTreatment(String _s) {
 		String[] portions = _s.split(",");
 		Line l = ClientControler.getInstance().getLines().get(new Integer(portions[0].substring(portions[0].indexOf(":") + 1)));
-		Bus b = ClientControler.getInstance().getBus().get(new Integer(portions[1]));		
-		return new CartesianPosition(l, b, new Integer(portions[2]), new Integer(portions[3]));
+		Bus b = ClientControler.getInstance().getBus().get(new Integer(portions[1]));
+		BusStop pred = ClientControler.getInstance().getBusStops().get(new Integer(portions[2]));
+		BusStop next = l.nextBusStop(pred);
+		int pourcentage = new Integer(portions[3]);
+		int x = (next.getRepresentation().getX() - pred.getRepresentation().getX()) * pourcentage / 100;
+		int y = (next.getRepresentation().getY() - pred.getRepresentation().getY()) * pourcentage / 100;
+		return new CartesianPosition(l, b, x, y);
 	}
 
 	/**

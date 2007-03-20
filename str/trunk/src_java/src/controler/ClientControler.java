@@ -22,23 +22,23 @@ public class ClientControler {
 
 	private static ClientControler clientControler;
 
-	private List<BusStop> busStops;
+	private HashMap<Integer, BusStop> busStops;
 
 	private HashMap<Integer, Bus> bus;
 
-	private HashMap<Integer, Line> lines; 
-	
+	private HashMap<Integer, Line> lines;
+
 	private Queue<String> messagesFromInterface;
-	
+
 	private Queue<CartesianPosition> cartesianPositionQueue;
 
 	/**
 	 * 
-	 *
+	 * 
 	 */
 	private ClientControler() {
 		this.bus = new HashMap<Integer, Bus>();
-		this.busStops = new ArrayList<BusStop>();
+		this.busStops = new HashMap<Integer, BusStop>();
 		this.lines = new HashMap<Integer, Line>();
 		this.messagesFromInterface = new LinkedList<String>();
 		this.cartesianPositionQueue = new LinkedList<CartesianPosition>();
@@ -75,31 +75,32 @@ public class ClientControler {
 
 	/**
 	 * fonction de creation universelle de commande "create"
+	 * 
 	 * @param _code
 	 * @param _str
 	 */
-	public void sendCreateCommand(int _code, String _id, String _l, int _x, int _y) {
+	public void sendCreateCommand(int _code, String _id, String _l, int _x,
+			int _y) {
 		Line l = null;
 		int id = new Integer(_id).intValue();
 		if (!_l.equals("null")) {
 			l = this.lines.get(new Integer(_l).intValue());
 		}
 		switch (_code) {
-			case Constante.BUS_STOP:
-				this.busStops.add(this
-					.createBusStop(new Integer(_id).intValue(), l, _x, _y));
-				Interpretor.getInstance().sendCreateBusStop(_id, l);
-				break;
-			case Constante.LIGNE:
-				this.lines.put(id, this.createLine(id));
-				Interpretor.getInstance().sendCreateLine(_id);
-				break;
-			case Constante.BUS:
-				this.bus.put(id, this.createBus(id, l, _x, _y));
-				Interpretor.getInstance().sendCreateBus(_id, l);
-				break;
-			default:
-				break;
+		case Constante.BUS_STOP:
+			this.busStops.put(id, this.createBusStop(id, l, _x, _y));
+			Interpretor.getInstance().sendCreateBusStop(_id, l);
+			break;
+		case Constante.LIGNE:
+			this.lines.put(id, this.createLine(id));
+			Interpretor.getInstance().sendCreateLine(_id);
+			break;
+		case Constante.BUS:
+			this.bus.put(id, this.createBus(id, l, _x, _y));
+			Interpretor.getInstance().sendCreateBus(_id, l);
+			break;
+		default:
+			break;
 		}
 	}
 
@@ -112,14 +113,14 @@ public class ClientControler {
 		while (!q.isEmpty()) {
 			String s = q.remove();
 			System.out.println("Taille de la file interface : " + q.size());
-			System.out.println("envoi de la commande : "+s);
+			System.out.println("envoi de la commande : " + s);
 			NetworkManager.getInstance().sendMessage(s);
 		}
 	}
 
 	/**
 	 * 
-	 *
+	 * 
 	 */
 	public void startClient() {
 
@@ -151,7 +152,7 @@ public class ClientControler {
 			}
 		};
 		threadNetworkMessages.start();
-		
+
 		Thread threadCartesianPositionUpdate = new Thread() {
 			public void run() {
 				while (true) {
@@ -165,7 +166,7 @@ public class ClientControler {
 			}
 		};
 		threadCartesianPositionUpdate.start();
-		
+
 		Thread threadInterfaceMessages = new Thread() {
 			public void run() {
 				while (true) {
@@ -183,34 +184,38 @@ public class ClientControler {
 	}
 
 	/**
-	 * Methode pour traiter les cartesianPosition et mettre à jours le 
-	 * modèle
+	 * Methode pour traiter les cartesianPosition et mettre �� jours le mod��le
 	 */
 	private void cartesianPositionUpdate() {
-		for (CartesianPosition cp : this.cartesianPositionQueue){
+		for (CartesianPosition cp : this.cartesianPositionQueue) {
 			Bus b = this.bus.get(cp.getBus().getId());
 			b.getRepresentation().setX(cp.getX());
 			b.getRepresentation().setY(cp.getY());
 		}
 	}
-	
-	
+
 	/**
 	 * Permet de creer un arret de bus
-	 * @param _id id de l arret
-	 * @param _l ligne de l'arret
+	 * 
+	 * @param _id
+	 *            id de l arret
+	 * @param _l
+	 *            ligne de l'arret
 	 * @return un arret de bus
 	 */
 	private BusStop createBusStop(int _id, Line _l, int _x, int _y) {
 		BusStop tmp = new BusStop(_id, _x, _y);
 		tmp.addLine(_l);
-		BusDisplayerFrame.getInstance().getEntities().add(tmp.getRepresentation());
+		BusDisplayerFrame.getInstance().getEntities().add(
+				tmp.getRepresentation());
 		return tmp;
 	}
 
 	/**
 	 * Permet de creer une ligne
-	 * @param _n numero de la ligne
+	 * 
+	 * @param _n
+	 *            numero de la ligne
 	 * @return une ligne
 	 */
 	private Line createLine(int _n) {
@@ -220,16 +225,20 @@ public class ClientControler {
 
 	/**
 	 * Permet de creer un Bus
-	 * @param _id id du bus
-	 * @param _l ligne du bus
+	 * 
+	 * @param _id
+	 *            id du bus
+	 * @param _l
+	 *            ligne du bus
 	 * @return un bus
 	 */
 	private Bus createBus(int _id, Line _l, int _x, int _y) {
 		Bus tmp = new Bus(_id, _l, _x, _y);
-		BusDisplayerFrame.getInstance().getEntities().add(tmp.getRepresentation());
+		BusDisplayerFrame.getInstance().getEntities().add(
+				tmp.getRepresentation());
 		return tmp;
 	}
-	
+
 	/**
 	 * @return the messagesFromInterface
 	 */
@@ -238,7 +247,8 @@ public class ClientControler {
 	}
 
 	/**
-	 * @param _messagesFromInterface the messagesFromInterface to set
+	 * @param _messagesFromInterface
+	 *            the messagesFromInterface to set
 	 */
 	public void setMessagesFromInterface(Queue<String> _messagesFromInterface) {
 		this.messagesFromInterface = _messagesFromInterface;
@@ -252,7 +262,8 @@ public class ClientControler {
 	}
 
 	/**
-	 * @param cartesianPositionQueue the cartesianPositionQueue to set
+	 * @param cartesianPositionQueue
+	 *            the cartesianPositionQueue to set
 	 */
 	public void setCartesianPositionQueue(
 			Queue<CartesianPosition> cartesianPositionQueue) {
@@ -267,24 +278,11 @@ public class ClientControler {
 	}
 
 	/**
-	 * @param _lines the lines to set
+	 * @param _lines
+	 *            the lines to set
 	 */
 	public void setLines(HashMap<Integer, Line> _lines) {
 		this.lines = _lines;
-	}
-
-	/**
-	 * @return the busStops
-	 */
-	public List<BusStop> getBusStops() {
-		return this.busStops;
-	}
-
-	/**
-	 * @param _busStops the busStops to set
-	 */
-	public void setBusStops(List<BusStop> _busStops) {
-		this.busStops = _busStops;
 	}
 
 	/**
@@ -295,10 +293,26 @@ public class ClientControler {
 	}
 
 	/**
-	 * @param _bus the bus to set
+	 * @param _bus
+	 *            the bus to set
 	 */
 	public void setBus(HashMap<Integer, Bus> _bus) {
 		this.bus = _bus;
+	}
+
+	/**
+	 * @return the busStops
+	 */
+	public HashMap<Integer, BusStop> getBusStops() {
+		return busStops;
+	}
+
+	/**
+	 * @param busStops
+	 *            the busStops to set
+	 */
+	public void setBusStops(HashMap<Integer, BusStop> busStops) {
+		this.busStops = busStops;
 	}
 
 }
