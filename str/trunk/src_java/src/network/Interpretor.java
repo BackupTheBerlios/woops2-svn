@@ -46,6 +46,7 @@ public class Interpretor {
 				dest.offer(this.positionTreatment(s));
 			}
 		}
+		System.out.println("networkCommandTreatment sleep ...");
 	}
 	
 	/**
@@ -54,6 +55,7 @@ public class Interpretor {
 	 * @return
 	 */
 	public CartesianPosition positionTreatment(String _s) {
+		System.out.println("positionTreatment : file mesg CC :"+ClientControler.getInstance().getCartesianPositionQueue().size());
 		String[] portions = _s.split(",");
 		Line l = ClientControler.getInstance().getLines().get(new Integer(portions[0].substring(portions[0].indexOf(":") + 1)));
 		Bus b = ClientControler.getInstance().getBus().get(new Integer(portions[1]));
@@ -103,6 +105,7 @@ public class Interpretor {
 				int deb = tmp.indexOf('@');
 				int fin = tmp.indexOf(';');
 				this.messagesFromNetwork.offer(tmp.substring(deb , fin));
+				System.out.println("receiveMessage file mesg net :"+this.messagesFromNetwork.size());
 				tmp = tmp.substring(fin + 1);
 			}
 		} catch (Exception e) {
