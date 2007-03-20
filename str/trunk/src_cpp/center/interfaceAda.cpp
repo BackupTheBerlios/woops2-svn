@@ -22,7 +22,11 @@ extern "C"{
 	void adafinal();
 	void p_initBusStop(int nombre,int ligne);
 	void p_initBus(int nombre, int ligne);
-	void receivePosition(t_position *pos, int speed, int busId);
+	void p_startBus(int busId, int lineId);
+	void p_stopBus(int busId, int lineId);
+	void p_accelerateBus(int busId, int lineId);
+	void p_adadecelerateBus(int busId, int lineId);
+	void p_receivePosition(t_position *pos, int speed, int busId);
 }
 
 /**
@@ -35,6 +39,7 @@ void receivePosition(t_position *pos, int speed, int busId)
 	structPosition->position = pos;
 	structPosition->busId = busId;
 	structPosition->speed = speed;
+	cout<<"hello"<<endl;
 	OperatingCenter::getInstance()->receivePosition(structPosition);
 }
 
@@ -43,28 +48,47 @@ void receivePosition(t_position *pos, int speed, int busId)
 void adainit_busStop(int nombre, int ligne)
 {
 	p_initBusStop(nombre,ligne);
-	
 }
 
 void adainit_bus(int nombre, int ligne)
 {
-	p_initBus(nombre,ligne);
+	p_initBus(5,1);
+	//NetworkManager::getInstance()->sendBuffer("@pos:1,45,2,500;");
 }
 
-void ada_startBus(int id)
+void adastart_bus(int busId, int lineId);
 {
+	//p_startBus(busId,ligneId);
+}
+
+void adastop_bus(int busId, int lineId);
+{
+	//p_stopBus(busId,ligneId);
+}
+
+void adaaccelerate_bus(int busId, int lineId);
+{
+	//p_accelerateBus(busId,ligneId);
+}
+
+void adadecelerate_bus(int busId, int lineId);
+{
+	//p_decelerateBus(busId,ligneId);
 }
 
 
 //-------------------------------------- Méthode que Ada appelle ---------------------------------------
 //None.
 
+
+//main qui initialise le system
 int main ()
 {
-	
+	cout<<"main c"<<endl;
 	adainit();
-  	NetworkManager::getInstance()->initNet();
 	
-    while(1){	}
+	NetworkManager::getInstance()->initNetwork();
+	
+    while(1){}
 	adafinal();
 }
