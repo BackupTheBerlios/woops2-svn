@@ -29,6 +29,10 @@ package body package_bus is
                     delay(periode);                
                     put_line("tt_bus: envoi de la position");
                     put("vitesse du bus "&int'image(id)&": ");put_line(int'image(speed));
+                    -- on simule l'accélération du bus
+                    if speed < 30 then
+                        speed := speed + 10;
+                    end if;
                     display(ptr_pos.all);
                     Radio.sendPositionToCenter(ptr_pos, speed, id); 
                 end if;               
@@ -63,7 +67,7 @@ package body package_bus is
             currentLine : t_line;
         begin
             loop
-                if (isStarted) and (ptr_pos.all.distance >= 100.0) then
+                if (isStarted) and (ptr_pos.all.distance >= totalDistance) then
                     put_line("Distance > 100m");
                     stop;
                     delay(1.0);
@@ -89,17 +93,28 @@ package body package_bus is
             accept start;
                 put_line("tt_bus: Le bus"& int'image(id) & " a démarré");
                 isStarted := true;
-                loop
-                    if speed < 30 then
-                        speed := speed + 5;
-                    end if;    
-                end loop;
-                                        
+                                    
             accept stop;
                 isStarted := false;
                 -- TEMPORAIRE: arrêt net du bus
                 speed := 0;
-                put_line("tt_bus: Le bus"& int'image(id) & " est arrêté");       
+                put_line("tt_bus: Le bus"& int'image(id) & " est arrêté");
+            
+            accept accelerate;
+                if speed = 50 then
+                    put_line("tt_bus: Le bus"& int'image(id) & " a atteind la vitesse limite");
+                else
+                    put_line("tt_bus: Le bus"& int'image(id) & " accelère");
+                    speed := speed + 10;
+                end if;
+                                
+            accept decelerate;
+                if speed = 0 then
+                    put_line("tt_bus: Le bus"& int'image(id) & " est arrêté");
+                else
+                    put_line("tt_bus: Le bus"& int'image(id) & " décélère");
+                    speed := speed - 10;
+                end if;                       
         end loop;
     end tt_bus;
 
@@ -112,7 +127,7 @@ package body package_bus is
         begin
             -- le centre recoit la position du bus
             receivePosition(ptr_pos, speed, busId);
-            null;
+            --null;
         end sendPositionToCenter;
         
         --procedure sendPriorityMessage(ptr_mes : out t_ptr_t_priorityMessage);

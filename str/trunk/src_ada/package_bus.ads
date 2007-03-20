@@ -11,8 +11,8 @@ package package_bus is
     task type tt_bus(idBus : int; initialPosition : t_ptr_t_position) is
         entry start;
         entry stop;
-        -- entry accelerate;
-        -- entry decelerate;
+        entry accelerate;
+        entry decelerate;
     end tt_bus;
 
     type t_ptr_tt_bus is access tt_bus;
@@ -23,7 +23,7 @@ package package_bus is
     protected Radio is
         procedure sendPositionToCenter(ptr_pos : in t_ptr_t_position; speed : in int; busId : in int);
         --procedure sendPriorityMessage(ptr_mes : out t_ptr_t_priorityMessage);
-        -- procedure receiveCommand(ptr_com : in t_ptr_t_action);
+        --procedure receiveCommand(ptr_com : in t_ptr_t_action);
     end Radio;
     
 end package_bus;
