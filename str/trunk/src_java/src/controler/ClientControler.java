@@ -7,6 +7,9 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Queue;
 
+import javax.swing.event.ListDataEvent;
+import javax.swing.event.ListDataListener;
+
 import model.Bus;
 import model.BusStop;
 import model.CartesianPosition;
@@ -16,7 +19,7 @@ import network.NetworkManager;
 
 import common.Constante;
 
-public class ClientControler {
+public class ClientControler implements ListDataListener{
 
 	private static ClientControler clientControler;
 
@@ -192,6 +195,8 @@ public class ClientControler {
 			b.getRepresentation().setY(cp.getY());
 			System.out.println("==> b :"+b.getId()+" x:"+b.getRepresentation().getX()+" y:"+b.getRepresentation().getY());
 		}
+		// update du modele de la jtable
+		if (bus.size() > 0) MainFrame.getInstance().refreshBusTable();
 	}
 
 	/**
@@ -313,6 +318,21 @@ public class ClientControler {
 	 */
 	public void setBusStops(HashMap<Integer, BusStop> busStops) {
 		this.busStops = busStops;
+	}
+
+	public void contentsChanged(ListDataEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void intervalAdded(ListDataEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void intervalRemoved(ListDataEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

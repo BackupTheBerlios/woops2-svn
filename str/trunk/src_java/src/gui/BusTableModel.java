@@ -18,7 +18,12 @@ public class BusTableModel extends AbstractTableModel {
 
 	public BusTableModel(Map<Integer, Bus> _busMap) {
 		super();
-
+		
+		this.refreshModel(_busMap);
+	}
+	
+	public void refreshModel(Map<Integer, Bus> _busMap){
+		lBus.clear();
 		for (Integer key : _busMap.keySet()) {
 			lBus.add(_busMap.get(key));
 		}

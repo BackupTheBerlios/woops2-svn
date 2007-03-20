@@ -283,7 +283,7 @@ public class MainFrame extends javax.swing.JFrame {
         int busId = (Integer) ((BusTableModel) this.busTable.getModel()).getValueAt(rownb, 0);
         Bus b = ClientControler.getInstance().getBus().get(busId);
         b.getRepresentation().setIsRunning(true);
-        
+        this.refreshBusTable();
     }//GEN-LAST:event_startBusButtonActionPerformed
 
     private void createBusButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createBusButtonActionPerformed
@@ -293,7 +293,8 @@ public class MainFrame extends javax.swing.JFrame {
     private void connectButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_connectButtonActionPerformed
         ClientControler.getInstance().initialisation();
         this.connectButton.setEnabled(false);
-        busTable.setModel(new BusTableModel(ClientControler.getInstance().getBus()));
+        this.busTableModel = new BusTableModel(ClientControler.getInstance().getBus());
+        busTable.setModel(busTableModel);
     }//GEN-LAST:event_connectButtonActionPerformed
 
     private void exitItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitItemActionPerformed
@@ -301,9 +302,9 @@ public class MainFrame extends javax.swing.JFrame {
        System.exit(0);
     }//GEN-LAST:event_exitItemActionPerformed
     
-    public void initBusTable(){
-    	int i = 0;
-		
+    public void refreshBusTable(){
+    	this.busTableModel.refreshModel(ClientControler.getInstance().getBus());
+    	this.busTable.updateUI();
 	}
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -327,6 +328,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JButton startBusButton;
     private javax.swing.JButton stopBusButton;
     private javax.swing.JTabbedPane tabbedPane;
+    private BusTableModel busTableModel;
     // End of variables declaration//GEN-END:variables
 
 	public javax.swing.JTable getBusTable() {
@@ -335,6 +337,14 @@ public class MainFrame extends javax.swing.JFrame {
 
 	public void setBusTable(javax.swing.JTable busTable) {
 		this.busTable = busTable;
+	}
+
+	public BusTableModel getBusTableModel() {
+		return busTableModel;
+	}
+
+	public void setBusTableModel(BusTableModel busTableModel) {
+		this.busTableModel = busTableModel;
 	}
     
 }
