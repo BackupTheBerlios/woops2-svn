@@ -27,6 +27,7 @@ extern "C"{
 	void p_accelerateBus(int busId);
 	void p_adadecelerateBus(int busId);
 	void receivePosition(t_position *pos, int speed, int busId);
+	void receiveMessage(char* message);
 }
 
 /**
@@ -42,6 +43,10 @@ void receivePosition(t_position *pos, int speed, int busId)
 	OperatingCenter::getInstance()->receivePosition(structPosition);
 }
 
+void receiveMessage(char* message)
+{
+	cout<<message<<endl;
+}
 //------------------------------------- Methode qui se trouve dans Ada et appelé par le C++ ---------------------
 
 void adainit_busStop(int nombre, int ligne)
@@ -52,7 +57,6 @@ void adainit_busStop(int nombre, int ligne)
 void adainit_bus(int nombre, int ligne)
 {
 	p_initBus(nombre,ligne);
-	//NetworkManager::getInstance()->sendBuffer("@pos:1,45,2,500;");
 }
 
 void adastart_bus(int busId)
@@ -85,9 +89,14 @@ int main ()
 {
 	cout<<"main c"<<endl;
 	adainit();
+	//p_initBusStop(1,12);
+	//p_initBusStop(2,12);
+	//p_initBus(88,12);
+	//p_startBus(88);
+
 	
 	NetworkManager::getInstance()->initNet();
 	
-    while(1){}
+    while(1){	/*sleep(4);  p_accelerateBus(88);*/ }
 	adafinal();
 }

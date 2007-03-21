@@ -1,6 +1,6 @@
 -- Author: eperico
-with package_types, package_busstop, package_bus, interfaces.C, package_constantes;
-use package_types, package_busstop, package_bus, interfaces.C, package_constantes;
+with package_types, package_busstop, package_bus, interfaces.C, package_constantes,Interfaces.C.Strings;
+use package_types, package_busstop, package_bus, interfaces.C, package_constantes, Interfaces.C.Strings;
 
 package package_busnetwork is
     
@@ -35,6 +35,8 @@ package package_busnetwork is
     procedure p_decelerateBus(id_bus : in int);
     pragma export(CPP, p_decelerateBus, "p_decelerateBus");
     
+    procedure receiveMessage(message : in chars_ptr);
+    pragma import(CPP, receiveMessage, "receiveMessage");
     
     -- reception de la position d'un bus par le centre
 	procedure receivePosition(ptr_pos : in t_ptr_t_position; speed : in int; busId : in int);

@@ -5,7 +5,7 @@ use interfaces.C;
 package package_constantes is
     
     -- nombre d'arrêts de bus contenu sur une ligne
-	NB_BUSSTOP : constant integer := 13;
+	NB_BUSSTOP : constant integer := 20;
 
     -- nombre de bus dans le résau
 	NB_BUS : constant integer := 20;

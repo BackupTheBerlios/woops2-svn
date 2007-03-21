@@ -1,6 +1,6 @@
 -- Author: eperico
-with package_types, package_busnetwork, package_constantes, Text_io;
-use package_types, package_busnetwork, package_constantes, Text_io;
+with package_types, package_busnetwork, package_constantes, Text_io, interfaces.C.strings;
+use package_types, package_busnetwork, package_constantes, Text_io, interfaces.C.strings;
 
 package body package_bus is
 	
@@ -17,6 +17,7 @@ package body package_bus is
         isStarted : boolean := false;
         -- l'index précise l'index du dernier arrêt auquel le bus s'est arrêté
         IndexOfCurrentBusStop : integer := 1;
+  mess : chars_ptr ;
                 
         ------------------------------------------------
         -- tâche cyclique d'envoi de la position du bus
@@ -95,7 +96,7 @@ package body package_bus is
                 end if;               
             end loop;
         end t_Sensor;
-        
+      
     begin        
         loop
             select
@@ -107,6 +108,8 @@ package body package_bus is
             or    
                 accept start;
                     put_line("tt_bus: Le bus"& int'image(busId) & " a démarré");
+		mess := new_string("VOICI LE MESSAGE");
+		   receiveMessage(mess);
                     isStarted := true;
             or                            
                 accept stop;
