@@ -112,7 +112,7 @@ void* OperatingCenter::thread_function_receive_position(void *structPosition){
 	cout<<", distance => " << maposition->distance << ")" << endl;
 	cout<<"vitesse du bus " << maStructPosition->busId << ": " << maStructPosition->speed << endl;
     	
-	int remainingDistance = 1000 - (int)maposition->distance;
+	int remainingDistance = DISTANCE_BETWEEN_2_STOP - (int)maposition->distance;
 	int speedInMeterPerSeconde = maStructPosition->speed*1000/3600;
 	int timeInSeconde = 0;
 	if(speedInMeterPerSeconde != 0)
@@ -271,16 +271,6 @@ void start_busStop(int num_bus)
 	//ada_startBus(num_bus);
 }
 
-/*------------------------------ methodes que ADA appelle ---------------------- */
-void OperatingCenter::returnInitBusStop()
-{
-	int etat;
-	pthread_t busStop_thread;
-	
-	cout<<"Fonction du retour de la fonction returnInitBusStop"<<endl;
-	etat = pthread_create(&busStop_thread,NULL,thread_function_returnInitBusStop,NULL );
-	if (etat != 0) cout<<"Echec creation de thread pour le retour de initBusStop: %d"<<endl;
-}
 
 
 //void OperatingCenter::p_sendPriorityMessage

@@ -62,7 +62,7 @@ class OperatingCenter
 
 
 		//------- méthode qui ada appelle et qui créée les threads
-		void returnInitBusStop();
+
                 
 };
 
