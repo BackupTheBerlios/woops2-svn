@@ -152,7 +152,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         busLineLabel.setText("Lignes de bus : ");
 
-        busLinesComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "12" }));
+        busLinesComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "12", "24" }));
 
         org.jdesktop.layout.GroupLayout creationPanel1Layout = new org.jdesktop.layout.GroupLayout(creationPanel1);
         creationPanel1.setLayout(creationPanel1Layout);
