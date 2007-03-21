@@ -25,7 +25,7 @@ public class InformationTableModel extends AbstractTableModel {
 	public void refreshModel() {
 		ArrayList<Information> lInf = new  ArrayList<Information>(); //ClientControler.getInstance().getInformationsQueue();
 		lInf.addAll(ClientControler.getInstance().getInformationsQueue());
-		//lInformation.clear();
+		lInformation.clear();
 		for (Information i : lInf) {
 			lInformation.add(i);
 		}
