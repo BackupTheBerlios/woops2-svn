@@ -46,6 +46,7 @@ public class ClientControler implements ListDataListener{
 		this.lines = new HashMap<Integer, Line>();
 		this.messagesFromInterface = new LinkedList<String>();
 		this.cartesianPositionQueue = new LinkedList<CartesianPosition>();
+		this.informationsQueue = new LinkedList<Information>();
 	}
 
 	/**
