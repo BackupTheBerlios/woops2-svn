@@ -124,10 +124,11 @@ public class ClientControler implements ListDataListener{
 			Interpretor.getInstance().sendCreateBus(_id, l);
 			break;
 		case Constante.START_BUS:
-			
+			Bus b = ClientControler.getInstance().getBus().get(id);
+			b.getRepresentation().setIsRunning(true);
+			Interpretor.getInstance().sendStartBus(_id);
 			break;	
-		default:
-			break;
+		default:	break;
 		}
 	}
 
