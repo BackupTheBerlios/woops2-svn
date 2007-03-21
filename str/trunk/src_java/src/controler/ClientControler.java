@@ -113,16 +113,19 @@ public class ClientControler implements ListDataListener{
 		switch (_code) {
 		case Constante.BUS_STOP:
 			this.busStops.put(id, this.createBusStop(id, l, _x, _y));
-			//Interpretor.getInstance().sendCreateBusStop(_id, l);
+			Interpretor.getInstance().sendCreateBusStop(_id, l);
 			break;
 		case Constante.LIGNE:
 			this.lines.put(id, this.createLine(id));
-			//Interpretor.getInstance().sendCreateLine(_id);
+			Interpretor.getInstance().sendCreateLine(_id);
 			break;
 		case Constante.BUS:
 			this.bus.put(id, this.createBus(id, l, _x, _y));
-			//Interpretor.getInstance().sendCreateBus(_id, l);
+			Interpretor.getInstance().sendCreateBus(_id, l);
 			break;
+		case Constante.START_BUS:
+			
+			break;	
 		default:
 			break;
 		}

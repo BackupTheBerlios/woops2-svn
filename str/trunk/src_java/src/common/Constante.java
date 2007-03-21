@@ -8,4 +8,6 @@ public class Constante {
 	
 	public final static int BUS = 2;
 
+	public final static int START_BUS = 3;
+	
 }

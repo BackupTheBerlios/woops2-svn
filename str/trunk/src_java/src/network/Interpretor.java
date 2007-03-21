@@ -85,7 +85,7 @@ public class Interpretor {
 		int tps = new Integer(portions[3]);
 		int min = tps / 60;
 		int sec = tps % 60;
-		String s = "Ligne "+num+" : le bus n°"+portions[1]+" arrive dans "+min+" min "+sec+" sec.";
+		String s = "Ligne "+num+" : le bus nÂ°"+portions[1]+" arrive dans "+min+" min "+sec+" sec.";
 		return new Information(next, s);
 	}
 
@@ -112,6 +112,15 @@ public class Interpretor {
 	 */
 	public void sendCreateLine(String _n) {
 		String tmp = "@createLine:" + _n + ";";
+		System.out.println("creation de la commande : "+tmp);
+		NetworkManager.getInstance().sendMessage(tmp);
+	}
+	
+	/**
+	 * Envoi un ordre de demarrage d'un bus
+	 */
+	public void sendStartBus(String _n) {
+		String tmp = "@startBus:" + _n + ";";
 		System.out.println("creation de la commande : "+tmp);
 		NetworkManager.getInstance().sendMessage(tmp);
 	}
