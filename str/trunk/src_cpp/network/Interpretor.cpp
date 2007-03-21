@@ -5,7 +5,6 @@
 
 Interpretor::Interpretor()
 {
-	//messageFromNetwork = *(new queue<string>());
 	//création du thread qui va lire la queue
 	pthread_t thread_traitement;
 	int etat = pthread_create(&thread_traitement,NULL,threadTraitementInformation,NULL);
@@ -55,7 +54,7 @@ void* Interpretor::threadTraitementInformation(void* a)
 			int index = buf.find(";",0);
 			if(index != -1)
 			{
-				while(index != -1)
+				while(index != -1 && buf.length()>0)
 				{
 					
 					int indexaroba = buf.find("@",0);
