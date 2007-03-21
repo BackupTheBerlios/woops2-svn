@@ -161,18 +161,24 @@ package body package_busnetwork is
         put_line("### busNetwork : p_startBus");
         BusNetwork.getBusById(id_bus).all.start;
     end p_startBus;
---    
---    procedure p_stopBus(id_bus : in int) is
---    begin
---    end p_stopBus;
---    
---    procedure p_accelerateBus(id_bus : in int) is
---    begin
---    end p_accelerateBus;
---    
---    procedure p_decelerateBus(id_bus : in int) is
---    begin
---    end p_decelerateBus;
+    
+    procedure p_stopBus(id_bus : in int) is
+    begin
+        put_line("### busNetwork : p_stopBus");
+        BusNetwork.getBusById(id_bus).all.stop;
+    end p_stopBus;
+    
+    procedure p_accelerateBus(id_bus : in int) is
+    begin
+        put_line("### busNetwork : p_accelerateBus");
+        BusNetwork.getBusById(id_bus).all.accelerate;
+    end p_accelerateBus;
+    
+    procedure p_decelerateBus(id_bus : in int) is
+    begin
+        put_line("### busNetwork : p_decelerateBus");
+        BusNetwork.getBusById(id_bus).all.decelerate;
+    end p_decelerateBus;
     
 begin
     

@@ -26,14 +26,14 @@ package package_busnetwork is
     procedure p_startBus(id_bus : in int);
     pragma export(CPP, p_startBus, "p_startBus");
         
---    procedure p_stopBus(id_bus : in int);
---    pragma export(CPP, p_stopBus, "p_stopBus");
---    
---    procedure p_accelerateBus(id_bus : in int);
---    pragma export(CPP, p_accelerateBus, "p_accelerateBus");
---    
---    procedure p_decelerateBus(id_bus : in int);
---    pragma export(CPP, p_decelerateBus, "p_decelerateBus");
+    procedure p_stopBus(id_bus : in int);
+    pragma export(CPP, p_stopBus, "p_stopBus");
+    
+    procedure p_accelerateBus(id_bus : in int);
+    pragma export(CPP, p_accelerateBus, "p_accelerateBus");
+    
+    procedure p_decelerateBus(id_bus : in int);
+    pragma export(CPP, p_decelerateBus, "p_decelerateBus");
     
     
     -- reception de la position d'un bus par le centre

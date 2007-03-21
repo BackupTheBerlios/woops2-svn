@@ -113,7 +113,17 @@ package body package_bus is
                     isStarted := false;
                     -- TEMPORAIRE: arrêt net du bus
                     speed := 0;
-                    put_line("tt_bus: Le bus"& int'image(busId) & " est arrêté");
+                    put_line("tt_bus: Le bus"& int'image(busId) & " est arrete");
+            or
+                accept accelerate;
+                    -- augmente la vitesse de 5 km/h
+                    speed := speed + 5;
+                    put_line("tt_bus: Le bus"& int'image(busId) & " accelere");
+            or
+                accept decelerate;
+                    -- diminue la vitesse de 5 km/h
+                    speed := speed - 5;
+                    put_line("tt_bus: Le bus"& int'image(busId) & " decelere");
             end select;                              
         end loop;
     end tt_bus;
