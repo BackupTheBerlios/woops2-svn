@@ -11,6 +11,7 @@ Fichier qui sert d'interface entre ada et C qui permet a l'ada d'appeler des fon
 
 #include "OperatingCenter.h"
 #include "../network/NetworkManager.h"
+#include "ControllerMalloc.h"
 #include <stdlib.h>
 #include <fstream>
 #include <unistd.h>
@@ -36,7 +37,10 @@ param : la position pos qui est un pointeur sur la struture position
 */
 void receivePosition(t_position *pos, int speed, int busId)
 {
+	cout<<"ON RENTRE DANS LE TRAITEMENT C++"<<endl;
+	ControllerMalloc::getInstance()->prendre_jeton();
 	t_structReceivePosition *structPosition = (t_structReceivePosition *)malloc(sizeof(t_structReceivePosition));
+	ControllerMalloc::getInstance()->rendre_jeton();
 	structPosition->position = pos;
 	structPosition->busId = busId;
 	structPosition->speed = speed;

@@ -11,6 +11,7 @@
 #include <stdlib.h>
 #include "../network/Interpretor.h"
 #include "interfaceAda.h"
+#include "ControllerMalloc.h"
 
 int DISTANCE_BETWEEN_2_STOP = 100;
 int TIME_BETWEEN_2_STOP = 12;
@@ -139,7 +140,9 @@ void* OperatingCenter::thread_function_receive_position(void *structPosition){
 	}
 
 	//mise en place des threads pour l'archivage
+	ControllerMalloc::getInstance()->prendre_jeton();
 	t_archivage *structarch = (t_archivage *)malloc(sizeof(t_archivage));
+	ControllerMalloc::getInstance()->rendre_jeton();
 	structarch->ligne = 1;
 	structarch->busStop = maposition->busStopId ;
 	structarch->bus = maStructPosition->busId;

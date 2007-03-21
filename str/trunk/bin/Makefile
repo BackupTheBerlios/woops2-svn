@@ -5,7 +5,7 @@ CFLAGS= -ansi
 LDFLAGS= -ansi  -lpthread -lstdc++ -lgcc_s 
 #LGTKFLAGS= `pkg-config --cflags --libs gtk+-2.0` 
 EXEC=busnetwork.exe
-BIN = NetworkManager.o Interpretor.o OperatingCenter.o  interfaceAda.o
+BIN = NetworkManager.o Interpretor.o OperatingCenter.o  interfaceAda.o ControllerMalloc.o
 #BINADA = package_busnetwork.o package_busstop.o package_types.o package_constantes.o mainada.o
 ALI = package_busnetwork.ali #package_busstop.ali package_types.ali package_constantes.ali
 
@@ -21,6 +21,9 @@ OperatingCenter.o: ../src_cpp/center/OperatingCenter.h ../src_cpp/center/interfa
 
 NetworkManager.o: ../src_cpp/network/NetworkManager.h
 	$(CC) $(LDFLAGS)-o NetworkManager.o  -c ../src_cpp/network/NetworkManager.cpp  
+
+ControllerMalloc.o: ../src_cpp/center/ControllerMalloc.h
+	$(CC) $(LDFLAGS)-o ControllerMalloc.o  -c ../src_cpp/center/ControllerMalloc.cpp  
 
 Interpretor.o: ../src_cpp/network/Interpretor.h
 	$(CC) $(LDFLAGS)-o Interpretor.o  -c ../src_cpp/network/Interpretor.cpp  
