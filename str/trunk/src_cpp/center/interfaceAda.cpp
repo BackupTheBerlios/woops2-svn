@@ -70,17 +70,17 @@ void ada_startBus(int busId)
 
 void adastop_bus(int busId)
 {
-	//p_stopBus(busId);
+	p_stopBus(busId);
 }
 
 void adaaccelerate_bus(int busId)
 {
-	//p_accelerateBus(busId);
+	p_accelerateBus(busId);
 }
 
 void adadecelerate_bus(int busId)
 {
-	//p_decelerateBus(busId);
+	p_decelerateBus(busId);
 }
 
 

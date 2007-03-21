@@ -273,7 +273,18 @@ void OperatingCenter::java_start_bus(int num_bus)
 {
 	ada_startBus(num_bus);
 }
-
+void OperatingCenter::java_accelerate_bus(int num_bus)
+{
+	ada_accelerateBus(num_bus);
+}
+void OperatingCenter::java_decelerate_bus(int num_bus)
+{
+	ada_decelerateBus(num_bus);
+}
+void OperatingCenter::java_accident_bus(int num_bus)
+{
+	//ada_accidentBus(num_bus);
+}
 
 
 //void OperatingCenter::p_sendPriorityMessage

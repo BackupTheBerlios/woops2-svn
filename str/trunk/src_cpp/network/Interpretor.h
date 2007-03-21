@@ -27,6 +27,9 @@ class Interpretor {
 		void sendPosition(int lineId, int busId, int busStopId, int time);
 		void sendInformation(int lineId, int busId, int busStopId, int time);
 		static void startBus(string buffer);
+		static void accelerateBus(string buffer);
+		static void decelerateBus(string buffer);
+		static void accidentBus(string buffer);
     };
 
 #endif
