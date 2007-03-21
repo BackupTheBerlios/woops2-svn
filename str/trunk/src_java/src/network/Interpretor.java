@@ -47,7 +47,7 @@ public class Interpretor {
 			String s = this.getMessagesFromNetwork().remove();
 			if (s.contains("@position")) {
 				dest.offer(this.positionTreatment(s));
-			} else if (s.contains("@information")) {
+			} else if (s.contains("@info")) {
 				info.offer(this.informationTreatment(s));
 			}
 		}
@@ -86,6 +86,7 @@ public class Interpretor {
 		int min = tps / 60;
 		int sec = tps % 60;
 		String s = "Ligne "+num+" : le bus n°"+portions[1]+" arrive dans "+min+" min "+sec+" sec.";
+		System.out.println("informationTreatment : "+s);
 		return new Information(next, s);
 	}
 
