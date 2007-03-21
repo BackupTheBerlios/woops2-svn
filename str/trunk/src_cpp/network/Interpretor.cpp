@@ -38,13 +38,13 @@ void Interpretor::receiveInformation(char* buffer)
 	{
 		while(index != -1)
 		{
+			cout<<"----------------------------------------------------------------"<<endl;
+			cout<<endl<<" Buffer : "<< buf <<endl;
+			cout<<"----------------------------------------------------------------"<<endl;
 			int indexaroba = buf.find("@",0);
-			cout<<"index de l'@" << indexaroba <<endl;
 			
 			string commande = buf.substr(0,index);
-			cout<<"commande :"<<commande<<endl;
 			int i = commande.find(":",0);
-			cout << "receiveInformation : " << commande.substr(1,i) << endl;
 	
 			//traitement des différents cas
 			if(commande.substr(1,i) == "createBusStop:")
@@ -63,7 +63,10 @@ void Interpretor::receiveInformation(char* buffer)
 			cout<<"buf"<<buf<<endl;
 			index = 0;
 			index = buf.find(";",index);
-			cout<<"index:"<<index<<endl;
+			if(buf.length()>1 && index == -1)
+			{
+				cout<<"le forme du paquet recu est incorrect"<<endl;
+			}
 		}
 	}
 	else
@@ -90,11 +93,11 @@ méthode qui va starter les bus
 
 void Interpretor::startBus(string buffer)
 {
-	cout<<"Appel a la methode create bus stop avec comme param"<<buffer<<endl;
+	cout<<"Appel a la methode start bus avec comme param"<<buffer<<endl;
 	int index = buffer.find(";",0);
 	int num_bus = atoi(buffer.substr(0,index).c_str());
 	cout<<"valeur "<<num_bus<<endl;
-	//OperatingCenter::getInstance()->start_busStop(num_bus);
+	OperatingCenter::getInstance()->java_start_bus(num_bus);
 }
 void Interpretor::createLine(string buffer)
 {

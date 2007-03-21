@@ -266,9 +266,9 @@ void OperatingCenter::java_init_bus(int nombre, int ligne)
 methode qui start un bus
 */
 
-void start_busStop(int num_bus)
+void OperatingCenter::java_start_bus(int num_bus)
 {
-	//ada_startBus(num_bus);
+	ada_startBus(num_bus);
 }
 
 

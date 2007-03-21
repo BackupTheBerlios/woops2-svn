@@ -59,7 +59,7 @@ void adainit_bus(int nombre, int ligne)
 	p_initBus(nombre,ligne);
 }
 
-void adastart_bus(int busId)
+void ada_startBus(int busId)
 {
 	p_startBus(busId);
 }

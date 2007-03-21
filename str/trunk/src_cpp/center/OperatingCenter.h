@@ -58,7 +58,7 @@ class OperatingCenter
 		void java_init_busStop(int nombre, int ligne);
 		void java_init_line(int line);
 		void java_init_bus(int nombre, int ligne);
-		void start_busStop(int num_bus);
+		void java_start_bus(int num_bus);
 
 
 		//------- méthode qui ada appelle et qui créée les threads
