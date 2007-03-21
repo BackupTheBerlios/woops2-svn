@@ -10,4 +10,8 @@ public class Constante {
 
 	public final static int START_BUS = 3;
 	
+	public final static int ACC_BUS = 4;
+	
+	public final static int DEC_BUS = 5;
+	
 }

@@ -127,6 +127,24 @@ public class Interpretor {
 	}
 	
 	/**
+	 * Envoi un ordre d acceleration a un bus
+	 */
+	public void sendAccelerateBus(String _n) {
+		String tmp = "@accelerateBus:" + _n + ";";
+		System.out.println("creation de la commande : "+tmp);
+		NetworkManager.getInstance().sendMessage(tmp);
+	}
+	
+	/**
+	 * Envoi un ordre de deceleration a un bus
+	 */
+	public void sendDecelerateBus(String _n) {
+		String tmp = "@decelerateBus:" + _n + ";";
+		System.out.println("creation de la commande : "+tmp);
+		NetworkManager.getInstance().sendMessage(tmp);
+	}
+	
+	/**
 	 * Reception d'un message
 	 */
 	public void receiveMessage(String _str) {

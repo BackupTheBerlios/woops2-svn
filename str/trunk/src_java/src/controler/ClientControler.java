@@ -62,6 +62,7 @@ public class ClientControler implements ListDataListener{
 	public void initialisation() {
 		this.sendCreateCommand(Constante.LIGNE, "12", "null", 0, 0);
 		this.sendCreateCommand(Constante.LIGNE, "24", "null", 0, 0);
+		
 		this.sendCreateCommand(Constante.BUS_STOP, "1", "12", 104, 37);
 		this.sendCreateCommand(Constante.BUS_STOP, "2", "12", 110, 69);
 		this.sendCreateCommand(Constante.BUS_STOP, "3", "12", 136, 86);
@@ -126,9 +127,15 @@ public class ClientControler implements ListDataListener{
 			Interpretor.getInstance().sendCreateBus(_id, l);
 			break;
 		case Constante.START_BUS:
-			Bus b = ClientControler.getInstance().getBus().get(id);
-			b.getRepresentation().setIsRunning(true);
+			Bus b1 = ClientControler.getInstance().getBus().get(id);
+			b1.getRepresentation().setIsRunning(true);
 			Interpretor.getInstance().sendStartBus(_id);
+			break;
+		case Constante.ACC_BUS:
+			Interpretor.getInstance().sendAccelerateBus(_id);
+			break;
+		case Constante.DEC_BUS:
+			Interpretor.getInstance().sendDecelerateBus(_id);
 			break;	
 		default:	break;
 		}
