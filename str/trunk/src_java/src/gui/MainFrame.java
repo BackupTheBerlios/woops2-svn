@@ -321,7 +321,7 @@ public class MainFrame extends javax.swing.JFrame {
         ClientControler.getInstance().initialisation();
         this.connectButton.setEnabled(false);
         this.busTableModel = new BusTableModel(ClientControler.getInstance().getBus());
-        this.busStopTableModel = new InformationTableModel(ClientControler.getInstance().getInformationsQueue());
+        this.busStopTableModel = new InformationTableModel();
         busTable.setModel(busTableModel);
         busStopTable.setModel(busStopTableModel);
     }//GEN-LAST:event_connectButtonActionPerformed
@@ -337,7 +337,8 @@ public class MainFrame extends javax.swing.JFrame {
 	}
     
     public void refreshInformation(){
-    	this.busStopTableModel.refreshModel(ClientControler.getInstance().getInformationsQueue());
+    	this.busStopTableModel.refreshModel();
+    	ClientControler.getInstance().getInformationsQueue().clear();
 		this.busStopTable.updateUI();
     }
     

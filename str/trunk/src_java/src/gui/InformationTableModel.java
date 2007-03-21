@@ -6,6 +6,8 @@ import java.util.Queue;
 
 import javax.swing.table.AbstractTableModel;
 
+import controler.ClientControler;
+
 import model.Information;
 
 @SuppressWarnings("serial")
@@ -15,22 +17,22 @@ public class InformationTableModel extends AbstractTableModel {
 
 	private Class[] columnClasses = { Integer.class, String.class };
 
-	public InformationTableModel(Queue<Information> linf) {
+	public InformationTableModel() {
 		super();
-
-		this.refreshModel(linf);
+		this.refreshModel();
 	}
 
-	public void refreshModel(Queue<Information> linf) {
-		lInformation.clear();
-		for (Information i : linf) {
+	public void refreshModel() {
+		ArrayList<Information> lInf = new  ArrayList<Information>(); //ClientControler.getInstance().getInformationsQueue();
+		lInf.addAll(ClientControler.getInstance().getInformationsQueue());
+		//lInformation.clear();
+		for (Information i : lInf) {
 			lInformation.add(i);
-			linf.remove();
 		}
 	}
 
 	public int getColumnCount() {
-		return 5;
+		return 2;
 	}
 
 	public int getRowCount() {

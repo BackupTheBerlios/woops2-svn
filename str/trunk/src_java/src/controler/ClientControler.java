@@ -196,13 +196,18 @@ public class ClientControler implements ListDataListener{
 			}
 		};
 		threadCartesianPositionUpdate.start();
+		
 
 		Thread threadInterfaceMessages = new Thread() {
 			public void run() {
 				while (true) {
-					interfaceCommandTreatment();
+					if (ClientControler.getInstance().informationsQueue.size() > 0) {
+						System.out.println("refreshing ...  ["+ClientControler.getInstance().informationsQueue.size()+"]informations");
+						MainFrame.getInstance().refreshInformation();
+						System.out.println("refreshed");
+					}
 					try {
-						Thread.sleep(500);
+						Thread.sleep(5000);
 					} catch (InterruptedException e) {
 						e.printStackTrace();
 					}
