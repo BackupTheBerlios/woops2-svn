@@ -6,10 +6,8 @@
 
 package gui;
 
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
-
 import model.Bus;
+
 import common.Constante;
 
 import controler.ClientControler;
@@ -56,6 +54,10 @@ public class MainFrame extends javax.swing.JFrame {
         busListLabel = new javax.swing.JLabel();
         creationPanel = new javax.swing.JPanel();
         creationPanel1 = new javax.swing.JPanel();
+        busStopPanel = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        busStopTable = new javax.swing.JTable();
+        busStopListLabel = new javax.swing.JLabel();
         createBusLabel = new javax.swing.JLabel();
         busIdInoutText = new javax.swing.JTextField();
         busLineLabel = new javax.swing.JLabel();
@@ -146,11 +148,37 @@ public class MainFrame extends javax.swing.JFrame {
                     .add(busTableScrollPane, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 321, Short.MAX_VALUE))
                 .addContainerGap())
         );
-        tabbedPane.addTab("Contr\u00f4le", controlePanel);
+        tabbedPane.addTab("Contr\u00f4le des Bus", controlePanel);
+
+        jScrollPane1.setViewportView(busStopTable);
+
+        busStopListLabel.setText("Liste des arr\u00e9ts :");
+
+        org.jdesktop.layout.GroupLayout busStopPanelLayout = new org.jdesktop.layout.GroupLayout(busStopPanel);
+        busStopPanel.setLayout(busStopPanelLayout);
+        busStopPanelLayout.setHorizontalGroup(
+            busStopPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(busStopPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .add(busStopPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 623, Short.MAX_VALUE)
+                    .add(busStopListLabel))
+                .addContainerGap())
+        );
+        busStopPanelLayout.setVerticalGroup(
+            busStopPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(busStopPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .add(busStopListLabel)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 321, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        tabbedPane.addTab("Informations des Arr\u00e9ts Bus", busStopPanel);
 
         createBusLabel.setText("Identifiant du bus : ");
 
-        busLineLabel.setText("Lignes de bus : ");
+        busLineLabel.setText("Liste des lignes de bus : ");
 
         busLinesComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "12", "24" }));
 
@@ -233,7 +261,7 @@ public class MainFrame extends javax.swing.JFrame {
                         .add(creationPanel1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addContainerGap(251, Short.MAX_VALUE))))
         );
-        tabbedPane.addTab("Creation", creationPanel);
+        tabbedPane.addTab("Creation de Bus", creationPanel);
 
         applicationMenu.setLabel("Application");
         exitItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/exit.gif")));
@@ -254,11 +282,11 @@ public class MainFrame extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
+            .add(layout.createSequentialGroup()
                 .addContainerGap()
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
-                    .add(org.jdesktop.layout.GroupLayout.LEADING, tabbedPane, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 652, Short.MAX_VALUE)
-                    .add(org.jdesktop.layout.GroupLayout.LEADING, buttonsPanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(buttonsPanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .add(org.jdesktop.layout.GroupLayout.TRAILING, tabbedPane, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 652, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -294,7 +322,9 @@ public class MainFrame extends javax.swing.JFrame {
         ClientControler.getInstance().initialisation();
         this.connectButton.setEnabled(false);
         this.busTableModel = new BusTableModel(ClientControler.getInstance().getBus());
+        this.busStopTableModel = new InformationTableModel(ClientControler.getInstance().getInformationsQueue());
         busTable.setModel(busTableModel);
+        busStopTable.setModel(busStopTableModel);
     }//GEN-LAST:event_connectButtonActionPerformed
 
     private void exitItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitItemActionPerformed
@@ -305,7 +335,13 @@ public class MainFrame extends javax.swing.JFrame {
     public void refreshBusTable(){
     	this.busTableModel.refreshModel(ClientControler.getInstance().getBus());
     	this.busTable.updateUI();
+    	
 	}
+    
+    public void refreshInformation(){
+    	this.busStopTableModel.refreshModel(ClientControler.getInstance().getInformationsQueue());
+		this.busStopTable.updateUI();
+    }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu applicationMenu;
@@ -313,6 +349,8 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel busLineLabel;
     private javax.swing.JComboBox busLinesComboBox;
     private javax.swing.JLabel busListLabel;
+    private javax.swing.JLabel busStopListLabel;
+    private javax.swing.JPanel busStopPanel;
     private javax.swing.JTable busTable;
     private javax.swing.JScrollPane busTableScrollPane;
     private javax.swing.JPanel buttonsPanel;
@@ -324,27 +362,14 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JPanel creationPanel1;
     private javax.swing.JPanel creationPanel2;
     private javax.swing.JMenuItem exitItem;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable busStopTable;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JButton startBusButton;
     private javax.swing.JButton stopBusButton;
     private javax.swing.JTabbedPane tabbedPane;
     private BusTableModel busTableModel;
+    private InformationTableModel busStopTableModel;
     // End of variables declaration//GEN-END:variables
-
-	public javax.swing.JTable getBusTable() {
-		return busTable;
-	}
-
-	public void setBusTable(javax.swing.JTable busTable) {
-		this.busTable = busTable;
-	}
-
-	public BusTableModel getBusTableModel() {
-		return busTableModel;
-	}
-
-	public void setBusTableModel(BusTableModel busTableModel) {
-		this.busTableModel = busTableModel;
-	}
     
 }
