@@ -76,7 +76,6 @@ void* Interpretor::threadTraitementInformation(void* a)
 					{
 						startBus(commande.substr(i+1,commande.length()-1));
 					}
-					cout<<"ICICIIII :"<<buf<<endl;
 					buf = buf.substr(index+1, buf.length());
 					cout<<"buf"<<buf<<endl;
 					depart = 1;
