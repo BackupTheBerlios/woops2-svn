@@ -50,7 +50,10 @@ public class MainFrame extends javax.swing.JFrame {
         busTableScrollPane = new javax.swing.JScrollPane();
         busTable = new javax.swing.JTable();
         startBusButton = new javax.swing.JButton();
-        stopBusButton = new javax.swing.JButton();
+        breakBusButton = new javax.swing.JButton();
+        accelerateBusButton = new javax.swing.JButton();
+        decelerateBusButton = new javax.swing.JToggleButton();
+        incidentBusButton = new javax.swing.JButton();
         busListLabel = new javax.swing.JLabel();
         creationPanel = new javax.swing.JPanel();
         creationPanel1 = new javax.swing.JPanel();
@@ -101,7 +104,7 @@ public class MainFrame extends javax.swing.JFrame {
         
         busTableScrollPane.setViewportView(busTable);
 
-        startBusButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/iconBus_small.jpg")));
+        startBusButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/start.png")));
         startBusButton.setText(" Demarrer un Bus");
         startBusButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -109,15 +112,25 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
-        stopBusButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/stop.png")));
-        stopBusButton.setText(" Stopper un Bus");
-        stopBusButton.addActionListener(new java.awt.event.ActionListener() {
+        breakBusButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/stop.png")));
+        breakBusButton.setText(" Accident sur un Bus");
+        breakBusButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                stopBusButtonActionPerformed(evt);
+                breakBusButtonActionPerformed(evt);
             }
         });
 
         busListLabel.setText("Liste de bus :");
+
+
+        accelerateBusButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/accelerate.png")));
+        accelerateBusButton.setText("Acc\u00e9lerer un Bus");
+
+        decelerateBusButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/decelerate.png")));
+        decelerateBusButton.setText("D\u00e9celerer un Bus");
+
+        incidentBusButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/incident.png")));
+        incidentBusButton.setText("Panne sur un Bus");
 
         org.jdesktop.layout.GroupLayout controlePanelLayout = new org.jdesktop.layout.GroupLayout(controlePanel);
         controlePanel.setLayout(controlePanelLayout);
@@ -129,24 +142,35 @@ public class MainFrame extends javax.swing.JFrame {
                     .add(busListLabel)
                     .add(busTableScrollPane, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 381, Short.MAX_VALUE))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(controlePanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING, false)
-                    .add(stopBusButton, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .add(startBusButton, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE))
+                .add(controlePanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(org.jdesktop.layout.GroupLayout.TRAILING, breakBusButton, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE)
+                    .add(org.jdesktop.layout.GroupLayout.TRAILING, startBusButton, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE)
+                    .add(org.jdesktop.layout.GroupLayout.TRAILING, incidentBusButton, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE)
+                    .add(org.jdesktop.layout.GroupLayout.TRAILING, accelerateBusButton, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE)
+                    .add(decelerateBusButton, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE))
                 .addContainerGap())
         );
         controlePanelLayout.setVerticalGroup(
             controlePanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(controlePanelLayout.createSequentialGroup()
-                .add(12, 12, 12)
-                .add(busListLabel)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(controlePanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(controlePanelLayout.createSequentialGroup()
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, controlePanelLayout.createSequentialGroup()
+                .add(controlePanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
+                    .add(org.jdesktop.layout.GroupLayout.LEADING, controlePanelLayout.createSequentialGroup()
+                        .add(12, 12, 12)
+                        .add(busListLabel)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                         .add(startBusButton)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(stopBusButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 48, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                    .add(busTableScrollPane, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 321, Short.MAX_VALUE))
-                .addContainerGap())
+                        .add(breakBusButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 48, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(incidentBusButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 45, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(accelerateBusButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 49, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(decelerateBusButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 49, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                    .add(controlePanelLayout.createSequentialGroup()
+                        .add(33, 33, 33)
+                        .add(busTableScrollPane, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 321, Short.MAX_VALUE)))
+                .add(12, 12, 12))
         );
         tabbedPane.addTab("Contr\u00f4le des Bus", controlePanel);
 
@@ -259,7 +283,7 @@ public class MainFrame extends javax.swing.JFrame {
                         .addContainerGap())
                     .add(creationPanelLayout.createSequentialGroup()
                         .add(creationPanel1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap(251, Short.MAX_VALUE))))
+                        .addContainerGap(249, Short.MAX_VALUE))))
         );
         tabbedPane.addTab("Creation de Bus", creationPanel);
 
@@ -302,9 +326,9 @@ public class MainFrame extends javax.swing.JFrame {
         setBounds((screenSize.width-686)/2, (screenSize.height-535)/2, 686, 535);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void stopBusButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stopBusButtonActionPerformed
+    private void breakBusButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stopBusButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_stopBusButtonActionPerformed
+    }//GEN-LAST:event_breakBusButtonActionPerformed
 
     private void startBusButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startBusButtonActionPerformed
         int rownb = this.busTable.getSelectedRow();
@@ -343,6 +367,10 @@ public class MainFrame extends javax.swing.JFrame {
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton accelerateBusButton;
+    private javax.swing.JButton breakBusButton;
+    private javax.swing.JToggleButton decelerateBusButton;
+    private javax.swing.JButton incidentBusButton;
     private javax.swing.JMenu applicationMenu;
     private javax.swing.JTextField busIdInoutText;
     private javax.swing.JLabel busLineLabel;
@@ -365,7 +393,6 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JTable busStopTable;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JButton startBusButton;
-    private javax.swing.JButton stopBusButton;
     private javax.swing.JTabbedPane tabbedPane;
     private BusTableModel busTableModel;
     private InformationTableModel busStopTableModel;
