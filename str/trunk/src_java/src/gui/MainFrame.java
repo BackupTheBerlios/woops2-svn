@@ -309,8 +309,7 @@ public class MainFrame extends javax.swing.JFrame {
     private void startBusButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startBusButtonActionPerformed
         int rownb = this.busTable.getSelectedRow();
         int busId = (Integer) ((BusTableModel) this.busTable.getModel()).getValueAt(rownb, 0);
-        Bus b = ClientControler.getInstance().getBus().get(busId);
-        b.getRepresentation().setIsRunning(true);
+        ClientControler.getInstance().sendCreateCommand(Constante.START_BUS, ""+busId, "null", 0, 0);
         this.refreshBusTable();
     }//GEN-LAST:event_startBusButtonActionPerformed
 
@@ -335,7 +334,6 @@ public class MainFrame extends javax.swing.JFrame {
     public void refreshBusTable(){
     	this.busTableModel.refreshModel(ClientControler.getInstance().getBus());
     	this.busTable.updateUI();
-    	
 	}
     
     public void refreshInformation(){

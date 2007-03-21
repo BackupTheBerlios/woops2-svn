@@ -61,7 +61,7 @@ public class ClientControler implements ListDataListener{
 
 	public void initialisation() {
 		this.sendCreateCommand(Constante.LIGNE, "12", "null", 0, 0);
-		this.sendCreateCommand(Constante.LIGNE, "24", "null", 0, 0);
+		//this.sendCreateCommand(Constante.LIGNE, "24", "null", 0, 0);
 		this.sendCreateCommand(Constante.BUS_STOP, "1", "12", 104, 37);
 		this.sendCreateCommand(Constante.BUS_STOP, "2", "12", 110, 69);
 		this.sendCreateCommand(Constante.BUS_STOP, "3", "12", 136, 86);
@@ -77,6 +77,7 @@ public class ClientControler implements ListDataListener{
 		this.sendCreateCommand(Constante.BUS_STOP, "13", "12", 755, 181);
 		this.sendCreateCommand(Constante.BUS_STOP, "14", "12", 774, 243);
 		this.sendCreateCommand(Constante.BUS_STOP, "15", "12", 816, 230);
+		/*
 		this.sendCreateCommand(Constante.BUS_STOP, "16", "24", 102, 25);
 		this.sendCreateCommand(Constante.BUS_STOP, "17", "24", 75, 75);
 		this.sendCreateCommand(Constante.BUS_STOP, "18", "24", 37, 98);
@@ -93,8 +94,9 @@ public class ClientControler implements ListDataListener{
 		this.sendCreateCommand(Constante.BUS_STOP, "29", "24", 719, 306);
 		this.sendCreateCommand(Constante.BUS_STOP, "30", "24", 750, 292);
 		this.sendCreateCommand(Constante.BUS_STOP, "31", "24", 818, 258);
+		*/
 		this.sendCreateCommand(Constante.BUS, "45", "12", 106, 40);
-		this.sendCreateCommand(Constante.BUS, "98", "24", 104, 29);
+		//this.sendCreateCommand(Constante.BUS, "98", "24", 104, 29);
 	}
 
 	/**
