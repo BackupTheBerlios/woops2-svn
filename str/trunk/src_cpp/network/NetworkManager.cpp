@@ -64,10 +64,10 @@ void NetworkManager::runListenServer(){
                                 buf[numbytes] = '\0';
                                 
                                 printf("Reçu : %s \n", buf);
-				Interpretor::getInstance()->receiveInformation(buf);
+				
+				Interpretor::getInstance()->getMessageFromNetwork()->push((string) buf);
+				cout<<"taille de la queue :"<<Interpretor::getInstance()->getMessageFromNetwork()->size()<<endl;
                                 usleep(300);
-								// echo
-                                //this->sendBuffer(buf);
                             }
 
                             printf("serveur: fin de connexion \n");

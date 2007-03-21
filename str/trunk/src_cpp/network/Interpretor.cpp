@@ -5,7 +5,24 @@
 
 Interpretor::Interpretor()
 {
+	//messageFromNetwork = *(new queue<string>());
+	//création du thread qui va lire la queue
+	pthread_t thread_traitement;
+	int etat = pthread_create(&thread_traitement,NULL,threadTraitementInformation,NULL);
+	if (etat != 0) cout<<"Echec creation de thread pour le traitement de la queue"<<endl;
+}
 
+/*
+Getteur et setteur pour la queue
+*/
+queue<string>* Interpretor::getMessageFromNetwork()
+{
+	return messageFromNetwork;
+}
+
+void Interpretor::setMessageFromNetwork(queue<string>*  _messageFromNetwork)
+{
+	messageFromNetwork  = _messageFromNetwork;
 }
 
 /*
@@ -18,10 +35,6 @@ Interpretor* Interpretor::getInstance()
         	std::cout << "creating singleton for interpretor." << std::endl;
         	interpretor =  new Interpretor();
 	}
-	else
-	{
-		cout<<"singleton for Interpretor already creating"<<endl;
-	}
     
         return interpretor;
 } 
@@ -29,49 +42,57 @@ Interpretor* Interpretor::getInstance()
 /*
 méthode qui parse les informations reçues
 */
-void Interpretor::receiveInformation(char* buffer)
+void* Interpretor::threadTraitementInformation(void* a)
 {
-
-	string buf = (string)buffer;
-	int index = buf.find(";",0);
-	if(index != -1)
+	while(true)
 	{
-		while(index != -1)
+		while(messageFromNetwork->size()>0)
 		{
+			string buf = messageFromNetwork->front();
 			cout<<"----------------------------------------------------------------"<<endl;
-			cout<<endl<<" Buffer : "<< buf <<endl;
+			cout<<endl<<" Buffer lu dans la queue: "<< buf <<endl;
 			cout<<"----------------------------------------------------------------"<<endl;
-			int indexaroba = buf.find("@",0);
-			
-			string commande = buf.substr(0,index);
-			int i = commande.find(":",0);
-	
-			//traitement des différents cas
-			if(commande.substr(1,i) == "createBusStop:")
+			int index = buf.find(";",0);
+			if(index != -1)
 			{
-				createBusStop(commande.substr(i+1,commande.length()-1));
+				while(index != -1)
+				{
+					
+					int indexaroba = buf.find("@",0);
+					
+					string commande = buf.substr(0,index);
+					int i = commande.find(":",0);
+		
+					//traitement des différents cas
+					if(commande.substr(1,i) == "createBusStop:")
+					{
+						createBusStop(commande.substr(i+1,commande.length()-1));
+					}
+					if(commande.substr(1,i) == "createBus:")
+					{
+						createBus(commande.substr(i+1,commande.length()-1));
+					}
+					if(commande.substr(1,i) == "startBus:")
+					{
+						startBus(commande.substr(i+1,commande.length()-1));
+					}
+					buf = buf.substr(index+2, buf.length());
+					cout<<"buf"<<buf<<endl;
+					index = 0;
+					index = buf.find(";",index);
+					if(buf.length()>1 && index == -1)
+					{
+						cout<<"le forme du paquet recu est incorrect"<<endl;
+					}
+				}
 			}
-			if(commande.substr(1,i) == "createBus:")
-			{
-				createBus(commande.substr(i+1,commande.length()-1));
-			}
-			if(commande.substr(1,i) == "startBus:")
-			{
-				startBus(commande.substr(i+1,commande.length()-1));
-			}
-			buf = buf.substr(index+2, buf.length());
-			cout<<"buf"<<buf<<endl;
-			index = 0;
-			index = buf.find(";",index);
-			if(buf.length()>1 && index == -1)
+			else
 			{
 				cout<<"le forme du paquet recu est incorrect"<<endl;
 			}
+			messageFromNetwork->pop();
 		}
-	}
-	else
-	{
-		cout<<"le forme du paquet recu est incorrect"<<endl;
+		usleep(500);
 	}
 }
 
@@ -99,12 +120,6 @@ void Interpretor::startBus(string buffer)
 	cout<<"valeur "<<num_bus<<endl;
 	OperatingCenter::getInstance()->java_start_bus(num_bus);
 }
-void Interpretor::createLine(string buffer)
-{
-	cout<<"Appel a la methode create line avec comme param"<<buffer<<endl;
-	//OperatingCenter::getInstance()->java_init_line(atoi(buffer.c_str()));
-}
-
 void Interpretor::createBus(string buffer)
 {
 	cout<<"Appel a la methode qui va créer des bus  ada avec comme param"<<buffer<<endl;
@@ -145,6 +160,7 @@ void Interpretor::sendInformation(int lineId, int busId, int busStopId, int time
 }
 
 Interpretor  *Interpretor::interpretor = NULL;
+queue<string>* Interpretor::messageFromNetwork = new queue<string>();
 
 
 

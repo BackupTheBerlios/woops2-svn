@@ -2,25 +2,31 @@
 #define _Interpretor_H
 
 #include <iostream>
+#include <queue>
 
 using namespace std;
 
 class Interpretor {
 
 	static Interpretor* interpretor;      	
-	
+	static queue<string> *messageFromNetwork;
 	private:
 		Interpretor();
-		void createBusStop(string buffer);
-		void createLine(string buffer);
-		void createBus(string buffer);
+		
+		static void createBusStop(string buffer);
+		//void createLine(string buffer);
+		static void createBus(string buffer);
+		static void* threadTraitementInformation(void *a);
+
+		
    	public:
 	  	~Interpretor();
        		static Interpretor* getInstance();
-      		void receiveInformation(char* buffer);
+		queue<string>* getMessageFromNetwork();
+		void setMessageFromNetwork(queue<string>* _messageFromNetwork);
 		void sendPosition(int lineId, int busId, int busStopId, int time);
 		void sendInformation(int lineId, int busId, int busStopId, int time);
-		void startBus(string buffer);
+		static void startBus(string buffer);
     };
 
 #endif
