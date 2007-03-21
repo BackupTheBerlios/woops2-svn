@@ -52,6 +52,7 @@ void* Interpretor::threadTraitementInformation(void* a)
 			cout<<endl<<" Buffer lu dans la queue: "<< buf <<endl;
 			cout<<"----------------------------------------------------------------"<<endl;
 			int index = buf.find(";",0);
+			int depart = 0;
 			if(index != -1)
 			{
 				while(index != -1 && buf.length()>0)
@@ -59,7 +60,7 @@ void* Interpretor::threadTraitementInformation(void* a)
 					
 					int indexaroba = buf.find("@",0);
 					
-					string commande = buf.substr(0,index);
+					string commande = buf.substr(depart,index);
 					int i = commande.find(":",0);
 		
 					//traitement des différents cas
@@ -75,11 +76,12 @@ void* Interpretor::threadTraitementInformation(void* a)
 					{
 						startBus(commande.substr(i+1,commande.length()-1));
 					}
-					buf = buf.substr(index+2, buf.length());
+					cout<<"ICICIIII :"<<buf<<endl;
+					buf = buf.substr(index+1, buf.length());
 					cout<<"buf"<<buf<<endl;
-					index = 0;
+					depart = 1;
 					index = buf.find(";",index);
-					if(buf.length()>1 && index == -1)
+					if(buf.length()>2 && index == -1)
 					{
 						cout<<"le forme du paquet recu est incorrect"<<endl;
 					}
