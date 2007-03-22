@@ -117,8 +117,8 @@ package body package_bus is
             or                            
                 accept stop;
                     isStarted := false;
-                    -- TEMPORAIRE: arrêt net du bus
                     speed := 0;
+                    Radio.sendPositionToCenter(ptr_pos, speed, busId); 
             or
                 when (isStarted) and (speed < MAX_SPEED) and (not hasProblem) =>
                 accept accelerate;
@@ -138,7 +138,9 @@ package body package_bus is
                     put_line("tt_bus: Le bus"& int'image(busId) & " a un PROBLEME");
                     Radio.sendPriorityMessage(new t_priorityMessage'(busId, code));
                     if code = BREAKDOWN then
+                        speed := 0;
                         put_line("tt_bus: Bus"& int'image(busId) & " en réparation.....");
+                        Radio.sendPositionToCenter(ptr_pos, speed, busId); 
                         delay(REPAIR_TIME);
                         hasProblem := false;
                         put_line("tt_bus: Le bus"& int'image(busId) & " redémarre");
