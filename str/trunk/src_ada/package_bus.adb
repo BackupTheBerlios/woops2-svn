@@ -147,6 +147,7 @@ package body package_bus is
                         put_line("tt_bus: Bus"& int'image(busId) & " en réparation.....");
                         delay(REPAIR_TIME);
                         hasProblem := false;
+                        put_line("tt_bus: Le bus"& int'image(busId) & " redémarre");
                     else
                         stop;
                     end if;

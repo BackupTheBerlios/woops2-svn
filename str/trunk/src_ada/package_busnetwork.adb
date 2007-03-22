@@ -122,7 +122,7 @@ package body package_busnetwork is
         BusNetwork.addBusStopOnLine(id_busstop, line);
                 
         exception
-            when invalidLineNumber => put_line("Numéro de ligne invalide");
+            when invalidLineNumber => put_line("p_initBusStop => Numéro de ligne invalide");
     
     end p_initBusStop;
     
@@ -149,8 +149,8 @@ package body package_busnetwork is
         BusNetwork.addBus(ptr_bus);
                 
         exception
-            when invalidLineNumber => put_line("Numéro de ligne invalide");
-            when BusTableIsFull => put_line("Le tableau de bus est plein");
+            when invalidLineNumber => put_line("p_initBus => Numéro de ligne invalide");
+            when BusTableIsFull => put_line("p_initBus => Le tableau de bus est plein");
             
     end p_initBus;
     
@@ -163,7 +163,7 @@ package body package_busnetwork is
         put_line("### busNetwork : p_startBus");
         BusNetwork.getBusById(id_bus).all.start;
     exception
-        when invalidBusId => put_line("Numéro de bus invalide");
+        when invalidBusId => put_line("p_startBus => Numéro de bus invalide");
     end p_startBus;
     
     procedure p_stopBus(id_bus : in int) is
@@ -171,7 +171,7 @@ package body package_busnetwork is
         put_line("### busNetwork : p_stopBus");
         BusNetwork.getBusById(id_bus).all.stop;
     exception
-        when invalidBusId => put_line("Numéro de bus invalide");
+        when invalidBusId => put_line("p_stopBus => Numéro de bus invalide");
     end p_stopBus;
     
     procedure p_accelerateBus(id_bus : in int) is
@@ -179,7 +179,7 @@ package body package_busnetwork is
         put_line("### busNetwork : p_accelerateBus");
         BusNetwork.getBusById(id_bus).all.accelerate;
     exception
-        when invalidBusId => put_line("Numéro de bus invalide");
+        when invalidBusId => put_line("p_accelerateBus => Numéro de bus invalide");
     end p_accelerateBus;
     
     procedure p_decelerateBus(id_bus : in int) is
@@ -187,7 +187,7 @@ package body package_busnetwork is
         put_line("### busNetwork : p_decelerateBus");
         BusNetwork.getBusById(id_bus).all.decelerate;
     exception
-        when invalidBusId => put_line("Numéro de bus invalide");
+        when invalidBusId => put_line("p_decelerateBus => Numéro de bus invalide");
     end p_decelerateBus;
     
     ------------------------------------------------------------
@@ -197,6 +197,8 @@ package body package_busnetwork is
     procedure p_simulateProblem(ptr_mes : in t_ptr_t_priorityMessage) is
     begin
         BusNetwork.getBusById(ptr_mes.all.busId).all.simulatePB(ptr_mes.all.code);
+    exception
+        when invalidBusId => put_line("p_simulateProblem => Numéro de bus invalide");
     end p_simulateProblem;
     
 begin
