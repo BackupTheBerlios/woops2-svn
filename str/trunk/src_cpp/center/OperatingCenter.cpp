@@ -14,7 +14,7 @@
 #include "ControllerMalloc.h"
 
 int DISTANCE_BETWEEN_2_STOP = 300;
-int TIME_BETWEEN_2_STOP = 36; // =300 / speed*1000/3600
+int TIME_BETWEEN_2_STOP = 36; // =DISTANCE_BETWEEN_2_STOP / speed*1000/3600
 int envoieJava = 0;
 static pthread_mutex_t mutex;
 static pthread_mutex_t mutex_fichier;
@@ -83,11 +83,9 @@ Thread qui permet toute les n secondes de recuperer les valeur de la memoire par
 void* OperatingCenter::thread_function_getvaleur(void* a){
 	while(1)
 	{
-		sleep(10);
-		//envoieJava = 1;
+		sleep(8);
 		setEnvoieInformation(1);
-		sleep(2);
-		//envoieJava = 0;
+		sleep(4);
 		setEnvoieInformation(0);
 	}
 }
@@ -105,7 +103,6 @@ void* OperatingCenter::thread_function_getvaleur(void* a){
 */
 void* OperatingCenter::thread_function_receive_position(void *structPosition){
 
-	cout<<"OperatingCenter::Appel des fonctions pour le traitement de la position"<<endl;
 	t_structReceivePosition *maStructPosition = (t_structReceivePosition *)structPosition;
 	t_position* maposition = (t_position *)maStructPosition->position;
 
@@ -126,11 +123,11 @@ void* OperatingCenter::thread_function_receive_position(void *structPosition){
 	int percent = ((int)maposition->distance*100)/DISTANCE_BETWEEN_2_STOP;
 	if(TIME_BETWEEN_2_STOP - timeInSeconde > 1){
 		//le bus est en retard, il faut lui demander d'accelerer.
-		//ada_accelerateBus(maposition->busStopId);
+		ada_accelerateBus(maposition->busStopId);
 	}
 	else if(TIME_BETWEEN_2_STOP - timeInSeconde < -1){
 		//le bus est en avance, il faut lui demander de decelerer.
-		//ada_decelerateBus(maposition->busStopId);
+		ada_decelerateBus(maposition->busStopId);
 	}
 		
 	//mise en place de lecriture dans le fichier pour larchivage
@@ -153,7 +150,6 @@ void* OperatingCenter::thread_function_receive_position(void *structPosition){
 	int etat = pthread_create(&thread_fichier,NULL,thread_function_archivage, (void*)structarch);
 	pthread_detach(thread_fichier);
 	if (etat != 0) cout<<"Echec creation de thread pour larchivage"<<endl;
-	cout<<"On envoie le position a Java"<<endl;
 	Interpretor::getInstance()->sendPosition(maposition->lineNumber, maStructPosition->busId, maposition->busStopId, percent, maStructPosition->speed);
 	free(maStructPosition);
 
@@ -164,7 +160,6 @@ void* OperatingCenter::thread_function_receive_position(void *structPosition){
 */
 void* OperatingCenter::thread_function_receive_information(void *a){
 
-	cout<<"Appel des fonctions pour le traitement de l'information"<<endl;
 	
 	
 }
@@ -186,7 +181,6 @@ OperatingCenter * OperatingCenter::getInstance ()
 {
     if (NULL == operatingCenter)
     {
-        cout << "creating singleton OperatingCenter." <<endl;
         operatingCenter =  new OperatingCenter();
     }
 

@@ -31,7 +31,6 @@ Interpretor* Interpretor::getInstance()
 {
 	if (NULL == interpretor)
       	{
-        	std::cout << "creating singleton for interpretor." << std::endl;
         	interpretor =  new Interpretor();
 	}
     
@@ -48,9 +47,6 @@ void* Interpretor::threadTraitementInformation(void* a)
 		while(messageFromNetwork->size()>0)
 		{
 			string buf = messageFromNetwork->front();
-			cout<<"----------------------------------------------------------------"<<endl;
-			cout<<endl<<" Buffer lu dans la queue: "<< buf <<endl;
-			cout<<"----------------------------------------------------------------"<<endl;
 			int index = buf.find(";",0);
 			int depart = 0;
 			if(index != -1)
@@ -59,7 +55,6 @@ void* Interpretor::threadTraitementInformation(void* a)
 				{
 					
 					int indexaroba = buf.find("@",0);
-					
 					string commande = buf.substr(depart,index);
 					int i = commande.find(":",0);
 		
@@ -102,7 +97,6 @@ méthode qui va créer les bus stop.
 */
 void Interpretor::createBusStop(string buffer)
 {
-	cout<<"Appel a la methode create bus stop avec comme param"<<buffer<<endl;
 	int index = buffer.find(",",0);
 	int nombre = atoi(buffer.substr(0,index).c_str());
 	int num_ligne = atoi(buffer.substr(index+1,buffer.length()-1).c_str());
@@ -115,7 +109,6 @@ méthode qui va starter les bus
 
 void Interpretor::startBus(string buffer)
 {
-	cout<<"Cpp : Appel a la methode start bus avec comme param"<<buffer<<endl;
 	int index = buffer.find(";",0);
 	int num_bus = atoi(buffer.substr(0,index).c_str());
 	cout<<"valeur "<<num_bus<<endl;
@@ -123,7 +116,6 @@ void Interpretor::startBus(string buffer)
 }
 void Interpretor::accelerateBus(string buffer)
 {
-	cout<<"Cpp : Appel a la methode accelerate bus avec comme param"<<buffer<<endl;
 	int index = buffer.find(";",0);
 	int num_bus = atoi(buffer.substr(0,index).c_str());
 	cout<<"valeur "<<num_bus<<endl;
@@ -131,7 +123,6 @@ void Interpretor::accelerateBus(string buffer)
 }
 void Interpretor::decelerateBus(string buffer)
 {
-	cout<<"Cpp : Appel a la methode decelerate bus avec comme param"<<buffer<<endl;
 	int index = buffer.find(";",0);
 	int num_bus = atoi(buffer.substr(0,index).c_str());
 	cout<<"valeur "<<num_bus<<endl;
@@ -139,19 +130,15 @@ void Interpretor::decelerateBus(string buffer)
 }
 void Interpretor::accidentBus(string buffer)
 {
-	cout<<"Cpp : Appel a la methode accident bus avec comme param"<<buffer<<endl;
 	int index = buffer.find(";",0);
 	int num_bus = atoi(buffer.substr(0,index).c_str());
-	cout<<"valeur "<<num_bus<<endl;
 	OperatingCenter::getInstance()->java_accident_bus(num_bus);
 }
 void Interpretor::createBus(string buffer)
 {
-	cout<<"Cpp : Appel a la methode qui va créer des bus  ada avec comme param"<<buffer<<endl;
 	int index = buffer.find(",",0);
 	int nombre = atoi(buffer.substr(0,index).c_str());
 	int num_ligne = atoi(buffer.substr(index+1,buffer.length()-1).c_str());
-	cout<<"valeur "<<nombre<<"Num ligne:"<<num_ligne<<"buffer"<<buffer<<endl;	
 	OperatingCenter::getInstance()->java_init_bus(nombre,num_ligne);
 }
 
