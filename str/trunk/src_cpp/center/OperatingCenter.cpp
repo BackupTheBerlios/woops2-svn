@@ -84,9 +84,11 @@ void* OperatingCenter::thread_function_getvaleur(void* a){
 	while(1)
 	{
 		sleep(10);
-		envoieJava = 1;
+		//envoieJava = 1;
+		setEnvoieInformation(1);
 		sleep(2);
-		envoieJava = 0;
+		//envoieJava = 0;
+		setEnvoieInformation(0);
 	}
 }
 
@@ -124,25 +126,25 @@ void* OperatingCenter::thread_function_receive_position(void *structPosition){
 	int percent = ((int)maposition->distance*100)/DISTANCE_BETWEEN_2_STOP;
 	if(TIME_BETWEEN_2_STOP - timeInSeconde > 1){
 		//le bus est en retard, il faut lui demander d'accelerer.
-		adaaccelerate_bus(maposition->busStopId);
+		//ada_accelerateBus(maposition->busStopId);
 	}
 	else if(TIME_BETWEEN_2_STOP - timeInSeconde < -1){
 		//le bus est en avance, il faut lui demander de decelerer.
-		adadecelerate_bus(maposition->busStopId);
+		//ada_decelerateBus(maposition->busStopId);
 	}
 		
 	//mise en place de lecriture dans le fichier pour larchivage
 	
 	//création de la structure qui va se trouver dans la mémoire partagé
-	if(envoieJava == 1)
+	if(getEnvoieInformation() == 1)
 	{
 		Interpretor::getInstance()->sendInformation(maposition->lineNumber,maStructPosition->busId,maposition->busStopId,timeInSeconde);
 	}
 
 	//mise en place des threads pour l'archivage
-	ControllerMalloc::getInstance()->prendre_jeton();
+	//ControllerMalloc::getInstance()->prendre_jeton();
 	t_archivage *structarch = (t_archivage *)malloc(sizeof(t_archivage));
-	ControllerMalloc::getInstance()->rendre_jeton();
+	//ControllerMalloc::getInstance()->rendre_jeton();
 	structarch->ligne = 1;
 	structarch->busStop = maposition->busStopId ;
 	structarch->bus = maStructPosition->busId;
@@ -150,6 +152,7 @@ void* OperatingCenter::thread_function_receive_position(void *structPosition){
 	pthread_t thread_fichier;
 	int etat = pthread_create(&thread_fichier,NULL,thread_function_archivage, (void*)structarch);
 	if (etat != 0) cout<<"Echec creation de thread pour larchivage"<<endl;
+	cout<<"On envoie le position a Java"<<endl;
 	Interpretor::getInstance()->sendPosition(maposition->lineNumber, maStructPosition->busId, maposition->busStopId, percent );
 	free(maStructPosition);
 
@@ -178,6 +181,7 @@ Fin mise en place des threads
 
 ----------------------------------------------------------------------------------*/
 OperatingCenter *OperatingCenter::operatingCenter = NULL;
+int OperatingCenter::envoieInformation = 0;
 
 OperatingCenter * OperatingCenter::getInstance ()
 {
@@ -191,6 +195,16 @@ OperatingCenter * OperatingCenter::getInstance ()
     return operatingCenter;
 }
 
+//--------------- getteur et setteur sur la variable envoieinformation -----
+int OperatingCenter::getEnvoieInformation()
+{
+	return envoieInformation;
+}
+void OperatingCenter::setEnvoieInformation(int information)
+{
+	envoieInformation = information;
+}
+
 void OperatingCenter::initializeSystem(){
 	//déclaration
 	int etat;
@@ -199,7 +213,7 @@ void OperatingCenter::initializeSystem(){
 	//Création des différents thread.
 	// Mise en place du Thread pour le bus
 	etat = pthread_create(&bus_thread,NULL,thread_function_initBus, NULL);
-	if (etat != 0) cout<<"Echec creation de thread pour l'initialisation des bus: %d"<<endl;
+	if (etat != 0) cout<<"Echec creation de thread pour l'initialisation des bus."<<endl;
 }
 
 /**
@@ -233,7 +247,7 @@ void OperatingCenter::receiveInformation(t_information* t_ptr_t_information){
 
 	//création du thread
 	etat = pthread_create(&receive_information_thread,NULL,thread_function_receive_information, NULL);
-	if (etat != 0) perror("Echec creation de thread pour la réception des positions: %d\n");
+	if (etat != 0) perror("Echec creation de thread pour la réception des information\n");
     
 }
 
@@ -260,7 +274,7 @@ void OperatingCenter::java_init_bus(int nombre, int ligne)
 
 		//création du thread
 		etat = pthread_create(&sendinfo_thread,NULL,thread_function_getvaleur, NULL);
-		if (etat != 0) perror("Echec creation de thread pour la réception des positions: %d\n");
+		if (etat != 0) perror("Echec creation de thread pour la création des bus. n");
 		init_bus = 1;
 	}	
 }

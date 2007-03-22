@@ -26,7 +26,7 @@ extern "C"{
 	void p_startBus(int busId);
 	void p_stopBus(int busId);
 	void p_accelerateBus(int busId);
-	void p_adadecelerateBus(int busId);
+	void p_decelerateBus(int busId);
 	void receivePosition(t_position *pos, int speed, int busId);
 	void receiveMessage(char* message);
 }
@@ -73,12 +73,12 @@ void adastop_bus(int busId)
 	p_stopBus(busId);
 }
 
-void adaaccelerate_bus(int busId)
+void ada_accelerateBus(int busId)
 {
 	p_accelerateBus(busId);
 }
 
-void adadecelerate_bus(int busId)
+void ada_decelerateBus(int busId)
 {
 	p_decelerateBus(busId);
 }

@@ -43,7 +43,7 @@ class OperatingCenter
 
 		//mise en place du singleton
 		static OperatingCenter * operatingCenter;
-
+		static int envoieInformation;
 		OperatingCenter();
 	public :
 		
@@ -53,7 +53,10 @@ class OperatingCenter
 		void receivePosition(t_structReceivePosition* position);
       		void p_sendPriorityMessage();
    		void receiveInformation(t_information* t_ptr_t_information);
-
+		
+		//--------------- getteur et setteur sur la variable envoieinformation -----
+		static int getEnvoieInformation();
+		static void setEnvoieInformation(int information);
 		//--------------- méthode qui viennent de Java -------------
 		void java_init_busStop(int nombre, int ligne);
 		void java_init_line(int line);
