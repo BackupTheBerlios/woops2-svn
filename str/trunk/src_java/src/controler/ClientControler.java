@@ -30,11 +30,11 @@ public class ClientControler implements ListDataListener{
 
 	private HashMap<Integer, Line> lines;
 
-	private Queue<String> messagesFromInterface;
-
 	private Queue<CartesianPosition> cartesianPositionQueue;
 	
 	private Queue<Information> informationsQueue;
+	
+	private Queue<String> priorityMessageQueue;
 
 	/**
 	 * 
@@ -44,7 +44,6 @@ public class ClientControler implements ListDataListener{
 		this.bus = new HashMap<Integer, Bus>();
 		this.busStops = new HashMap<Integer, BusStop>();
 		this.lines = new HashMap<Integer, Line>();
-		this.messagesFromInterface = new LinkedList<String>();
 		this.cartesianPositionQueue = new LinkedList<CartesianPosition>();
 		this.informationsQueue = new LinkedList<Information>();
 	}
@@ -147,20 +146,6 @@ public class ClientControler implements ListDataListener{
 				Interpretor.getInstance().sendAgressionOnBus(_id);
 				break;
 			default:	break;
-		}
-	}
-
-	/**
-	 * 
-	 * @param cmds
-	 */
-	public void interfaceCommandTreatment() {
-		Queue<String> q = this.getMessagesFromInterface();
-		while (!q.isEmpty()) {
-			String s = q.remove();
-			System.out.println("Taille de la file interface : " + q.size());
-			System.out.println("envoi de la commande : " + s);
-			NetworkManager.getInstance().sendMessage(s);
 		}
 	}
 
@@ -296,21 +281,6 @@ public class ClientControler implements ListDataListener{
 	}
 
 	/**
-	 * @return the messagesFromInterface
-	 */
-	public Queue<String> getMessagesFromInterface() {
-		return this.messagesFromInterface;
-	}
-
-	/**
-	 * @param _messagesFromInterface
-	 *            the messagesFromInterface to set
-	 */
-	public void setMessagesFromInterface(Queue<String> _messagesFromInterface) {
-		this.messagesFromInterface = _messagesFromInterface;
-	}
-
-	/**
 	 * @return the cartesianPositionQueue
 	 */
 	public Queue<CartesianPosition> getCartesianPositionQueue() {
@@ -398,6 +368,20 @@ public class ClientControler implements ListDataListener{
 	 */
 	public void setInformationsQueue(Queue<Information> _informationsQueue) {
 		this.informationsQueue = _informationsQueue;
+	}
+
+	/**
+	 * @return the priorityMessageQueue
+	 */
+	public Queue<String> getPriorityMessageQueue() {
+		return priorityMessageQueue;
+	}
+
+	/**
+	 * @param priorityMessageQueue the priorityMessageQueue to set
+	 */
+	public void setPriorityMessageQueue(Queue<String> priorityMessageQueue) {
+		this.priorityMessageQueue = priorityMessageQueue;
 	}
 
 }

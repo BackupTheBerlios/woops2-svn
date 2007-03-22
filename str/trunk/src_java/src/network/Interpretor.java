@@ -42,6 +42,7 @@ public class Interpretor {
 	public void networkCommandTreatment() {
 		Queue<CartesianPosition> dest = ClientControler.getInstance().getCartesianPositionQueue();
 		Queue<Information> info = ClientControler.getInstance().getInformationsQueue();
+		Queue<String> mes = ClientControler.getInstance().getPriorityMessageQueue();
 		System.out.println("file network"+this.getMessagesFromNetwork().size());
 		while (!this.getMessagesFromNetwork().isEmpty()) {
 			String s = this.getMessagesFromNetwork().remove();
@@ -49,6 +50,8 @@ public class Interpretor {
 				dest.offer(this.positionTreatment(s));
 			} else if (s.contains("@info")) {
 				info.offer(this.informationTreatment(s));
+			} else if (s.contains("@message")) {
+				mes.offer(this.priorityMessageTreatment(s));
 			}
 		}
 	}
@@ -89,6 +92,17 @@ public class Interpretor {
 		String s = "Ligne "+num+" : le bus n°"+portions[1]+" arrive dans "+min+" min "+sec+" sec.";
 		System.out.println("informationTreatment : "+s);
 		return new Information(next, s);
+	}
+	
+	/**
+	 * 
+	 * @param _s
+	 * @return
+	 */
+	public String priorityMessageTreatment(String _s) {
+		String[] portions = _s.split(":");
+		System.out.println("priorityMessageTreatment : "+portions[1]);
+		return portions[1];
 	}
 
 	/**
