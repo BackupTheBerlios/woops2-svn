@@ -53,6 +53,7 @@ void receiveMessage(char* message){
 
 void receivePriorityMessage(t_priorityMessage* ptr_mes)
 {
+
 	OperatingCenter::getInstance()->receivePriorityMessage(ptr_mes);
 }
 //------------------------------------- Methode qui se trouve dans Ada et appelé par le C++ ---------------------

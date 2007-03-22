@@ -82,8 +82,8 @@ package body package_bus is
                     nextBusStop := currentLine.busStopTable(IndexOfCurrentBusStop);
                     
                     -- on teste le prochain arrêt de bus pour verifier qu'il n'est pas le dernier
-                    --if nextBusStop = 0 then
-                    if (currentLine.busStopTable(IndexOfCurrentBusStop + 1) = 0) then
+                    if nextBusStop = 0 then
+                    --if (currentLine.busStopTable(IndexOfCurrentBusStop + 1) = 0) then
                         put_line("LE BUS" &int'image(busId)& " ARRIVE AU TERMINUS DE LA LIGNE " &int'image(lineId));
                         message := new_string("Les passagers descendent du bus...");
                         IndexOfCurrentBusStop := 1;

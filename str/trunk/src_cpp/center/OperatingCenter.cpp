@@ -245,7 +245,6 @@ void OperatingCenter::receivePriorityMessage(t_priorityMessage* ptr_mes){
     
     //création du thread pour traiter la position du BUS
 	pthread_t receive_priority_message_thread;
-
 	//création du thread
 	etat = pthread_create(&receive_priority_message_thread,NULL,thread_function_receive_priority_message, (void *)ptr_mes);
 	if (etat != 0) 
