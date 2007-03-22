@@ -45,7 +45,7 @@ typedef struct t_archivage {
 }t_archivage;
 
 /**
-Structure pour passer au thred receivePosition
+Structure pour passer au thread receivePosition
 */
 typedef struct t_structReceivePosition {
 	t_position *position;
@@ -53,36 +53,14 @@ typedef struct t_structReceivePosition {
    	int busId;
 }t_structReceivePosition;
 
-/**
-structure pour la mise enum place des dates
-*/
-typedef struct t_dateHour {
-	int day;
-	int month;
-	int years;
-	int hour;
-	int minute;
-	int second;
-}t_dateHour;
-
-// definition du type information envoyé à un BusStop
-typedef struct t_information { 
-	int lineNumber;
-	int idBus;
-	string message;
-}t_information;
 
 //type enum pour le type de message
 enum t_code {ACCIDENT, BREAKDOWN, AGRESSION, CONGESTION};
 
 typedef struct t_priorityMessage {
+		busId int;
 		t_code code;
-		string message;
 }t_priorityMessage;
-
-typedef struct t_line { 
-	int number;
-}t_line;
 
 #endif	/* _Type_H */
 
