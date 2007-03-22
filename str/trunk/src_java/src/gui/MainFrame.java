@@ -297,9 +297,9 @@ public class MainFrame extends javax.swing.JFrame {
         );
         tabbedPane.addTab("Informations des Arr\u00e9ts Bus", busStopPanel);
 
-        createBusLabel.setText("Identifiant du bus : ");
+        createBusLabel.setText("Num\u00e9ro du bus : ");
 
-        busLineLabel.setText("Liste des lignes de bus : ");
+        busLineLabel.setText("Liste des lignes du r\u00e9seau : ");
 
         busLinesComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "12", "24" }));
 
@@ -335,7 +335,7 @@ public class MainFrame extends javax.swing.JFrame {
         );
 
         createBusButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/add.png")));
-        createBusButton.setText("Ajouter un Bus");
+        createBusButton.setText("Ajouter un bus");
         createBusButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 createBusButtonActionPerformed(evt);
