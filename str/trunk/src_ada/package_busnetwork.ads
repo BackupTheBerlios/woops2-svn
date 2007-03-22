@@ -42,9 +42,9 @@ package package_busnetwork is
 	procedure receivePosition(ptr_pos : in t_ptr_t_position; speed : in int; busId : in int);
 	pragma import(CPP, receivePosition, "receivePosition");
     
-    ---------------------------------------------
-    -- Envoi et réception de message prioritaire
-    ---------------------------------------------
+    -----------------------------------------------
+    -- Envoi et réception de messages prioritaires
+    -----------------------------------------------
 	-- envoie d'un message d'urgence au centre d'exploitation en cas de problème
 	procedure receivePriorityMessage(ptr_mes : in t_ptr_t_priorityMessage);
 	pragma import(CPP, receivePriorityMessage, "receivePriorityMessage");

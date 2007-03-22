@@ -174,8 +174,6 @@ package body package_bus is
             -- receivePriorityMessage(ptr_mes);
         end sendPriorityMessage;
         
-        --procedure receiveCommand(ptr_com : in t_ptr_t_action);
-   
     end Radio;
     
 end package_bus;
