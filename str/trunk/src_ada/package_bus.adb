@@ -36,7 +36,7 @@ package body package_bus is
                     put_line("tt_bus: envoi de la position");
                     put("==> Vitesse du bus "&int'image(busId)&": ");put_line(int'image(speed));
                     -- on simule l'accélération du bus
-                    if speed < 30 then
+                    if speed < MAX_SPEED then
                         speed := speed + 10;
                     end if;
                     display(ptr_pos.all);

@@ -13,6 +13,9 @@ package package_constantes is
 	-- periode d'envoi de la position d'un bus au centre (en secondes)
 	PERIOD : constant duration := 2.0;
     
+    -- periode d'envoi de la position d'un bus au centre (en secondes)
+    MAX_SPEED : constant int := 50;
+    
     -- delai d'attente d'un bus à un arrêt de bus
     WAITING_TIME : constant duration := 4.0;
     
