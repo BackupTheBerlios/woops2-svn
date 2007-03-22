@@ -58,7 +58,7 @@ package body package_busnetwork is
                 else
                     BusTable(i).all.getBusId(currentBusId);
                     if currentBusId = id then
-                        put_line("Le bus trouvé est à la position "&integer'image(i));
+                        --put_line("Le bus trouvé est à la position "&integer'image(i));
                         return BusTable(i);
                     end if;
                 end if;

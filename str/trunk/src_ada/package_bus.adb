@@ -141,9 +141,9 @@ package body package_bus is
                 accept simulatePB(code : in t_code)
                 do
                     hasProblem := true;
-                    put_line("tt_bus: Le bus"& int'image(busId) & " a un problème");
-                    stop;
+                    put_line("tt_bus: Le bus"& int'image(busId) & " a un PROBLEME");
                     Radio.sendPriorityMessage(new t_priorityMessage'(busId, code));
+                    stop;
                 end simulatePB;
             end select;                              
         end loop;
@@ -165,7 +165,7 @@ package body package_bus is
         begin
             display(ptr_mes.all);
             -- le centre recoit le message d'urgence
-            receivePriorityMessage(ptr_mes);
+            -- receivePriorityMessage(ptr_mes);
         end sendPriorityMessage;
         
         --procedure receiveCommand(ptr_com : in t_ptr_t_action);
