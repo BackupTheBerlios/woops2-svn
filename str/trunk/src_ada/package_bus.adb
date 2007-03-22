@@ -118,6 +118,7 @@ package body package_bus is
                 accept stop;
                     isStarted := false;
                     speed := 0;
+                    put_line("tt_bus: Le bus"& int'image(busId) & " s'est arrêté");
                     Radio.sendPositionToCenter(ptr_pos, speed, busId); 
             or
                 when (isStarted) and (speed < MAX_SPEED) and (not hasProblem) =>
