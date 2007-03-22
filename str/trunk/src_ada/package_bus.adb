@@ -165,14 +165,13 @@ package body package_bus is
         begin
             -- le centre recoit la position du bus
             receivePosition(ptr_pos, speed, busId);
-            --null;
         end sendPositionToCenter;
         
         procedure sendPriorityMessage(ptr_mes : in t_ptr_t_priorityMessage) is
         begin
             display(ptr_mes.all);
             -- le centre recoit le message d'urgence
-            -- receivePriorityMessage(ptr_mes);
+            receivePriorityMessage(ptr_mes);
         end sendPriorityMessage;
         
     end Radio;
