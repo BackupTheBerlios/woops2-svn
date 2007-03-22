@@ -190,7 +190,7 @@ void Interpretor::sendInformation(int lineId, int busId, int busStopId, int time
 
 void Interpretor::sendPriorityMessage(int busId, t_code code){
 	string chaine = "@message:Le bus ("+ stringify((double)busId);
-	chaine += " a eu " ;
+	chaine += " ) a eu " ;
 	if(code == ACCIDENT){
 		chaine += "un accident !";
 	}else if(code == BREAKDOWN){
