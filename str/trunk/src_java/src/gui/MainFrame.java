@@ -435,7 +435,13 @@ public class MainFrame extends javax.swing.JFrame {
     }// </editor-fold>                        
 
     private void agressionBusButton1ActionPerformed(java.awt.event.ActionEvent evt) {                                                    
-           // TODO add your handling code here:
+    	int rownb = this.busTable.getSelectedRow();
+		int busId = (Integer) ((BusTableModel) this.busTable.getModel())
+				.getValueAt(rownb, 0);
+		ClientControler.getInstance().sendCreateCommand(Constante.AGRESSION, ""+busId, "null", 0, 0);
+		Bus b = ClientControler.getInstance().getBus().get(busId);
+		b.setState(Constante.AGRESSION);
+		b.getRepresentation().setSprite(SpriteFactory.getInstance().getSprite("resources/images/dot_b_agression.png"));
     }                                                   
 
     private void exitButtonActionPerformed(java.awt.event.ActionEvent evt) {                                           
@@ -468,7 +474,7 @@ public class MainFrame extends javax.swing.JFrame {
 		ClientControler.getInstance().sendCreateCommand(Constante.ACCIDENT, ""+busId, "null", 0, 0);
 		Bus b = ClientControler.getInstance().getBus().get(busId);
 		b.setState(Constante.ACCIDENT);
-		b.getRepresentation().getSprite().setImage(SpriteFactory.getInstance().getSprite("resources/images/dot_b_break.png").getImage());
+		b.getRepresentation().setSprite(SpriteFactory.getInstance().getSprite("resources/images/dot_b_break.png"));
 	}// GEN-LAST:event_incidentBusButtonActionPerformed
 
 	private void breakBusButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_stopBusButtonActionPerformed
@@ -478,7 +484,7 @@ public class MainFrame extends javax.swing.JFrame {
 		ClientControler.getInstance().sendCreateCommand(Constante.BREAKDOWN, ""+busId, "null", 0, 0);
 		Bus b = ClientControler.getInstance().getBus().get(busId);
 		b.setState(Constante.BREAKDOWN);
-		b.getRepresentation().getSprite().setImage(SpriteFactory.getInstance().getSprite("resources/images/dot_b_panne.png").getImage());
+		b.getRepresentation().setSprite(SpriteFactory.getInstance().getSprite("resources/images/dot_b_panne.png"));
 	}// GEN-LAST:event_breakBusButtonActionPerformed
 
 	private void startBusButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_startBusButtonActionPerformed

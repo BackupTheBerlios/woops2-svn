@@ -7,11 +7,9 @@ package gui.sprite.entities;
  * @author garwind
  *
  */
-public class BusEntity extends Entity{
+public class BusEntity extends Entity {
 	
 	private double moveSpeed = 30;
-	
-	
 	
 	public BusEntity( String ref, int x, int y) {
 		super(ref, x, y);
