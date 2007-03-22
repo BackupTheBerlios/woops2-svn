@@ -1,0 +1,92 @@
+<?xml version="1.0"?>
+<!-- 
+        Script de Construction ANT
+        Arnaud GIULIANI
+-->
+<!-- Script for building jar application -->
+<project name="Java Client" default="build.jar" basedir="../">
+
+	<!-- Configure the context path for this application -->
+	<property name="project.name" value="JavaClient" />
+	<property name="build.dir" value="${basedir}/tmp" />
+	<property name="ant.dir" value="${basedir}" />
+	<property name="src.dir" value="${basedir}/src" />
+	<property name="src.java.dir" value="${src.dir}" />
+	<property name="lib.dir" value="${basedir}/lib" />
+	<property name="dist.dir" value="${basedir}/dist" />
+	<property name="jar.main-class" value="controler.Main" />
+	<property name="jar.classpath" value="./lib/swing-layout-1.0.1.jar"/>
+
+	<path id="classpath">
+		<fileset dir="${lib.dir}">
+			<include name="**/*.jar" />
+		</fileset>
+	</path>
+
+	<!-- Gestion de l'application -->
+	<target name="clean" depends="clean_dist">
+		<delete dir="${build.dir}" />
+	</target>
+
+	<target name="clean_dist">
+		<delete dir="${dist.dir}" />
+	</target>
+
+	<target name="prepare" depends="clean" description="Create build directories.">
+		<mkdir dir="${build.dir}/${project.name}" />
+		<mkdir dir="${build.dir}/${project.name}/lib" />
+		<mkdir dir="${dist.dir}" />
+	</target>
+
+	<!-- Executable Targets -->
+	<target name="build" depends="prepare" description="Compile Java files and copy static files.">
+		<javac srcdir="${src.java.dir}" destdir="${build.dir}/${project.name}/" source="1.5">
+			<include name="**/*.java" />
+			<!--
+                        <include name="**/*.xml" />
+                        -->
+			<classpath refid="classpath" />
+		</javac>
+		<copy todir="${build.dir}/${project.name}/">
+			<fileset dir="${src.java.dir}">
+				<include name="**/*.xml" />
+				<include name="**/*.ini" />
+				<include name="**/*.properties" />
+				<include name="**/*.png" />
+				<include name="**/*.gif" />
+				<include name="**/*.jpg" />
+			</fileset>
+		</copy>
+	</target>
+
+	<!-- JAR Building -->
+	<target name="build.jar" depends="build">
+		<delete dir="${dist.dir}" />
+		<mkdir dir="${dist.dir}" />
+		<jar destfile="${dist.dir}/${project.name}.jar">
+			<fileset dir="${build.dir}/${project.name}/">
+				<include name="**/*.*" />
+			</fileset>
+			<manifest>
+				<attribute name="Main-Class" value="${jar.main-class}"/>
+				<attribute name="Class-Path" value="${jar.classpath}"/>
+			</manifest>
+		</jar>
+		<delete dir="${build.dir}" />
+		<!-- libs externes -->
+		<mkdir dir="${dist.dir}/lib/" />
+		<copy todir="${dist.dir}/lib/">
+			<fileset dir="${lib.dir}">
+				<include name="**/*.jar" />
+			</fileset>
+		</copy>
+		<!-- Ressources 
+		<mkdir dir="${dist.dir}/resources/images" />
+		<copy todir="${dist.dir}/resources/images">
+			<fileset dir="${src.dir}/resources/images">
+				<include name="*" />
+			</fileset>
+		</copy> -->
+	</target>
+
+</project>
