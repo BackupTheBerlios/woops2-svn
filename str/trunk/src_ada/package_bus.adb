@@ -88,6 +88,7 @@ package body package_bus is
                     if nextBusStop = 0 then
                         put_line("LE BUS" &int'image(busId)& " ARRIVE AU TERMINUS DE LA LIGNE " &int'image(lineId));
                         message := new_string("Les passagers descendent du bus...");
+                        IndexOfCurrentBusStop := 1;
                         ptr_pos.all.busStopId := currentLine.busStopTable(1);
                         ptr_pos.all.distance := 0.0;
                     else

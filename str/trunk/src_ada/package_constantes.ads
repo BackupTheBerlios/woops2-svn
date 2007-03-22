@@ -16,7 +16,7 @@ package package_constantes is
     -- delai d'attente d'un bus à un arrêt de bus
     WAITING_TIME : constant duration := 4.0;
     
-    -- distance totale entre deux arrêts de bus (100m)
-    TOTALDISTANCE : constant C_float := 100.0;
+    -- distance totale entre deux arrêts de bus (300m)
+    TOTALDISTANCE : constant C_float := 300.0;
 	
 end package_constantes; 
