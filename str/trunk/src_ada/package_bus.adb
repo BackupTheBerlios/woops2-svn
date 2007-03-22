@@ -119,9 +119,6 @@ package body package_bus is
                     isStarted := false;
                     -- TEMPORAIRE: arrêt net du bus
                     speed := 0;
-                    if not hasProblem then
-                        put_line("tt_bus: Le bus"& int'image(busId) & " est arrêté à l'arrêt "& int'image(ptr_pos.all.busStopId));
-                    end if;
             or
                 when (isStarted) and (speed < MAX_SPEED) and (not hasProblem) =>
                 accept accelerate;
