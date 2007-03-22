@@ -42,13 +42,15 @@ package package_types is
     ----------------------------------------------------
 	type t_code is (ACCIDENT, BREAKDOWN, AGRESSION, CONGESTION);
 
+    type t_ptr_t_code is access t_code;
+    
     ------------------------------------------
 	-- definition du type Message prioritaire
     ------------------------------------------
 	type t_priorityMessage is
 	record
         busId : int;
-		code : t_code;
+		code : t_ptr_t_code;
 	end record;
 	
 	type t_ptr_t_priorityMessage is access t_priorityMessage;

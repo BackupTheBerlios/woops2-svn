@@ -14,7 +14,7 @@ package package_bus is
         entry accelerate;
         entry decelerate;
         entry getBusId(id : out int);
-        entry simulatePB(code : in t_code);
+        entry simulatePB(ptr_code : in t_ptr_t_code);
     end tt_bus;
 
     type t_ptr_tt_bus is access tt_bus;

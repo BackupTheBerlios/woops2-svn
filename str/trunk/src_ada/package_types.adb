@@ -41,10 +41,10 @@ package body package_types is
         put("(Bus n°");
         put(int'image(pm.busId));
         put(", type de problème: ");
-        if (pm.code = ACCIDENT) then put("ACCIDENT");
-        elsif (pm.code = BREAKDOWN) then put("PANNE");
-        elsif (pm.code = AGRESSION) then put("AGRESSION");
-        elsif (pm.code = CONGESTION) then put("EMBOUTEILLAGE");
+        if (pm.code.all = ACCIDENT) then put("ACCIDENT");
+        elsif (pm.code.all = BREAKDOWN) then put("PANNE");
+        elsif (pm.code.all = AGRESSION) then put("AGRESSION");
+        elsif (pm.code.all = CONGESTION) then put("EMBOUTEILLAGE");
         else put("PROBLEME INDETERMINE");
         end if;
         put(")");

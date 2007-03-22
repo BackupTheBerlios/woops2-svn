@@ -131,12 +131,12 @@ package body package_bus is
                     speed := speed - 5;
                     put_line("tt_bus: Le bus"& int'image(busId) & " décélère");
             or
-                accept simulatePB(code : in t_code)
+                accept simulatePB(ptr_code : in t_ptr_t_code)
                 do
                     hasProblem := true;
                     put_line("tt_bus: Le bus"& int'image(busId) & " a un PROBLEME");
-                    Radio.sendPriorityMessage(new t_priorityMessage'(busId, code));
-                    if code = BREAKDOWN then
+                    Radio.sendPriorityMessage(new t_priorityMessage'(busId, ptr_code));
+                    if ptr_code.all = BREAKDOWN then
                         speed := 0;
                         put_line("tt_bus: Bus"& int'image(busId) & " en réparation.....");
                         Radio.sendPositionToCenter(ptr_pos, speed, busId); 
