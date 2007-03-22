@@ -15,9 +15,12 @@ package body package_bus is
         
         speed : int := 0;
         isStarted : boolean := false;
+        -- UTILISER hasProblem : boolean := false;
         -- l'index précise l'index du dernier arrêt auquel le bus s'est arrêté
         IndexOfCurrentBusStop : integer := 1;
-  mess : chars_ptr ;
+        
+        -- message permettant l'envoie d'informations diverses au centre
+        message : chars_ptr ;
                 
         ------------------------------------------------
         -- tâche cyclique d'envoi de la position du bus
@@ -72,12 +75,10 @@ package body package_bus is
         begin
             loop
                 if (isStarted) and (ptr_pos.all.distance >= TOTALDISTANCE) then
-                    put_line("Distance > 100m");
+                    put_line("Distance > "& C_float'image(TOTALDISTANCE) & "m");
                     stop;
                     delay(1.0);
                 elsif (not isStarted) and (ptr_pos.all.distance > 0.0) then
-                    
-                    -- TODO FAIRE UNE METHODE UPDATE BUS POSITION
                     put_line("MISE A JOUR DE LA POSITION");
                     -- le bus est arrêté, on met a jour la position du bus
                     ptr_pos.all.distance := 0.0;
@@ -85,11 +86,17 @@ package body package_bus is
                     IndexOfCurrentBusStop := IndexOfCurrentBusStop + 1; 
                     nextBusStop := currentLine.busStopTable(IndexOfCurrentBusStop);
                     
-                    -- TODO si nextBusStop = 0 alors fin de ligne on reppart en debut de ligne
-                    ptr_pos.all.busStopId := nextBusStop;
+                    if nextBusStop = 0 then
+                        put_line("Le bus " &int'image(busId)& " repart en debut de ligne " &int'image(lineId));
+                        ptr_pos.all.busStopId := currentLine.busStopTable(1);
+                        ptr_pos.all.distance := 0.0;
+                    else
+                        ptr_pos.all.busStopId := nextBusStop;
+                    end if;                   
                     
                     -- on simule l'entrée de passagers dans le bus
-                    put_line("Les passagers montent dans le bus....");
+                    message := new_string("Les passagers montent dans le bus...");
+                    receiveMessage(message);
                     delay(WAITING_TIME);
                     put_line("tt_bus: Le bus" & int'image(busId) & " quitte l'arrêt " & int'image(ptr_pos.all.busStopId));
                     start;
@@ -102,33 +109,30 @@ package body package_bus is
             select
                 accept getBusId(id : out int)
                 do
-                    put_line("accept getBusId");
                     id :=  busId;
                 end getBusId;
             or    
                 accept start;
-                    put_line("tt_bus: Le bus"& int'image(busId) & " a démarré");
-		mess := new_string("VOICI LE MESSAGE");
-		   receiveMessage(mess);
                     isStarted := true;
+                    put_line("tt_bus: Le bus"& int'image(busId) & " a démarré");
             or                            
                 accept stop;
                     isStarted := false;
                     -- TEMPORAIRE: arrêt net du bus
                     speed := 0;
-                    put_line("tt_bus: Le bus"& int'image(busId) & " est arrete");
+                    put_line("tt_bus: Le bus"& int'image(busId) & " est arrêté");
             or
-		when  (isStarted) and (speed <= 50) =>
+                when (isStarted) and (speed < 50) =>
                 accept accelerate;
-                    -- augmente la vitesse de 5 km/h
+                    -- on augmente la vitesse de 5 km/h
                     speed := speed + 5;
-                    put_line("tt_bus: Le bus"& int'image(busId) & " accelere");
+                    put_line("tt_bus: Le bus"& int'image(busId) & " accelère");
             or
-		when  (isStarted) and (speed >= 0) =>
+                when (isStarted) and (speed > 0) =>
                 accept decelerate;
-                    -- diminue la vitesse de 5 km/h
+                    -- on diminue la vitesse de 5 km/h
                     speed := speed - 5;
-                    put_line("tt_bus: Le bus"& int'image(busId) & " decelere");
+                    put_line("tt_bus: Le bus"& int'image(busId) & " décélère");
             end select;                              
         end loop;
     end tt_bus;

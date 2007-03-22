@@ -5,6 +5,7 @@ use package_types, package_bus, package_busstop, package_constantes, Text_io, in
 package body package_busnetwork is
     
     invalidLineNumber : exception;
+    invalidBusId : exception;
     BusTableIsFull : exception;
     
     -- indexBus pointe sur la première case vide (=0) du tableau de pointeur sur les tâches bus
@@ -58,7 +59,7 @@ package body package_busnetwork is
                     return BusTable(i);
                 end if;
             end loop;
-            return null;
+            raise invalidBusId;
         end getBusById;
         
         -- ajoute un bus dans le tableau de Bus
@@ -160,24 +161,32 @@ package body package_busnetwork is
     begin
         put_line("### busNetwork : p_startBus");
         BusNetwork.getBusById(id_bus).all.start;
+    exception
+        when invalidBusId => put_line("Numéro de bus invalide");
     end p_startBus;
     
     procedure p_stopBus(id_bus : in int) is
     begin
         put_line("### busNetwork : p_stopBus");
         BusNetwork.getBusById(id_bus).all.stop;
+    exception
+        when invalidBusId => put_line("Numéro de bus invalide");
     end p_stopBus;
     
     procedure p_accelerateBus(id_bus : in int) is
     begin
         put_line("### busNetwork : p_accelerateBus");
         BusNetwork.getBusById(id_bus).all.accelerate;
+    exception
+        when invalidBusId => put_line("Numéro de bus invalide");
     end p_accelerateBus;
     
     procedure p_decelerateBus(id_bus : in int) is
     begin
         put_line("### busNetwork : p_decelerateBus");
         BusNetwork.getBusById(id_bus).all.decelerate;
+    exception
+        when invalidBusId => put_line("Numéro de bus invalide");
     end p_decelerateBus;
     
 begin
