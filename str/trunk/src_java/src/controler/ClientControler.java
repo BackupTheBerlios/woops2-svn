@@ -46,6 +46,7 @@ public class ClientControler implements ListDataListener{
 		this.lines = new HashMap<Integer, Line>();
 		this.cartesianPositionQueue = new LinkedList<CartesianPosition>();
 		this.informationsQueue = new LinkedList<Information>();
+		this.priorityMessageQueue = new LinkedList<String>();
 	}
 
 	/**
@@ -207,8 +208,13 @@ public class ClientControler implements ListDataListener{
 						MainFrame.getInstance().refreshInformation();
 						System.out.println("refreshed");
 					}
+					if (ClientControler.getInstance().priorityMessageQueue.size() > 0){
+						System.out.println("refreshing priorityMessageQueue...  ["+ClientControler.getInstance().priorityMessageQueue.size()+"]priorityMessageQueue");
+						MainFrame.getInstance().refreshPriorityMessages();
+						System.out.println("refreshed priorityMessageQueue");
+					}
 					try {
-						Thread.sleep(5000);
+						Thread.sleep(3000);
 					} catch (InterruptedException e) {
 						e.printStackTrace();
 					}

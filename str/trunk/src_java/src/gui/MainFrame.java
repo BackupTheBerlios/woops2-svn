@@ -7,6 +7,9 @@
 package gui;
 
 import gui.sprite.SpriteFactory;
+
+import java.util.ArrayList;
+
 import model.Bus;
 
 import common.Constante;
@@ -298,7 +301,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         busLineLabel.setText("Liste des lignes de bus : ");
 
-        busLinesComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "ligne 12" }));
+        busLinesComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "12", "24" }));
 
         org.jdesktop.layout.GroupLayout creationPanel1Layout = new org.jdesktop.layout.GroupLayout(creationPanel1);
         creationPanel1.setLayout(creationPanel1Layout);
@@ -556,6 +559,15 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JTabbedPane tabbedPane;
     private BusTableModel busTableModel;
 	private InformationTableModel busStopTableModel;
+
+	public void refreshPriorityMessages() {
+		ArrayList<String> listeMsg = new ArrayList<String>(); 
+		listeMsg.addAll(ClientControler.getInstance().getPriorityMessageQueue());
+		for (String s : listeMsg){
+			this.messagesArea.setText(this.messagesArea.getText()+"\n"+s);
+		}
+		ClientControler.getInstance().getPriorityMessageQueue().clear();
+	}
     
     // End of variables declaration                   
 
