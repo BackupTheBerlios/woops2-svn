@@ -96,8 +96,8 @@ public class ClientControler implements ListDataListener{
 		this.sendCreateCommand(Constante.BUS_STOP, "30", "24", 750, 292);
 		this.sendCreateCommand(Constante.BUS_STOP, "31", "24", 818, 258);
 		
-		this.sendCreateCommand(Constante.BUS, "45", "12", 106, 40);
-		this.sendCreateCommand(Constante.BUS, "98", "24", 104, 29);
+		//this.sendCreateCommand(Constante.BUS, "45", "12", 106, 40);
+		//this.sendCreateCommand(Constante.BUS, "98", "24", 104, 29);
 	}
 
 	/**
