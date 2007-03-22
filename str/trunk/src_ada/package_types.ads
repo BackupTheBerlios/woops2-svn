@@ -36,14 +36,7 @@ package package_types is
     
     -- affiche les informations d'une ligne
     procedure display(line : t_line);
-	
-    -----------------------------
-	-- definition du type action
-    -----------------------------
-	--type t_action is (ACCELERATE, DECELERATE, STOP);
-
-	--type t_ptr_t_action is access t_action;
-
+    
     ----------------------------------------------------
 	-- definition du type code d'un message prioritaire
     ----------------------------------------------------
