@@ -81,7 +81,7 @@ public class MainFrame extends javax.swing.JFrame {
         messagesLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("ISI Bus Navigator");
+        setTitle("ISI Bus Navigator - Contr\u00f4le");
         setName("ISI Bus Navigator");
         setResizable(false);
         connectButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/connect32x32.jpg")));
@@ -295,7 +295,7 @@ public class MainFrame extends javax.swing.JFrame {
                 .add(busStopTableScrollPane, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 295, Short.MAX_VALUE)
                 .addContainerGap())
         );
-        tabbedPane.addTab("Informations des Arr\u00e9ts Bus", busStopPanel);
+        tabbedPane.addTab("Informations des arr\u00eats de bus", busStopPanel);
 
         createBusLabel.setText("Num\u00e9ro du bus : ");
 

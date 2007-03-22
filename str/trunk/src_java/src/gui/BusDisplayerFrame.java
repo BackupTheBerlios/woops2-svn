@@ -43,7 +43,7 @@ public class BusDisplayerFrame extends Canvas {
 
 	private BusDisplayerFrame() {
 		// create a frame to contain our game
-		JFrame container = new JFrame("ISI Bus Navigator - DISPLAY");
+		JFrame container = new JFrame("ISI Bus Navigator - R\u00e9seau urbain");
 
 		// get hold the content of the frame and set up the resolution of the game
 		JPanel panel = (JPanel) container.getContentPane();

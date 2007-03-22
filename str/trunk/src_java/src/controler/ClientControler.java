@@ -237,7 +237,7 @@ public class ClientControler implements ListDataListener{
 			b.getRepresentation().setX(cp.getX());
 			b.getRepresentation().setY(cp.getY());
 			b.setSpeed(cp.getSpeed());
-			if (cp.getSpeed() > 30) {
+			if (cp.getSpeed() > 10) {
 				b.setState(Constante.NORMAL_STATE);
 				b.getRepresentation().setSprite(SpriteFactory.getInstance().getSprite("resources/images/dot_b.png"));
 			}
