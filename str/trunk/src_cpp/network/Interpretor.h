@@ -29,7 +29,9 @@ class Interpretor {
 		static void startBus(string buffer);
 		static void accelerateBus(string buffer);
 		static void decelerateBus(string buffer);
-		static void accidentBus(string buffer);
+		static void accident(string buffer);
+		static void aggression(string buffer);
+		static void breakdown(string buffer);
     };
 
 #endif

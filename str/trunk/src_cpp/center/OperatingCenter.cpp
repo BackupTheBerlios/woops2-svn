@@ -70,7 +70,6 @@ void* OperatingCenter::thread_function_archivage(void* a){
 	fichier.open("archive.txt", ios::app);
 	if(fichier.is_open())
 	{
-		cout<<"la chaine :"<<chaine<<endl;
 		fichier<<chaine;
 	}
 	free(structarch);
@@ -106,11 +105,11 @@ void* OperatingCenter::thread_function_receive_position(void *structPosition){
 	t_structReceivePosition *maStructPosition = (t_structReceivePosition *)structPosition;
 	t_position* maposition = (t_position *)maStructPosition->position;
 
-	cout<<"Position recue par le centre: ";
+	/*cout<<"Position recue par le centre: ";
 	cout<<"(lineNumber => " << maposition->lineNumber;
 	cout<<", busStopId => " << maposition->busStopId;
 	cout<<", distance => " << maposition->distance << ")" << endl;
-	cout<<"vitesse du bus " << maStructPosition->busId << ": " << maStructPosition->speed << endl;
+	cout<<"vitesse du bus " << maStructPosition->busId << ": " << maStructPosition->speed << endl;*/
     	
 	int remainingDistance = DISTANCE_BETWEEN_2_STOP - (int)maposition->distance;
 	int speedInMeterPerSeconde = maStructPosition->speed*1000/3600;
@@ -121,13 +120,15 @@ void* OperatingCenter::thread_function_receive_position(void *structPosition){
 	
 	//calcule du pourcenetage de l'evolution du bus entre 2 bus stop.
 	int percent = ((int)maposition->distance*100)/DISTANCE_BETWEEN_2_STOP;
-	if(TIME_BETWEEN_2_STOP - timeInSeconde > 1){
+	int comparTime = (TIME_BETWEEN_2_STOP*percent)/100 - timeInSeconde;
+	cout<<"Compar time :"	<<comparTime<<endl;
+	if(comparTime > 1){
 		//le bus est en retard, il faut lui demander d'accelerer.
-		ada_accelerateBus(maposition->busStopId);
+		ada_accelerateBus(maStructPosition->busId);
 	}
-	else if(TIME_BETWEEN_2_STOP - timeInSeconde < -1){
+	else if(comparTime < -1){
 		//le bus est en avance, il faut lui demander de decelerer.
-		ada_decelerateBus(maposition->busStopId);
+		ada_decelerateBus(maStructPosition->busId);
 	}
 		
 	//mise en place de lecriture dans le fichier pour larchivage
@@ -271,9 +272,17 @@ void OperatingCenter::java_decelerate_bus(int num_bus)
 {
 	ada_decelerateBus(num_bus);
 }
-void OperatingCenter::java_accident_bus(int num_bus)
+void OperatingCenter::java_aggression(int num_bus)
 {
-	//ada_accidentBus(num_bus);
+	ada_managePriorityMessage(num_bus, AGRESSION);
+}
+void OperatingCenter::java_accident(int num_bus)
+{
+	ada_managePriorityMessage(num_bus, ACCIDENT);
+}
+void OperatingCenter::java_breakdown(int num_bus)
+{
+	ada_managePriorityMessage(num_bus, BREAKDOWN);
 }
 
 

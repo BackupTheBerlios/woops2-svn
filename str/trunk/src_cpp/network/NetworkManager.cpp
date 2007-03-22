@@ -11,9 +11,7 @@ NetworkManager::NetworkManager(){
 
 void NetworkManager::initNet(){
 			remoteHost = "localhost";
-	                printf("prepareCommandSocket \n");
 	                prepareCommandSocket();
-	                printf("runListenServer \n");
 	                runListenServer();
 }
 
@@ -82,7 +80,6 @@ void NetworkManager::runListenServer(){
 
 NetworkManager* NetworkManager::getInstance() {
 				if (instance == NULL){
-						cout << "creation nm" << endl;
 					 instance = new NetworkManager();
 				}
 				
@@ -95,5 +92,4 @@ void NetworkManager::sendBuffer(char* _buffer){
                 if ((send(acceptedCommandSocket, _buffer, strlen(_buffer), 0)) <= 0 ) {
                     perror("send");
                 }
-				printf("sent\n");
             }

@@ -27,6 +27,7 @@ extern "C"{
 	void p_stopBus(int busId);
 	void p_accelerateBus(int busId);
 	void p_decelerateBus(int busId);
+	void p_simulateProblem(t_priorityMessage* ptr_mes);
 	void receivePosition(t_position *pos, int speed, int busId);
 	void receiveMessage(char* message);
 }
@@ -37,9 +38,8 @@ param : la position pos qui est un pointeur sur la struture position
 */
 void receivePosition(t_position *pos, int speed, int busId)
 {
-	cout<<"ON RENTRE DANS LE TRAITEMENT C++"<<endl;
 	ControllerMalloc::getInstance()->prendre_jeton();
-	t_structReceivePosition *structPosition = (t_structReceivePosition *)malloc(sizeof(t_structReceivePosition));
+	t_structReceivePosition *structPosition = new t_structReceivePosition();
 	ControllerMalloc::getInstance()->rendre_jeton();
 	structPosition->position = pos;
 	structPosition->busId = busId;
@@ -82,6 +82,13 @@ void ada_decelerateBus(int busId)
 {
 	p_decelerateBus(busId);
 }
+void ada_managePriorityMessage(int busId, t_code code)
+{
+	t_priorityMessage* pm =new t_priorityMessage();
+	pm->busId = busId;
+	pm->code = code;
+	//p_simulateProblem(pm);
+}
 
 
 //-------------------------------------- Méthode que Ada appelle ---------------------------------------
@@ -91,12 +98,14 @@ void ada_decelerateBus(int busId)
 //main qui initialise le system
 int main ()
 {
-	cout<<"main c"<<endl;
 	adainit();
-	//p_initBusStop(1,12);
-	//p_initBusStop(2,12);
-	//p_initBus(88,12);
-	//p_startBus(88);
+	p_initBusStop(1,12);
+	p_initBusStop(2,12);
+	p_initBusStop(3,12);
+        p_initBusStop(4,12);
+        p_initBusStop(5,12);
+	p_initBus(88,12);
+	p_startBus(88);
 
 	
 	NetworkManager::getInstance()->initNet();

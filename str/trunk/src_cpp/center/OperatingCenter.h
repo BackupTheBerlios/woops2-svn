@@ -63,7 +63,9 @@ class OperatingCenter
 		void java_start_bus(int num_bus);
 		void java_accelerate_bus(int num_bus);
 		void java_decelerate_bus(int num_bus);
-		void java_accident_bus(int num_bus);
+		void java_accident(int num_bus);
+		void java_aggression(int num_bus);
+		void java_breakdown(int num_bus);
 
 		//------- méthode qui ada appelle et qui créée les threads
 

@@ -69,8 +69,12 @@ void* Interpretor::threadTraitementInformation(void* a)
 						accelerateBus(commande.substr(i+1,commande.length()-1));
 					}else if(commande.substr(1,i) == "decelerateBus:"){
 						decelerateBus(commande.substr(i+1,commande.length()-1));
-					}else if(commande.substr(1,i) == "accidentBus:"){
-						accidentBus(commande.substr(i+1,commande.length()-1));
+					}else if(commande.substr(1,i) == "accident:"){
+						accident(commande.substr(i+1,commande.length()-1));
+					}else if(commande.substr(1,i) == "agression:"){
+						aggression(commande.substr(i+1,commande.length()-1));
+					}else if(commande.substr(1,i) == "breakdown:"){
+						breakdown(commande.substr(i+1,commande.length()-1));
 					}
 					buf = buf.substr(index+1, buf.length());
 					cout<<"buf"<<buf<<endl;
@@ -128,11 +132,23 @@ void Interpretor::decelerateBus(string buffer)
 	cout<<"valeur "<<num_bus<<endl;
 	OperatingCenter::getInstance()->java_decelerate_bus(num_bus);
 }
-void Interpretor::accidentBus(string buffer)
+void Interpretor::accident(string buffer)
 {
 	int index = buffer.find(";",0);
 	int num_bus = atoi(buffer.substr(0,index).c_str());
-	OperatingCenter::getInstance()->java_accident_bus(num_bus);
+	OperatingCenter::getInstance()->java_accident(num_bus);
+}
+void Interpretor::aggression(string buffer)
+{
+	int index = buffer.find(";",0);
+	int num_bus = atoi(buffer.substr(0,index).c_str());
+	OperatingCenter::getInstance()->java_aggression(num_bus);
+}
+void Interpretor::breakdown(string buffer)
+{
+	int index = buffer.find(";",0);
+	int num_bus = atoi(buffer.substr(0,index).c_str());
+	OperatingCenter::getInstance()->java_breakdown(num_bus);
 }
 void Interpretor::createBus(string buffer)
 {
