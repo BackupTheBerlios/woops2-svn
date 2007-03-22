@@ -53,4 +53,18 @@ public class Sprite {
 	public void draw(Graphics g,int x,int y) {
 		g.drawImage(image,x,y,null);
 	}
+
+	/**
+	 * @return the image
+	 */
+	public Image getImage() {
+		return image;
+	}
+
+	/**
+	 * @param image the image to set
+	 */
+	public void setImage(Image image) {
+		this.image = image;
+	}
 }

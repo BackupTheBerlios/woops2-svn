@@ -162,4 +162,18 @@ public abstract class Entity {
 	public void setIsRunning(boolean isRunning) {
 		this.isRunning = isRunning;
 	}
+
+	/**
+	 * @return the sprite
+	 */
+	public Sprite getSprite() {
+		return sprite;
+	}
+
+	/**
+	 * @param sprite the sprite to set
+	 */
+	public void setSprite(Sprite sprite) {
+		this.sprite = sprite;
+	}
 }

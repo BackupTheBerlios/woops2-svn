@@ -1,5 +1,7 @@
 package model;
 
+import common.Constante;
+
 import gui.sprite.entities.BusEntity;
 
 public class Bus extends SystemObject {
@@ -12,7 +14,7 @@ public class Bus extends SystemObject {
 	
 	private int speed;
 	
-	
+	private int state;
 	
 	/**
 	 * 
@@ -22,7 +24,8 @@ public class Bus extends SystemObject {
 		this.id = _id;
 		this.line = _l;
 		this.representation = new BusEntity("resources/images/dot_b.png", _x, _y);
-		this.speed = 0;		
+		this.speed = 0;	
+		this.state = Constante.NORMAL_STATE;
 	}
 
 	/**
@@ -79,6 +82,20 @@ public class Bus extends SystemObject {
 	 */
 	public void setSpeed(int speed) {
 		this.speed = speed;
+	}
+
+	/**
+	 * @return the state
+	 */
+	public int getState() {
+		return state;
+	}
+
+	/**
+	 * @param state the state to set
+	 */
+	public void setState(int state) {
+		this.state = state;
 	}
 	
 }

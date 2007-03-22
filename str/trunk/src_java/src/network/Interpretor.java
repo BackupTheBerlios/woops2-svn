@@ -146,6 +146,33 @@ public class Interpretor {
 	}
 	
 	/**
+	 * Envoi un ordre d accident a un bus
+	 */
+	public void sendAccidentOnBus(String _n) {
+		String tmp = "@accident:" + _n + ";";
+		System.out.println("creation de la commande : "+tmp);
+		NetworkManager.getInstance().sendMessage(tmp);
+	}
+	
+	/**
+	 * Envoi un ordre d agression a un bus
+	 */
+	public void sendAgressionOnBus(String _n) {
+		String tmp = "@agression:" + _n + ";";
+		System.out.println("creation de la commande : "+tmp);
+		NetworkManager.getInstance().sendMessage(tmp);
+	}
+	
+	/**
+	 * Envoi un ordre de panne a un bus
+	 */
+	public void sendBreakdownOnBus(String _n) {
+		String tmp = "@breakdown:" + _n + ";";
+		System.out.println("creation de la commande : "+tmp);
+		NetworkManager.getInstance().sendMessage(tmp);
+	}
+	
+	/**
 	 * Reception d'un message
 	 */
 	public void receiveMessage(String _str) {

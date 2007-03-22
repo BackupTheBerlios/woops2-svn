@@ -114,30 +114,40 @@ public class ClientControler implements ListDataListener{
 			l = this.lines.get(new Integer(_l).intValue());
 		}
 		switch (_code) {
-		case Constante.BUS_STOP:
-			this.busStops.put(id, this.createBusStop(id, l, _x, _y));
-			Interpretor.getInstance().sendCreateBusStop(_id, l);
-			break;
-		case Constante.LIGNE:
-			this.lines.put(id, this.createLine(id));
-			Interpretor.getInstance().sendCreateLine(_id);
-			break;
-		case Constante.BUS:
-			this.bus.put(id, this.createBus(id, l, _x, _y));
-			Interpretor.getInstance().sendCreateBus(_id, l);
-			break;
-		case Constante.START_BUS:
-			Bus b1 = ClientControler.getInstance().getBus().get(id);
-			b1.getRepresentation().setIsRunning(true);
-			Interpretor.getInstance().sendStartBus(_id);
-			break;
-		case Constante.ACC_BUS:
-			Interpretor.getInstance().sendAccelerateBus(_id);
-			break;
-		case Constante.DEC_BUS:
-			Interpretor.getInstance().sendDecelerateBus(_id);
-			break;	
-		default:	break;
+			case Constante.BUS_STOP:
+				this.busStops.put(id, this.createBusStop(id, l, _x, _y));
+				Interpretor.getInstance().sendCreateBusStop(_id, l);
+				break;
+			case Constante.LIGNE:
+				this.lines.put(id, this.createLine(id));
+				Interpretor.getInstance().sendCreateLine(_id);
+				break;
+			case Constante.BUS:
+				this.bus.put(id, this.createBus(id, l, _x, _y));
+				Interpretor.getInstance().sendCreateBus(_id, l);
+				break;
+			case Constante.START_BUS:
+				Bus b1 = ClientControler.getInstance().getBus().get(id);
+				b1.getRepresentation().setIsRunning(true);
+				Interpretor.getInstance().sendStartBus(_id);
+				break;
+			case Constante.ACC_BUS:
+				Interpretor.getInstance().sendAccelerateBus(_id);
+				break;
+			case Constante.DEC_BUS:
+				Interpretor.getInstance().sendDecelerateBus(_id);
+				break;	
+			default:	break;
+			case Constante.ACCIDENT:
+				Interpretor.getInstance().sendAccidentOnBus(_id);
+				break;
+			case Constante.BREAKDOWN:
+				Interpretor.getInstance().sendBreakdownOnBus(_id);
+				break;
+			case Constante.AGRESSION:
+				Interpretor.getInstance().sendAgressionOnBus(_id);
+				break;
+			default:	break;
 		}
 	}
 
