@@ -111,18 +111,25 @@ void* OperatingCenter::thread_function_receive_position(void *structPosition){
 	if(speedInMeterPerSeconde != 0)
 		timeInSeconde = remainingDistance / speedInMeterPerSeconde ;
 	cout<<"Time (sec) calculee :"	<<  	timeInSeconde			<<endl;
-	
-	//calcule du pourcenetage de l'evolution du bus entre 2 bus stop.
+
 	int percent = ((int)maposition->distance*100)/DISTANCE_BETWEEN_2_STOP;
-	int comparTime = (TIME_BETWEEN_2_STOP*percent)/100 - timeInSeconde;
-	cout<<"Compar time :"	<<comparTime<<endl;
-	if(comparTime > 1){
+	
+	int percentremaining = 100 - percent; 
+	cout<<"percent remaining :"<<percentremaining<<endl;
+	//int realtime = speedInMeterPerSeconde/remainingDistance;
+	cout<<"TIME_BETWEEN_2_STOP :"<<TIME_BETWEEN_2_STOP<<endl;
+	int theoricaltime = TIME_BETWEEN_2_STOP*percentremaining/100;
+	cout<<"temps reel :"	<<timeInSeconde<<endl;
+	cout<<"temps theo :"	<<theoricaltime<<endl;
+	int compartime = theoricaltime - timeInSeconde;
+	cout<<"Compar time :"	<<compartime<<endl;
+	if(compartime < -1){
 		//le bus est en retard, il faut lui demander d'accelerer.
-		//ada_accelerateBus(maStructPosition->busId);
+		ada_accelerateBus(maStructPosition->busId);
 	}
-	else if(comparTime < -1){
+	else if(compartime > 1){
 		//le bus est en avance, il faut lui demander de decelerer.
-		//ada_decelerateBus(maStructPosition->busId);
+		ada_decelerateBus(maStructPosition->busId);
 	}
 		
 	//mise en place de lecriture dans le fichier pour larchivage
