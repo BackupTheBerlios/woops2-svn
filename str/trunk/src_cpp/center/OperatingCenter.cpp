@@ -123,13 +123,16 @@ void* OperatingCenter::thread_function_receive_position(void *structPosition){
 	cout<<"temps theo :"	<<theoricaltime<<endl;
 	int compartime = theoricaltime - timeInSeconde;
 	cout<<"Compar time :"	<<compartime<<endl;
-	if(compartime < -1){
-		//le bus est en retard, il faut lui demander d'accelerer.
-		ada_accelerateBus(maStructPosition->busId);
-	}
-	else if(compartime > 1){
-		//le bus est en avance, il faut lui demander de decelerer.
-		ada_decelerateBus(maStructPosition->busId);
+	if(percentremaining >10)
+	{
+		if(compartime < -1){
+			//le bus est en retard, il faut lui demander d'accelerer.
+			ada_accelerateBus(maStructPosition->busId);
+		}
+		else if(compartime > 1){
+			//le bus est en avance, il faut lui demander de decelerer.
+			ada_decelerateBus(maStructPosition->busId);
+		}
 	}
 		
 	//mise en place de lecriture dans le fichier pour larchivage

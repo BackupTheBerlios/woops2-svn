@@ -91,7 +91,7 @@ void ada_managePriorityMessage(int busId, t_code code)
 	t_priorityMessage* pm =new t_priorityMessage();
 	pm->busId = busId;
 	pm->code = code;
-	//p_simulateProblem(pm);
+	p_simulateProblem(pm);
 }
 
 
