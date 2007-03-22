@@ -471,20 +471,20 @@ public class MainFrame extends javax.swing.JFrame {
 		int rownb = this.busTable.getSelectedRow();
 		int busId = (Integer) ((BusTableModel) this.busTable.getModel())
 				.getValueAt(rownb, 0);
-		ClientControler.getInstance().sendCreateCommand(Constante.ACCIDENT, ""+busId, "null", 0, 0);
+		ClientControler.getInstance().sendCreateCommand(Constante.BREAKDOWN, ""+busId, "null", 0, 0);
 		Bus b = ClientControler.getInstance().getBus().get(busId);
-		b.setState(Constante.ACCIDENT);
-		b.getRepresentation().setSprite(SpriteFactory.getInstance().getSprite("resources/images/dot_b_break.png"));
+		b.setState(Constante.BREAKDOWN);
+		b.getRepresentation().setSprite(SpriteFactory.getInstance().getSprite("resources/images/dot_b_panne.png"));
 	}// GEN-LAST:event_incidentBusButtonActionPerformed
 
 	private void breakBusButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_stopBusButtonActionPerformed
 		int rownb = this.busTable.getSelectedRow();
 		int busId = (Integer) ((BusTableModel) this.busTable.getModel())
 				.getValueAt(rownb, 0);
-		ClientControler.getInstance().sendCreateCommand(Constante.BREAKDOWN, ""+busId, "null", 0, 0);
+		ClientControler.getInstance().sendCreateCommand(Constante.ACCIDENT, ""+busId, "null", 0, 0);
 		Bus b = ClientControler.getInstance().getBus().get(busId);
-		b.setState(Constante.BREAKDOWN);
-		b.getRepresentation().setSprite(SpriteFactory.getInstance().getSprite("resources/images/dot_b_panne.png"));
+		b.setState(Constante.ACCIDENT);
+		b.getRepresentation().setSprite(SpriteFactory.getInstance().getSprite("resources/images/dot_b_break.png"));
 	}// GEN-LAST:event_breakBusButtonActionPerformed
 
 	private void startBusButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_startBusButtonActionPerformed
