@@ -30,15 +30,11 @@ package body package_bus is
         task body t_sendPosition is
         begin
             loop
-                if (isStarted) then
+                if (isStarted) and (not hasProblem) then
                     -- envoi de la position toutes les 2 secondes
                     delay(PERIOD);                
                     put_line("tt_bus: envoi de la position");
                     put("==> Vitesse du bus "&int'image(busId)&": ");put_line(int'image(speed));
-                    -- on simule l'accélération du bus
-                    if speed < MAX_SPEED then
-                        speed := speed + 10;
-                    end if;
                     display(ptr_pos.all);
                     Radio.sendPositionToCenter(ptr_pos, speed, busId); 
                 end if;               
@@ -116,6 +112,7 @@ package body package_bus is
                 when (not hasProblem) =>
                 accept start;
                     isStarted := true;
+                    speed := 5;
                     put_line("tt_bus: Le bus"& int'image(busId) & " a démarré");
             or                            
                 accept stop;
@@ -126,7 +123,7 @@ package body package_bus is
                         put_line("tt_bus: Le bus"& int'image(busId) & " est arrêté à l'arrêt "& int'image(ptr_pos.all.busStopId));
                     end if;
             or
-                when (isStarted) and (speed < 50) and (not hasProblem) =>
+                when (isStarted) and (speed < MAX_SPEED) and (not hasProblem) =>
                 accept accelerate;
                     -- on augmente la vitesse de 5 km/h
                     speed := speed + 5;
