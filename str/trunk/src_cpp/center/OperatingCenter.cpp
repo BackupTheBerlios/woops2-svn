@@ -233,24 +233,6 @@ void OperatingCenter::receivePosition(t_structReceivePosition* position){
     
 }
 
-
-/**
-Méthode qui permet de recevoir les informations sur le busStop
-*/
-void OperatingCenter::receiveInformation(t_information* t_ptr_t_information){
-    
-    
-	int etat;
-
-	//création du thread pour traiter l'information
-	pthread_t receive_information_thread;
-
-	//création du thread
-	etat = pthread_create(&receive_information_thread,NULL,thread_function_receive_information, NULL);
-	if (etat != 0) perror("Echec creation de thread pour la réception des information\n");
-    
-}
-
 /*------------------------------------------ Java -----------------------------------------------*/
 /**
 méthode pour initialiser les busStop

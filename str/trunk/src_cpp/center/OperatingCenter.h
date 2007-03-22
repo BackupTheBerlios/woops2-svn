@@ -52,7 +52,6 @@ class OperatingCenter
 		void initializeSystem();
 		void receivePosition(t_structReceivePosition* position);
       		void p_sendPriorityMessage();
-   		void receiveInformation(t_information* t_ptr_t_information);
 		
 		//--------------- getteur et setteur sur la variable envoieinformation -----
 		static int getEnvoieInformation();

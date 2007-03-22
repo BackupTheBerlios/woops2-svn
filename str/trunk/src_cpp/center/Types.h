@@ -58,7 +58,7 @@ typedef struct t_structReceivePosition {
 enum t_code {ACCIDENT, BREAKDOWN, AGRESSION, CONGESTION};
 
 typedef struct t_priorityMessage {
-		busId int;
+		int busId;
 		t_code code;
 }t_priorityMessage;
 
