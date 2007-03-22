@@ -153,7 +153,7 @@ void* OperatingCenter::thread_function_receive_position(void *structPosition){
 	int etat = pthread_create(&thread_fichier,NULL,thread_function_archivage, (void*)structarch);
 	if (etat != 0) cout<<"Echec creation de thread pour larchivage"<<endl;
 	cout<<"On envoie le position a Java"<<endl;
-	Interpretor::getInstance()->sendPosition(maposition->lineNumber, maStructPosition->busId, maposition->busStopId, percent );
+	Interpretor::getInstance()->sendPosition(maposition->lineNumber, maStructPosition->busId, maposition->busStopId, percent, maStructPosition->speed);
 	free(maStructPosition);
 
 	cout<<"FINNN DU THREAD"<<endl<<endl;
