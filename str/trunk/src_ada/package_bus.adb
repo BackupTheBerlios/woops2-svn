@@ -34,7 +34,7 @@ package body package_bus is
                     -- envoi de la position toutes les 2 secondes
                     delay(PERIOD);                
                     put_line("tt_bus: envoi de la position");
-                    put("vitesse du bus "&int'image(busId)&": ");put_line(int'image(speed));
+                    put("==> Vitesse du bus "&int'image(busId)&": ");put_line(int'image(speed));
                     -- on simule l'accélération du bus
                     if speed < 30 then
                         speed := speed + 10;

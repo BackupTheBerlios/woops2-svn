@@ -73,7 +73,7 @@ package body package_busnetwork is
                 raise BusTableIsFull;
             end if;
             BusTable(indexBus) := bus;
-            put_line("Ajout d'un bus à la position "&integer'image(indexBus));
+            --put_line("Ajout d'un bus à la position "&integer'image(indexBus));
             indexBus := indexBus + 1;  
         end addBus;
         
