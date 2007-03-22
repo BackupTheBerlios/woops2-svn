@@ -131,7 +131,10 @@ void* OperatingCenter::thread_function_receive_position(void *structPosition){
 		}
 		else if(compartime > 1){
 			//le bus est en avance, il faut lui demander de decelerer.
-			ada_decelerateBus(maStructPosition->busId);
+			if((int)maposition->distance > 0 && speedInMeterPerSeconde > 0)
+			{
+				ada_decelerateBus(maStructPosition->busId);
+			}
 		}
 	}
 		
@@ -247,7 +250,7 @@ void OperatingCenter::receivePriorityMessage(t_priorityMessage* ptr_mes){
 	etat = pthread_create(&receive_priority_message_thread,NULL,thread_function_receive_priority_message, (void *)ptr_mes);
 	if (etat != 0) 
 		perror("Echec creation de thread pour la réception des priority message\n");
-    pthread_detach(receive_priority_message_thread);
+    	pthread_detach(receive_priority_message_thread);
 }
 
 /*------------------------------------------ Java -----------------------------------------------*/
