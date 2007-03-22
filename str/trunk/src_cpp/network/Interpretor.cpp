@@ -158,12 +158,13 @@ void Interpretor::createBus(string buffer)
 /**
 methode qui permet d'envoyer la position d'un bus a java.
 */
-void Interpretor::sendPosition(int lineId, int busId, int busStopId, int position)
+void Interpretor::sendPosition(int lineId, int busId, int busStopId, int percent, int speed)
 {
 	string chaine = "@position:"+ stringify((double)lineId);
 	chaine += ","+stringify((double)busId) ;
 	chaine += ","+stringify((double)busStopId);
-	chaine += ","+stringify((double)position);
+	chaine += ","+stringify((double)percent);
+	chaine += ","+stringify((double)speed);
 	chaine += ";\n";
 	char * chainechar = (char*)chaine.c_str();
 	NetworkManager::getInstance()->sendBuffer(chainechar);
