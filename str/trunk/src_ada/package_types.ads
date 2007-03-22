@@ -59,5 +59,8 @@ package package_types is
 	end record;
 	
 	type t_ptr_t_priorityMessage is access t_priorityMessage;
+    
+    -- affiche les informations d'un message prioritaire
+    procedure display(pm : t_priorityMessage);
 
 end package_types;

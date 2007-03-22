@@ -33,5 +33,19 @@ package body package_types is
 		put(")");
 		new_line;
 	end display;
+    
+    -- affiche les informations d'un message prioritaire
+    procedure display(pm : t_priorityMessage) is
+    begin
+        put("Affichage message prioritaire en Ada: ");
+        put("(Bus n°");
+        put(int'image(pm.busId));
+        put(", type de problème: ");
+        if (pm.code = ACCIDENT) then
+            put("ACCIDENT");
+        end if;
+        put(")");
+        new_line;
+    end display;
 	
 end package_types;

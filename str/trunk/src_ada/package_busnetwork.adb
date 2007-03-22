@@ -197,8 +197,8 @@ package body package_busnetwork is
     procedure p_sendPriorityMessage(ptr_mes : in t_ptr_t_priorityMessage) is
         ptr_message : t_ptr_t_priorityMessage;
     begin
-        put_line("LE BUS 88 A UN ACCIDENT");
-        ptr_message := new t_priorityMessage'(88, ACCIDENT);
+        display(ptr_mes.all);
+        ptr_message := new t_priorityMessage'(ptr_mes.all.busId, ptr_mes.all.code);
     end p_sendPriorityMessage;
     
 begin
