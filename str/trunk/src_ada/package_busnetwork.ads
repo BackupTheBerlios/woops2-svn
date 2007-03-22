@@ -11,7 +11,6 @@ package package_busnetwork is
     ---------------------------------
     -- Initialisation des objets ADA
     ---------------------------------
-    
     -- initialisation des arrêts de bus
 	procedure p_initBusStop(id_busstop : in int; line : in int);
 	pragma export(CPP, p_initBusStop, "p_initBusStop");
@@ -35,6 +34,7 @@ package package_busnetwork is
     procedure p_decelerateBus(id_bus : in int);
     pragma export(CPP, p_decelerateBus, "p_decelerateBus");
     
+    -- envoi d'informations diverses au centre
     procedure receiveMessage(message : in chars_ptr);
     pragma import(CPP, receiveMessage, "receiveMessage");
     
@@ -42,9 +42,16 @@ package package_busnetwork is
 	procedure receivePosition(ptr_pos : in t_ptr_t_position; speed : in int; busId : in int);
 	pragma import(CPP, receivePosition, "receivePosition");
     
+    ---------------------------------------------
+    -- Envoi et réception de message prioritaire
+    ---------------------------------------------
 	-- envoie d'un message d'urgence au centre d'exploitation en cas de problème
-	--procedure p_sendPriorityMessage(ptr_mes : out t_ptr_t_priorityMessage);
-	--pragma export(CPP, p_sendPriorityMessage, "p_sendPriorityMessage");
+	procedure p_sendPriorityMessage(ptr_mes : in t_ptr_t_priorityMessage);
+	pragma export(CPP, p_sendPriorityMessage, "p_sendPriorityMessage");
+    
+    -- reception d'une simulation de problème depuis l'interface
+    procedure simulateProblem(ptr_mes : in t_ptr_t_priorityMessage);
+    pragma import(CPP, simulateProblem, "simulateProblem"); 
     
     ---------------------------------------------
     -- Déclaration de l'objet protégé BusNetwork

@@ -148,9 +148,6 @@ package body package_busnetwork is
         -- ajout du bus créé dans le tableau de bus du réseau   
         BusNetwork.addBus(ptr_bus);
                 
-        -- TEMPORAIRE démarrage du bus
-        --ptr_bus.all.start;
-        
         exception
             when invalidLineNumber => put_line("Numéro de ligne invalide");
             when BusTableIsFull => put_line("Le tableau de bus est plein");
@@ -192,6 +189,17 @@ package body package_busnetwork is
     exception
         when invalidBusId => put_line("Numéro de bus invalide");
     end p_decelerateBus;
+    
+    ---------------------------------------------
+    -- Envoi et réception de message prioritaire
+    ---------------------------------------------
+    -- envoie d'un message d'urgence au centre d'exploitation en cas de problème
+    procedure p_sendPriorityMessage(ptr_mes : in t_ptr_t_priorityMessage) is
+        ptr_message : t_ptr_t_priorityMessage;
+    begin
+        put_line("LE BUS 88 A UN ACCIDENT");
+        ptr_message := new t_priorityMessage'(88, ACCIDENT);
+    end p_sendPriorityMessage;
     
 begin
     
