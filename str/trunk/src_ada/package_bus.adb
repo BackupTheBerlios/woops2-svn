@@ -1,11 +1,10 @@
--- Author: eperico
 with package_types, package_busnetwork, package_constantes, Text_io, interfaces.C.strings;
 use package_types, package_busnetwork, package_constantes, Text_io, interfaces.C.strings;
 
 package body package_bus is
 	
     -------------
-    -- Tâche Bus
+    -- Tache Bus
     -------------
     task body tt_bus is
     
@@ -16,14 +15,14 @@ package body package_bus is
         speed : int := 0;
         isStarted : boolean := false;
         hasProblem : boolean := false;
-        -- l'index précise l'index du dernier arrêt auquel le bus s'est arrêté
+        -- l'index precise l'index du dernier arret auquel le bus s'est arrete
         IndexOfCurrentBusStop : integer := 1;
         
         -- message permettant l'envoie d'informations diverses au centre
         message : chars_ptr ;
                 
         ------------------------------------------------
-        -- tâche cyclique d'envoi de la position du bus
+        -- tache cyclique d'envoi de la position du bus
         ------------------------------------------------
         task t_sendPosition;
         
@@ -42,7 +41,7 @@ package body package_bus is
         end t_sendPosition;
         
         -----------------------------------------------
-        -- tâche cyclique pour le compteur de distance
+        -- tache cyclique pour le compteur de distance
         -----------------------------------------------
         task t_Odometer;
         
@@ -61,7 +60,7 @@ package body package_bus is
         
         
         ----------------------------------
-        -- tâche cyclique pour le capteur
+        -- tÃ¢che cyclique pour le capteur
         ----------------------------------
         task t_Sensor;
         
@@ -75,7 +74,7 @@ package body package_bus is
                     delay(1.0);
                 elsif (not isStarted) and (ptr_pos.all.distance > 0.0) then
                     put_line("MISE A JOUR DE LA POSITION");
-                    -- le bus est arrêté, on met a jour la position du bus
+                    -- le bus est arrÃªtÃ©, on met a jour la position du bus
                     ptr_pos.all.distance := 0.0;
                     currentLine := BusNetwork.getLine(ptr_pos.all.lineNumber);
                     IndexOfCurrentBusStop := IndexOfCurrentBusStop + 1; 
@@ -89,13 +88,13 @@ package body package_bus is
                         ptr_pos.all.distance := 0.0;
                     else
                         ptr_pos.all.busStopId := nextBusStop;
-                        -- on simule l'entrée de passagers dans le bus
+                        -- on simule l'entrÃ©e de passagers dans le bus
                         message := new_string("Les passagers montent dans le bus...");
                     end if;
                                         
                     receiveMessage(message);
                     delay(WAITING_TIME);
-                    put_line("tt_bus: Le bus" & int'image(busId) & " quitte l'arrêt " & int'image(ptr_pos.all.busStopId));
+                    put_line("tt_bus: Le bus" & int'image(busId) & " quitte l'arrÃªt " & int'image(ptr_pos.all.busStopId));
                     start;
                 end if;               
             end loop;
@@ -113,25 +112,24 @@ package body package_bus is
                 accept start;
                     isStarted := true;
                     speed := 5;
-                    put_line("tt_bus: Le bus"& int'image(busId) & " a démarré");
+                    put_line("tt_bus: Le bus"& int'image(busId) & " a dÃ©marrÃ©");
             or                            
                 accept stop;
                     isStarted := false;
                     speed := 0;
-                    put_line("tt_bus: Le bus"& int'image(busId) & " s'est arrêté");
                     Radio.sendPositionToCenter(ptr_pos, speed, busId); 
             or
                 when (isStarted) and (speed < MAX_SPEED) and (not hasProblem) =>
                 accept accelerate;
                     -- on augmente la vitesse de 5 km/h
                     speed := speed + 5;
-                    put_line("tt_bus: Le bus"& int'image(busId) & " accelère");
+                    put_line("tt_bus: Le bus"& int'image(busId) & " accelÃ¨re");
             or
                 when (isStarted) and (speed > 0) and (not hasProblem) =>
                 accept decelerate;
                     -- on diminue la vitesse de 5 km/h
                     speed := speed - 5;
-                    put_line("tt_bus: Le bus"& int'image(busId) & " décélère");
+                    put_line("tt_bus: Le bus"& int'image(busId) & " dÃ©cÃ©lÃ¨re");
             or
                 accept simulatePB(code : in t_code)
                 do
@@ -140,13 +138,16 @@ package body package_bus is
                     Radio.sendPriorityMessage(new t_priorityMessage'(busId, code));
                     if code = BREAKDOWN then
                         speed := 0;
-                        put_line("tt_bus: Bus"& int'image(busId) & " en réparation.....");
+                        put_line("tt_bus: Bus"& int'image(busId) & " en rÃ©paration.....");
                         Radio.sendPositionToCenter(ptr_pos, speed, busId); 
                         delay(REPAIR_TIME);
                         hasProblem := false;
-                        put_line("tt_bus: Le bus"& int'image(busId) & " redémarre");
+			speed := 5;
+                        put_line("tt_bus: Le bus"& int'image(busId) & " redÃ©marre");
                     else
-                        stop;
+                     isStarted := false;
+                     speed := 0;
+                     Radio.sendPositionToCenter(ptr_pos, speed, busId); 
                     end if;
                 end simulatePB;
             end select;                              
@@ -154,7 +155,7 @@ package body package_bus is
     end tt_bus;
 
     -----------------------
-    -- objet protégé Radio
+    -- objet protÃ©gÃ© Radio
     -----------------------
     protected body Radio is
         

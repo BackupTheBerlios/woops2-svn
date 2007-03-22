@@ -8,6 +8,7 @@ Interpretor::Interpretor()
 	//création du thread qui va lire la queue
 	pthread_t thread_traitement;
 	int etat = pthread_create(&thread_traitement,NULL,threadTraitementInformation,NULL);
+	pthread_detach(thread_traitement);
 	if (etat != 0) cout<<"Echec creation de thread pour le traitement de la queue"<<endl;
 }
 
@@ -42,7 +43,7 @@ méthode qui parse les informations reçues
 */
 void* Interpretor::threadTraitementInformation(void* a)
 {
-	while(true)
+	while(1)
 	{
 		while(messageFromNetwork->size()>0)
 		{
