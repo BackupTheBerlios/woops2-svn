@@ -90,7 +90,7 @@ void ada_managePriorityMessage(int busId, t_code code)
 {
 	t_priorityMessage* pm =new t_priorityMessage();
 	pm->busId = busId;
-	pm->code = code;
+	pm->code = new t_code(code);
 	p_simulateProblem(pm);
 }
 
@@ -103,7 +103,7 @@ void ada_managePriorityMessage(int busId, t_code code)
 int main ()
 {
 	adainit();
-	
+
 	NetworkManager::getInstance()->initNet();
 	
     while(1){	/*sleep(4);  p_accelerateBus(88);*/ }

@@ -189,14 +189,14 @@ void Interpretor::sendInformation(int lineId, int busId, int busStopId, int time
 	NetworkManager::getInstance()->sendBuffer(chainechar);
 }
 
-void Interpretor::sendPriorityMessage(int busId, t_code code){
+void Interpretor::sendPriorityMessage(int busId, t_code* code){
 	string chaine = "@message:Le bus "+ stringify((double)busId);
 	chaine += " a eu " ;
-	if(code == ACCIDENT){
+	if(*code == ACCIDENT){
 		chaine += "un accident !";
-	}else if(code == BREAKDOWN){
+	}else if(*code == BREAKDOWN){
 		chaine += "une panne !";
-	}else if(code == AGRESSION){
+	}else if(*code == AGRESSION){
 		chaine += "une aggression !";
 	}
 	chaine += ";\n";

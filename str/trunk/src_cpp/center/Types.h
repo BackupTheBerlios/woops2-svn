@@ -59,7 +59,7 @@ enum t_code {ACCIDENT, BREAKDOWN, AGRESSION, CONGESTION};
 
 typedef struct t_priorityMessage {
 		int busId;
-		t_code code;
+		t_code* code;
 }t_priorityMessage;
 
 #endif	/* _Type_H */
