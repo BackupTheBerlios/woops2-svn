@@ -14,6 +14,7 @@ package package_bus is
         entry accelerate;
         entry decelerate;
         entry getBusId(id : out int);
+        entry simulatePB(code : in t_code);
     end tt_bus;
 
     type t_ptr_tt_bus is access tt_bus;
@@ -24,7 +25,7 @@ package package_bus is
     -----------------------
     protected Radio is
         procedure sendPositionToCenter(ptr_pos : in t_ptr_t_position; speed : in int; busId : in int);
-        --procedure sendPriorityMessage(ptr_mes : out t_ptr_t_priorityMessage);
+        procedure sendPriorityMessage(ptr_mes : in t_ptr_t_priorityMessage);
         --procedure receiveCommand(ptr_com : in t_ptr_t_action);
     end Radio;
     

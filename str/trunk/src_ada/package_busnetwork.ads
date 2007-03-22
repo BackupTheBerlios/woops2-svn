@@ -46,12 +46,12 @@ package package_busnetwork is
     -- Envoi et réception de message prioritaire
     ---------------------------------------------
 	-- envoie d'un message d'urgence au centre d'exploitation en cas de problème
-	procedure p_sendPriorityMessage(ptr_mes : in t_ptr_t_priorityMessage);
-	pragma export(CPP, p_sendPriorityMessage, "p_sendPriorityMessage");
+	procedure receivePriorityMessage(ptr_mes : in t_ptr_t_priorityMessage);
+	pragma import(CPP, receivePriorityMessage, "receivePriorityMessage");
     
     -- reception d'une simulation de problème depuis l'interface
-    procedure simulateProblem(ptr_mes : in t_ptr_t_priorityMessage);
-    pragma import(CPP, simulateProblem, "simulateProblem"); 
+    procedure p_simulateProblem(ptr_mes : in t_ptr_t_priorityMessage);
+    pragma export(CPP, p_simulateProblem, "p_simulateProblem"); 
     
     ---------------------------------------------
     -- Déclaration de l'objet protégé BusNetwork

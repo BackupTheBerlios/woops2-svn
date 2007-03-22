@@ -15,7 +15,7 @@ package body package_bus is
         
         speed : int := 0;
         isStarted : boolean := false;
-        -- UTILISER hasProblem : boolean := false;
+        hasProblem : boolean := false;
         -- l'index précise l'index du dernier arrêt auquel le bus s'est arrêté
         IndexOfCurrentBusStop : integer := 1;
         
@@ -113,6 +113,7 @@ package body package_bus is
                     id :=  busId;
                 end getBusId;
             or    
+                when (not hasProblem) =>
                 accept start;
                     isStarted := true;
                     put_line("tt_bus: Le bus"& int'image(busId) & " a démarré");
@@ -121,19 +122,29 @@ package body package_bus is
                     isStarted := false;
                     -- TEMPORAIRE: arrêt net du bus
                     speed := 0;
-                    put_line("tt_bus: Le bus"& int'image(busId) & " est arrêté à l'arrêt "& int'image(ptr_pos.all.busStopId));
+                    if not hasProblem then
+                        put_line("tt_bus: Le bus"& int'image(busId) & " est arrêté à l'arrêt "& int'image(ptr_pos.all.busStopId));
+                    end if;
             or
-                when (isStarted) and (speed < 50) =>
+                when (isStarted) and (speed < 50) and (not hasProblem) =>
                 accept accelerate;
                     -- on augmente la vitesse de 5 km/h
                     speed := speed + 5;
                     put_line("tt_bus: Le bus"& int'image(busId) & " accelère");
             or
-                when (isStarted) and (speed > 0) =>
+                when (isStarted) and (speed > 0) and (not hasProblem) =>
                 accept decelerate;
                     -- on diminue la vitesse de 5 km/h
                     speed := speed - 5;
                     put_line("tt_bus: Le bus"& int'image(busId) & " décélère");
+            or
+                accept simulatePB(code : in t_code)
+                do
+                    hasProblem := true;
+                    put_line("tt_bus: Le bus"& int'image(busId) & " a un problème");
+                    stop;
+                    Radio.sendPriorityMessage(new t_priorityMessage'(busId, code));
+                end simulatePB;
             end select;                              
         end loop;
     end tt_bus;
@@ -150,8 +161,15 @@ package body package_bus is
             --null;
         end sendPositionToCenter;
         
-        --procedure sendPriorityMessage(ptr_mes : out t_ptr_t_priorityMessage);
+        procedure sendPriorityMessage(ptr_mes : in t_ptr_t_priorityMessage) is
+        begin
+            display(ptr_mes.all);
+            -- le centre recoit le message d'urgence
+            receivePriorityMessage(ptr_mes);
+        end sendPriorityMessage;
+        
         --procedure receiveCommand(ptr_com : in t_ptr_t_action);
-   end Radio;
+   
+    end Radio;
     
 end package_bus;

@@ -190,16 +190,14 @@ package body package_busnetwork is
         when invalidBusId => put_line("Numéro de bus invalide");
     end p_decelerateBus;
     
-    ---------------------------------------------
-    -- Envoi et réception de message prioritaire
-    ---------------------------------------------
-    -- envoie d'un message d'urgence au centre d'exploitation en cas de problème
-    procedure p_sendPriorityMessage(ptr_mes : in t_ptr_t_priorityMessage) is
-        ptr_message : t_ptr_t_priorityMessage;
+    ------------------------------------------------------------
+    -- Simulation de problème et envoi de messages prioritaires
+    ------------------------------------------------------------
+    -- reception d'une simulation de problème depuis l'interface
+    procedure p_simulateProblem(ptr_mes : in t_ptr_t_priorityMessage) is
     begin
-        display(ptr_mes.all);
-        ptr_message := new t_priorityMessage'(ptr_mes.all.busId, ptr_mes.all.code);
-    end p_sendPriorityMessage;
+        BusNetwork.getBusById(ptr_mes.all.busId).all.simulatePB(ptr_mes.all.code);
+    end p_simulateProblem;
     
 begin
     
