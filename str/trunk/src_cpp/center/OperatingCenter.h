@@ -35,8 +35,9 @@ class OperatingCenter
     {
 	private :
    		static void* thread_function_initBus(void *a);
-      		static void* thread_function_receive_position(void *position);
-      		static void* thread_function_receive_information(void *a);
+      	static void* thread_function_receive_position(void *position);
+      	static void* thread_function_receive_information(void *a);
+      	static void* thread_function_receive_priority_message(void *a);
 		static void* thread_function_returnInitBusStop(void *a);
 		static void* thread_function_getvaleur(void* a);
 		static void* thread_function_archivage(void* a);
@@ -48,10 +49,13 @@ class OperatingCenter
 	public :
 		
 		~OperatingCenter();
-       		static OperatingCenter* getInstance ();
+       	static OperatingCenter* getInstance ();
 		void initializeSystem();
 		void receivePosition(t_structReceivePosition* position);
-      		void p_sendPriorityMessage();
+		void receivePriorityMessage(t_priorityMessage* ptr_mes);
+		
+		//??!
+      	void p_sendPriorityMessage();
 		
 		//--------------- getteur et setteur sur la variable envoieinformation -----
 		static int getEnvoieInformation();

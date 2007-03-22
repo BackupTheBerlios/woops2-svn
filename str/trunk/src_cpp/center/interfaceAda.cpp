@@ -29,7 +29,7 @@ extern "C"{
 	void p_decelerateBus(int busId);
 	void p_simulateProblem(t_priorityMessage* ptr_mes);
 	void receivePosition(t_position *pos, int speed, int busId);
-	void receiveMessage(char* message);
+	void receivePriorityMessage(t_priorityMessage* ptr_mes);
 }
 
 /**
@@ -47,9 +47,9 @@ void receivePosition(t_position *pos, int speed, int busId)
 	OperatingCenter::getInstance()->receivePosition(structPosition);
 }
 
-void receiveMessage(char* message)
+void receivePriorityMessage(t_priorityMessage* ptr_mes)
 {
-	cout<<message<<endl;
+	OperatingCenter::getInstance()->receivePriorityMessage(structPosition);
 }
 //------------------------------------- Methode qui se trouve dans Ada et appelé par le C++ ---------------------
 

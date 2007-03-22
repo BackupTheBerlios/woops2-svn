@@ -105,12 +105,6 @@ void* OperatingCenter::thread_function_receive_position(void *structPosition){
 	t_structReceivePosition *maStructPosition = (t_structReceivePosition *)structPosition;
 	t_position* maposition = (t_position *)maStructPosition->position;
 
-	/*cout<<"Position recue par le centre: ";
-	cout<<"(lineNumber => " << maposition->lineNumber;
-	cout<<", busStopId => " << maposition->busStopId;
-	cout<<", distance => " << maposition->distance << ")" << endl;
-	cout<<"vitesse du bus " << maStructPosition->busId << ": " << maStructPosition->speed << endl;*/
-    	
 	int remainingDistance = DISTANCE_BETWEEN_2_STOP - (int)maposition->distance;
 	int speedInMeterPerSeconde = maStructPosition->speed*1000/3600;
 	int timeInSeconde = 0;
@@ -154,6 +148,11 @@ void* OperatingCenter::thread_function_receive_position(void *structPosition){
 	Interpretor::getInstance()->sendPosition(maposition->lineNumber, maStructPosition->busId, maposition->busStopId, percent, maStructPosition->speed);
 	free(maStructPosition);
 
+}
+
+void* OperatingCenter::thread_function_receive_priority_message(void *structPosition){
+	t_priorityMessage* ptr_mes = (t_priorityMessage*)structPosition;
+	Interpretor::getInstance()->sendPriorityMessage(ptr_mes->busId, ptr_mes->code);
 }
 
 /**fonction de thread pour l'écoute de la réception d'information.
@@ -225,7 +224,20 @@ void OperatingCenter::receivePosition(t_structReceivePosition* position){
 	etat = pthread_create(&receive_position_thread,NULL,thread_function_receive_position, (void *)position);
 	if (etat != 0) 
 		perror("Echec creation de thread pour la réception des positions\n");
-    	pthread_detach(receive_position_thread);
+    pthread_detach(receive_position_thread);
+}
+
+void receivePriorityMessage(t_priorityMessage* ptr_mes){
+	int etat;
+    
+    //création du thread pour traiter la position du BUS
+	pthread_t receive_priority_message_thread;
+
+	//création du thread
+	etat = pthread_create(&receive_priority_message_thread,NULL,thread_function_receive_priority_message, (void *)ptr_mes);
+	if (etat != 0) 
+		perror("Echec creation de thread pour la réception des priority message\n");
+    pthread_detach(receive_priority_message_thread);
 }
 
 /*------------------------------------------ Java -----------------------------------------------*/

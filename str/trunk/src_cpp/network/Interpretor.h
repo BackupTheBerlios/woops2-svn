@@ -26,6 +26,7 @@ class Interpretor {
 		void setMessageFromNetwork(queue<string>* _messageFromNetwork);
 		void sendPosition(int lineId, int busId, int busStopId, int percent, int speed);
 		void sendInformation(int lineId, int busId, int busStopId, int time);
+		void sendPriorityMessage(int busId, t_code code);
 		static void startBus(string buffer);
 		static void accelerateBus(string buffer);
 		static void decelerateBus(string buffer);

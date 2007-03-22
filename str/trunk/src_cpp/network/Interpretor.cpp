@@ -188,6 +188,22 @@ void Interpretor::sendInformation(int lineId, int busId, int busStopId, int time
 	NetworkManager::getInstance()->sendBuffer(chainechar);
 }
 
+void sendPriorityMessage(int busId, t_code code){
+	string chaine = "@message:Le bus ("+ stringify((double)busId);
+	chaine += " a eu " ;
+	if(code == ACCIDENT){
+		chaine += "un accident !";
+	}else if(code == BREAKDOWN){
+		chaine += "une panne !";
+	}else if(code == AGRESSION){
+		chaine += "une aggression !";
+	}
+	chaine += ";\n";
+	char * chainechar = (char*)chaine.c_str();
+	cout<<"Chaine char"<<chainechar<<endl;
+	NetworkManager::getInstance()->sendBuffer(chainechar);
+}
+
 Interpretor  *Interpretor::interpretor = NULL;
 queue<string>* Interpretor::messageFromNetwork = new queue<string>();
 
