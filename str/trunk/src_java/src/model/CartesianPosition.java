@@ -10,11 +10,14 @@ public class CartesianPosition extends SystemObject {
 	
 	private int y;
 	
-	public CartesianPosition(Line _l, Bus _b, int _x, int _y) {
+	private int speed;
+	
+	public CartesianPosition(Line _l, Bus _b, int _x, int _y, int _s) {
 		this.line = _l;
 		this.bus = _b;
 		this.x = _x;
 		this.y = _y;
+		this.speed = _s;
 	}
 
 	/**
@@ -71,5 +74,19 @@ public class CartesianPosition extends SystemObject {
 	 */
 	public void setY(int y) {
 		this.y = y;
+	}
+
+	/**
+	 * @return the speed
+	 */
+	public int getSpeed() {
+		return speed;
+	}
+
+	/**
+	 * @param speed the speed to set
+	 */
+	public void setSpeed(int _speed) {
+		this.speed = _speed;
 	}
 }

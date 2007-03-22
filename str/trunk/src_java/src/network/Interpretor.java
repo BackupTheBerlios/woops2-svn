@@ -67,8 +67,9 @@ public class Interpretor {
 		int pourcentage = new Integer(portions[3]);
 		int x = pred.getRepresentation().getX() + ((next.getRepresentation().getX() - pred.getRepresentation().getX()) * pourcentage / 100);
 		int y = pred.getRepresentation().getY() + ((next.getRepresentation().getY() - pred.getRepresentation().getY()) * pourcentage / 100);
-		System.out.println("nouvel coord b="+b.getId()+" x:"+x+" y:"+y);
-		return new CartesianPosition(l, b, x, y);
+		int speed = new Integer(portions[4]);
+		System.out.println("nouvel coord b="+b.getId()+" x:"+x+" y:"+y+" vitesse:"+speed);
+		return new CartesianPosition(l, b, x, y, speed);
 	}
 	
 	/**

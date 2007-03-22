@@ -234,6 +234,7 @@ public class ClientControler implements ListDataListener{
 			Bus b = this.bus.get(cp.getBus().getId());
 			b.getRepresentation().setX(cp.getX());
 			b.getRepresentation().setY(cp.getY());
+			b.setSpeed(cp.getSpeed());
 			System.out.println("==> b :"+b.getId()+" x:"+b.getRepresentation().getX()+" y:"+b.getRepresentation().getY());
 		}
 		// update du modele de la jtable

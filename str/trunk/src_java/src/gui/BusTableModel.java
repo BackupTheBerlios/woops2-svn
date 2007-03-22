@@ -14,11 +14,10 @@ public class BusTableModel extends AbstractTableModel {
 	private List<Bus> lBus = new ArrayList<Bus>();
 
 	private Class[] columnClasses = { Integer.class, Integer.class,
-			Boolean.class, Integer.class, Integer.class };
+			Boolean.class, Integer.class, Integer.class, Integer.class };
 
 	public BusTableModel(Map<Integer, Bus> _busMap) {
 		super();
-		
 		this.refreshModel(_busMap);
 	}
 	
@@ -30,7 +29,7 @@ public class BusTableModel extends AbstractTableModel {
 	}
 
 	public int getColumnCount() {
-		return 5;
+		return 6;
 	}
 
 	public int getRowCount() {
@@ -46,8 +45,10 @@ public class BusTableModel extends AbstractTableModel {
 			return this.lBus.get(rowIndex).getRepresentation().getIsRunning();
 		} else if (columnIndex == 3) {
 			return this.lBus.get(rowIndex).getRepresentation().getX();
-		} else {
+		} else if (columnIndex == 4) {
 			return this.lBus.get(rowIndex).getRepresentation().getY();
+		} else {
+			return this.lBus.get(rowIndex).getSpeed();
 		}
 	}
 
@@ -65,8 +66,10 @@ public class BusTableModel extends AbstractTableModel {
 			return "Démarré";
 		} else if (iColumnIndex == 3) {
 			return "X";
-		} else {
+		} else if (iColumnIndex == 4) {
 			return "Y";
+		} else {
+			return "Vitesse";
 		}
 	}
 }

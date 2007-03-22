@@ -10,6 +10,8 @@ public class Bus extends SystemObject {
 	
 	private BusEntity representation;
 	
+	private int speed;
+	
 	
 	
 	/**
@@ -20,7 +22,7 @@ public class Bus extends SystemObject {
 		this.id = _id;
 		this.line = _l;
 		this.representation = new BusEntity("resources/images/dot_b.png", _x, _y);
-		
+		this.speed = 0;		
 	}
 
 	/**
@@ -63,6 +65,20 @@ public class Bus extends SystemObject {
 	 */
 	public void setRepresentation(BusEntity representation) {
 		this.representation = representation;
+	}
+
+	/**
+	 * @return the speed
+	 */
+	public int getSpeed() {
+		return speed;
+	}
+
+	/**
+	 * @param speed the speed to set
+	 */
+	public void setSpeed(int speed) {
+		this.speed = speed;
 	}
 	
 }
