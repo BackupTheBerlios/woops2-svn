@@ -443,7 +443,7 @@ public class MainFrame extends javax.swing.JFrame {
 				.getValueAt(rownb, 0);
 		ClientControler.getInstance().sendCreateCommand(Constante.AGRESSION, ""+busId, "null", 0, 0);
 		Bus b = ClientControler.getInstance().getBus().get(busId);
-		b.setState(Constante.AGRESSION);
+		b.setState(Constante.AGRESSION_STATE);
 		b.getRepresentation().setSprite(SpriteFactory.getInstance().getSprite("resources/images/dot_b_agression.png"));
     }                                                   
 
@@ -476,7 +476,7 @@ public class MainFrame extends javax.swing.JFrame {
 				.getValueAt(rownb, 0);
 		ClientControler.getInstance().sendCreateCommand(Constante.BREAKDOWN, ""+busId, "null", 0, 0);
 		Bus b = ClientControler.getInstance().getBus().get(busId);
-		b.setState(Constante.BREAKDOWN);
+		b.setState(Constante.BREAKDOWN_STATE);
 		b.getRepresentation().setSprite(SpriteFactory.getInstance().getSprite("resources/images/dot_b_panne.png"));
 	}// GEN-LAST:event_incidentBusButtonActionPerformed
 
@@ -486,7 +486,7 @@ public class MainFrame extends javax.swing.JFrame {
 				.getValueAt(rownb, 0);
 		ClientControler.getInstance().sendCreateCommand(Constante.ACCIDENT, ""+busId, "null", 0, 0);
 		Bus b = ClientControler.getInstance().getBus().get(busId);
-		b.setState(Constante.ACCIDENT);
+		b.setState(Constante.ACCIDENT_STATE);
 		b.getRepresentation().setSprite(SpriteFactory.getInstance().getSprite("resources/images/dot_b_break.png"));
 	}// GEN-LAST:event_breakBusButtonActionPerformed
 

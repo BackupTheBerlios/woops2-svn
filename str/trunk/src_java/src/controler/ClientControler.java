@@ -2,6 +2,7 @@ package controler;
 
 import gui.BusDisplayerFrame;
 import gui.MainFrame;
+import gui.sprite.SpriteFactory;
 
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -146,7 +147,8 @@ public class ClientControler implements ListDataListener{
 			case Constante.AGRESSION:
 				Interpretor.getInstance().sendAgressionOnBus(_id);
 				break;
-			default:	break;
+			default:	
+				break;
 		}
 	}
 
@@ -235,6 +237,8 @@ public class ClientControler implements ListDataListener{
 			b.getRepresentation().setX(cp.getX());
 			b.getRepresentation().setY(cp.getY());
 			b.setSpeed(cp.getSpeed());
+			b.setState(Constante.NORMAL_STATE);
+			b.getRepresentation().setSprite(SpriteFactory.getInstance().getSprite("resources/images/dot_b.png"));
 			System.out.println("==> b :"+b.getId()+" x:"+b.getRepresentation().getX()+" y:"+b.getRepresentation().getY());
 		}
 		// update du modele de la jtable
