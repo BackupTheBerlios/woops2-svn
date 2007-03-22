@@ -151,7 +151,7 @@ public class MainFrame extends javax.swing.JFrame {
         
 
         startBusButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/start.png")));
-        startBusButton.setText(" Demarrer un Bus");
+        startBusButton.setText("D\u00e9marrer un Bus");
         startBusButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 startBusButtonActionPerformed(evt);
@@ -159,7 +159,7 @@ public class MainFrame extends javax.swing.JFrame {
         });
 
         breakBusButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/stop.png")));
-        breakBusButton.setText(" Accident sur un Bus");
+        breakBusButton.setText("Simuler un accident");
         breakBusButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 breakBusButtonActionPerformed(evt);
@@ -169,7 +169,7 @@ public class MainFrame extends javax.swing.JFrame {
         busListLabel.setText("Liste des bus :");
 
         accelerateBusButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/accelerate.png")));
-        accelerateBusButton.setText("Acc\u00e9lerer un Bus");
+        accelerateBusButton.setText("Acc\u00e9l\u00e9rer un Bus");
         accelerateBusButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 accelerateBusButtonActionPerformed(evt);
@@ -177,7 +177,7 @@ public class MainFrame extends javax.swing.JFrame {
         });
 
         decelerateBusButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/decelerate.png")));
-        decelerateBusButton.setText("D\u00e9celerer un Bus");
+        decelerateBusButton.setText("Ralentir un Bus");
         decelerateBusButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 decelerateBusButtonActionPerformed(evt);
@@ -185,7 +185,7 @@ public class MainFrame extends javax.swing.JFrame {
         });
 
         incidentBusButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/incident.png")));
-        incidentBusButton.setText("Panne sur un Bus");
+        incidentBusButton.setText("Simuler une panne");
         incidentBusButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 incidentBusButtonActionPerformed(evt);
@@ -193,7 +193,7 @@ public class MainFrame extends javax.swing.JFrame {
         });
 
         agressionBusButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/agression.png")));
-        agressionBusButton1.setText("Agression");
+        agressionBusButton1.setText("SImuler une agression");
         agressionBusButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 agressionBusButton1ActionPerformed(evt);
@@ -243,7 +243,7 @@ public class MainFrame extends javax.swing.JFrame {
                         .add(busTableScrollPane, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 295, Short.MAX_VALUE)))
                 .add(12, 12, 12))
         );
-        tabbedPane.addTab("Contr\u00f4le des Bus", controlePanel);
+        tabbedPane.addTab("Gestion des bus", controlePanel);
         /*
         busStopTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -382,13 +382,13 @@ public class MainFrame extends javax.swing.JFrame {
                         .add(creationPanel1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addContainerGap(234, Short.MAX_VALUE))))
         );
-        tabbedPane.addTab("Creation de Bus", creationPanel);
+        tabbedPane.addTab("Ajout de bus", creationPanel);
 
         messagesArea.setColumns(20);
         messagesArea.setRows(5);
         messageScrollPane.setViewportView(messagesArea);
 
-        messagesLabel.setText("Messages Prioritaires :");
+        messagesLabel.setText("Messages prioritaires :");
 
         org.jdesktop.layout.GroupLayout messagePanelLayout = new org.jdesktop.layout.GroupLayout(messagePanel);
         messagePanel.setLayout(messagePanelLayout);

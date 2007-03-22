@@ -237,8 +237,10 @@ public class ClientControler implements ListDataListener{
 			b.getRepresentation().setX(cp.getX());
 			b.getRepresentation().setY(cp.getY());
 			b.setSpeed(cp.getSpeed());
-			b.setState(Constante.NORMAL_STATE);
-			b.getRepresentation().setSprite(SpriteFactory.getInstance().getSprite("resources/images/dot_b.png"));
+			if (cp.getSpeed() > 0) {
+				b.setState(Constante.NORMAL_STATE);
+				b.getRepresentation().setSprite(SpriteFactory.getInstance().getSprite("resources/images/dot_b.png"));
+			}
 			System.out.println("==> b :"+b.getId()+" x:"+b.getRepresentation().getX()+" y:"+b.getRepresentation().getY());
 		}
 		// update du modele de la jtable
