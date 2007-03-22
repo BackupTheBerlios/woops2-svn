@@ -227,7 +227,7 @@ void OperatingCenter::receivePosition(t_structReceivePosition* position){
     pthread_detach(receive_position_thread);
 }
 
-void receivePriorityMessage(t_priorityMessage* ptr_mes){
+void OperatingCenter::receivePriorityMessage(t_priorityMessage* ptr_mes){
 	int etat;
     
     //création du thread pour traiter la position du BUS

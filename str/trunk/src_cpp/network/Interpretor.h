@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <queue>
+#include "../center/Types.h"
 
 using namespace std;
 

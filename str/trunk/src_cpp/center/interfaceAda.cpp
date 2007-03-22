@@ -29,6 +29,7 @@ extern "C"{
 	void p_decelerateBus(int busId);
 	void p_simulateProblem(t_priorityMessage* ptr_mes);
 	void receivePosition(t_position *pos, int speed, int busId);
+	void receiveMessage(char* message);
 	void receivePriorityMessage(t_priorityMessage* ptr_mes);
 }
 
@@ -47,9 +48,12 @@ void receivePosition(t_position *pos, int speed, int busId)
 	OperatingCenter::getInstance()->receivePosition(structPosition);
 }
 
+void receiveMessage(char* message){
+}
+
 void receivePriorityMessage(t_priorityMessage* ptr_mes)
 {
-	OperatingCenter::getInstance()->receivePriorityMessage(structPosition);
+	OperatingCenter::getInstance()->receivePriorityMessage(ptr_mes);
 }
 //------------------------------------- Methode qui se trouve dans Ada et appelé par le C++ ---------------------
 
@@ -99,14 +103,6 @@ void ada_managePriorityMessage(int busId, t_code code)
 int main ()
 {
 	adainit();
-	p_initBusStop(1,12);
-	p_initBusStop(2,12);
-	p_initBusStop(3,12);
-        p_initBusStop(4,12);
-        p_initBusStop(5,12);
-	p_initBus(88,12);
-	p_startBus(88);
-
 	
 	NetworkManager::getInstance()->initNet();
 	

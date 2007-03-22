@@ -188,7 +188,7 @@ void Interpretor::sendInformation(int lineId, int busId, int busStopId, int time
 	NetworkManager::getInstance()->sendBuffer(chainechar);
 }
 
-void sendPriorityMessage(int busId, t_code code){
+void Interpretor::sendPriorityMessage(int busId, t_code code){
 	string chaine = "@message:Le bus ("+ stringify((double)busId);
 	chaine += " a eu " ;
 	if(code == ACCIDENT){
