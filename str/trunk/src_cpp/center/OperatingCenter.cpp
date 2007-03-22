@@ -13,8 +13,8 @@
 #include "interfaceAda.h"
 #include "ControllerMalloc.h"
 
-int DISTANCE_BETWEEN_2_STOP = 100;
-int TIME_BETWEEN_2_STOP = 12;
+int DISTANCE_BETWEEN_2_STOP = 300;
+int TIME_BETWEEN_2_STOP = 36; // =300 / speed*1000/3600
 int envoieJava = 0;
 static pthread_mutex_t mutex;
 static pthread_mutex_t mutex_fichier;
