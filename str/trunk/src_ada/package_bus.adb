@@ -143,7 +143,13 @@ package body package_bus is
                     hasProblem := true;
                     put_line("tt_bus: Le bus"& int'image(busId) & " a un PROBLEME");
                     Radio.sendPriorityMessage(new t_priorityMessage'(busId, code));
-                    stop;
+                    if code = BREAKDOWN then
+                        put_line("tt_bus: Bus"& int'image(busId) & " en réparation.....");
+                        delay(REPAIR_TIME);
+                        hasProblem := false;
+                    else
+                        stop;
+                    end if;
                 end simulatePB;
             end select;                              
         end loop;
