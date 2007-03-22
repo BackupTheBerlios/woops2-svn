@@ -72,7 +72,7 @@ package body package_bus is
                 if (isStarted) and (ptr_pos.all.distance >= TOTALDISTANCE) then
                     stop;
                     delay(1.0);
-                elsif (not isStarted) and (ptr_pos.all.distance > 0.0) then
+                elsif (not isStarted) and (ptr_pos.all.distance > 0.0) and (not hasProblem) then
                     put_line("MISE A JOUR DE LA POSITION");
                     -- le bus est arrêté, on met a jour la position du bus
                     ptr_pos.all.distance := 0.0;
