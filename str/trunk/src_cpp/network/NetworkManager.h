@@ -20,7 +20,7 @@ class NetworkManager {
         
         // --- static ---
         static const int COMMAND_PORT = 3390;
-        static const int MAX_BUFFER_SIZE = 128;
+        static const int MAX_BUFFER_SIZE = 512;
         static const int MAX_CONNEXIONS = 10;
 
 	static NetworkManager * instance;
