@@ -136,8 +136,7 @@ public class ClientControler implements ListDataListener{
 				break;
 			case Constante.DEC_BUS:
 				Interpretor.getInstance().sendDecelerateBus(_id);
-				break;	
-			default:	break;
+				break;
 			case Constante.ACCIDENT:
 				Interpretor.getInstance().sendAccidentOnBus(_id);
 				break;
