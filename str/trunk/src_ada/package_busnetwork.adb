@@ -53,13 +53,17 @@ package body package_busnetwork is
         currentBusId : int;
         begin
             for i in BusTable'first..BusTable'last loop
-                BusTable(i).all.getBusId(currentBusId);
-                if currentBusId = id then
-                    put_line("Le bus trouvé est à la position "&integer'image(i));
-                    return BusTable(i);
+                if (BusTable(i) = null) then
+                    raise invalidBusId;
+                else
+                    BusTable(i).all.getBusId(currentBusId);
+                    if currentBusId = id then
+                        put_line("Le bus trouvé est à la position "&integer'image(i));
+                        return BusTable(i);
+                    end if;
                 end if;
             end loop;
-            raise invalidBusId;
+            return null;
         end getBusById;
         
         -- ajoute un bus dans le tableau de Bus

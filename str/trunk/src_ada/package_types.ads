@@ -40,9 +40,9 @@ package package_types is
     -----------------------------
 	-- definition du type action
     -----------------------------
-	type t_action is (ACCELERATE, DECELERATE, STOP);
+	--type t_action is (ACCELERATE, DECELERATE, STOP);
 
-	type t_ptr_t_action is access t_action;
+	--type t_ptr_t_action is access t_action;
 
     ----------------------------------------------------
 	-- definition du type code d'un message prioritaire
@@ -54,8 +54,8 @@ package package_types is
     ------------------------------------------
 	type t_priorityMessage is
 	record
+        busId : int;
 		code : t_code;
-		message : chars_ptr;
 	end record;
 	
 	type t_ptr_t_priorityMessage is access t_priorityMessage;

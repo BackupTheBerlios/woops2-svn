@@ -75,7 +75,6 @@ package body package_bus is
         begin
             loop
                 if (isStarted) and (ptr_pos.all.distance >= TOTALDISTANCE) then
-                    put_line("Distance > "& C_float'image(TOTALDISTANCE) & "m");
                     stop;
                     delay(1.0);
                 elsif (not isStarted) and (ptr_pos.all.distance > 0.0) then
@@ -87,15 +86,16 @@ package body package_bus is
                     nextBusStop := currentLine.busStopTable(IndexOfCurrentBusStop);
                     
                     if nextBusStop = 0 then
-                        put_line("Le bus " &int'image(busId)& " repart en debut de ligne " &int'image(lineId));
+                        put_line("LE BUS" &int'image(busId)& " ARRIVE AU TERMINUS DE LA LIGNE " &int'image(lineId));
+                        message := new_string("Les passagers descendent du bus...");
                         ptr_pos.all.busStopId := currentLine.busStopTable(1);
                         ptr_pos.all.distance := 0.0;
                     else
                         ptr_pos.all.busStopId := nextBusStop;
-                    end if;                   
-                    
-                    -- on simule l'entrée de passagers dans le bus
-                    message := new_string("Les passagers montent dans le bus...");
+                        -- on simule l'entrée de passagers dans le bus
+                        message := new_string("Les passagers montent dans le bus...");
+                    end if;
+                                        
                     receiveMessage(message);
                     delay(WAITING_TIME);
                     put_line("tt_bus: Le bus" & int'image(busId) & " quitte l'arrêt " & int'image(ptr_pos.all.busStopId));
@@ -120,7 +120,7 @@ package body package_bus is
                     isStarted := false;
                     -- TEMPORAIRE: arrêt net du bus
                     speed := 0;
-                    put_line("tt_bus: Le bus"& int'image(busId) & " est arrêté");
+                    put_line("tt_bus: Le bus"& int'image(busId) & " est arrêté à l'arrêt "& int'image(ptr_pos.all.busStopId));
             or
                 when (isStarted) and (speed < 50) =>
                 accept accelerate;
