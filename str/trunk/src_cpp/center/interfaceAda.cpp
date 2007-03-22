@@ -68,7 +68,7 @@ void ada_startBus(int busId)
 	p_startBus(busId);
 }
 
-void adastop_bus(int busId)
+void ada_stopBus(int busId)
 {
 	p_stopBus(busId);
 }
