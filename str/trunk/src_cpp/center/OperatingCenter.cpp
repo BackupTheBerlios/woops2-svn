@@ -151,12 +151,11 @@ void* OperatingCenter::thread_function_receive_position(void *structPosition){
 	structarch->distance = maposition->distance;
 	pthread_t thread_fichier;
 	int etat = pthread_create(&thread_fichier,NULL,thread_function_archivage, (void*)structarch);
+	pthread_detach(thread_fichier);
 	if (etat != 0) cout<<"Echec creation de thread pour larchivage"<<endl;
 	cout<<"On envoie le position a Java"<<endl;
 	Interpretor::getInstance()->sendPosition(maposition->lineNumber, maStructPosition->busId, maposition->busStopId, percent, maStructPosition->speed);
 	free(maStructPosition);
-
-	cout<<"FINNN DU THREAD"<<endl<<endl;
 
 }
 
@@ -214,6 +213,7 @@ void OperatingCenter::initializeSystem(){
 	// Mise en place du Thread pour le bus
 	etat = pthread_create(&bus_thread,NULL,thread_function_initBus, NULL);
 	if (etat != 0) cout<<"Echec creation de thread pour l'initialisation des bus."<<endl;
+	pthread_detach(bus_thread);
 }
 
 /**
@@ -230,7 +230,7 @@ void OperatingCenter::receivePosition(t_structReceivePosition* position){
 	etat = pthread_create(&receive_position_thread,NULL,thread_function_receive_position, (void *)position);
 	if (etat != 0) 
 		perror("Echec creation de thread pour la réception des positions\n");
-    
+    	pthread_detach(receive_position_thread);
 }
 
 /*------------------------------------------ Java -----------------------------------------------*/

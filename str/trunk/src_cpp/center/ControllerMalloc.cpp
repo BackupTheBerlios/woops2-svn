@@ -21,12 +21,10 @@ ControllerMalloc* ControllerMalloc::getInstance()
 void ControllerMalloc::prendre_jeton()
 {
 	pthread_mutex_lock (&mutexMalloc);
-	cout<<"On prend le jeton"<<endl;
 }
 void ControllerMalloc::rendre_jeton()
 {
 	pthread_mutex_unlock (&mutexMalloc);
-	cout<<"On rend le jeton"<<endl;
 }
 
 ControllerMalloc  *ControllerMalloc::controllerMalloc = NULL;
