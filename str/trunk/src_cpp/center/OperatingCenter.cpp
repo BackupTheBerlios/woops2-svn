@@ -13,9 +13,11 @@
 #include "interfaceAda.h"
 #include "ControllerMalloc.h"
 
-int DISTANCE_BETWEEN_2_STOP = 300;
-int TIME_BETWEEN_2_STOP = 36; // =DISTANCE_BETWEEN_2_STOP / speed*1000/3600
+int DISTANCE_BETWEEN_2_STOP = 300;	// la distance entre deux bus stop
+int TIME_BETWEEN_2_STOP = 36; 		// =DISTANCE_BETWEEN_2_STOP / speed*1000/3600
+//variable qui permet de savoir sil faut envoiyer les informations a Java ou non
 int envoieJava = 0;
+// les mutex qui permet d'eviter que deux threads rentre en meme temps dans une zone critique
 static pthread_mutex_t mutex;
 static pthread_mutex_t mutex_fichier;
 
@@ -23,10 +25,10 @@ static pthread_mutex_t mutex_fichier;
 //variable qui indique si on a deja créée un bus.
 int init_bus = 0;
 
-void initSystem()
+/*void initSystem()
 {
 
-}
+}*/
 
 /**
 constructeur de operatingCenter
@@ -48,9 +50,7 @@ OperatingCenter::~OperatingCenter()
 
 /*----------------------------------------------------------------------------------
 Mise en place des threads
-
 ----------------------------------------------------------------------------------*/
-
 
 /**
 thread qui permet l'archivage des positions d'un bus dans un fichier
@@ -60,7 +60,7 @@ void* OperatingCenter::thread_function_archivage(void* a){
 	t_archivage *structarch = (t_archivage *)a;
 	pthread_mutex_lock (&mutex_fichier);
 	char* buffer;	
-	//itoa (structarch->ligne,buffer,10);
+	//on crée la chaine qui va etre archivé a l'intérieur du fichier
 	string chaine = " Bus :"+ stringify((double)structarch->ligne);
 	chaine += ", BusStop :"+stringify(structarch->busStop) ;
 	chaine += ", Ligne :"+stringify(structarch->ligne);
@@ -92,37 +92,32 @@ void* OperatingCenter::thread_function_getvaleur(void* a){
 /**fonction de thread pour l'initialisation des Bus
 *@Param : 
 */
- void* OperatingCenter::thread_function_initBus(void *a){
+ /*void* OperatingCenter::thread_function_initBus(void *a){
 	
-}
+}*/
 
 /**fonction de thread pour l'écoute de la réception de bus.
-*@Param : 
-* speed en Km/heure
+* une structure qui contient toutes les informations comme la vitesse, la distance, le busStopId, le bus
 */
 void* OperatingCenter::thread_function_receive_position(void *structPosition){
 
 	t_structReceivePosition *maStructPosition = (t_structReceivePosition *)structPosition;
 	t_position* maposition = (t_position *)maStructPosition->position;
-
+        // on calcul la distance qui reste
 	int remainingDistance = DISTANCE_BETWEEN_2_STOP - (int)maposition->distance;
 	int speedInMeterPerSeconde = maStructPosition->speed*1000/3600;
 	int timeInSeconde = 0;
+	// on verifie que la vitesse ne soit pas 0 car on ne peut pas faire de division par 0
 	if(speedInMeterPerSeconde != 0)
 		timeInSeconde = remainingDistance / speedInMeterPerSeconde ;
 	cout<<"Time (sec) calculee :"	<<  	timeInSeconde			<<endl;
 
+	// on calcul le pourcentage de distance qu'il a parcouru
 	int percent = ((int)maposition->distance*100)/DISTANCE_BETWEEN_2_STOP;
 	
-	int percentremaining = 100 - percent; 
-	cout<<"percent remaining :"<<percentremaining<<endl;
-	//int realtime = speedInMeterPerSeconde/remainingDistance;
-	cout<<"TIME_BETWEEN_2_STOP :"<<TIME_BETWEEN_2_STOP<<endl;
+	int percentremaining = 100 - percent;
 	int theoricaltime = TIME_BETWEEN_2_STOP*percentremaining/100;
-	cout<<"temps reel :"	<<timeInSeconde<<endl;
-	cout<<"temps theo :"	<<theoricaltime<<endl;
 	int compartime = theoricaltime - timeInSeconde;
-	cout<<"Compar time :"	<<compartime<<endl;
 	if(percentremaining >10)
 	{
 		if(compartime < -1){
@@ -162,7 +157,9 @@ void* OperatingCenter::thread_function_receive_position(void *structPosition){
 	free(maStructPosition);
 
 }
-
+/**
+thread qui permet de traiter les priority messages
+*/
 void* OperatingCenter::thread_function_receive_priority_message(void *structPosition){
 	t_priorityMessage* ptr_mes = (t_priorityMessage*)structPosition;
 	Interpretor::getInstance()->sendPriorityMessage(ptr_mes->busId, ptr_mes->code);
@@ -171,33 +168,31 @@ void* OperatingCenter::thread_function_receive_priority_message(void *structPosi
 /**fonction de thread pour l'écoute de la réception d'information.
 *@Param : 
 */
-void* OperatingCenter::thread_function_receive_information(void *a){
+/*void* OperatingCenter::thread_function_receive_information(void *a){
 
 	
 	
-}
-
+}*/
+/**
 void* OperatingCenter::thread_function_returnInitBusStop(void *a){
-
-		//appel au networkManager
 	
-}
+}*/
 
 /*----------------------------------------------------------------------------------
 Fin mise en place des threads
-
 ----------------------------------------------------------------------------------*/
 OperatingCenter *OperatingCenter::operatingCenter = NULL;
 int OperatingCenter::envoieInformation = 0;
 
+/**
+Mise en place du singleton de l'OperatingCenter
+*/
 OperatingCenter * OperatingCenter::getInstance ()
 {
     if (NULL == operatingCenter)
     {
         operatingCenter =  new OperatingCenter();
     }
-
-
     return operatingCenter;
 }
 
@@ -210,7 +205,7 @@ void OperatingCenter::setEnvoieInformation(int information)
 {
 	envoieInformation = information;
 }
-
+/*
 void OperatingCenter::initializeSystem(){
 	//déclaration
 	int etat;
@@ -222,14 +217,13 @@ void OperatingCenter::initializeSystem(){
 	if (etat != 0) cout<<"Echec creation de thread pour l'initialisation des bus."<<endl;
 	pthread_detach(bus_thread);
 }
-
+*/
 /**
 Méthode qui permet de recevoir la position d'un bus
 */
 void OperatingCenter::receivePosition(t_structReceivePosition* position){
     
-    int etat;
-    
+    int etat; 
     //création du thread pour traiter la position du BUS
 	pthread_t receive_position_thread;
 
@@ -237,13 +231,14 @@ void OperatingCenter::receivePosition(t_structReceivePosition* position){
 	etat = pthread_create(&receive_position_thread,NULL,thread_function_receive_position, (void *)position);
 	if (etat != 0) 
 		perror("Echec creation de thread pour la réception des positions\n");
-    pthread_detach(receive_position_thread);
+	//on detache le thread
+        pthread_detach(receive_position_thread);
 }
 
 void OperatingCenter::receivePriorityMessage(t_priorityMessage* ptr_mes){
 	int etat;
     
-    //création du thread pour traiter la position du BUS
+	//création du thread pour traiter la position du BUS
 	pthread_t receive_priority_message_thread;
 	//création du thread
 	etat = pthread_create(&receive_priority_message_thread,NULL,thread_function_receive_priority_message, (void *)ptr_mes);
@@ -281,6 +276,9 @@ void OperatingCenter::java_init_bus(int nombre, int ligne)
 }
 
 /**
+methodes appelés depuis le serveur socket
+*/
+/**
 methode qui start un bus
 */
 
@@ -288,22 +286,41 @@ void OperatingCenter::java_start_bus(int num_bus)
 {
 	ada_startBus(num_bus);
 }
+
+/**
+methode qui permet d'accelerer un bus
+*/
 void OperatingCenter::java_accelerate_bus(int num_bus)
 {
 	ada_accelerateBus(num_bus);
 }
+
+/**
+methode qui permet de decelerrer un bus
+*/
 void OperatingCenter::java_decelerate_bus(int num_bus)
 {
 	ada_decelerateBus(num_bus);
 }
+
+/**
+methode qui permet de gerer une agression
+*/
 void OperatingCenter::java_aggression(int num_bus)
 {
 	ada_managePriorityMessage(num_bus, AGRESSION);
 }
+
+/**
+methode qui permet de gerer un accident
+*/
 void OperatingCenter::java_accident(int num_bus)
 {
 	ada_managePriorityMessage(num_bus, ACCIDENT);
 }
+/**
+methode qui permet de simuler une panne
+*/
 void OperatingCenter::java_breakdown(int num_bus)
 {
 	ada_managePriorityMessage(num_bus, BREAKDOWN);

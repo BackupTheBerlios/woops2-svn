@@ -129,7 +129,7 @@ package body package_bus is
                     speed := speed + 5;
                     put_line("tt_bus: Le bus"& int'image(busId) & " accelère");
             or
-                when (isStarted) and (speed > 0) and (not hasProblem) =>
+                when (isStarted) and (speed > 5) and (not hasProblem) =>
                 accept decelerate;
                     -- on diminue la vitesse de 5 km/h
                     speed := speed - 5;
