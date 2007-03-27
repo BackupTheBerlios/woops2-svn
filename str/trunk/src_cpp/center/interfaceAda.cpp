@@ -11,7 +11,6 @@ Ce fichier contient aussi le main du projet
 
 #include "OperatingCenter.h"
 #include "../network/NetworkManager.h"
-#include "ControllerMalloc.h"
 #include <stdlib.h>
 #include <fstream>
 #include <unistd.h>
@@ -39,9 +38,8 @@ param : la position pos qui est un pointeur sur la struture position
 */
 void receivePosition(t_position *pos, int speed, int busId)
 {
-	ControllerMalloc::getInstance()->prendre_jeton();
 	t_structReceivePosition *structPosition = new t_structReceivePosition();
-	ControllerMalloc::getInstance()->rendre_jeton();
+
 	structPosition->position = pos;
 	structPosition->busId = busId;
 	structPosition->speed = speed;

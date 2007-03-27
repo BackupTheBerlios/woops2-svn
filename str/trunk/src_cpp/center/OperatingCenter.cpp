@@ -11,7 +11,6 @@
 #include <stdlib.h>
 #include "../network/Interpretor.h"
 #include "interfaceAda.h"
-#include "ControllerMalloc.h"
 
 int DISTANCE_BETWEEN_2_STOP = 300;	// la distance entre deux bus stop
 int TIME_BETWEEN_2_STOP = 36; 		// =DISTANCE_BETWEEN_2_STOP / speed*1000/3600
@@ -82,7 +81,7 @@ Thread qui permet toute les n secondes de recuperer les valeur de la memoire par
 void* OperatingCenter::thread_function_getvaleur(void* a){
 	while(1)
 	{
-		sleep(8);
+		sleep(6);
 		setEnvoieInformation(1);
 		sleep(4);
 		setEnvoieInformation(0);
@@ -142,9 +141,8 @@ void* OperatingCenter::thread_function_receive_position(void *structPosition){
 	}
 
 	//mise en place des threads pour l'archivage
-	//ControllerMalloc::getInstance()->prendre_jeton();
 	t_archivage *structarch = (t_archivage *)malloc(sizeof(t_archivage));
-	//ControllerMalloc::getInstance()->rendre_jeton();
+
 	structarch->ligne = 1;
 	structarch->busStop = maposition->busStopId ;
 	structarch->bus = maStructPosition->busId;
