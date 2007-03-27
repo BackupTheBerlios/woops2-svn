@@ -43,7 +43,7 @@ public class Interpretor {
 		Queue<CartesianPosition> dest = ClientControler.getInstance().getCartesianPositionQueue();
 		Queue<Information> info = ClientControler.getInstance().getInformationsQueue();
 		Queue<String> mes = ClientControler.getInstance().getPriorityMessageQueue();
-		System.out.println("file network"+this.getMessagesFromNetwork().size());
+		//System.out.println("awaiting messages from network = "+this.getMessagesFromNetwork().size());
 		while (!this.getMessagesFromNetwork().isEmpty()) {
 			String s = this.getMessagesFromNetwork().remove();
 			if (s.contains("@position")) {

@@ -13,11 +13,7 @@ public class NetworkManager {
 
 	private static final int COMMAND_PORT = 3390;
 
-	//private static final int DATA_PORT = 3391;
-
 	private static final String hostToConnect = "localhost";
-
-	//private ServerSocket dataSocket;
 
 	private Socket commandSocket;
 
@@ -67,10 +63,7 @@ public class NetworkManager {
 				// None.
 			} catch (IOException ex) {
 				// None.
-			}/* catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}*/
+			}
 
 		Thread thread = new Thread() {
 			public void run() {
@@ -90,8 +83,6 @@ public class NetworkManager {
 	private void listen() {
 		System.out.println("listening ...");
 		try {
-			//Socket acceptedDataSocket = this.dataSocket.accept();
-			//System.out.println("accepted connection");
 			BufferedReader inputDataStream;
 			inputDataStream = new BufferedReader(new InputStreamReader(
 					commandSocket.getInputStream()));
