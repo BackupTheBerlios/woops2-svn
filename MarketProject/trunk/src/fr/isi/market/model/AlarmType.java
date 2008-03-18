@@ -1,6 +1,7 @@
 package fr.isi.market.model;
 
-import java.util.HashSet;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -11,7 +12,7 @@ public class AlarmType {
 
     private String label;
 
-    public Set<Alarm> alarms = new HashSet<Alarm>();
+    public List<Alarm> alarms = new ArrayList<Alarm>();
     
     public String getLabel() {
 		return label;
@@ -21,11 +22,11 @@ public class AlarmType {
 		this.label = _label;
 	}
 	
-	public Set<Alarm> getAlarms() {
+	public List<Alarm> getAlarms() {
         return alarms;
     }
 
-	public void setAlarms(Set<Alarm> _alarms) {
+	public void setAlarms(List<Alarm> _alarms) {
 		this.alarms = _alarms;
 	}
 	
