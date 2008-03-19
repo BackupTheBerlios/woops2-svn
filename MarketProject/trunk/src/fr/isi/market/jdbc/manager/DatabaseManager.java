@@ -9,7 +9,7 @@ public class DatabaseManager {
 	private static final String HSQLDB_JDBC_DRIVER = "org.hsqldb.jdbcDriver";
 	private static final String DB_PWD = "";
 	private static final String DB_USER = "sa";
-	private static final String JDBC_HSQLDB_URL = "jdbc:hsqldb:file:marketdb";
+	private static final String JDBC_HSQLDB_URL = "jdbc:hsqldb:file:./db/marketdb";
 
 	private static DatabaseManager instance = new DatabaseManager();
 	
