@@ -1,0 +1,7 @@
+module market {
+	module model {
+		struct Action{
+			float buyPrice;
+		};
+	};
+};
