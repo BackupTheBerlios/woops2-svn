@@ -1,49 +1,64 @@
 module market {
 	module model {
 		struct ActionType{
-			    string code;
-
-			    string label;
-			
-			    string introductionDate;
-			
-			    float introductionPrice;
-			
-			    long quantity;
-			
-			    float currentPrice;
-			
-			    // ? public List<Action> actions = new ArrayList<Action>();
-			
-			    //public List<Alarm> alarms = new ArrayList<Alarm>();
-			
-			    //public List<Event> events = new ArrayList<Event>();
+		    string code;
+		    string label;
+		    string introductionDate;
+		    float introductionPrice;
+		    long quantity;
+		    float currentPrice;
+		    // ? public List<Action> actions = new ArrayList<Action>();
+		    //public List<Alarm> alarms = new ArrayList<Alarm>();
+		    //public List<Event> events = new ArrayList<Event>();
 		};
 		
-		struct Action{
-			    float buyPrice;
-			
-			    string buyDate;
-			
-			    short wallet_id;
-			    ActionType actiontype;
+		struct AlarmType{
+			long alarmType_oid;
+			string label;
+			//public List<Action> actions = new ArrayList<Action>();
+			//public List<Alarm> alarms = new ArrayList<Alarm>();
 		};
 		
 		struct Wallet{
+			long wallet_id;
 		    float cash;
-
-		    short operator_id;
 		
 			//public List<Action> actions = new ArrayList<Action>();
 			//public List<Alarm> alarms = new ArrayList<Alarm>();
 		};
-
-		struct Operator{
-		        string login;
-
-			    string password;
-			
-			    Wallet wallet;
+		
+		struct Action{
+			long action_id;
+		    float buyPrice;
+		    string buyDate;
+		    Wallet wallet;
+		    ActionType actiontype;
+		};
+		
+		struct Event{
+			long event_id;
+		    float Price;
+		    string date;
+		    ActionType actiontype;
+		};
+		
+		struct Alarm{
+		    long alarm_id;
+		    string name;
+		    Wallet wallet;
+		    AlarmType type;
+		    ActionType actionType;
+		};
+		
+		struct Administrator{
+	        string login;
+		    string password;
+		};
+		
+		struct Operator {
+			string login;
+			string password;
+			Wallet wallet;
 		};
 	};
 };
