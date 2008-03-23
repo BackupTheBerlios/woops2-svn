@@ -1,4 +1,4 @@
-package market.jdbc.manager;
+package market.db.manager;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

@@ -1,9 +1,9 @@
-package market.jdbc;
+package market.db;
 
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import market.jdbc.manager.DatabaseManager;
+import market.db.manager.DatabaseManager;
 
 
 public class Test {
