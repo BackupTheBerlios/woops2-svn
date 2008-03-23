@@ -1,0 +1,9 @@
+#include <model.idl>
+
+module market {
+	module services {
+		interface TestInterface{
+			void login_operator(in string operator);
+		};
+	};
+};
