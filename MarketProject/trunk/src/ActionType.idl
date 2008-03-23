@@ -1,0 +1,25 @@
+module market {
+	module model {
+		module ActionType {
+			struct ActionType{
+			    string code;
+
+			    string label;
+			
+			    string introductionDate;
+			
+			    float introductionPrice;
+			
+			    long quantity;
+			
+			    float currentPrice;
+			
+			    // ? public List<Action> actions = new ArrayList<Action>();
+			
+			    //public List<Alarm> alarms = new ArrayList<Alarm>();
+			
+			    //public List<Event> events = new ArrayList<Event>();
+			};
+		};
+	};
+};

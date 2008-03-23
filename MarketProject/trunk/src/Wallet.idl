@@ -1,0 +1,14 @@
+module market {
+	module model {
+		module Wallet {
+			struct Wallet{
+			    float cash;
+
+			    short operator_id;
+			
+				//public List<Action> actions = new ArrayList<Action>();
+				//public List<Alarm> alarms = new ArrayList<Alarm>();
+			};
+		};
+	};
+};

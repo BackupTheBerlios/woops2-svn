@@ -1,7 +1,14 @@
 module market {
 	module model {
-		struct Action{
-			float buyPrice;
+		module Action {
+			struct Action{
+			    float buyPrice;
+			
+			    string buyDate;
+			
+			    short wallet_id;
+			    short actiontype_id;
+			};
 		};
 	};
 };

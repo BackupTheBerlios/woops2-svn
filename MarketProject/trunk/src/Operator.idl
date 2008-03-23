@@ -1,0 +1,13 @@
+module market {
+	module model {
+		module Operator {
+			struct Operator{
+			        string login;
+
+				    string password;
+				
+				    short wallet_id;
+			};
+		};
+	};
+};
