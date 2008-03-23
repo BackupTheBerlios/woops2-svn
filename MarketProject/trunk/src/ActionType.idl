@@ -1,6 +1,6 @@
 module market {
 	module model {
-		module ActionType {
+		module actionType {
 			struct ActionType{
 			    string code;
 

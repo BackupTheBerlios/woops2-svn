@@ -1,13 +1,49 @@
 module market {
 	module model {
-		module Operator {
-			struct Operator{
-			        string login;
+		struct ActionType{
+			    string code;
 
-				    string password;
-				
-				    short wallet_id;
-			};
+			    string label;
+			
+			    string introductionDate;
+			
+			    float introductionPrice;
+			
+			    long quantity;
+			
+			    float currentPrice;
+			
+			    // ? public List<Action> actions = new ArrayList<Action>();
+			
+			    //public List<Alarm> alarms = new ArrayList<Alarm>();
+			
+			    //public List<Event> events = new ArrayList<Event>();
+		};
+		
+		struct Action{
+			    float buyPrice;
+			
+			    string buyDate;
+			
+			    short wallet_id;
+			    ActionType actiontype;
+		};
+		
+		struct Wallet{
+		    float cash;
+
+		    short operator_id;
+		
+			//public List<Action> actions = new ArrayList<Action>();
+			//public List<Alarm> alarms = new ArrayList<Alarm>();
+		};
+
+		struct Operator{
+		        string login;
+
+			    string password;
+			
+			    Wallet wallet;
 		};
 	};
 };
