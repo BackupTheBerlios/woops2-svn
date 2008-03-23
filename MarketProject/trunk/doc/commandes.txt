@@ -1,0 +1,7 @@
+compilation idl
+---------------
+
+idlj -oldImplBase -fall model.idl
+
+
+
