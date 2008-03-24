@@ -1,9 +1,6 @@
 #include <model.idl>
-
-module market {
-	module services {
-		interface TestInterface{
-			void login_operator(in string operator);
-		};
+module market{
+	interface TestInterface{
+		Wallet getOperatorWallet(in string operatorName);
 	};
 };
