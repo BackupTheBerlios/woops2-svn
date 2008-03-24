@@ -1,6 +1,9 @@
 compilation idl
 ---------------
+- model
+-------
+idlj -fall -oldImplBase model.idl
 
-idlj -oldImplBase -fall model.idl
-
-idlj -fall -oldImplBase -emitAll -i model.idl services.idl
+- services
+----------
+idlj -fall -oldImplBase  services.idl
