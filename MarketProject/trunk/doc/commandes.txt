@@ -3,5 +3,4 @@ compilation idl
 
 idlj -oldImplBase -fall model.idl
 
-
-
+idlj -fall -oldImplBase -emitAll -i model.idl services.idl
