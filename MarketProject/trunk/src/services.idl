@@ -1,6 +1,10 @@
-#include <model.idl>
+
 module market{
-	interface TestInterface{
-		Wallet getOperatorWallet(in string operatorName);
+	module services {
+		#include <model.idl>
+		
+		interface TestInterface{
+			Wallet getOperatorWallet(in string operatorName);
+		};
 	};
 };

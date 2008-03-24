@@ -1,4 +1,4 @@
-module market{
+
 	struct ActionType{
 	    string code;
 	    string label;
@@ -61,5 +61,4 @@ module market{
 		string password;
 		Wallet wallet;
 	};
-};
 
