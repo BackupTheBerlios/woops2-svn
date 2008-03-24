@@ -12,7 +12,6 @@ public class DatabaseManager {
 	private static final String JDBC_HSQLDB_URL = "jdbc:hsqldb:file:./db/marketdb";
 
 	private static DatabaseManager instance = new DatabaseManager();
-	
 	private Connection currentConnection;
 	
 	public static DatabaseManager getInstance(){

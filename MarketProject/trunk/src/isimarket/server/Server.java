@@ -1,11 +1,15 @@
 package isimarket.server;
 
+import isimarket.db.manager.DatabaseManager;
+
+import java.sql.Statement;
+
 import org.omg.CORBA.ORB;
 import org.omg.CosNaming.NameComponent;
 import org.omg.CosNaming.NamingContext;
 import org.omg.CosNaming.NamingContextHelper;
 
-public class ISIMarketServer {
+public class Server {
 	public static void main(String[] args) {
 		try{
             // create and initialize the ORB

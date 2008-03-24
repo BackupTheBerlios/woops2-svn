@@ -2,8 +2,18 @@
 module isimarket{
 	module model{
 		module servants{
-			interface TestInterface{
-				Wallet getOperatorWallet(in string operatorName);
+			module walletservant{
+				interface WalletServant{
+					Wallet getOperatorWallet(in string login, in string password);
+				};
+			};
+			
+			module actionservant{
+				interface ActionServant{
+					ActionList getActionTypeList();
+					ActionType getActionType(in string label);
+					
+				};
 			};
 		};
 	};
