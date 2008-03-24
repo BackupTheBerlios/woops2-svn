@@ -1,4 +1,4 @@
-
+module isimarket{
 	struct ActionType{
 	    string code;
 	    string label;
@@ -61,4 +61,4 @@
 		string password;
 		Wallet wallet;
 	};
-
+};

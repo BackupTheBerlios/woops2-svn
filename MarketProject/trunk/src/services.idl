@@ -1,8 +1,6 @@
-
-module market{
-	module services {
-		#include <model.idl>
-		
+#include <model.idl>
+module isimarket {
+	module services{
 		interface TestInterface{
 			Wallet getOperatorWallet(in string operatorName);
 		};
