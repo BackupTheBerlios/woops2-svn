@@ -1,8 +1,10 @@
 #include <model.idl>
-module isimarket {
-	module services{
-		interface TestInterface{
-			Wallet getOperatorWallet(in string operatorName);
+module isimarket{
+	module model{
+		module servants{
+			interface TestInterface{
+				Wallet getOperatorWallet(in string operatorName);
+			};
 		};
 	};
 };
