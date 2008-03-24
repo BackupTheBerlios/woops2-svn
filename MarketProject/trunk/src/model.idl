@@ -12,6 +12,8 @@ module isimarket{
 		    //public List<Event> events = new ArrayList<Event>();
 		};
 		
+		typedef sequence<ActionType> ActionTypeList;
+		
 		struct AlarmType{
 			long alarmType_oid;
 			string label;
@@ -23,6 +25,7 @@ module isimarket{
 			long action_id;
 		    float buyPrice;
 		    string buyDate;
+		    long quantity;
 		    //Wallet wallet;
 		    ActionType actiontype;
 		};

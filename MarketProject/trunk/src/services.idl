@@ -2,17 +2,41 @@
 module isimarket{
 	module model{
 		module servants{
+			module administrationservant{
+				interface AdministrationServant{
+					void updateCash(in string login, in  float newCash);
+					void createOperator(in string login, in string password);
+					void createWallet(in string login, in float initalCash);
+				};
+			};
+			
 			module walletservant{
 				interface WalletServant{
 					Wallet getOperatorWallet(in string login, in string password);
+					float getCash(in long wallet_id);
+					ActionList getActionListForWallet(in long id); 
+				};
+			};
+			
+			module webservant{
+				interface WebServant{
+					void createNewActionType(in ActionType newAcionType);
+					void updateActionType(in float newPrice);
+				};
+			};
+			
+			module alarmservant{
+				interface AlarmServant{
+				
 				};
 			};
 			
 			module actionservant{
 				interface ActionServant{
-					ActionList getActionTypeList();
+					ActionTypeList getActionTypeList();
+					ActionList buyAction(in string actionTypeLabel, in long quantity);
+					void sellAction(in string actionTypeLabel, in long quantity, in long actions_id);
 					ActionType getActionType(in string label);
-					
 				};
 			};
 		};
