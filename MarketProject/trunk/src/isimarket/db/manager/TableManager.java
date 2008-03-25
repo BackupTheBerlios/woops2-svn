@@ -1,17 +1,9 @@
-package isimarket.db;
-
-import isimarket.db.manager.DatabaseManager;
+package isimarket.db.manager;
 
 import java.sql.SQLException;
 import java.sql.Statement;
 
-
-
-public class Test {
-
-	/**
-	 * @param args
-	 */
+public class TableManager {
 	public static void main(String[] args) {
 		DatabaseManager dbman = DatabaseManager.getInstance();
 		Statement s = null;
@@ -25,5 +17,4 @@ public class Test {
 		}
 		
 	}
-
 }
