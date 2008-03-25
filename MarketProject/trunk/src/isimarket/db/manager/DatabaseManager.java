@@ -40,4 +40,12 @@ public class DatabaseManager {
 			createConnexion();
 		return currentConnection;
 	}
+	
+	public void closeConnection(){
+		try {
+			currentConnection.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 }
