@@ -15,7 +15,7 @@ module isimarket{
 		typedef sequence<ActionType> ActionTypeList;
 		
 		struct AlarmType{
-			long alarmType_oid;
+			long alarmType_id;
 			string label;
 			//public List<Action> actions = new ArrayList<Action>();
 			//public List<Alarm> alarms = new ArrayList<Alarm>();
