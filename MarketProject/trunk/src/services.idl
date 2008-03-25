@@ -4,16 +4,16 @@ module isimarket{
 		module servants{
 			module administrationservant{
 				interface AdministrationServant{
-					void updateCash(in string login, in  float newCash);
-					void createOperator(in string login, in string password);
-					void createWallet(in string login, in float initalCash);
+					void updateCash(in string operatorLogin, in  float newCash);
+					void createOperator(in string operatorLogin, in string password);
+					void createWallet(in string operatorLogin, in float initalCash);
 				};
 			};
 			
 			module walletservant{
 				interface WalletServant{
-					Wallet getOperatorWallet(in string login, in string password);
-					float getCash(in long wallet_id);
+					Wallet getWallet(in string operatorLogin, in string password);
+					// ? float getCash(in long wallet_id);
 					ActionList getActionListForWallet(in long id); 
 				};
 			};
@@ -27,7 +27,7 @@ module isimarket{
 			
 			module alarmservant{
 				interface AlarmServant{
-				
+					
 				};
 			};
 			
