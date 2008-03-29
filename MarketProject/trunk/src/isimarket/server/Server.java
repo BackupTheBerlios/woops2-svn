@@ -1,5 +1,6 @@
 package isimarket.server;
 
+import isimarket.db.manager.TableManager;
 import isimarket.servants.actionservant.impl.ActionServantImpl;
 import isimarket.servants.administrationservant.impl.AdministrationServantImpl;
 import isimarket.servants.alarmservant.impl.AlarmServantImpl;
@@ -43,6 +44,8 @@ public class Server {
             bindReference(alarmServantRef, ncRef,"AlarmServant");
             bindReference(walletServantRef, ncRef,"WalletServant");
             bindReference(webServantRef, ncRef,"WebServant");
+            
+            TableManager.createTables();
             
             // wait for invocations from clients
             java.lang.Object sync = new java.lang.Object();

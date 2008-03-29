@@ -16,11 +16,11 @@ public class TableManager {
 	private static final String _DROP_ACTIONTYPE = "drop table actiontype";
 
 	// Action
-	private static final String _CREATE_ACTION = "create table action(action_id integer, buy_price float, buy_date varchar(10),"
+	private static final String _CREATE_WALLETACTION = "create table walletaction(action_id integer, buy_price float, buy_date varchar(10),"
 			+ " quantity integer, action_type_code varchar(5), wallet_id integer, primary key (action_id),"
 			+ " foreign key (action_type_code) references actiontype(code),"
 			+ " foreign key (wallet_id) references wallet(wallet_id))";
-	private static final String _DROP_ACTION = "drop table action";
+	private static final String _DROP_WALLETACTION = "drop table walletaction";
 
 	// Event
 	private static final String _CREATE_EVENT = "create table event(event_id integer, price float, date varchar(10),action_type_code varchar(5),"
@@ -76,7 +76,6 @@ public class TableManager {
 		try {
 			s = dbman.getConnection().createStatement();
 			
-			dropTables(s);
 			createTables(s);
 			
 		} catch (SQLException e) {
@@ -104,7 +103,7 @@ public class TableManager {
 
 	private static void dropTables(Statement s) throws SQLException {
 		s.executeUpdate(_DROP_ALARM);
-		s.executeUpdate(_DROP_ACTION);
+		s.executeUpdate(_DROP_WALLETACTION);
 		s.executeUpdate(_DROP_EVENT);
 		s.executeUpdate(_DROP_OPERATOR);
 		s.executeUpdate(_DROP_WALLET);
@@ -119,7 +118,7 @@ public class TableManager {
 		s.executeUpdate(_CREATE_ADMINISTRATOR);
 		s.executeUpdate(_CREATE_WALLET);
 		s.executeUpdate(_CREATE_EVENT);
-		s.executeUpdate(_CREATE_ACTION);
+		s.executeUpdate(_CREATE_WALLETACTION);
 		s.executeUpdate(_CREATE_ALARM);
 		s.executeUpdate(_CREATE_OPERATOR);
 	}
