@@ -5,7 +5,7 @@ module isimarket{
 			module administrationservant{
 				interface AdministrationServant{
 					void updateCash(in string operatorLogin, in  float newCash);
-					void createOperator(in string operatorLogin, in string password);
+					void createOperator(in Operator operator);
 					void createWallet(in string operatorLogin, in float initalCash);
 				};
 			};
@@ -13,30 +13,38 @@ module isimarket{
 			module walletservant{
 				interface WalletServant{
 					Wallet getWallet(in string operatorLogin, in string password);
-					// ? float getCash(in long wallet_id);
-					ActionList getActionListForWallet(in long id); 
+
+					WalletActionList getActionListForWallet(in long walletId); 
+					WalletAction getWalletAction(in long walletId, in long walletActionId);
+					
+					WalletAction buyAction(in string actionTypeCode, in long walletId, in long quantity);
+					void sellAction(in string actionTypeCode, in long quantity, in long walletActionId); 
 				};
 			};
 			
 			module webservant{
 				interface WebServant{
-					void createNewActionType(in ActionType newAcionType);
+					void createNewActionType(in ActionType newActionType);
 					void updateActionType(in float newPrice);
 				};
 			};
 			
 			module alarmservant{
 				interface AlarmServant{
+					AlarmTypeList getAlarmTypeList();
+					AlarmType getAlarmType(in long alarmTypeId);
+					void createAlarmType(in long alarmTypeId,in string label);
+					void deleteAlarmType(in long alarmTypeId);
 					
+					void createAlarm(in long alarmType_id,in string actionTypeCode);
+					void deleteAlarm(in long alarmType_id,in string actionTypeCode);
 				};
 			};
 			
 			module actionservant{
 				interface ActionServant{
 					ActionTypeList getActionTypeList();
-					ActionList buyAction(in string actionTypeLabel, in long quantity);
-					void sellAction(in string actionTypeLabel, in long quantity, in long actions_id);
-					ActionType getActionType(in string label);
+					ActionType getActionType(in string actionTypeCode);
 				};
 			};
 		};

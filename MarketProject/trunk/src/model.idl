@@ -21,12 +21,13 @@ module isimarket{
 			//public List<Alarm> alarms = new ArrayList<Alarm>();
 		};
 		
-		struct Action{
-			long action_id;
+		typedef sequence<AlarmType> AlarmTypeList;
+		
+		struct WalletAction{
+			long wallet_action_id;
 		    float buyPrice;
 		    string buyDate;
 		    long quantity;
-		    //Wallet wallet;
 		    ActionType actiontype;
 		};
 		
@@ -45,13 +46,13 @@ module isimarket{
 		    ActionType actionType;
 		};
 		
-		typedef sequence<Action> ActionList;
+		typedef sequence<WalletAction> WalletActionList;
 		typedef sequence<Alarm> AlarmList;
 		
 		struct Wallet{
 			long wallet_id;
 		    float cash;
-			ActionList actions; //public List<Action> actions = new ArrayList<Action>();
+			WalletActionList actions; //public List<Action> actions = new ArrayList<Action>();
 			AlarmList alarms; //public List<Alarm> alarms = new ArrayList<Alarm>();
 		};
 		
