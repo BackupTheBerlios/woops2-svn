@@ -16,6 +16,8 @@ import org.omg.CosNaming.NamingContextPackage.InvalidName;
 import org.omg.CosNaming.NamingContextPackage.NotFound;
 
 public class Server {
+	
+
 	public static void main(String[] args) {
 		try{
             // create and initialize the ORB
@@ -39,11 +41,11 @@ public class Server {
             NamingContext ncRef = NamingContextHelper.narrow(objRef);
  
             // bind the Object Reference in Naming
-            bindReference(actionServantRef, ncRef,"ActionServant");
-            bindReference(administrationServantRef, ncRef,"AdministrationServant");
-            bindReference(alarmServantRef, ncRef,"AlarmServant");
-            bindReference(walletServantRef, ncRef,"WalletServant");
-            bindReference(webServantRef, ncRef,"WebServant");
+            bindReference(actionServantRef, ncRef,ServerConstants._REF_ACTION_SERVANT);
+            bindReference(administrationServantRef, ncRef,ServerConstants._REF_ADMINISTRATION_SERVANT);
+            bindReference(alarmServantRef, ncRef,ServerConstants._REF_ALARM_SERVANT);
+            bindReference(walletServantRef, ncRef,ServerConstants._REF_WALLET_SERVANT);
+            bindReference(webServantRef, ncRef,ServerConstants._REF_WEB_SERVANT);
             
             TableManager.createTables();
             
