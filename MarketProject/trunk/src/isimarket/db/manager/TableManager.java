@@ -69,6 +69,38 @@ public class TableManager {
 			dbman.closeConnection();
 		}
 	}
+	
+	public static void createTables() {
+		DatabaseManager dbman = DatabaseManager.getInstance();
+		Statement s = null;
+		try {
+			s = dbman.getConnection().createStatement();
+			
+			dropTables(s);
+			createTables(s);
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			dbman.closeConnection();
+		}
+	}
+	
+	public static void dropTables() {
+		DatabaseManager dbman = DatabaseManager.getInstance();
+		Statement s = null;
+		try {
+			s = dbman.getConnection().createStatement();
+			
+			dropTables(s);
+			createTables(s);
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			dbman.closeConnection();
+		}
+	}
 
 	private static void dropTables(Statement s) throws SQLException {
 		s.executeUpdate(_DROP_ALARM);
