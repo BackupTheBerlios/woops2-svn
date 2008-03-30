@@ -1,11 +1,10 @@
 package isimarket.server;
 
 import isimarket.db.manager.TableManager;
-import isimarket.servants.actionservant.impl.ActionServantImpl;
+import isimarket.servants.actiontypeservant.impl.ActionTypeServantImpl;
 import isimarket.servants.administrationservant.impl.AdministrationServantImpl;
 import isimarket.servants.alarmservant.impl.AlarmServantImpl;
 import isimarket.servants.walletservant.impl.WalletServantImpl;
-import isimarket.servants.webservant.impl.WebServantImpl;
 
 import org.omg.CORBA.ORB;
 import org.omg.CosNaming.NameComponent;
@@ -24,16 +23,14 @@ public class Server {
             ORB orb = ORB.init(args, null);
  
             // create servant and register it with the ORB
-            ActionServantImpl actionServantRef = new ActionServantImpl();
-            orb.connect(actionServantRef);
+            ActionTypeServantImpl actionTypeServantRef = new ActionTypeServantImpl();
+            orb.connect(actionTypeServantRef);
             AdministrationServantImpl administrationServantRef = new AdministrationServantImpl();
             orb.connect(administrationServantRef);
             AlarmServantImpl alarmServantRef = new AlarmServantImpl();
             orb.connect(alarmServantRef);
             WalletServantImpl walletServantRef = new WalletServantImpl();
             orb.connect(walletServantRef);
-            WebServantImpl webServantRef = new WebServantImpl();
-            orb.connect(webServantRef);
  
             // get the root naming context
             org.omg.CORBA.Object objRef = 
@@ -41,14 +38,13 @@ public class Server {
             NamingContext ncRef = NamingContextHelper.narrow(objRef);
  
             // bind the Object Reference in Naming
-            bindReference(actionServantRef, ncRef,ServerConstants._REF_ACTION_SERVANT);
+            bindReference(actionTypeServantRef, ncRef,ServerConstants._REF_ACTION_SERVANT);
             bindReference(administrationServantRef, ncRef,ServerConstants._REF_ADMINISTRATION_SERVANT);
             bindReference(alarmServantRef, ncRef,ServerConstants._REF_ALARM_SERVANT);
             bindReference(walletServantRef, ncRef,ServerConstants._REF_WALLET_SERVANT);
-            bindReference(webServantRef, ncRef,ServerConstants._REF_WEB_SERVANT);
             
             // TODO verifier si les tables sont deja creer
-            //TableManager.createTables();
+            TableManager.createTables();
             
             // wait for invocations from clients
             java.lang.Object sync = new java.lang.Object();
