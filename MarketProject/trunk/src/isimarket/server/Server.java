@@ -47,7 +47,8 @@ public class Server {
             bindReference(walletServantRef, ncRef,ServerConstants._REF_WALLET_SERVANT);
             bindReference(webServantRef, ncRef,ServerConstants._REF_WEB_SERVANT);
             
-            TableManager.createTables();
+            // TODO verifier si les tables sont deja creer
+            //TableManager.createTables();
             
             // wait for invocations from clients
             java.lang.Object sync = new java.lang.Object();
