@@ -9,19 +9,21 @@ import java.util.List;
 
 public class ActionTypeServantImpl extends _ActionTypeServantImplBase{
 
-	private static final long serialVersionUID = 2413025648480750091L;
+	private static final long serialVersionUID = 1L;
+	
+	protected ActionTypeDao actionTypeDao = new ActionTypeDao();
 
 	public void createNewActionType(ActionType _newActionType) {
-		(new ActionTypeDao()).insert(_newActionType);
+		this.actionTypeDao.insert(_newActionType);
 	}
 
 	public ActionType getActionType(String _actionTypeCode) {
-		ActionType actionType = (new ActionTypeDao()).get(_actionTypeCode);
+		ActionType actionType = this.actionTypeDao.get(_actionTypeCode);
 		return actionType;
 	}
 
 	public ActionType[] getActionTypeList() {
-		List<ActionType> actionTypelist = (new ActionTypeDao()).getAll();
+		List<ActionType> actionTypelist = this.actionTypeDao.getAll();
 		ActionType[] actionTypeArray = new ActionType[actionTypelist.size()];
 		return actionTypelist.toArray(actionTypeArray);
 	}
@@ -32,8 +34,8 @@ public class ActionTypeServantImpl extends _ActionTypeServantImplBase{
 	}
 
 	public void updateActionType(ActionType _newActionType) {
-		(new ActionTypeDao()).updateCurrentPrice(_newActionType);
-		(new ActionTypeDao()).updateQuantity(_newActionType);
+		this.actionTypeDao.updateCurrentPrice(_newActionType);
+		this.actionTypeDao.updateQuantity(_newActionType);
 	}
 
 }

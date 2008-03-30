@@ -53,6 +53,10 @@ public class TableManager {
 	public static void main(String[] args) {
 		dropAndCreateTables();
 	}
+	
+	public static int getSequenceLastValue() {
+		return 0;
+	}
 
 	private static void dropAndCreateTables() {
 		DatabaseManager dbman = DatabaseManager.getInstance();
