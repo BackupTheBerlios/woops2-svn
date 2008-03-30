@@ -1,24 +1,29 @@
 package isimarket.servants.actiontypeservant.impl;
 
+import isimarket.db.dao.ActionTypeDao;
 import isimarket.model.ActionType;
 import isimarket.model.Event;
 import isimarket.servants.actiontypeservant._ActionTypeServantImplBase;
 
+import java.util.List;
+
 public class ActionTypeServantImpl extends _ActionTypeServantImplBase{
 
+	private static final long serialVersionUID = 2413025648480750091L;
+
 	public void createNewActionType(ActionType _newActionType) {
-		// TODO Auto-generated method stub
-		
+		(new ActionTypeDao()).insert(_newActionType);
 	}
 
 	public ActionType getActionType(String _actionTypeCode) {
-		// TODO Auto-generated method stub
-		return null;
+		ActionType actionType = (new ActionTypeDao()).get(_actionTypeCode);
+		return actionType;
 	}
 
 	public ActionType[] getActionTypeList() {
-		// TODO Auto-generated method stub
-		return null;
+		List<ActionType> actionTypelist = (new ActionTypeDao()).getAll();
+		ActionType[] actionTypeArray = new ActionType[actionTypelist.size()];
+		return actionTypelist.toArray(actionTypeArray);
 	}
 
 	public Event[] getEvents(String _actionTypeCode) {
@@ -27,8 +32,8 @@ public class ActionTypeServantImpl extends _ActionTypeServantImplBase{
 	}
 
 	public void updateActionType(ActionType _newActionType) {
-		// TODO Auto-generated method stub
-		
+		(new ActionTypeDao()).updateCurrentPrice(_newActionType);
+		(new ActionTypeDao()).updateQuantity(_newActionType);
 	}
 
 }
