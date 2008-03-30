@@ -14,9 +14,9 @@ module isimarket{
 				interface WalletServant{
 					Wallet getWallet(in string operatorLogin, in string password);
 					WalletActionList getActionListForWallet(in long walletId); 
-					WalletAction getWalletAction(in long walletId, in long walletActionId);
-					WalletAction buyAction(in string actionTypeCode, in long walletId, in long quantity);
-					void sellAction(in string actionTypeCode, in long quantity, in long walletActionId); 
+					WalletActionList getWalletAction(in long walletId, in long walletActionId);
+					WalletAction buyAction(in long walletId, in string actionTypeCode , in long quantity);
+					void sellAction(in long walletActionId, in string actionTypeCode, in long quantity ); 
 				};
 			};
 			
@@ -26,8 +26,11 @@ module isimarket{
 					AlarmType getAlarmType(in long alarmTypeId);
 					void createAlarmType(in long alarmTypeId,in string label);
 					void deleteAlarmType(in long alarmTypeId);
-					void createAlarm(in long alarmType_id,in string actionTypeCode);
-					void deleteAlarm(in long alarmType_id,in string actionTypeCode);
+					
+					AlarmList getAlarmList(in long _walletId);
+					Alarm getAlarm(in long walletId, in long alarmType_id,in string actionTypeCode);
+					void createAlarm(in long walletId, in long alarmType_id,in string actionTypeCode);
+					void deleteAlarm(in long alarmId);
 				};
 			};
 			
@@ -36,7 +39,9 @@ module isimarket{
 					ActionTypeList getActionTypeList();
 					ActionType getActionType(in string actionTypeCode);
 					void createNewActionType(in ActionType newActionType);
-					void updateActionType(in float newPrice);
+					void updateActionType(in ActionType newActionType);
+					
+					EventList getEvents(in string actionTypeCode);
 				};
 			};
 		};

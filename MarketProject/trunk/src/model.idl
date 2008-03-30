@@ -38,6 +38,8 @@ module isimarket{
 		    ActionType actiontype;
 		};
 		
+		typedef sequence<Event> EventList;
+		
 		struct Alarm{
 		    long alarm_id;
 		    string name;
