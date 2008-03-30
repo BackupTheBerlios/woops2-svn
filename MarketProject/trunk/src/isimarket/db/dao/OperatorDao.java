@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+//TODO faire operator dao
 public class OperatorDao {
 
 //	public void delete(String _code) {
@@ -102,29 +103,29 @@ public class OperatorDao {
 //		}
 //	}
 //
-//	public void insert(ActionType _actionType) {
-//		PreparedStatement stmt = null;
-//		try {
-//			stmt = DatabaseManager.getInstance().getConnection()
-//					.prepareStatement("insert into actiontype values (?,?,?,?,?,?)");
-//			stmt.setString(1, _actionType.code);
-//			stmt.setString(2, _actionType.label);
-//			stmt.setString(3, _actionType.introductionDate);
-//			stmt.setFloat(4, _actionType.introductionPrice);
-//			stmt.setInt(5, _actionType.quantity);
-//			stmt.setFloat(6, _actionType.currentPrice);
-//			stmt.executeUpdate();
-//		} catch (SQLException e) {
-//			System.out.println("ActionTypeDao -> insert(): "+ e.getMessage());
-//			e.printStackTrace();
-//		} finally {
-//			try {
-//				if (stmt != null)
-//					stmt.close();
-//			} catch (SQLException e) {
-//			}
-//		}
-//	}
+	public void insert(ActionType _actionType) {
+		PreparedStatement stmt = null;
+		try {
+			stmt = DatabaseManager.getInstance().getConnection()
+					.prepareStatement("insert into operator values (?,?,?,?,?,?)");
+			stmt.setString(1, _actionType.code);
+			stmt.setString(2, _actionType.label);
+			stmt.setString(3, _actionType.introductionDate);
+			stmt.setFloat(4, _actionType.introductionPrice);
+			stmt.setInt(5, _actionType.quantity);
+			stmt.setFloat(6, _actionType.currentPrice);
+			stmt.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println("ActionTypeDao -> insert(): "+ e.getMessage());
+			e.printStackTrace();
+		} finally {
+			try {
+				if (stmt != null)
+					stmt.close();
+			} catch (SQLException e) {
+			}
+		}
+	}
 //
 //	public void updateQuantity(ActionType _actionType) {
 //		PreparedStatement stmt = null;
