@@ -1,10 +1,10 @@
 package isimarket.server;
 
 import isimarket.db.manager.TableManager;
-import isimarket.servants.actiontypeservant.impl.ActionTypeServantImpl;
-import isimarket.servants.administrationservant.impl.AdministrationServantImpl;
-import isimarket.servants.alarmservant.impl.AlarmServantImpl;
-import isimarket.servants.walletservant.impl.WalletServantImpl;
+import isimarket.oldservants.actiontypeservant.impl.ActionTypeServantImpl;
+import isimarket.oldservants.administrationservant.impl.AdministrationServantImpl;
+import isimarket.oldservants.alarmservant.impl.AlarmServantImpl;
+import isimarket.oldservants.walletservant.impl.WalletServantImpl;
 
 import org.omg.CORBA.ORB;
 import org.omg.CosNaming.NameComponent;
