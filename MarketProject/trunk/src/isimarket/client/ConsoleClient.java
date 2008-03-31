@@ -1,7 +1,6 @@
 package isimarket.client;
-import isimarket.model.Operator;
-import isimarket.old_servants.administrationservant.AdministrationServant;
-import isimarket.old_servants.administrationservant.AdministrationServantHelper;
+import isimarket.servants.administrationservant.AdministrationServant;
+import isimarket.servants.administrationservant.AdministrationServantHelper;
 import isimarket.server.ServerConstants;
 
 import org.omg.CORBA.ORB;
