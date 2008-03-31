@@ -1,0 +1,17 @@
+compilation idl
+---------------
+- model
+-------
+idlj -fall -oldImplBase model.idl
+
+- services
+----------
+idlj -fall -oldImplBase  services.idl
+
+
+Serveurs
+--------
+
+- base de données : cf repertoire bd (fichiers .bat ou sh)
+
+- service de nom / orb : tnameserv 
