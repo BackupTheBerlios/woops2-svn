@@ -6,7 +6,7 @@ module isimarket{
 				interface AdministrationServant{
 					void updateCash(in string operatorLogin, in  float newCash);
 					void createOperator(in Operator operator);
-					void createWallet(in string operatorLogin, in float initalCash);
+					//void createWallet(in string operatorLogin, in float initalCash);
 				};
 			};
 			
