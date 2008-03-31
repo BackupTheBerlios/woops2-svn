@@ -1,0 +1,49 @@
+#include <model.idl>
+module isimarket{
+	module model{
+		module servants{
+			module administrationservant{
+				interface AdministrationServant{
+					void updateCash(in string operatorLogin, in  float newCash);
+					void createOperator(in Operator operator);
+					//void createWallet(in string operatorLogin, in float initalCash);
+				};
+			};
+			
+			module walletservant{
+				interface WalletServant{
+					Wallet getWallet(in string operatorLogin, in string password);
+					ActionList getActionList(in long walletId); 
+					ActionList getAction(in long walletId, in long actionId);
+					Action buyAction(in long walletId, in string actionTypeCode , in long quantity);
+					void sellAction(in long walletActionId, in string actionTypeCode, in long quantity); 
+				};
+			};
+			
+			module alarmservant{
+				interface AlarmServant{
+					AlarmTypeList getAlarmTypeList();
+					AlarmType getAlarmType(in long alarmTypeId);
+					void createAlarmType(in long alarmTypeId,in string label);
+					void deleteAlarmType(in long alarmTypeId);
+					
+					AlarmList getAlarmList(in long _walletId);
+					Alarm getAlarm(in long walletId, in long alarmType_id,in string actionTypeCode);
+					void createAlarm(in long walletId, in long alarmType_id,in string actionTypeCode);
+					void deleteAlarm(in long alarmId);
+				};
+			};
+			
+			module actiontypeservant{
+				interface ActionTypeServant{
+					ActionTypeList getActionTypeList();
+					ActionType getActionType(in string actionTypeCode);
+					void createNewActionType(in ActionType newActionType);
+					void updateActionType(in ActionType newActionType);
+					
+					EventList getEvents(in string actionTypeCode);
+				};
+			};
+		};
+	};
+};
