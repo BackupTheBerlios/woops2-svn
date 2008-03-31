@@ -22,8 +22,7 @@ public class AdministrationServantImpl extends _AdministrationServantImplBase {
 		this.operatorDao.insert(_operator);
 	}
 
-	//TODO _operatorLogin inutile car pas de notion de operator dans wallet
-	public void createWallet(String _operatorLogin, float _initalCash) {
+	private void createWallet(String _operatorLogin, float _initalCash) {
 		Wallet wallet = new Wallet();
 		wallet.cash = _initalCash;
 		this.walletDao.insert(wallet);
