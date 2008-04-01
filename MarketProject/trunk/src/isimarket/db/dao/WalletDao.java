@@ -1,14 +1,13 @@
 package isimarket.db.dao;
 
 import isimarket.db.manager.DatabaseManager;
-import isimarket.model.ActionType;
+import isimarket.model.Action;
+import isimarket.model.Alarm;
 import isimarket.model.Wallet;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class WalletDao {
 	// colonnes
@@ -45,8 +44,8 @@ public class WalletDao {
 			if (res.next()) {
 				return new Wallet(res.getInt(_COL_WALLET_ID), 
 						res.getFloat(_COL_CASH), 
-						null, 
-						null);
+						new Action[0], 
+						new Alarm[0]);
 			} else {
 				System.out.println("Wallet inconnu : " + _walleId);
 				return null;
@@ -74,13 +73,16 @@ public class WalletDao {
 		ResultSet res = null;
 		try {
 			stmt = DatabaseManager.getInstance().getConnection()
-					.prepareStatement("select * from wallet where "+_COL_WALLET_ID+"=IDENTITY()");
+					.prepareStatement("select * from wallet where "+_COL_WALLET_ID+" = select max("+_COL_WALLET_ID+") from wallet");
 			res = stmt.executeQuery();
 			if (res.next()) {
+				
+				System.out.println("walletdao ok !");
+				
 				return new Wallet(res.getInt(_COL_WALLET_ID), 
 						res.getFloat(_COL_CASH), 
-						null, 
-						null);
+						new Action[0], 
+						new Alarm[0]);
 			} else {
 				System.out.println("Wallet inconnu ");
 				return null;

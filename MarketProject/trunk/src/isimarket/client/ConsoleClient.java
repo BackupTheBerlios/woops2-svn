@@ -1,4 +1,6 @@
 package isimarket.client;
+import isimarket.model.Operator;
+import isimarket.model.Wallet;
 import isimarket.servants.administrationservant.AdministrationServant;
 import isimarket.servants.administrationservant.AdministrationServantHelper;
 import isimarket.server.ServerConstants;
@@ -25,11 +27,15 @@ public class ConsoleClient {
 			NameComponent path[] = {nc};
 			AdministrationServant administrationServantRef = AdministrationServantHelper.narrow(ncRef.resolve(path));
 			System.out.println("administrationServantRef connected @ "+administrationServantRef);
-//			ExactTime exactTimeRef = ExactTimeHelper.narrow(ncRef.resolve(path));
-//			String time = exactTimeRef.getTime();
-//			System.out.println("time => "+time);
+			
+			Operator test = new Operator();
+			test.login = "test";
+			test.password = "password";
+			test.wallet = new Wallet();
+			administrationServantRef.createOperator(test);
+			
+
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
