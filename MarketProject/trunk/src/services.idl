@@ -5,8 +5,8 @@ module isimarket{
 			module administrationservant{
 				interface AdministrationServant{
 					void updateCash(in string operatorLogin, in  float newCash);
-					void createOperator(in Operator operator);
-					//void createWallet(in string operatorLogin, in float initalCash);
+					void createOperator(in string operatorLogin, in string password);
+					void createWallet(in float initalCash);
 				};
 			};
 			
@@ -26,7 +26,6 @@ module isimarket{
 					AlarmType getAlarmType(in long alarmTypeId);
 					void createAlarmType(in long alarmTypeId,in string label);
 					void deleteAlarmType(in long alarmTypeId);
-					
 					AlarmList getAlarmList(in long _walletId);
 					Alarm getAlarm(in long walletId, in long alarmType_id,in string actionTypeCode);
 					void createAlarm(in long walletId, in long alarmType_id,in string actionTypeCode);
@@ -40,7 +39,6 @@ module isimarket{
 					ActionType getActionType(in string actionTypeCode);
 					void createNewActionType(in ActionType newActionType);
 					void updateActionType(in ActionType newActionType);
-					
 					EventList getEvents(in string actionTypeCode);
 				};
 			};
