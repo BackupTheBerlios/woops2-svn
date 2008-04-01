@@ -17,7 +17,7 @@ public class TableManager {
 	private static final String _DROP_ACTIONTYPE = "drop table actiontype";
 
 	// Action
-	private static final String _CREATE_WALLETACTION = "create table walletaction(action_id "+_GEN_IDENTITY+", buy_price float, buy_date varchar(10),"
+	private static final String _CREATE_WALLETACTION = "create table action(action_id "+_GEN_IDENTITY+", buy_price float, buy_date varchar(10),"
 			+ " quantity integer, action_type_code varchar(5), wallet_id integer, "
 			+ " foreign key (action_type_code) references actiontype(code),"
 			+ " foreign key (wallet_id) references wallet(wallet_id))";
