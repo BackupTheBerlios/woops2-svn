@@ -17,7 +17,7 @@ public class AdministrationServantImpl extends _AdministrationServantImplBase {
 	
 	public void createOperator(Operator _operator) {
 		this.createWallet(_operator.login, 0.0f);
-		Wallet wallet = this.walletDao.get(TableManager.getSequenceLastValue());
+		Wallet wallet = this.walletDao.getLastWallet();
 		_operator.wallet = wallet;
 		this.operatorDao.insert(_operator);
 	}
