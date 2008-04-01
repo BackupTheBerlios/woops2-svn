@@ -68,6 +68,40 @@ public class WalletDao {
 			}
 		}
 	}
+	
+	public Wallet getLastWallet() {
+		PreparedStatement stmt = null;
+		ResultSet res = null;
+		try {
+			stmt = DatabaseManager.getInstance().getConnection()
+					.prepareStatement("select * from wallet where "+_COL_WALLET_ID+"=IDENTITY()");
+			res = stmt.executeQuery();
+			if (res.next()) {
+				return new Wallet(res.getInt(_COL_WALLET_ID), 
+						res.getFloat(_COL_CASH), 
+						null, 
+						null);
+			} else {
+				System.out.println("Wallet inconnu ");
+				return null;
+			}
+		} catch (SQLException e) {
+			System.out.println("Wallet -> get(): "+ e.getMessage());
+			e.printStackTrace();
+			return null;
+		} finally {
+			try {
+				if (res != null)
+					res.close();
+			} catch (SQLException e) {
+			}
+			try {
+				if (stmt != null)
+					stmt.close();
+			} catch (SQLException e) {
+			}
+		}
+	}
 
 //	public List<Wallet> getAll() {
 //		PreparedStatement stmt = null;
