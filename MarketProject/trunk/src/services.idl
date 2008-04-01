@@ -5,7 +5,7 @@ module isimarket{
 			module administrationservant{
 				interface AdministrationServant{
 					void updateCash(in string operatorLogin, in  float newCash);
-					void createOperator(in string operatorLogin, in string password);
+					void createOperator(in string operatorLogin, in string password,in float initalCash);
 					void createWallet(in float initalCash);
 				};
 			};
@@ -37,8 +37,10 @@ module isimarket{
 				interface ActionTypeServant{
 					ActionTypeList getActionTypeList();
 					ActionType getActionType(in string actionTypeCode);
-					void createNewActionType(in ActionType newActionType);
-					void updateActionType(in ActionType newActionType);
+					void createNewActionType(in string code,in string label,in string introductionDate, in float introductionPrice, in long quantity, in
+		    float currentPrice);
+					void updateActionType(in string code,in string label,in string introductionDate, in float introductionPrice, in long quantity, in
+		    float currentPrice);
 					EventList getEvents(in string actionTypeCode);
 				};
 			};
