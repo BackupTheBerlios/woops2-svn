@@ -25,11 +25,11 @@ public class ActionTypeDaoTest extends TestCase {
 			// resolve the Object Reference in Naming
 			NameComponent nc = new NameComponent(ServerConstants._REF_ADMINISTRATION_SERVANT, "");
 			NameComponent path[] = {nc};
-			AdministrationServant administrationServantRef = AdministrationServantHelper.narrow(ncRef.resolve(path));
-			System.out.println("administrationServantRef connected @ "+administrationServantRef);
-			
-			//administrationServantRef.createOperator("test","password",1000.0f);
-			administrationServantRef.updateCash("test",2000.0f);
+//			AdministrationServant administrationServantRef = AdministrationServantHelper.narrow(ncRef.resolve(path));
+//			System.out.println("administrationServantRef connected @ "+administrationServantRef);
+//			
+//			//administrationServantRef.createOperator("test","password",1000.0f);
+//			administrationServantRef.updateCash("test",2000.0f);
 
 		} catch (Exception e) {
 			e.printStackTrace();
