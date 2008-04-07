@@ -13,10 +13,6 @@ public class ActionTypeServantImpl extends _ActionTypeServantImplBase{
 	
 	protected ActionTypeDao actionTypeDao = new ActionTypeDao();
 
-	public void createNewActionType(ActionType _newActionType) {
-		this.actionTypeDao.insert(_newActionType);
-	}
-
 	public ActionType getActionType(String _actionTypeCode) {
 		ActionType actionType = this.actionTypeDao.get(_actionTypeCode);
 		return actionType;
@@ -33,22 +29,17 @@ public class ActionTypeServantImpl extends _ActionTypeServantImplBase{
 		return null;
 	}
 
-	public void updateActionType(ActionType _newActionType) {
-		this.actionTypeDao.updateCurrentPrice(_newActionType);
-		this.actionTypeDao.updateQuantity(_newActionType);
-	}
-
 	public void createNewActionType(String code, String label,
 			String introductionDate, float introductionPrice, int quantity,
 			float currentPrice) {
-		// TODO Auto-generated method stub
-		
+		this.actionTypeDao.insert(code, label, introductionDate, introductionPrice, quantity, currentPrice);
 	}
 
 	public void updateActionType(String code, String label,
 			String introductionDate, float introductionPrice, int quantity,
-			float currentPrice) {
-		// TODO Auto-generated method stub
+			float newPrice) {
+		this.actionTypeDao.updateCurrentPrice(code, newPrice);
+		this.actionTypeDao.updateQuantity(code, quantity);
 		
 	}
 

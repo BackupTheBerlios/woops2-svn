@@ -102,17 +102,19 @@ public class ActionTypeDao {
 		}
 	}
 
-	public void insert(ActionType _actionType) {
+	public void insert(String code, String label,
+			String introductionDate, float introductionPrice, int quantity,
+			float currentPrice) {
 		PreparedStatement stmt = null;
 		try {
 			stmt = DatabaseManager.getInstance().getConnection()
 					.prepareStatement("insert into actiontype values (?,?,?,?,?,?)");
-			stmt.setString(1, _actionType.code);
-			stmt.setString(2, _actionType.label);
-			stmt.setString(3, _actionType.introductionDate);
-			stmt.setFloat(4, _actionType.introductionPrice);
-			stmt.setInt(5, _actionType.quantity);
-			stmt.setFloat(6, _actionType.currentPrice);
+			stmt.setString(1, code);
+			stmt.setString(2, label);
+			stmt.setString(3, introductionDate);
+			stmt.setFloat(4, introductionPrice);
+			stmt.setInt(5, quantity);
+			stmt.setFloat(6, currentPrice);
 			stmt.executeUpdate();
 		} catch (SQLException e) {
 			System.out.println("ActionTypeDao -> insert(): "+ e.getMessage());
@@ -126,13 +128,13 @@ public class ActionTypeDao {
 		}
 	}
 
-	public void updateQuantity(ActionType _actionType) {
+	public void updateQuantity(String code, int quantity) {
 		PreparedStatement stmt = null;
 		try {
 			stmt = DatabaseManager.getInstance().getConnection()
 					.prepareStatement("update actiontype set quantity = ? where code = ?");
-			stmt.setInt(1, _actionType.quantity);
-			stmt.setString(2, _actionType.code);
+			stmt.setInt(1, quantity);
+			stmt.setString(2, code);
 			stmt.executeUpdate();
 		} catch (SQLException e) {
 			System.out.println("ActionTypeDao -> update(): "+ e.getMessage());
@@ -146,13 +148,13 @@ public class ActionTypeDao {
 		}
 	}
 	
-	public void updateCurrentPrice(ActionType _actionType) {
+	public void updateCurrentPrice(String code,float currentPrice) {
 		PreparedStatement stmt = null;
 		try {
 			stmt = DatabaseManager.getInstance().getConnection()
 					.prepareStatement("update actiontype set current_price = ? where code = ?");
-			stmt.setFloat(1, _actionType.currentPrice);
-			stmt.setString(2, _actionType.code);
+			stmt.setFloat(1, currentPrice);
+			stmt.setString(2, code);
 			stmt.executeUpdate();
 		} catch (SQLException e) {
 			System.out.println("ActionTypeDao -> update(): "+ e.getMessage());
