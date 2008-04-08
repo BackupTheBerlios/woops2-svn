@@ -33,7 +33,9 @@ public class ActionTypeServantImpl extends _ActionTypeServantImplBase{
 	}
 
 	public Event[] getEvents(String _actionTypeCode) {
-		// TODO Auto-generated method stub
+		
+		
+		
 		return null;
 	}
 

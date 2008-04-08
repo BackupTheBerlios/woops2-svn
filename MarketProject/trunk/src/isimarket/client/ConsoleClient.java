@@ -60,7 +60,9 @@ public class ConsoleClient {
 			System.out.println("updateCash ... ");
 			//administrationServantRef.updateCash("test",3000.0f);
 			System.out.println("createNewActionType ... ");
-			actionTypeServantRef.createNewActionType("tst4","action_de_test4","0000-00-00 00:00",10.0f,1000,10.0f);
+			//actionTypeServantRef.createNewActionType("tst4","action_de_test4","0000-00-00 00:00",10.0f,1000,10.0f);
+			
+			
 
 		} catch (Exception e) {
 			e.printStackTrace();

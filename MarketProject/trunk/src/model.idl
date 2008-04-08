@@ -1,5 +1,7 @@
 module isimarket{
 	module model{
+		struct Wallet;
+		
 		struct ActionType{
 		    string code;
 		    string label;
@@ -12,23 +14,24 @@ module isimarket{
 		typedef sequence<ActionType> ActionTypeList;
 		
 		struct AlarmType{
-			long alarmType_id;
+			long alarmTypeId;
 			string label;
 		};
 		
 		typedef sequence<AlarmType> AlarmTypeList;
 		
 		struct Action{
-			long action_id;
+			long actionId;
 		    float buyPrice;
 		    string buyDate;
 		    long quantity;
 		    ActionType actiontype;
+		    Wallet wallet;
 		};
 		
 		struct Event{
-			long event_id;
-		    float Price;
+			long eventId;
+		    float price;
 		    string date;
 		    ActionType actiontype;
 		};
@@ -36,17 +39,18 @@ module isimarket{
 		typedef sequence<Event> EventList;
 		
 		struct Alarm{
-		    long alarm_id;
+		    long alarmId;
 		    string name;
 		    AlarmType type;
 		    ActionType actionType;
+		    Wallet wallet;
 		};
 		
 		typedef sequence<Action> ActionList;
 		typedef sequence<Alarm> AlarmList;
 		
 		struct Wallet{
-			long wallet_id;
+			long walletId;
 		    float cash;
 			ActionList actions;
 			AlarmList alarms;
