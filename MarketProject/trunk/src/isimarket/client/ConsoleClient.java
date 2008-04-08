@@ -47,6 +47,8 @@ public class ConsoleClient {
 			// TODO creer un operator test
 			//administrationServantRef.createOperator("test","password",1000.0f);
 			administrationServantRef.updateCash("test",3000.0f);
+			
+			actionTypeServantRef.createNewActionType("tst","action_de_test","00/00/0000",10.0f,1000,10.0f);
 
 		} catch (Exception e) {
 			e.printStackTrace();
