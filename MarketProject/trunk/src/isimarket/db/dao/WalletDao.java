@@ -33,13 +33,13 @@ public class WalletDao {
 		}
 	}
 
-	public Wallet get(int _walleId) {
+	public Wallet get(int _walletId) {
 		PreparedStatement stmt = null;
 		ResultSet res = null;
 		try {
 			stmt = DatabaseManager.getInstance().getConnection()
 					.prepareStatement("select * from wallet where "+_COL_WALLET_ID+"=?");
-			stmt.setLong(1, _walleId);
+			stmt.setLong(1, _walletId);
 			res = stmt.executeQuery();
 			if (res.next()) {
 				return new Wallet(res.getInt(_COL_WALLET_ID), 
@@ -47,7 +47,7 @@ public class WalletDao {
 						new Action[0], 
 						new Alarm[0]);
 			} else {
-				System.out.println("Wallet inconnu : " + _walleId);
+				System.out.println("Wallet inconnu : " + _walletId);
 				return null;
 			}
 		} catch (SQLException e) {

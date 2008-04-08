@@ -6,6 +6,8 @@ import isimarket.servants.alarmservant._AlarmServantImplBase;
 
 public class AlarmServantImpl extends _AlarmServantImplBase {
 
+	private static final long serialVersionUID = 1L;
+
 	public void createAlarm(int _walletId, int _alarmType_id,
 			String _actionTypeCode) {
 		// TODO Auto-generated method stub
