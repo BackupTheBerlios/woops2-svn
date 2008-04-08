@@ -52,6 +52,8 @@ public class Server {
             // TODO verifier si les tables sont deja creer
             //TableManager.createTables();
             
+            System.out.println("server launched ...");
+            
             // wait for invocations from clients
             java.lang.Object sync = new java.lang.Object();
             synchronized (sync) {
