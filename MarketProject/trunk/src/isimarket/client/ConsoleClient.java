@@ -1,4 +1,6 @@
 package isimarket.client;
+import java.util.Properties;
+
 import isimarket.model.Operator;
 import isimarket.model.Wallet;
 import isimarket.servants.administrationservant.AdministrationServant;
@@ -16,7 +18,11 @@ public class ConsoleClient {
 	
 	public static void main(String[] args) {
         try {
-			ORB orb = ORB.init(args, null);
+        	Properties props = new Properties ();
+			props.put("org.omg.CORBA.ORBInitialPort", "900");
+			props.put("org.omg.CORBA.ORBInitialHost",
+			"localhost");
+			ORB orb = ORB.init(args, props);
 
 			// get the root naming context
 			org.omg.CORBA.Object objRef = orb.resolve_initial_references(ServerConstants._NAMING_SERVICE_NAME);

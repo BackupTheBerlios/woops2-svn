@@ -6,6 +6,8 @@ import isimarket.servants.administrationservant.impl.AdministrationServantImpl;
 import isimarket.servants.alarmservant.impl.AlarmServantImpl;
 import isimarket.servants.walletservant.impl.WalletServantImpl;
 
+import java.util.Properties;
+
 import org.omg.CORBA.ORB;
 import org.omg.CosNaming.NameComponent;
 import org.omg.CosNaming.NamingContext;
@@ -19,8 +21,12 @@ public class Server {
 
 	public static void main(String[] args) {
 		try{
+			Properties props = new Properties ();
+			props.put("org.omg.CORBA.ORBInitialPort", "900");
+			props.put("org.omg.CORBA.ORBInitialHost",
+			"localhost");
             // create and initialize the ORB
-            ORB orb = ORB.init(args, null);
+            ORB orb = ORB.init(args, props);
  
             // create servant and register it with the ORB
             ActionTypeServantImpl actionTypeServantRef = new ActionTypeServantImpl();
