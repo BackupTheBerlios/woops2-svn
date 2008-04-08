@@ -108,7 +108,7 @@ public class OperatorDao {
 					.prepareStatement("insert into operator values (?,?,?)");
 			stmt.setString(1, _operator.login);
 			stmt.setString(2, _operator.password);
-			stmt.setInt(3, _operator.wallet.wallet_id);
+			stmt.setInt(3, _operator.wallet.walletId);
 			stmt.executeUpdate();
 		} catch (SQLException e) {
 			System.out.println("OperatorDao -> insert(): "+ e.getMessage());
