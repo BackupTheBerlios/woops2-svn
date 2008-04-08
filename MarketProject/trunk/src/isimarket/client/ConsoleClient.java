@@ -3,6 +3,10 @@ import isimarket.servants.actiontypeservant.ActionTypeServant;
 import isimarket.servants.actiontypeservant.ActionTypeServantHelper;
 import isimarket.servants.administrationservant.AdministrationServant;
 import isimarket.servants.administrationservant.AdministrationServantHelper;
+import isimarket.servants.alarmservant.AlarmServant;
+import isimarket.servants.alarmservant.AlarmServantHelper;
+import isimarket.servants.walletservant.WalletServant;
+import isimarket.servants.walletservant.WalletServantHelper;
 import isimarket.server.ServerConstants;
 
 import java.util.Properties;
@@ -41,15 +45,22 @@ public class ConsoleClient {
 			
 			AdministrationServant administrationServantRef = AdministrationServantHelper.narrow((Object) bindReference(ncRef,ServerConstants._REF_ADMINISTRATION_SERVANT ));
 			ActionTypeServant actionTypeServantRef = ActionTypeServantHelper.narrow((Object) bindReference(ncRef,ServerConstants._REF_ACTION_SERVANT ));
+			AlarmServant alarmServant = AlarmServantHelper.narrow((Object) bindReference(ncRef,ServerConstants._REF_ALARM_SERVANT ));
+			WalletServant walletServant = WalletServantHelper.narrow((Object) bindReference(ncRef,ServerConstants._REF_WALLET_SERVANT ));
 			
 			System.out.println("administrationServantRef @ "+administrationServantRef);
 			System.out.println("actionTypeServantRef @"+actionTypeServantRef);
+			System.out.println("alarmServant @"+alarmServant);
+			System.out.println("walletServant @"+walletServant);
+			System.out.println("client launched ...");
 			
 			// TODO creer un operator test
-			administrationServantRef.createOperator("test","password",1000.0f);
-			administrationServantRef.updateCash("test",3000.0f);
-			
-			actionTypeServantRef.createNewActionType("tst","action_de_test","0000-00-00 00:00",10.0f,1000,10.0f);
+			System.out.println("createOperator ... ");
+			//administrationServantRef.createOperator("test","password",1000.0f);
+			System.out.println("updateCash ... ");
+			//administrationServantRef.updateCash("test",3000.0f);
+			System.out.println("createNewActionType ... ");
+			actionTypeServantRef.createNewActionType("tst4","action_de_test4","0000-00-00 00:00",10.0f,1000,10.0f);
 
 		} catch (Exception e) {
 			e.printStackTrace();
