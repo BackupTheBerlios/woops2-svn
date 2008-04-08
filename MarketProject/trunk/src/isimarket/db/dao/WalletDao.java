@@ -43,9 +43,7 @@ public class WalletDao {
 			res = stmt.executeQuery();
 			if (res.next()) {
 				return new Wallet(res.getInt(_COL_WALLET_ID), 
-						res.getFloat(_COL_CASH), 
-						new Action[0], 
-						new Alarm[0]);
+						res.getFloat(_COL_CASH));
 			} else {
 				System.out.println("Wallet inconnu : " + _walletId);
 				return null;
@@ -80,9 +78,7 @@ public class WalletDao {
 				System.out.println("walletdao ok !");
 				
 				return new Wallet(res.getInt(_COL_WALLET_ID), 
-						res.getFloat(_COL_CASH), 
-						new Action[0], 
-						new Alarm[0]);
+						res.getFloat(_COL_CASH));
 			} else {
 				System.out.println("Wallet inconnu ");
 				return null;
@@ -165,7 +161,7 @@ public class WalletDao {
 			stmt = DatabaseManager.getInstance().getConnection()
 					.prepareStatement("update wallet set "+_COL_CASH+" = ? where "+_COL_WALLET_ID+"= ?");
 			stmt.setFloat(1, _wallet.cash);
-			stmt.setInt(2, _wallet.wallet_id);
+			stmt.setInt(2, _wallet.walletId);
 			stmt.executeUpdate();
 		} catch (SQLException e) {
 			System.out.println("WalletDao -> update(): "+ e.getMessage());
