@@ -13,7 +13,8 @@ import org.jdesktop.application.SingleFrameApplication;
 public class IsiMarketClient extends SingleFrameApplication {
     private IsiMarketClientLoginBox loginFrame = null;
     private IsiMarketClientView mainView = null;
-
+    private String login = "";
+    
     /**
      * At startup create and show the main frame of the application.
      */
@@ -23,6 +24,11 @@ public class IsiMarketClient extends SingleFrameApplication {
         
         loginFrame = new IsiMarketClientLoginBox(mainView.getFrame());
         show(loginFrame);
+        while (login.equals("")) {
+            login = loginFrame.getLogin();
+        }
+        
+        System.out.println("login is " + login);
     }
 
     /**
