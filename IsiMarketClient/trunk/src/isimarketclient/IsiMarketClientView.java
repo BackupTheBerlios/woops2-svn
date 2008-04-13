@@ -84,11 +84,11 @@ public class IsiMarketClientView extends FrameView {
     @Action
     public void showAboutBox() {
         if (aboutBox == null) {
-            JFrame mainFrame = IsiMarketClientApp.getApplication().getMainFrame();
+            JFrame mainFrame = IsiMarketClient.getApplication().getMainFrame();
             aboutBox = new IsiMarketClientAboutBox(mainFrame);
             aboutBox.setLocationRelativeTo(mainFrame);
         }
-        IsiMarketClientApp.getApplication().show(aboutBox);
+        IsiMarketClient.getApplication().show(aboutBox);
     }
 
     /** This method is called from within the constructor to
@@ -119,7 +119,7 @@ public class IsiMarketClientView extends FrameView {
         jTabbedPane1.setName("jTabbedPane1"); // NOI18N
 
         jTabbedPane2.setName("jTabbedPane2"); // NOI18N
-        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(isimarketclient.IsiMarketClientApp.class).getContext().getResourceMap(IsiMarketClientView.class);
+        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(isimarketclient.IsiMarketClient.class).getContext().getResourceMap(IsiMarketClientView.class);
         jTabbedPane1.addTab(resourceMap.getString("jTabbedPane2.TabConstraints.tabTitle"), jTabbedPane2); // NOI18N
 
         jTabbedPane3.setEnabled(false);
@@ -147,7 +147,7 @@ public class IsiMarketClientView extends FrameView {
         fileMenu.setText(resourceMap.getString("fileMenu.text")); // NOI18N
         fileMenu.setName("fileMenu"); // NOI18N
 
-        javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(isimarketclient.IsiMarketClientApp.class).getContext().getActionMap(IsiMarketClientView.class, this);
+        javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(isimarketclient.IsiMarketClient.class).getContext().getActionMap(IsiMarketClientView.class, this);
         exitMenuItem.setAction(actionMap.get("quit")); // NOI18N
         exitMenuItem.setName("exitMenuItem"); // NOI18N
         fileMenu.add(exitMenuItem);
