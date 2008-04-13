@@ -11,12 +11,18 @@ import org.jdesktop.application.SingleFrameApplication;
  * The main class of the application.
  */
 public class IsiMarketClient extends SingleFrameApplication {
+    private IsiMarketClientLoginBox loginFrame = null;
+    private IsiMarketClientView mainView = null;
 
     /**
      * At startup create and show the main frame of the application.
      */
     @Override protected void startup() {
-        show(new IsiMarketClientView(this));
+        mainView = new IsiMarketClientView(this);
+        //show(mainView);
+        
+        loginFrame = new IsiMarketClientLoginBox(mainView.getFrame());
+        show(loginFrame);
     }
 
     /**
