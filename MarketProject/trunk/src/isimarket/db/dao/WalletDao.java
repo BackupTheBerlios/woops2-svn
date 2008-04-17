@@ -1,8 +1,6 @@
 package isimarket.db.dao;
 
 import isimarket.db.manager.DatabaseManager;
-import isimarket.model.Action;
-import isimarket.model.Alarm;
 import isimarket.model.Wallet;
 
 import java.sql.PreparedStatement;
@@ -10,8 +8,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class WalletDao {
+	
 	// colonnes
 	private static final String _COL_CASH = "cash";
+	
 	private static final String _COL_WALLET_ID = "wallet_id";
 
 	public void delete(int _id) {
@@ -66,7 +66,7 @@ public class WalletDao {
 		}
 	}
 	
-	public Wallet getLastWallet() {
+	public Wallet getLastInsertedWallet() {
 		PreparedStatement stmt = null;
 		ResultSet res = null;
 		try {

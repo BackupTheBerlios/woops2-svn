@@ -12,11 +12,14 @@ module isimarket{
 			
 			module walletservant{
 				interface WalletServant{
-					Wallet getWallet(in string operatorLogin, in string password);
+				
+					exception BadQuantityException {string reason;};
+				
+					Wallet authentication(in string operatorLogin, in string password);
 					ActionList getActionList(in long walletId); 
-					ActionList getAction(in long walletId, in long actionId);
-					Action buyAction(in long walletId, in string actionTypeCode , in long quantity);
-					void sellAction(in long walletActionId, in string actionTypeCode, in long quantity); 
+					Action getAction(in long actionId);
+					Action buyAction(in long walletId, in string actionTypeCode , in long quantity) raises (BadQuantityException);
+					void sellAction(in long walletId, in string actionTypeCode, in long actionId, in long quantity); 
 				};
 			};
 			
@@ -37,10 +40,10 @@ module isimarket{
 				interface ActionTypeServant{
 					ActionTypeList getActionTypeList();
 					ActionType getActionType(in string actionTypeCode);
-					void createNewActionType(in string code,in string label,in string introductionDate, in float introductionPrice, in long quantity, in
+					void createActionType(in string code,in string label,in string introductionDate, in float introductionPrice, in long quantity, in
 		    float currentPrice);
-					void updateActionType(in string code,in string label,in string introductionDate, in float introductionPrice, in long quantity, in
-		    float currentPrice);
+					void updateActionTypeQuantity(in string code, in long quantity);
+		    		void updateActionTypeCurrentPrice(in string code, in float currentPrice);
 					EventList getEvents(in string actionTypeCode);
 				};
 			};

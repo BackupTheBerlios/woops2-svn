@@ -20,7 +20,7 @@ public class AdministrationServantImplTest extends TestCase {
 	public void testCreateWallet() {
 		float _cash = 1000.0f;
 		client.getAdministrationServantRef().createWallet(_cash);
-		Wallet w = walletDao.getLastWallet();
+		Wallet w = walletDao.getLastInsertedWallet();
 		assertEquals(w.cash, _cash);
 	}
 

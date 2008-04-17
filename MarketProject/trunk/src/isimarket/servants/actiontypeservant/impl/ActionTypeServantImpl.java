@@ -33,13 +33,10 @@ public class ActionTypeServantImpl extends _ActionTypeServantImplBase{
 	}
 
 	public Event[] getEvents(String _actionTypeCode) {
-		
-		
-		
 		return null;
 	}
 
-	public void createNewActionType(String code, String label,
+	public void createActionType(String code, String label,
 			String introductionDate, float introductionPrice, int quantity,
 			float currentPrice) {
 		System.out.println("createNewActionType : "+code+""+label+" ... ");
@@ -49,15 +46,12 @@ public class ActionTypeServantImpl extends _ActionTypeServantImplBase{
 		System.out.println("createNewActionType ok");
 	}
 
-	public void updateActionType(String code, String label,
-			String introductionDate, float introductionPrice, int quantity,
-			float newPrice) {
-		System.out.println("updateActionType : "+code+""+label+" ... ");
-		
-		this.actionTypeDao.updateCurrentPrice(code, newPrice);
+	public void updateActionTypeQuantity(String code, int quantity) {
 		this.actionTypeDao.updateQuantity(code, quantity);
-		
-		System.out.println("updateActionType ok");
+	}
+	
+	public void updateActionTypeCurrentPrice(String code, float newCurrentPrice) {
+		this.actionTypeDao.updateCurrentPrice(code, newCurrentPrice);
 	}
 
 }

@@ -39,7 +39,7 @@ public class WalletServantImpl extends _WalletServantImplBase {
 	}
 
 	public Action getAction(int _actionId) {
-		return this.actionDao.get(_actionId, _walletId);
+		return this.actionDao.get(_actionId);
 	}
 
 	public Action[] getActionList(int _walletId) {
@@ -47,7 +47,7 @@ public class WalletServantImpl extends _WalletServantImplBase {
 		return null;
 	}
 
-	public Wallet getWallet(String _operatorLogin, String _password) {
+	public Wallet authentication(String _operatorLogin, String _password) {
 		// TODO Auto-generated method stub
 		return null;
 	}
