@@ -40,7 +40,7 @@ public class AdministrationServantImpl extends _AdministrationServantImplBase {
 		System.out.println("createOperator : "+_operatorLogin+" "+_password+" "+inital_Cash);
 		
 		this.createWallet(inital_Cash);
-		Wallet wallet = this.walletDao.getLastWallet();
+		Wallet wallet = this.walletDao.getLastInsertedWallet();
 		Operator op = new Operator();
 		op.wallet = wallet;
 		op.login = _operatorLogin;

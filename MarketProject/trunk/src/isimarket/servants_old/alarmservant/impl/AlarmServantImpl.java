@@ -8,8 +8,7 @@ public class AlarmServantImpl extends _AlarmServantImplBase {
 
 	public void createAlarm(int _walletId, int _alarmType_id,
 			String _actionTypeCode) {
-		// TODO Auto-generated method stub
-
+		
 	}
 
 	public void createAlarmType(int _alarmTypeId, String _label) {
