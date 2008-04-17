@@ -155,13 +155,13 @@ public class WalletDao {
 		}
 	}
 
-	public void updateCash(Wallet _wallet) {
+	public void updateCash(int _walletId, float _newCash) {
 		PreparedStatement stmt = null;
 		try {
 			stmt = DatabaseManager.getInstance().getConnection()
 					.prepareStatement("update wallet set "+_COL_CASH+" = ? where "+_COL_WALLET_ID+"= ?");
-			stmt.setFloat(1, _wallet.cash);
-			stmt.setInt(2, _wallet.walletId);
+			stmt.setFloat(1, _newCash);
+			stmt.setInt(2, _walletId);
 			stmt.executeUpdate();
 		} catch (SQLException e) {
 			System.out.println("WalletDao -> update(): "+ e.getMessage());

@@ -14,11 +14,12 @@ module isimarket{
 				interface WalletServant{
 				
 					exception BadQuantityException {string reason;};
+					exception NotEnoughCashException {string reason;};
 				
 					Wallet authentication(in string operatorLogin, in string password);
 					ActionList getActionList(in long walletId); 
 					Action getAction(in long actionId);
-					Action buyAction(in long walletId, in string actionTypeCode , in long quantity) raises (BadQuantityException);
+					Action buyAction(in long walletId, in string actionTypeCode , in long quantity) raises (BadQuantityException,NotEnoughCashException);
 					void sellAction(in long walletId, in string actionTypeCode, in long actionId, in long quantity); 
 				};
 			};
