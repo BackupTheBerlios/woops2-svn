@@ -4,7 +4,7 @@ module isimarket{
 		module servants{
 			module administrationservant{
 				interface AdministrationServant{
-					void updateCash(in string operatorLogin, in  float newCash);
+					void updateCash(in string login, in  float newCash);
 					void createOperator(in string operatorLogin, in string password,in float initalCash);
 					void createWallet(in float initalCash);
 				};
@@ -15,9 +15,11 @@ module isimarket{
 				
 					exception BadQuantityException {string reason;};
 					exception NotEnoughCashException {string reason;};
-				
-					Wallet authentication(in string operatorLogin, in string password);
-					ActionList getActionList(in long walletId); 
+					exception UnknownOperatorException {string reason;};
+					exception WrongPasswordException {string reason;};		
+							
+					Wallet authentication(in string login, in string password) raises (UnknownOperatorException,WrongPasswordException);
+					ActionList getActionsListFromWallet(in long walletId); 
 					Action getAction(in long actionId);
 					Action buyAction(in long walletId, in string actionTypeCode , in long quantity) raises (BadQuantityException,NotEnoughCashException);
 					void sellAction(in long walletId, in string actionTypeCode, in long actionId, in long quantity); 
@@ -31,8 +33,8 @@ module isimarket{
 					void createAlarmType(in long alarmTypeId,in string label);
 					void deleteAlarmType(in long alarmTypeId);
 					AlarmList getAlarmList(in long _walletId);
-					Alarm getAlarm(in long walletId, in long alarmType_id,in string actionTypeCode);
-					void createAlarm(in long walletId, in long alarmType_id,in string actionTypeCode);
+					Alarm getAlarm(in long walletId, in long alarmTypeId,in string actionTypeCode);
+					void createAlarm(in long walletId, in long alarmTypeId,in string actionTypeCode);
 					void deleteAlarm(in long alarmId);
 				};
 			};

@@ -8,7 +8,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-//TODO faire operator dao
 public class OperatorDao {
 	
 	protected WalletDao walletDao = new WalletDao();
@@ -45,11 +44,11 @@ public class OperatorDao {
 						.getString("password"),
 						this.walletDao.get(res.getInt("wallet_id")));
 			} else {
-				System.out.println("operator inconnu : " + _login);
+				System.out.println("Operateur inconnu : " + _login);
 				return null;
 			}
 		} catch (SQLException e) {
-			System.out.println("operatordao -> get(): "+ e.getMessage());
+			System.out.println("OperatorDao -> get(): "+ e.getMessage());
 			e.printStackTrace();
 			return null;
 		} finally {
@@ -121,45 +120,5 @@ public class OperatorDao {
 			}
 		}
 	}
-//
-//	public void updateQuantity(ActionType _actionType) {
-//		PreparedStatement stmt = null;
-//		try {
-//			stmt = DatabaseManager.getInstance().getConnection()
-//					.prepareStatement("update actiontype set quantity = ? where code = ?");
-//			stmt.setInt(1, _actionType.quantity);
-//			stmt.setString(2, _actionType.code);
-//			stmt.executeUpdate();
-//		} catch (SQLException e) {
-//			System.out.println("ActionTypeDao -> update(): "+ e.getMessage());
-//			e.printStackTrace();
-//		} finally {
-//			try {
-//				if (stmt != null)
-//					stmt.close();
-//			} catch (SQLException e) {
-//			}
-//		}
-//	}
-//	
-//	public void updateCurrentPrice(ActionType _actionType) {
-//		PreparedStatement stmt = null;
-//		try {
-//			stmt = DatabaseManager.getInstance().getConnection()
-//					.prepareStatement("update actiontype set current_price = ? where code = ?");
-//			stmt.setFloat(1, _actionType.currentPrice);
-//			stmt.setString(2, _actionType.code);
-//			stmt.executeUpdate();
-//		} catch (SQLException e) {
-//			System.out.println("ActionTypeDao -> update(): "+ e.getMessage());
-//			e.printStackTrace();
-//		} finally {
-//			try {
-//				if (stmt != null)
-//					stmt.close();
-//			} catch (SQLException e) {
-//			}
-//		}
-//	}
 
 }
