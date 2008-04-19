@@ -83,7 +83,7 @@ public class WalletServantImpl extends _WalletServantImplBase {
 		
 		if (op == null) throw new UnknownOperatorException("Operateur inconnu");
 		
-		if (op.password != _password) throw new WrongPasswordException("Password erroné");
+		if (op.password != _password) throw new WrongPasswordException("Mot de passe erroné");
 		
 		return op.wallet;
 	}
