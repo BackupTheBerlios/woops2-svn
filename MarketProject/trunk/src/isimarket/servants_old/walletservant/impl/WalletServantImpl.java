@@ -2,14 +2,18 @@ package isimarket.servants.walletservant.impl;
 
 import isimarket.db.dao.ActionDao;
 import isimarket.db.dao.ActionTypeDao;
+import isimarket.db.dao.OperatorDao;
 import isimarket.db.dao.WalletDao;
 import isimarket.model.Action;
 import isimarket.model.ActionType;
+import isimarket.model.Operator;
 import isimarket.model.Wallet;
 import isimarket.servants.walletservant._WalletServantImplBase;
 import isimarket.servants.walletservant.WalletServantPackage.BadQuantityException;
 import isimarket.servants.walletservant.WalletServantPackage.NotEnoughCashException;
 import isimarket.server.ServerConstants;
+
+import java.util.List;
 
 public class WalletServantImpl extends _WalletServantImplBase {
 	
@@ -20,6 +24,8 @@ public class WalletServantImpl extends _WalletServantImplBase {
 	protected WalletDao walletDao = new WalletDao();
 	
 	protected ActionTypeDao actionTypeDao = new ActionTypeDao();
+	
+	protected OperatorDao operatorDao = new OperatorDao();
 
 	public Action buyAction(int _walletId, String _actionTypeCode, int _quantity) throws BadQuantityException,NotEnoughCashException {
 		
@@ -29,9 +35,9 @@ public class WalletServantImpl extends _WalletServantImplBase {
 		// verifie que la quantite souhaitee est disponible
 		if (actionType.quantity < _quantity) throw new BadQuantityException("Nombre d'actions disponibles insuffisant");
 		
-		float montantTransaction = _quantity * actionType.currentPrice;
+		float transaction = _quantity * actionType.currentPrice;
 		// verifie qu'il y a assez d'argent sur le compte pour effectuer la transaction
-		if (wallet.cash < montantTransaction) throw new NotEnoughCashException("Solde de portefeuille insuffisant");
+		if (wallet.cash < transaction) throw new NotEnoughCashException("Solde de portefeuille insuffisant");
 		
 		Action action = new Action();
 		action.actiontype = actionType;
@@ -42,7 +48,7 @@ public class WalletServantImpl extends _WalletServantImplBase {
 		
 		this.actionDao.insert(action);
 		this.actionTypeDao.updateQuantity(actionType.code, actionType.quantity - _quantity);
-		this.walletDao.updateCash(wallet.walletId, wallet.cash - montantTransaction);
+		this.walletDao.updateCash(wallet.walletId, wallet.cash - transaction);
 		
 		return this.actionDao.getLastInsertedAction();
 	}
@@ -57,26 +63,37 @@ public class WalletServantImpl extends _WalletServantImplBase {
 	/**
 	 * 
 	 */
-	public Action[] getActionList(int _walletId) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	/**
-	 * 
-	 */
-	public Wallet authentication(String _operatorLogin, String _password) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	/**
-	 * 
-	 */
-	public void sellAction(int _walletActionId, String _actionTypeCode, int _actionId,
-			int _quantity) {
-		// TODO Auto-generated method stub
+	public Action[] getActionsListFromWallet(int _walletId) {
 		
+		List<Action> actionslist = this.actionDao.getAllFromWallet(_walletId);
+		Action[] actionArray = new Action[actionslist.size()];
+		
+		System.out.println("getActionTypeList ok");
+		return actionslist.toArray(actionArray);
+	}
+
+	/**
+	 * 
+	 */
+	public Wallet authentication(String _login, String _password) throws UnknownOperatorException,WrongPasswordException {
+		
+		Operator op = this.operatorDao.get(_login);
+		
+		if (op == null) throw new UnknownOperatorException("Operateur inconnu");
+		
+		if (op.password != _password) throw new WrongPasswordException("Password erroné");
+		
+		return op.wallet;
+	}
+
+	/**
+	 * 
+	 */
+	public void sellAction(int _walletId, String _actionTypeCode, int _actionId,
+			int _quantity) {
+		
+		Wallet wallet = this.walletDao.get(_walletId);
+		ActionType actionType = this.actionTypeDao.get(_actionTypeCode);
 	}
 
 }
