@@ -11,6 +11,8 @@ import isimarket.model.Wallet;
 import isimarket.servants.walletservant._WalletServantImplBase;
 import isimarket.servants.walletservant.WalletServantPackage.BadQuantityException;
 import isimarket.servants.walletservant.WalletServantPackage.NotEnoughCashException;
+import isimarket.servants.walletservant.WalletServantPackage.UnknownOperatorException;
+import isimarket.servants.walletservant.WalletServantPackage.WrongPasswordException;
 import isimarket.server.ServerConstants;
 
 import java.util.List;
