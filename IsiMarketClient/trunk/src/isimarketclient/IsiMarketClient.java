@@ -14,6 +14,7 @@ import org.jdesktop.application.SingleFrameApplication;
 public class IsiMarketClient extends SingleFrameApplication {
     private IsiMarketClientLoginDialog loginFrame = null;
     private IsiMarketClientFrame mainView = null;
+    private IsiMarketAdminFrame adminView = null;
     private IsiMarketConnection.UserType session = IsiMarketConnection.UserType.NONE;
     
     /**
@@ -21,6 +22,7 @@ public class IsiMarketClient extends SingleFrameApplication {
      */
     @Override protected void startup() {
         mainView = new IsiMarketClientFrame(this);
+        adminView = new IsiMarketAdminFrame(this);
         loginFrame = new IsiMarketClientLoginDialog(mainView.getFrame());
         show(loginFrame);
         
@@ -29,7 +31,7 @@ public class IsiMarketClient extends SingleFrameApplication {
         }
         
         if (session == IsiMarketConnection.UserType.ADMIN){
-            
+            show(adminView);
         }
         else if (session == IsiMarketConnection.UserType.OPERATOR){
             show(mainView);
