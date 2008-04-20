@@ -20,7 +20,37 @@ import javax.swing.JFrame;
  * The application's main frame.
  */
 public class IsiMarketClientView extends FrameView {
-
+    
+    private boolean isConnected = false;
+    private boolean isAdmin = false;
+    
+    public boolean getIsAdmin(){
+        return isAdmin;
+    }
+    
+    public void setIsAdmin(boolean b){
+        isAdmin = b;
+        switchAdminPanel(isAdmin);
+    }
+    
+    private void switchAdminPanel(boolean b){
+        marketPanel.setVisible(!b);
+        operatorPanel.setVisible(!b);
+        adminPanel.setVisible(b);
+    }
+    
+    public boolean getIsConnected(){
+        return isConnected;
+    }
+    
+    public void setIsConnected(boolean b){
+        isConnected = b;
+    }
+    
+    public void setLoginInUse(String login){
+        getFrame().setTitle(getFrame().getTitle() + " - connecté en tant que  "+ login);
+    }
+    
     public IsiMarketClientView(SingleFrameApplication app) {
         super(app);
 
@@ -100,9 +130,18 @@ public class IsiMarketClientView extends FrameView {
     private void initComponents() {
 
         mainPanel = new javax.swing.JPanel();
-        jTabbedPane1 = new javax.swing.JTabbedPane();
-        jTabbedPane2 = new javax.swing.JTabbedPane();
-        jTabbedPane3 = new javax.swing.JTabbedPane();
+        tabbedPane = new javax.swing.JTabbedPane();
+        marketPanel = new javax.swing.JPanel();
+        scrollMarketPanel = new javax.swing.JScrollPane();
+        marketTable = new javax.swing.JTable();
+        buyActionTypeButton = new javax.swing.JButton();
+        showActionTypeButton = new javax.swing.JButton();
+        operatorPanel = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        adminPanel = new javax.swing.JPanel();
         menuBar = new javax.swing.JMenuBar();
         javax.swing.JMenu fileMenu = new javax.swing.JMenu();
         javax.swing.JMenuItem exitMenuItem = new javax.swing.JMenuItem();
@@ -116,15 +155,127 @@ public class IsiMarketClientView extends FrameView {
 
         mainPanel.setName("mainPanel"); // NOI18N
 
-        jTabbedPane1.setName("jTabbedPane1"); // NOI18N
+        tabbedPane.setName("tabbedPane"); // NOI18N
 
-        jTabbedPane2.setName("jTabbedPane2"); // NOI18N
+        marketPanel.setName("marketPanel"); // NOI18N
+
+        scrollMarketPanel.setName("scrollMarketPanel"); // NOI18N
+
+        marketTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Code", "Label", "Price", "Quantity"
+            }
+        ));
+        marketTable.setName("marketTable"); // NOI18N
+        scrollMarketPanel.setViewportView(marketTable);
+
         org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(isimarketclient.IsiMarketClient.class).getContext().getResourceMap(IsiMarketClientView.class);
-        jTabbedPane1.addTab(resourceMap.getString("jTabbedPane2.TabConstraints.tabTitle"), jTabbedPane2); // NOI18N
+        buyActionTypeButton.setText(resourceMap.getString("buyActionTypeButton.text")); // NOI18N
+        buyActionTypeButton.setName("buyActionTypeButton"); // NOI18N
 
-        jTabbedPane3.setEnabled(false);
-        jTabbedPane3.setName("jTabbedPane3"); // NOI18N
-        jTabbedPane1.addTab(resourceMap.getString("jTabbedPane3.TabConstraints.tabTitle"), jTabbedPane3); // NOI18N
+        showActionTypeButton.setText(resourceMap.getString("showActionTypeButton.text")); // NOI18N
+        showActionTypeButton.setName("showActionTypeButton"); // NOI18N
+
+        javax.swing.GroupLayout marketPanelLayout = new javax.swing.GroupLayout(marketPanel);
+        marketPanel.setLayout(marketPanelLayout);
+        marketPanelLayout.setHorizontalGroup(
+            marketPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(marketPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(scrollMarketPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 483, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(marketPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(buyActionTypeButton, javax.swing.GroupLayout.DEFAULT_SIZE, 253, Short.MAX_VALUE)
+                    .addComponent(showActionTypeButton, javax.swing.GroupLayout.DEFAULT_SIZE, 253, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        marketPanelLayout.setVerticalGroup(
+            marketPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(marketPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(marketPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(marketPanelLayout.createSequentialGroup()
+                        .addComponent(buyActionTypeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(showActionTypeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(scrollMarketPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 247, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+
+        tabbedPane.addTab(resourceMap.getString("marketPanel.TabConstraints.tabTitle"), marketPanel); // NOI18N
+
+        operatorPanel.setName("operatorPanel"); // NOI18N
+
+        jScrollPane1.setName("jScrollPane1"); // NOI18N
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Code", "Prix d'achat", "Quantité", "Date"
+            }
+        ));
+        jTable1.setName("jTable1"); // NOI18N
+        jScrollPane1.setViewportView(jTable1);
+
+        jLabel1.setText(resourceMap.getString("jLabel1.text")); // NOI18N
+        jLabel1.setName("jLabel1"); // NOI18N
+
+        jTextField1.setEditable(false);
+        jTextField1.setText(resourceMap.getString("jTextField1.text")); // NOI18N
+        jTextField1.setName("jTextField1"); // NOI18N
+
+        javax.swing.GroupLayout operatorPanelLayout = new javax.swing.GroupLayout(operatorPanel);
+        operatorPanel.setLayout(operatorPanelLayout);
+        operatorPanelLayout.setHorizontalGroup(
+            operatorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(operatorPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 490, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        operatorPanelLayout.setVerticalGroup(
+            operatorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(operatorPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(operatorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 247, Short.MAX_VALUE)
+                    .addGroup(operatorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel1)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
+        );
+
+        tabbedPane.addTab(resourceMap.getString("operatorPanel.TabConstraints.tabTitle"), operatorPanel); // NOI18N
+
+        adminPanel.setName("adminPanel"); // NOI18N
+
+        javax.swing.GroupLayout adminPanelLayout = new javax.swing.GroupLayout(adminPanel);
+        adminPanel.setLayout(adminPanelLayout);
+        adminPanelLayout.setHorizontalGroup(
+            adminPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 762, Short.MAX_VALUE)
+        );
+        adminPanelLayout.setVerticalGroup(
+            adminPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 269, Short.MAX_VALUE)
+        );
+
+        tabbedPane.addTab(resourceMap.getString("adminPanel.TabConstraints.tabTitle"), adminPanel); // NOI18N
 
         javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);
         mainPanel.setLayout(mainPanelLayout);
@@ -132,14 +283,14 @@ public class IsiMarketClientView extends FrameView {
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(mainPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 559, Short.MAX_VALUE)
+                .addComponent(tabbedPane, javax.swing.GroupLayout.DEFAULT_SIZE, 767, Short.MAX_VALUE)
                 .addContainerGap())
         );
         mainPanelLayout.setVerticalGroup(
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(mainPanelLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 350, Short.MAX_VALUE))
+                .addComponent(tabbedPane, javax.swing.GroupLayout.DEFAULT_SIZE, 297, Short.MAX_VALUE))
         );
 
         menuBar.setName("menuBar"); // NOI18N
@@ -149,6 +300,7 @@ public class IsiMarketClientView extends FrameView {
 
         javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(isimarketclient.IsiMarketClient.class).getContext().getActionMap(IsiMarketClientView.class, this);
         exitMenuItem.setAction(actionMap.get("quit")); // NOI18N
+        exitMenuItem.setText(resourceMap.getString("exitMenuItem.text")); // NOI18N
         exitMenuItem.setName("exitMenuItem"); // NOI18N
         fileMenu.add(exitMenuItem);
 
@@ -158,6 +310,7 @@ public class IsiMarketClientView extends FrameView {
         helpMenu.setName("helpMenu"); // NOI18N
 
         aboutMenuItem.setAction(actionMap.get("showAboutBox")); // NOI18N
+        aboutMenuItem.setText(resourceMap.getString("aboutMenuItem.text")); // NOI18N
         aboutMenuItem.setName("aboutMenuItem"); // NOI18N
         helpMenu.add(aboutMenuItem);
 
@@ -178,11 +331,11 @@ public class IsiMarketClientView extends FrameView {
         statusPanel.setLayout(statusPanelLayout);
         statusPanelLayout.setHorizontalGroup(
             statusPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(statusPanelSeparator, javax.swing.GroupLayout.DEFAULT_SIZE, 583, Short.MAX_VALUE)
+            .addComponent(statusPanelSeparator, javax.swing.GroupLayout.DEFAULT_SIZE, 787, Short.MAX_VALUE)
             .addGroup(statusPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(statusMessageLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 399, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 617, Short.MAX_VALUE)
                 .addComponent(progressBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(statusAnimationLabel)
@@ -206,15 +359,24 @@ public class IsiMarketClientView extends FrameView {
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTabbedPane jTabbedPane2;
-    private javax.swing.JTabbedPane jTabbedPane3;
+    private javax.swing.JPanel adminPanel;
+    private javax.swing.JButton buyActionTypeButton;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JPanel mainPanel;
+    private javax.swing.JPanel marketPanel;
+    private javax.swing.JTable marketTable;
     private javax.swing.JMenuBar menuBar;
+    private javax.swing.JPanel operatorPanel;
     private javax.swing.JProgressBar progressBar;
+    private javax.swing.JScrollPane scrollMarketPanel;
+    private javax.swing.JButton showActionTypeButton;
     private javax.swing.JLabel statusAnimationLabel;
     private javax.swing.JLabel statusMessageLabel;
     private javax.swing.JPanel statusPanel;
+    private javax.swing.JTabbedPane tabbedPane;
     // End of variables declaration//GEN-END:variables
 
     private final Timer messageTimer;

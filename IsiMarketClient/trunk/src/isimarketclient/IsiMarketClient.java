@@ -28,6 +28,19 @@ public class IsiMarketClient extends SingleFrameApplication {
             login = loginFrame.getLogin();
         }
         
+        mainView.setLoginInUse(login);
+        
+        if (login.equals("admin")){
+            mainView.setIsAdmin(true);
+            show(mainView);
+        }
+        
+        else if(login.length() > 0){
+            mainView.setIsAdmin(false);
+            mainView.setIsConnected(true);
+            show(mainView);
+        }
+        
         System.out.println("login is " + login);
     }
 

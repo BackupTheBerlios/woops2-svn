@@ -16,7 +16,7 @@ public class IsiMarketClientLoginBox extends javax.swing.JDialog {
     public IsiMarketClientLoginBox(java.awt.Frame parent) {
         super(parent);
         initComponents();
-        getRootPane().setDefaultButton(closeButton);
+        getRootPane().setDefaultButton(quitButton);
     }
 
     @Action public void closeAboutBox() {
@@ -31,14 +31,14 @@ public class IsiMarketClientLoginBox extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        closeButton = new javax.swing.JButton();
+        quitButton = new javax.swing.JButton();
         javax.swing.JLabel titleLabel = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        connectionButton = new javax.swing.JButton();
         loginTextField = new javax.swing.JTextField();
-        passwordTextField = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        passwordField = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setModal(true);
@@ -46,28 +46,30 @@ public class IsiMarketClientLoginBox extends javax.swing.JDialog {
         setResizable(false);
 
         javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(isimarketclient.IsiMarketClient.class).getContext().getActionMap(IsiMarketClientLoginBox.class, this);
-        closeButton.setAction(actionMap.get("closeAboutBox")); // NOI18N
+        quitButton.setAction(actionMap.get("closeAboutBox")); // NOI18N
         org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(isimarketclient.IsiMarketClient.class).getContext().getResourceMap(IsiMarketClientLoginBox.class);
-        closeButton.setText(resourceMap.getString("closeButton.text")); // NOI18N
-        closeButton.setName("closeButton"); // NOI18N
+        quitButton.setText(resourceMap.getString("quitButton.text")); // NOI18N
+        quitButton.setName("quitButton"); // NOI18N
+        quitButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                quitButtonActionPerformed(evt);
+            }
+        });
 
         titleLabel.setFont(titleLabel.getFont().deriveFont(titleLabel.getFont().getStyle() | java.awt.Font.BOLD, titleLabel.getFont().getSize()+4));
         titleLabel.setText(resourceMap.getString("Application.title")); // NOI18N
         titleLabel.setName("titleLabel"); // NOI18N
 
-        jButton1.setText(resourceMap.getString("jButton1.text")); // NOI18N
-        jButton1.setName("jButton1"); // NOI18N
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        connectionButton.setText(resourceMap.getString("connectionButton.text")); // NOI18N
+        connectionButton.setName("connectionButton"); // NOI18N
+        connectionButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                connectionButtonActionPerformed(evt);
             }
         });
 
         loginTextField.setText(resourceMap.getString("loginTextField.text")); // NOI18N
         loginTextField.setName("loginTextField"); // NOI18N
-
-        passwordTextField.setText(resourceMap.getString("passwordTextField.text")); // NOI18N
-        passwordTextField.setName("passwordTextField"); // NOI18N
 
         jLabel1.setText(resourceMap.getString("jLabel1.text")); // NOI18N
         jLabel1.setName("jLabel1"); // NOI18N
@@ -79,6 +81,9 @@ public class IsiMarketClientLoginBox extends javax.swing.JDialog {
         jLabel3.setText(resourceMap.getString("jLabel3.text")); // NOI18N
         jLabel3.setName("jLabel3"); // NOI18N
 
+        passwordField.setText(resourceMap.getString("passwordField.text")); // NOI18N
+        passwordField.setName("passwordField"); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -87,9 +92,9 @@ public class IsiMarketClientLoginBox extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButton1)
+                        .addComponent(connectionButton)
                         .addGap(2, 2, 2)
-                        .addComponent(closeButton))
+                        .addComponent(quitButton))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -100,8 +105,8 @@ public class IsiMarketClientLoginBox extends javax.swing.JDialog {
                                     .addComponent(jLabel1))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(loginTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE)
-                                    .addComponent(passwordTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE)))
+                                    .addComponent(passwordField, javax.swing.GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE)
+                                    .addComponent(loginTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE)))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(116, 116, 116)
                                 .addComponent(titleLabel)))))
@@ -122,11 +127,11 @@ public class IsiMarketClientLoginBox extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
-                            .addComponent(passwordTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(closeButton)
-                            .addComponent(jButton1)))
+                            .addComponent(quitButton)
+                            .addComponent(connectionButton)))
                     .addComponent(jLabel3))
                 .addContainerGap())
         );
@@ -134,18 +139,23 @@ public class IsiMarketClientLoginBox extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void connectionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_connectionButtonActionPerformed
         login = loginTextField.getText();
-    }//GEN-LAST:event_jButton1ActionPerformed
+        this.dispose();
+}//GEN-LAST:event_connectionButtonActionPerformed
+
+    private void quitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quitButtonActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_quitButtonActionPerformed
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton closeButton;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton connectionButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JTextField loginTextField;
-    private javax.swing.JTextField passwordTextField;
+    private javax.swing.JPasswordField passwordField;
+    private javax.swing.JButton quitButton;
     // End of variables declaration//GEN-END:variables
     
 }
