@@ -1,5 +1,5 @@
 /*
- * IsiMarketClientView.java
+ * IsiMarketClientFrame.java
  */
 
 package isimarketclient;
@@ -19,39 +19,9 @@ import javax.swing.JFrame;
 /**
  * The application's main frame.
  */
-public class IsiMarketClientView extends FrameView {
+public class IsiMarketClientFrame extends FrameView {
     
-    private boolean isConnected = false;
-    private boolean isAdmin = false;
-    
-    public boolean getIsAdmin(){
-        return isAdmin;
-    }
-    
-    public void setIsAdmin(boolean b){
-        isAdmin = b;
-        switchAdminPanel(isAdmin);
-    }
-    
-    private void switchAdminPanel(boolean b){
-        marketPanel.setVisible(!b);
-        operatorPanel.setVisible(!b);
-        adminPanel.setVisible(b);
-    }
-    
-    public boolean getIsConnected(){
-        return isConnected;
-    }
-    
-    public void setIsConnected(boolean b){
-        isConnected = b;
-    }
-    
-    public void setLoginInUse(String login){
-        getFrame().setTitle(getFrame().getTitle() + " - connecté en tant que  "+ login);
-    }
-    
-    public IsiMarketClientView(SingleFrameApplication app) {
+    public IsiMarketClientFrame(SingleFrameApplication app) {
         super(app);
 
         initComponents();
@@ -115,7 +85,7 @@ public class IsiMarketClientView extends FrameView {
     public void showAboutBox() {
         if (aboutBox == null) {
             JFrame mainFrame = IsiMarketClient.getApplication().getMainFrame();
-            aboutBox = new IsiMarketClientAboutBox(mainFrame);
+            aboutBox = new IsiMarketClientAboutFrame(mainFrame);
             aboutBox.setLocationRelativeTo(mainFrame);
         }
         IsiMarketClient.getApplication().show(aboutBox);
@@ -137,11 +107,10 @@ public class IsiMarketClientView extends FrameView {
         buyActionTypeButton = new javax.swing.JButton();
         showActionTypeButton = new javax.swing.JButton();
         operatorPanel = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        jscrollPaneOperatorPanel = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        adminPanel = new javax.swing.JPanel();
+        cashLabel = new javax.swing.JLabel();
+        cashField = new javax.swing.JTextField();
         menuBar = new javax.swing.JMenuBar();
         javax.swing.JMenu fileMenu = new javax.swing.JMenu();
         javax.swing.JMenuItem exitMenuItem = new javax.swing.JMenuItem();
@@ -175,7 +144,7 @@ public class IsiMarketClientView extends FrameView {
         marketTable.setName("marketTable"); // NOI18N
         scrollMarketPanel.setViewportView(marketTable);
 
-        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(isimarketclient.IsiMarketClient.class).getContext().getResourceMap(IsiMarketClientView.class);
+        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(isimarketclient.IsiMarketClient.class).getContext().getResourceMap(IsiMarketClientFrame.class);
         buyActionTypeButton.setText(resourceMap.getString("buyActionTypeButton.text")); // NOI18N
         buyActionTypeButton.setName("buyActionTypeButton"); // NOI18N
 
@@ -212,7 +181,7 @@ public class IsiMarketClientView extends FrameView {
 
         operatorPanel.setName("operatorPanel"); // NOI18N
 
-        jScrollPane1.setName("jScrollPane1"); // NOI18N
+        jscrollPaneOperatorPanel.setName("jscrollPaneOperatorPanel"); // NOI18N
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -226,14 +195,14 @@ public class IsiMarketClientView extends FrameView {
             }
         ));
         jTable1.setName("jTable1"); // NOI18N
-        jScrollPane1.setViewportView(jTable1);
+        jscrollPaneOperatorPanel.setViewportView(jTable1);
 
-        jLabel1.setText(resourceMap.getString("jLabel1.text")); // NOI18N
-        jLabel1.setName("jLabel1"); // NOI18N
+        cashLabel.setText(resourceMap.getString("cashLabel.text")); // NOI18N
+        cashLabel.setName("cashLabel"); // NOI18N
 
-        jTextField1.setEditable(false);
-        jTextField1.setText(resourceMap.getString("jTextField1.text")); // NOI18N
-        jTextField1.setName("jTextField1"); // NOI18N
+        cashField.setEditable(false);
+        cashField.setText(resourceMap.getString("cashField.text")); // NOI18N
+        cashField.setName("cashField"); // NOI18N
 
         javax.swing.GroupLayout operatorPanelLayout = new javax.swing.GroupLayout(operatorPanel);
         operatorPanel.setLayout(operatorPanelLayout);
@@ -241,11 +210,11 @@ public class IsiMarketClientView extends FrameView {
             operatorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(operatorPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 490, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jscrollPaneOperatorPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 490, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel1)
+                .addComponent(cashLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)
+                .addComponent(cashField, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)
                 .addContainerGap())
         );
         operatorPanelLayout.setVerticalGroup(
@@ -253,29 +222,14 @@ public class IsiMarketClientView extends FrameView {
             .addGroup(operatorPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(operatorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 247, Short.MAX_VALUE)
+                    .addComponent(jscrollPaneOperatorPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 247, Short.MAX_VALUE)
                     .addGroup(operatorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel1)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(cashLabel)
+                        .addComponent(cashField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
 
         tabbedPane.addTab(resourceMap.getString("operatorPanel.TabConstraints.tabTitle"), operatorPanel); // NOI18N
-
-        adminPanel.setName("adminPanel"); // NOI18N
-
-        javax.swing.GroupLayout adminPanelLayout = new javax.swing.GroupLayout(adminPanel);
-        adminPanel.setLayout(adminPanelLayout);
-        adminPanelLayout.setHorizontalGroup(
-            adminPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 762, Short.MAX_VALUE)
-        );
-        adminPanelLayout.setVerticalGroup(
-            adminPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 269, Short.MAX_VALUE)
-        );
-
-        tabbedPane.addTab(resourceMap.getString("adminPanel.TabConstraints.tabTitle"), adminPanel); // NOI18N
 
         javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);
         mainPanel.setLayout(mainPanelLayout);
@@ -298,7 +252,7 @@ public class IsiMarketClientView extends FrameView {
         fileMenu.setText(resourceMap.getString("fileMenu.text")); // NOI18N
         fileMenu.setName("fileMenu"); // NOI18N
 
-        javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(isimarketclient.IsiMarketClient.class).getContext().getActionMap(IsiMarketClientView.class, this);
+        javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(isimarketclient.IsiMarketClient.class).getContext().getActionMap(IsiMarketClientFrame.class, this);
         exitMenuItem.setAction(actionMap.get("quit")); // NOI18N
         exitMenuItem.setText(resourceMap.getString("exitMenuItem.text")); // NOI18N
         exitMenuItem.setName("exitMenuItem"); // NOI18N
@@ -359,12 +313,11 @@ public class IsiMarketClientView extends FrameView {
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel adminPanel;
     private javax.swing.JButton buyActionTypeButton;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField cashField;
+    private javax.swing.JLabel cashLabel;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JScrollPane jscrollPaneOperatorPanel;
     private javax.swing.JPanel mainPanel;
     private javax.swing.JPanel marketPanel;
     private javax.swing.JTable marketTable;

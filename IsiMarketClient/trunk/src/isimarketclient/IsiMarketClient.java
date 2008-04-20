@@ -4,6 +4,7 @@
 
 package isimarketclient;
 
+import isimarketclient.IsiMarketConnection.UserType;
 import org.jdesktop.application.Application;
 import org.jdesktop.application.SingleFrameApplication;
 
@@ -11,37 +12,20 @@ import org.jdesktop.application.SingleFrameApplication;
  * The main class of the application.
  */
 public class IsiMarketClient extends SingleFrameApplication {
-    private IsiMarketClientLoginBox loginFrame = null;
-    private IsiMarketClientView mainView = null;
+    private IsiMarketClientLoginFrame loginFrame = null;
+    private IsiMarketClientFrame mainView = null;
     private String login = "";
     
     /**
      * At startup create and show the main frame of the application.
      */
     @Override protected void startup() {
-        mainView = new IsiMarketClientView(this);
-        //show(mainView);
+        mainView = new IsiMarketClientFrame(this);
         
-        loginFrame = new IsiMarketClientLoginBox(mainView.getFrame());
-        show(loginFrame);
-        while (login.equals("")) {
-            login = loginFrame.getLogin();
-        }
+        loginFrame = new IsiMarketClientLoginFrame(mainView.getFrame());
         
-        mainView.setLoginInUse(login);
         
-        if (login.equals("admin")){
-            mainView.setIsAdmin(true);
-            show(mainView);
-        }
         
-        else if(login.length() > 0){
-            mainView.setIsAdmin(false);
-            mainView.setIsConnected(true);
-            show(mainView);
-        }
-        
-        System.out.println("login is " + login);
     }
 
     /**
@@ -65,5 +49,9 @@ public class IsiMarketClient extends SingleFrameApplication {
      */
     public static void main(String[] args) {
         launch(IsiMarketClient.class, args);
+    }
+
+    void setConnectionType(UserType OPERATOR) {
+        throw new UnsupportedOperationException("Not yet implemented");
     }
 }

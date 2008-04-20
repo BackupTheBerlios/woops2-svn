@@ -6,14 +6,9 @@ package isimarketclient;
 
 import org.jdesktop.application.Action;
 
-public class IsiMarketClientLoginBox extends javax.swing.JDialog {
+public class IsiMarketClientLoginFrame extends javax.swing.JDialog {
     
-    private String login = "";
-    public String getLogin(){
-        return login;
-    }
-    
-    public IsiMarketClientLoginBox(java.awt.Frame parent) {
+    public IsiMarketClientLoginFrame(java.awt.Frame parent) {
         super(parent);
         initComponents();
         getRootPane().setDefaultButton(quitButton);
@@ -21,6 +16,7 @@ public class IsiMarketClientLoginBox extends javax.swing.JDialog {
 
     @Action public void closeAboutBox() {
         setVisible(false);
+        this.dispose();
     }
 
     /** This method is called from within the constructor to
@@ -35,9 +31,9 @@ public class IsiMarketClientLoginBox extends javax.swing.JDialog {
         javax.swing.JLabel titleLabel = new javax.swing.JLabel();
         connectionButton = new javax.swing.JButton();
         loginTextField = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        userLabel = new javax.swing.JLabel();
+        passwordLabel = new javax.swing.JLabel();
+        logoLabel = new javax.swing.JLabel();
         passwordField = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -45,9 +41,9 @@ public class IsiMarketClientLoginBox extends javax.swing.JDialog {
         setName("aboutBox"); // NOI18N
         setResizable(false);
 
-        javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(isimarketclient.IsiMarketClient.class).getContext().getActionMap(IsiMarketClientLoginBox.class, this);
+        javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(isimarketclient.IsiMarketClient.class).getContext().getActionMap(IsiMarketClientLoginFrame.class, this);
         quitButton.setAction(actionMap.get("closeAboutBox")); // NOI18N
-        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(isimarketclient.IsiMarketClient.class).getContext().getResourceMap(IsiMarketClientLoginBox.class);
+        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(isimarketclient.IsiMarketClient.class).getContext().getResourceMap(IsiMarketClientLoginFrame.class);
         quitButton.setText(resourceMap.getString("quitButton.text")); // NOI18N
         quitButton.setName("quitButton"); // NOI18N
         quitButton.addActionListener(new java.awt.event.ActionListener() {
@@ -71,15 +67,15 @@ public class IsiMarketClientLoginBox extends javax.swing.JDialog {
         loginTextField.setText(resourceMap.getString("loginTextField.text")); // NOI18N
         loginTextField.setName("loginTextField"); // NOI18N
 
-        jLabel1.setText(resourceMap.getString("jLabel1.text")); // NOI18N
-        jLabel1.setName("jLabel1"); // NOI18N
+        userLabel.setText(resourceMap.getString("userLabel.text")); // NOI18N
+        userLabel.setName("userLabel"); // NOI18N
 
-        jLabel2.setText(resourceMap.getString("jLabel2.text")); // NOI18N
-        jLabel2.setName("jLabel2"); // NOI18N
+        passwordLabel.setText(resourceMap.getString("passwordLabel.text")); // NOI18N
+        passwordLabel.setName("passwordLabel"); // NOI18N
 
-        jLabel3.setIcon(resourceMap.getIcon("jLabel3.icon")); // NOI18N
-        jLabel3.setText(resourceMap.getString("jLabel3.text")); // NOI18N
-        jLabel3.setName("jLabel3"); // NOI18N
+        logoLabel.setIcon(resourceMap.getIcon("logoLabel.icon")); // NOI18N
+        logoLabel.setText(resourceMap.getString("logoLabel.text")); // NOI18N
+        logoLabel.setName("logoLabel"); // NOI18N
 
         passwordField.setText(resourceMap.getString("passwordField.text")); // NOI18N
         passwordField.setName("passwordField"); // NOI18N
@@ -96,13 +92,13 @@ public class IsiMarketClientLoginBox extends javax.swing.JDialog {
                         .addGap(2, 2, 2)
                         .addComponent(quitButton))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel3)
+                        .addComponent(logoLabel)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel1))
+                                    .addComponent(passwordLabel)
+                                    .addComponent(userLabel))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(passwordField, javax.swing.GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE)
@@ -123,16 +119,16 @@ public class IsiMarketClientLoginBox extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(loginTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1))
+                            .addComponent(userLabel))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
+                            .addComponent(passwordLabel)
                             .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(quitButton)
                             .addComponent(connectionButton)))
-                    .addComponent(jLabel3))
+                    .addComponent(logoLabel))
                 .addContainerGap())
         );
 
@@ -140,7 +136,14 @@ public class IsiMarketClientLoginBox extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void connectionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_connectionButtonActionPerformed
-        login = loginTextField.getText();
+        String login = loginTextField.getText();
+        String pwd = passwordField.getText();
+        if (login.equals("admin") && pwd.equals("admin")){
+            IsiMarketClient.getApplication().setConnectionType(IsiMarketConnection.UserType.ADMIN);
+        }
+        else {
+            IsiMarketClient.getApplication().setConnectionType(IsiMarketConnection.UserType.OPERATOR);
+        }
         this.dispose();
 }//GEN-LAST:event_connectionButtonActionPerformed
 
@@ -150,12 +153,12 @@ public class IsiMarketClientLoginBox extends javax.swing.JDialog {
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton connectionButton;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JTextField loginTextField;
+    private javax.swing.JLabel logoLabel;
     private javax.swing.JPasswordField passwordField;
+    private javax.swing.JLabel passwordLabel;
     private javax.swing.JButton quitButton;
+    private javax.swing.JLabel userLabel;
     // End of variables declaration//GEN-END:variables
     
 }
