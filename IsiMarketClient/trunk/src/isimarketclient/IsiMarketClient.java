@@ -14,18 +14,26 @@ import org.jdesktop.application.SingleFrameApplication;
 public class IsiMarketClient extends SingleFrameApplication {
     private IsiMarketClientLoginFrame loginFrame = null;
     private IsiMarketClientFrame mainView = null;
-    private String login = "";
+    private IsiMarketConnection.UserType session = IsiMarketConnection.UserType.NONE;
     
     /**
      * At startup create and show the main frame of the application.
      */
     @Override protected void startup() {
         mainView = new IsiMarketClientFrame(this);
-        
         loginFrame = new IsiMarketClientLoginFrame(mainView.getFrame());
+        show(loginFrame);
         
+        while (session == IsiMarketConnection.UserType.NONE) {
+
+        }
         
+        if (session == IsiMarketConnection.UserType.ADMIN){
         
+        }
+        else if (session == IsiMarketConnection.UserType.OPERATOR){
+            show(mainView);
+        }
     }
 
     /**
@@ -51,7 +59,7 @@ public class IsiMarketClient extends SingleFrameApplication {
         launch(IsiMarketClient.class, args);
     }
 
-    void setConnectionType(UserType OPERATOR) {
-        throw new UnsupportedOperationException("Not yet implemented");
+    void setConnectionType(UserType op) {
+        session = op;
     }
 }
