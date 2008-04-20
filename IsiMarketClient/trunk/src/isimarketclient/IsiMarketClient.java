@@ -12,7 +12,7 @@ import org.jdesktop.application.SingleFrameApplication;
  * The main class of the application.
  */
 public class IsiMarketClient extends SingleFrameApplication {
-    private IsiMarketClientLoginFrame loginFrame = null;
+    private IsiMarketClientLoginDialog loginFrame = null;
     private IsiMarketClientFrame mainView = null;
     private IsiMarketConnection.UserType session = IsiMarketConnection.UserType.NONE;
     
@@ -21,7 +21,7 @@ public class IsiMarketClient extends SingleFrameApplication {
      */
     @Override protected void startup() {
         mainView = new IsiMarketClientFrame(this);
-        loginFrame = new IsiMarketClientLoginFrame(mainView.getFrame());
+        loginFrame = new IsiMarketClientLoginDialog(mainView.getFrame());
         show(loginFrame);
         
         while (session == IsiMarketConnection.UserType.NONE) {
@@ -29,7 +29,7 @@ public class IsiMarketClient extends SingleFrameApplication {
         }
         
         if (session == IsiMarketConnection.UserType.ADMIN){
-        
+            
         }
         else if (session == IsiMarketConnection.UserType.OPERATOR){
             show(mainView);

@@ -85,7 +85,7 @@ public class IsiMarketClientFrame extends FrameView {
     public void showAboutBox() {
         if (aboutBox == null) {
             JFrame mainFrame = IsiMarketClient.getApplication().getMainFrame();
-            aboutBox = new IsiMarketClientAboutFrame(mainFrame);
+            aboutBox = new IsiMarketClientAboutDialog(mainFrame);
             aboutBox.setLocationRelativeTo(mainFrame);
         }
         IsiMarketClient.getApplication().show(aboutBox);

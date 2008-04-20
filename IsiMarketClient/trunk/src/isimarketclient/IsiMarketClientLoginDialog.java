@@ -6,9 +6,9 @@ package isimarketclient;
 
 import org.jdesktop.application.Action;
 
-public class IsiMarketClientLoginFrame extends javax.swing.JDialog {
+public class IsiMarketClientLoginDialog extends javax.swing.JDialog {
     
-    public IsiMarketClientLoginFrame(java.awt.Frame parent) {
+    public IsiMarketClientLoginDialog(java.awt.Frame parent) {
         super(parent);
         initComponents();
         getRootPane().setDefaultButton(quitButton);
@@ -41,9 +41,9 @@ public class IsiMarketClientLoginFrame extends javax.swing.JDialog {
         setName("aboutBox"); // NOI18N
         setResizable(false);
 
-        javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(isimarketclient.IsiMarketClient.class).getContext().getActionMap(IsiMarketClientLoginFrame.class, this);
+        javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(isimarketclient.IsiMarketClient.class).getContext().getActionMap(IsiMarketClientLoginDialog.class, this);
         quitButton.setAction(actionMap.get("closeAboutBox")); // NOI18N
-        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(isimarketclient.IsiMarketClient.class).getContext().getResourceMap(IsiMarketClientLoginFrame.class);
+        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(isimarketclient.IsiMarketClient.class).getContext().getResourceMap(IsiMarketClientLoginDialog.class);
         quitButton.setText(resourceMap.getString("quitButton.text")); // NOI18N
         quitButton.setName("quitButton"); // NOI18N
         quitButton.addActionListener(new java.awt.event.ActionListener() {
@@ -138,7 +138,7 @@ public class IsiMarketClientLoginFrame extends javax.swing.JDialog {
     private void connectionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_connectionButtonActionPerformed
         String login = loginTextField.getText();
         String pwd = passwordField.getText();
-        if (login.equals("admin") && pwd.equals("admin")){
+        if (login.equals("admin")){
             IsiMarketClient.getApplication().setConnectionType(IsiMarketConnection.UserType.ADMIN);
         }
         else {
