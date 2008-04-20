@@ -21,9 +21,9 @@ public class IsiMarketClient extends SingleFrameApplication {
      * At startup create and show the main frame of the application.
      */
     @Override protected void startup() {
-        mainView = new IsiMarketClientFrame(this);
-        adminView = new IsiMarketAdminFrame(this);
-        loginFrame = new IsiMarketClientLoginDialog(mainView.getFrame());
+        adminView = new IsiMarketAdminFrame();
+        
+        loginFrame = new IsiMarketClientLoginDialog(adminView);
         show(loginFrame);
         
         while (session == IsiMarketConnection.UserType.NONE) {
@@ -31,9 +31,11 @@ public class IsiMarketClient extends SingleFrameApplication {
         }
         
         if (session == IsiMarketConnection.UserType.ADMIN){
+            adminView = new IsiMarketAdminFrame();
             show(adminView);
         }
         else if (session == IsiMarketConnection.UserType.OPERATOR){
+            mainView = new IsiMarketClientFrame(this);
             show(mainView);
         }
     }

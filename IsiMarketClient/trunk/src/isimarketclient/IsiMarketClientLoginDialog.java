@@ -11,7 +11,7 @@ public class IsiMarketClientLoginDialog extends javax.swing.JDialog {
     public IsiMarketClientLoginDialog(java.awt.Frame parent) {
         super(parent);
         initComponents();
-        getRootPane().setDefaultButton(quitButton);
+        getRootPane().setDefaultButton(connectionButton);
     }
 
     @Action public void closeAboutBox() {
