@@ -11,12 +11,19 @@ public class OperatorDao {
 	
 	protected WalletDao walletDao = new WalletDao();
 	
+	private static final String _COL_LOGIN = "login";
+	
+	/**
+	 * 
+	 * @param _login
+	 * @return
+	 */
 	public Operator get(String _login) {
 		PreparedStatement stmt = null;
 		ResultSet res = null;
 		try {
 			stmt = DatabaseManager.getInstance().getConnection()
-					.prepareStatement("select * from operator where login=?");
+					.prepareStatement("select * from operator where "+ _COL_LOGIN +" =?");
 			stmt.setString(1, _login);
 			res = stmt.executeQuery();
 			if (res.next()) {
@@ -45,6 +52,10 @@ public class OperatorDao {
 		}
 	}
 
+	/**
+	 * 
+	 * @param _operator
+	 */
 	public void insert(Operator _operator) {
 		PreparedStatement stmt = null;
 		try {
@@ -56,6 +67,29 @@ public class OperatorDao {
 			stmt.executeUpdate();
 		} catch (SQLException e) {
 			System.out.println("OperatorDao -> insert(): "+ e.getMessage());
+			e.printStackTrace();
+		} finally {
+			try {
+				if (stmt != null)
+					stmt.close();
+			} catch (SQLException e) {
+			}
+		}
+	}
+
+	/**
+	 * 
+	 * @param login
+	 */
+	public void delete(String login) {
+		PreparedStatement stmt = null;
+		try {
+			stmt = DatabaseManager.getInstance().getConnection()
+					.prepareStatement("delete from operator where "+ _COL_LOGIN +" =?");
+			stmt.setString(1, login);
+			stmt.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println("OperatorDao -> delete(): "+ e.getMessage());
 			e.printStackTrace();
 		} finally {
 			try {

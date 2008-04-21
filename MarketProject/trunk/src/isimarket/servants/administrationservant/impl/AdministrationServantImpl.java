@@ -14,12 +14,18 @@ public class AdministrationServantImpl extends _AdministrationServantImplBase {
 	
 	protected WalletDao walletDao = new WalletDao();
 
+	/**
+	 * 
+	 */
 	public void createWallet(float _initalCash) {
 		Wallet wallet = new Wallet();
 		wallet.cash = _initalCash;
 		this.walletDao.insert(wallet);
 	}
 
+	/**
+	 * 
+	 */
 	public void updateCash(String _operatorLogin, float _newCash) {
 		Operator operator = this.operatorDao.get(_operatorLogin);
 		Wallet wallet = operator.wallet;
@@ -37,9 +43,11 @@ public class AdministrationServantImpl extends _AdministrationServantImplBase {
 		this.operatorDao.insert(op);
 	}
 
+	/**
+	 * 
+	 */
 	public void deleteOperator(String login) {
-		// TODO Auto-generated method stub
-		
+		this.operatorDao.delete(login);
 	}
 
 }
