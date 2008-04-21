@@ -1,7 +1,6 @@
 package isimarket.db.dao;
 
 import isimarket.db.manager.DatabaseManager;
-import isimarket.model.ActionType;
 import isimarket.model.Operator;
 
 import java.sql.PreparedStatement;
@@ -11,26 +10,7 @@ import java.sql.SQLException;
 public class OperatorDao {
 	
 	protected WalletDao walletDao = new WalletDao();
-
-//	public void delete(String _code) {
-//		PreparedStatement stmt = null;
-//		try {
-//			stmt = DatabaseManager.getInstance().getConnection()
-//					.prepareStatement("delete from actiontype where code=?");
-//			stmt.setString(1, _code);
-//			stmt.executeUpdate();
-//		} catch (SQLException e) {
-//			System.out.println("ActionTypeDao -> delete(): "+ e.getMessage());
-//			e.printStackTrace();
-//		} finally {
-//			try {
-//				if (stmt != null)
-//					stmt.close();
-//			} catch (SQLException e) {
-//			}
-//		}
-//	}
-//
+	
 	public Operator get(String _login) {
 		PreparedStatement stmt = null;
 		ResultSet res = null;
@@ -64,42 +44,7 @@ public class OperatorDao {
 			}
 		}
 	}
-//
-//	public List<ActionType> getAll() {
-//		PreparedStatement stmt = null;
-//		ResultSet res = null;
-//		List<ActionType> list = new ArrayList<ActionType>();
-//		try {
-//			stmt = DatabaseManager.getInstance().getConnection()
-//					.prepareStatement("select * from actiontype");
-//			res = stmt.executeQuery();
-//			while (res.next()) {
-//				list.add(new ActionType(res.getString("code"), res
-//						.getString("label"),
-//						res.getString("introduction_date"), res
-//								.getFloat("introduction_price"), res
-//								.getInt("quantity"), res
-//								.getFloat("current_price")));
-//			}
-//			return list;
-//		} catch (SQLException e) {
-//			System.out.println("ActionTypeDao -> getAll(): "+ e.getMessage());
-//			e.printStackTrace();
-//			return null;
-//		} finally {
-//			try {
-//				if (res != null)
-//					res.close();
-//			} catch (SQLException e) {
-//			}
-//			try {
-//				if (stmt != null)
-//					stmt.close();
-//			} catch (SQLException e) {
-//			}
-//		}
-//	}
-//
+
 	public void insert(Operator _operator) {
 		PreparedStatement stmt = null;
 		try {

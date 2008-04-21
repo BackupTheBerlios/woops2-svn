@@ -182,4 +182,52 @@ public class ActionDao {
 		}
 	}
 
+	/**
+	 * 
+	 * @param action
+	 */
+	public void delete(Action action) {
+		PreparedStatement stmt = null;
+		try {
+			stmt = DatabaseManager.getInstance().getConnection()
+					.prepareStatement("delete from action where "+ _COL_ACTION_ID +" =?");
+			stmt.setInt(1, action.actionId);
+			stmt.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println("ActionDao -> delete(): "+ e.getMessage());
+			e.printStackTrace();
+		} finally {
+			try {
+				if (stmt != null)
+					stmt.close();
+			} catch (SQLException e) {
+			}
+		}
+	}
+
+	/**
+	 * 
+	 * @param actionId
+	 * @param quantity
+	 */
+	public void updateQuantity(int actionId, int quantity) {
+		PreparedStatement stmt = null;
+		try {
+			stmt = DatabaseManager.getInstance().getConnection()
+					.prepareStatement("update action set "+ _COL_QUANTITY +" = ? where "+ _COL_ACTION_ID +"= ?");
+			stmt.setFloat(1, quantity);
+			stmt.setInt(2, actionId);
+			stmt.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println("ActionDao -> updateQuantity(): "+ e.getMessage());
+			e.printStackTrace();
+		} finally {
+			try {
+				if (stmt != null)
+					stmt.close();
+			} catch (SQLException e) {
+			}
+		}
+	}
+
 }
