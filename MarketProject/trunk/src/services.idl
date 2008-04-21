@@ -5,8 +5,9 @@ module isimarket{
 			module administrationservant{
 				interface AdministrationServant{
 					void updateCash(in string login, in  float newCash);
-					void createOperator(in string operatorLogin, in string password,in float initalCash);
+					void createOperator(in string login, in string password,in float initalCash);
 					void createWallet(in float initalCash);
+					void deleteOperator(in string login);
 				};
 			};
 			
@@ -16,13 +17,14 @@ module isimarket{
 					exception BadQuantityException {string reason;};
 					exception NotEnoughCashException {string reason;};
 					exception UnknownOperatorException {string reason;};
-					exception WrongPasswordException {string reason;};		
+					exception WrongPasswordException {string reason;};
+					exception NotEnoughAvailableActionsException {string reason;};		
 							
 					Wallet authentication(in string login, in string password) raises (UnknownOperatorException,WrongPasswordException);
-					ActionList getActionsListFromWallet(in long walletId); 
+					ActionList getActionListFromWallet(in long walletId); 
 					Action getAction(in long actionId);
-					Action buyAction(in long walletId, in string actionTypeCode , in long quantity) raises (BadQuantityException,NotEnoughCashException);
-					void sellAction(in long walletId, in string actionTypeCode, in long actionId, in long quantity); 
+					Action buyAction(in long walletId,in string actionTypeCode,in long quantity) raises (BadQuantityException,NotEnoughCashException);
+					void sellAction(in long walletId,in string actionTypeCode,in long actionId, in long quantity) raises (NotEnoughAvailableActionsException); 
 				};
 			};
 			
@@ -30,11 +32,11 @@ module isimarket{
 				interface AlarmServant{
 					AlarmTypeList getAlarmTypeList();
 					AlarmType getAlarmType(in long alarmTypeId);
-					void createAlarmType(in long alarmTypeId,in string label);
+					void createAlarmType(in string label);
 					void deleteAlarmType(in long alarmTypeId);
-					AlarmList getAlarmList(in long _walletId);
-					Alarm getAlarm(in long walletId, in long alarmTypeId,in string actionTypeCode);
-					void createAlarm(in long walletId, in long alarmTypeId,in string actionTypeCode);
+					AlarmList getAlarmListFromWallet(in long walletId);
+					Alarm getAlarm(in long alarmId);
+					Alarm createAlarm(in string name,in long walletId, in long alarmTypeId,in string actionTypeCode);
 					void deleteAlarm(in long alarmId);
 				};
 			};
@@ -48,6 +50,15 @@ module isimarket{
 					void updateActionTypeQuantity(in string code, in long quantity);
 		    		void updateActionTypeCurrentPrice(in string code, in float currentPrice);
 					EventList getEvents(in string actionTypeCode);
+				};
+			};
+			
+			module eventservant{
+				interface EventServant{
+					void createEvent(in string date,in float price,in string actionTypeCode);
+					void deleteEvent(in long eventId);
+					Event get(in long eventId);
+					EventList getEventListFromActionType(in string actionTypeCode);
 				};
 			};
 		};
