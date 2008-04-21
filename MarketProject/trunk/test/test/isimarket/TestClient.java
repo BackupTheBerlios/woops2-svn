@@ -1,4 +1,4 @@
-package isimarket.client;
+package test.isimarket;
 
 import isimarket.servants.actiontypeservant.ActionTypeServant;
 import isimarket.servants.actiontypeservant.ActionTypeServantHelper;
@@ -11,7 +11,7 @@ import org.omg.CosNaming.NameComponent;
 import org.omg.CosNaming.NamingContext;
 import org.omg.CosNaming.NamingContextHelper;
 
-public class CorbaClient {
+public class TestClient {
 
 	private ORB orb;
 	private org.omg.CORBA.Object objRef;

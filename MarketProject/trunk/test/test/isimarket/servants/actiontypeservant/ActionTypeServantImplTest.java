@@ -1,14 +1,14 @@
 package test.isimarket.servants.actiontypeservant;
 
-import isimarket.client.CorbaClient;
 import junit.framework.TestCase;
+import test.isimarket.TestClient;
 
 public class ActionTypeServantImplTest extends TestCase {
 
-	private CorbaClient client;
+	private TestClient client;
 
 	protected void setUp() throws Exception {
-		client = new CorbaClient();
+		client = new TestClient();
 	}
 
 	public void testGetActionType() {

@@ -1,17 +1,17 @@
 package test.isimarket.servants.administrationservant;
 
-import isimarket.client.CorbaClient;
 import isimarket.db.dao.WalletDao;
 import isimarket.model.Wallet;
 import junit.framework.TestCase;
+import test.isimarket.TestClient;
 
 public class AdministrationServantImplTest extends TestCase {
 	
-	private CorbaClient client;
+	private TestClient client;
 	private WalletDao walletDao;
 	
 	protected void setUp() throws Exception {
-		client = new CorbaClient();
+		client = new TestClient();
 		client.init(null);
 		walletDao = new WalletDao();
 	}
