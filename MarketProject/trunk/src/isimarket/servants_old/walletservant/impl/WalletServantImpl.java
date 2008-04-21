@@ -70,7 +70,6 @@ public class WalletServantImpl extends _WalletServantImplBase {
 		List<Action> actionslist = this.actionDao.getAllFromWallet(_walletId);
 		Action[] actionArray = new Action[actionslist.size()];
 		
-		System.out.println("getActionTypeList ok");
 		return actionslist.toArray(actionArray);
 	}
 
@@ -92,10 +91,20 @@ public class WalletServantImpl extends _WalletServantImplBase {
 	 * 
 	 */
 	public void sellAction(int _walletId, String _actionTypeCode, int _actionId,
-			int _quantity) {
+			int _quantity) throws NotEnoughAvailableActions {
 		
 		Wallet wallet = this.walletDao.get(_walletId);
 		ActionType actionType = this.actionTypeDao.get(_actionTypeCode);
+		Action action = this.actionDao.get(_actionId);
+		
+		float transaction = _quantity * actionType.currentPrice;
+		
+		if (_quantity < action.quantity) this.actionDao.updateQuantity(action.actionId, action.quantity);
+		else if (_quantity == action.quantity) this.actionDao.delete(action);
+		else throw new NotEnoughAvailableActions("Nombre d'actions choisi trop grand");
+		this.actionTypeDao.updateQuantity(actionType.code, actionType.quantity + _quantity);
+		this.walletDao.updateCash(wallet.walletId, wallet.cash + transaction);
+		
 	}
 
 }
