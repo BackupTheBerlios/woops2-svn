@@ -1,4 +1,4 @@
-package test.isimarket.client;
+package isimarket.client;
 
 import isimarket.servants.actiontypeservant.ActionTypeServant;
 import isimarket.servants.actiontypeservant.ActionTypeServantHelper;

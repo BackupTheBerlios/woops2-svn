@@ -1,8 +1,6 @@
-package test.isimarket.servants;
+package test.isimarket.servants.actiontypeservant;
 
-import isimarket.servants.administrationservant.AdministrationServant;
-import isimarket.servants.administrationservant.AdministrationServantHelper;
-import test.isimarket.client.CorbaClient;
+import isimarket.client.CorbaClient;
 import junit.framework.TestCase;
 
 public class ActionTypeServantImplTest extends TestCase {

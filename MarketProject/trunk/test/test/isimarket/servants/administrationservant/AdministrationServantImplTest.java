@@ -1,10 +1,9 @@
-package test.isimarket.servants;
+package test.isimarket.servants.administrationservant;
 
+import isimarket.client.CorbaClient;
 import isimarket.db.dao.WalletDao;
 import isimarket.model.Wallet;
-import isimarket.server.Server;
 import junit.framework.TestCase;
-import test.isimarket.client.CorbaClient;
 
 public class AdministrationServantImplTest extends TestCase {
 	
