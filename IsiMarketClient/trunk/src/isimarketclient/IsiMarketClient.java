@@ -4,7 +4,9 @@
 
 package isimarketclient;
 
+import isimarket.client.CorbaClient;
 import isimarketclient.IsiMarketConnection.UserType;
+import javax.swing.JOptionPane;
 import org.jdesktop.application.Application;
 import org.jdesktop.application.SingleFrameApplication;
 
@@ -16,11 +18,25 @@ public class IsiMarketClient extends SingleFrameApplication {
     private IsiMarketClientFrame mainView = null;
     private IsiMarketAdminFrame adminView = null;
     private IsiMarketConnection.UserType session = IsiMarketConnection.UserType.NONE;
+    private CorbaClient client = null;
+    
+    public CorbaClient getCorbaClient(){
+        return client;
+    }
     
     /**
      * At startup create and show the main frame of the application.
      */
     @Override protected void startup() {
+        // start client
+        client = new CorbaClient();
+        try{
+            client.startClient();
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(loginFrame, "Erreur :"+e, "Erreur demarrage client", JOptionPane.ERROR_MESSAGE);
+        }
+        
+        // start gui
         adminView = new IsiMarketAdminFrame();
         
         loginFrame = new IsiMarketClientLoginDialog(adminView);
