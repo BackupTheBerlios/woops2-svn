@@ -149,6 +149,7 @@ public class IsiMarketClientLoginDialog extends javax.swing.JDialog {
         
         if (login.equals("admin")){
             main.setConnectionType(IsiMarketConnection.UserType.ADMIN);
+            this.dispose();
         }
         else {
             try {

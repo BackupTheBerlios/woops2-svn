@@ -43,6 +43,24 @@ public class IsiMarketAdminFrame extends javax.swing.JFrame {
         updateCashLabel = new javax.swing.JLabel();
         updateButton = new javax.swing.JButton();
         updateCashField = new javax.swing.JTextField();
+        newActionPanel = new javax.swing.JPanel();
+        codeLabel = new javax.swing.JLabel();
+        labelLabel = new javax.swing.JLabel();
+        priceLabel = new javax.swing.JLabel();
+        quantityLabel = new javax.swing.JLabel();
+        codeField = new javax.swing.JTextField();
+        labelField = new javax.swing.JTextField();
+        priceField = new javax.swing.JTextField();
+        quantityField = new javax.swing.JTextField();
+        addActionButton = new javax.swing.JButton();
+        updateActionPanel = new javax.swing.JPanel();
+        updateCodeLabel = new javax.swing.JLabel();
+        updateCodeField = new javax.swing.JTextField();
+        updatePriceLabel = new javax.swing.JLabel();
+        updatePriceField = new javax.swing.JTextField();
+        updateQuantityLabel = new javax.swing.JLabel();
+        updateQuantityField = new javax.swing.JTextField();
+        updateActionButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(isimarketclient.IsiMarketClient.class).getContext().getResourceMap(IsiMarketAdminFrame.class);
@@ -98,12 +116,12 @@ public class IsiMarketAdminFrame extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(newOperatorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(cashField)
-                    .addComponent(loginField)
-                    .addComponent(passwordField, javax.swing.GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE))
-                .addContainerGap(128, Short.MAX_VALUE))
+                    .addComponent(passwordField)
+                    .addComponent(loginField, javax.swing.GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE))
+                .addContainerGap(143, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, newOperatorPanelLayout.createSequentialGroup()
-                .addContainerGap(251, Short.MAX_VALUE)
-                .addComponent(createButton, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(228, Short.MAX_VALUE)
+                .addComponent(createButton)
                 .addContainerGap())
         );
         newOperatorPanelLayout.setVerticalGroup(
@@ -121,9 +139,9 @@ public class IsiMarketAdminFrame extends javax.swing.JFrame {
                 .addGroup(newOperatorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cashField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cashLabel))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
                 .addComponent(createButton)
-                .addContainerGap(37, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         tabbedPane.addTab(resourceMap.getString("newOperatorPanel.TabConstraints.tabTitle"), newOperatorPanel); // NOI18N
@@ -162,10 +180,10 @@ public class IsiMarketAdminFrame extends javax.swing.JFrame {
                 .addGroup(operatorUpdateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(updateLoginField, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(updateCashField))
-                .addContainerGap(166, Short.MAX_VALUE))
+                .addContainerGap(142, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, operatorUpdateLayout.createSequentialGroup()
-                .addContainerGap(251, Short.MAX_VALUE)
-                .addComponent(updateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(256, Short.MAX_VALUE)
+                .addComponent(updateButton)
                 .addContainerGap())
         );
         operatorUpdateLayout.setVerticalGroup(
@@ -179,12 +197,168 @@ public class IsiMarketAdminFrame extends javax.swing.JFrame {
                 .addGroup(operatorUpdateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(updateCashField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(updateCashLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 96, Short.MAX_VALUE)
                 .addComponent(updateButton)
                 .addContainerGap())
         );
 
         tabbedPane.addTab(resourceMap.getString("operatorUpdate.TabConstraints.tabTitle"), operatorUpdate); // NOI18N
+
+        newActionPanel.setName("newActionPanel"); // NOI18N
+
+        codeLabel.setText(resourceMap.getString("codeLabel.text")); // NOI18N
+        codeLabel.setName("codeLabel"); // NOI18N
+
+        labelLabel.setText(resourceMap.getString("labelLabel.text")); // NOI18N
+        labelLabel.setName("labelLabel"); // NOI18N
+
+        priceLabel.setText(resourceMap.getString("priceLabel.text")); // NOI18N
+        priceLabel.setName("priceLabel"); // NOI18N
+
+        quantityLabel.setText(resourceMap.getString("quantityLabel.text")); // NOI18N
+        quantityLabel.setName("quantityLabel"); // NOI18N
+
+        codeField.setText(resourceMap.getString("codeField.text")); // NOI18N
+        codeField.setName("codeField"); // NOI18N
+
+        labelField.setText(resourceMap.getString("labelField.text")); // NOI18N
+        labelField.setName("labelField"); // NOI18N
+
+        priceField.setText(resourceMap.getString("priceField.text")); // NOI18N
+        priceField.setName("priceField"); // NOI18N
+
+        quantityField.setText(resourceMap.getString("quantityField.text")); // NOI18N
+        quantityField.setName("quantityField"); // NOI18N
+
+        addActionButton.setText(resourceMap.getString("addActionButton.text")); // NOI18N
+        addActionButton.setName("addActionButton"); // NOI18N
+        addActionButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addActionButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout newActionPanelLayout = new javax.swing.GroupLayout(newActionPanel);
+        newActionPanel.setLayout(newActionPanelLayout);
+        newActionPanelLayout.setHorizontalGroup(
+            newActionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(newActionPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(newActionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(codeLabel)
+                    .addComponent(quantityLabel)
+                    .addComponent(labelLabel)
+                    .addComponent(priceLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(newActionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(labelField)
+                    .addComponent(priceField)
+                    .addComponent(quantityField)
+                    .addComponent(codeField, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(191, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, newActionPanelLayout.createSequentialGroup()
+                .addContainerGap(240, Short.MAX_VALUE)
+                .addComponent(addActionButton)
+                .addContainerGap())
+        );
+        newActionPanelLayout.setVerticalGroup(
+            newActionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(newActionPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(newActionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(codeLabel)
+                    .addComponent(codeField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(newActionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelLabel)
+                    .addComponent(labelField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(newActionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(priceLabel)
+                    .addComponent(priceField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(newActionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(quantityLabel)
+                    .addComponent(quantityField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                .addComponent(addActionButton)
+                .addContainerGap())
+        );
+
+        tabbedPane.addTab(resourceMap.getString("newActionPanel.TabConstraints.tabTitle"), newActionPanel); // NOI18N
+
+        updateActionPanel.setName("updateActionPanel"); // NOI18N
+
+        updateCodeLabel.setText(resourceMap.getString("updateCodeLabel.text")); // NOI18N
+        updateCodeLabel.setName("updateCodeLabel"); // NOI18N
+
+        updateCodeField.setName("updateCodeField"); // NOI18N
+
+        updatePriceLabel.setText(resourceMap.getString("updatePriceLabel.text")); // NOI18N
+        updatePriceLabel.setName("updatePriceLabel"); // NOI18N
+
+        updatePriceField.setName("updatePriceField"); // NOI18N
+
+        updateQuantityLabel.setText(resourceMap.getString("updateQuantityLabel.text")); // NOI18N
+        updateQuantityLabel.setName("updateQuantityLabel"); // NOI18N
+
+        updateQuantityField.setName("updateQuantityField"); // NOI18N
+
+        updateActionButton.setText(resourceMap.getString("updateActionButton.text")); // NOI18N
+        updateActionButton.setName("updateActionButton"); // NOI18N
+        updateActionButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateActionButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout updateActionPanelLayout = new javax.swing.GroupLayout(updateActionPanel);
+        updateActionPanel.setLayout(updateActionPanelLayout);
+        updateActionPanelLayout.setHorizontalGroup(
+            updateActionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(updateActionPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(updateActionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(updateActionPanelLayout.createSequentialGroup()
+                        .addGroup(updateActionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(updateActionPanelLayout.createSequentialGroup()
+                                .addComponent(updateCodeLabel)
+                                .addGap(21, 21, 21)
+                                .addComponent(updateCodeField, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(updateActionPanelLayout.createSequentialGroup()
+                                .addGroup(updateActionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(updateQuantityLabel)
+                                    .addComponent(updatePriceLabel))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(updateActionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(updateQuantityField, javax.swing.GroupLayout.DEFAULT_SIZE, 104, Short.MAX_VALUE)
+                                    .addComponent(updatePriceField, javax.swing.GroupLayout.DEFAULT_SIZE, 104, Short.MAX_VALUE))))
+                        .addGap(191, 191, 191))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, updateActionPanelLayout.createSequentialGroup()
+                        .addComponent(updateActionButton)
+                        .addContainerGap())))
+        );
+        updateActionPanelLayout.setVerticalGroup(
+            updateActionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(updateActionPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(updateActionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(updateCodeLabel)
+                    .addComponent(updateCodeField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(updateActionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(updatePriceLabel)
+                    .addComponent(updatePriceField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(updateActionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(updateQuantityLabel)
+                    .addComponent(updateQuantityField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
+                .addComponent(updateActionButton)
+                .addContainerGap())
+        );
+
+        tabbedPane.addTab(resourceMap.getString("updateActionPanel.TabConstraints.tabTitle"), updateActionPanel); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -193,7 +367,7 @@ public class IsiMarketAdminFrame extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(tabbedPane, javax.swing.GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE)
+                    .addComponent(tabbedPane, javax.swing.GroupLayout.DEFAULT_SIZE, 356, Short.MAX_VALUE)
                     .addComponent(quitButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
@@ -238,6 +412,34 @@ public class IsiMarketAdminFrame extends javax.swing.JFrame {
              JOptionPane.showMessageDialog(this, "Erreur :"+e, "Erreur", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_updateButtonActionPerformed
+
+    private void addActionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addActionButtonActionPerformed
+       try{
+        Float price = new Float(priceField.getText());
+        Integer quantity = new Integer(quantityField.getText());
+        IsiMarketClient.getApplication().getCorbaClient().getActionTypeServantRef()
+                .createActionType(codeField.getText(), labelField.getText(), "", price, quantity, price);
+        JOptionPane.showMessageDialog(this, "Creation Action OK !", "IsimarketClient", JOptionPane.INFORMATION_MESSAGE);
+        } catch(Exception e){
+            e.printStackTrace();
+             JOptionPane.showMessageDialog(this, "Erreur :"+e, "Erreur", JOptionPane.ERROR_MESSAGE);
+        }
+}//GEN-LAST:event_addActionButtonActionPerformed
+
+    private void updateActionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateActionButtonActionPerformed
+        try{
+        Float price = new Float(updatePriceField.getText());
+        Integer quantity = new Integer(updateQuantityField.getText());
+        IsiMarketClient.getApplication().getCorbaClient().getActionTypeServantRef()
+                .updateActionTypeCurrentPrice(updateCodeField.getText(), price);
+        IsiMarketClient.getApplication().getCorbaClient().getActionTypeServantRef()
+                .updateActionTypeQuantity(updateCodeField.getText(), quantity);
+        JOptionPane.showMessageDialog(this, "Creation Action OK !", "IsimarketClient", JOptionPane.INFORMATION_MESSAGE);
+        } catch(Exception e){
+            e.printStackTrace();
+             JOptionPane.showMessageDialog(this, "Erreur :"+e, "Erreur", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_updateActionButtonActionPerformed
     
     /**
      * @param args the command line arguments
@@ -251,22 +453,40 @@ public class IsiMarketAdminFrame extends javax.swing.JFrame {
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton addActionButton;
     private javax.swing.JTextField cashField;
     private javax.swing.JLabel cashLabel;
+    private javax.swing.JTextField codeField;
+    private javax.swing.JLabel codeLabel;
     private javax.swing.JButton createButton;
+    private javax.swing.JTextField labelField;
+    private javax.swing.JLabel labelLabel;
     private javax.swing.JTextField loginField;
     private javax.swing.JLabel loginLabel;
+    private javax.swing.JPanel newActionPanel;
     private javax.swing.JPanel newOperatorPanel;
     private javax.swing.JPanel operatorUpdate;
     private javax.swing.JTextField passwordField;
     private javax.swing.JLabel passwordLabel;
+    private javax.swing.JTextField priceField;
+    private javax.swing.JLabel priceLabel;
+    private javax.swing.JTextField quantityField;
+    private javax.swing.JLabel quantityLabel;
     private javax.swing.JButton quitButton;
     private javax.swing.JTabbedPane tabbedPane;
+    private javax.swing.JButton updateActionButton;
+    private javax.swing.JPanel updateActionPanel;
     private javax.swing.JButton updateButton;
     private javax.swing.JTextField updateCashField;
     private javax.swing.JLabel updateCashLabel;
+    private javax.swing.JTextField updateCodeField;
+    private javax.swing.JLabel updateCodeLabel;
     private javax.swing.JTextField updateLoginField;
     private javax.swing.JLabel updateLoginLabel;
+    private javax.swing.JTextField updatePriceField;
+    private javax.swing.JLabel updatePriceLabel;
+    private javax.swing.JTextField updateQuantityField;
+    private javax.swing.JLabel updateQuantityLabel;
     // End of variables declaration//GEN-END:variables
     
 }

@@ -151,9 +151,7 @@
                 </Component>
                 <Component class="javax.swing.JButton" name="refreshActionTypeButton4">
                   <Properties>
-                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="0" name="null"/>
-                    </Property>
+                    <Property name="icon" type="javax.swing.Icon" resourceKey="refreshActionTypeButton4.icon"/>
                     <Property name="text" type="java.lang.String" resourceKey="refreshActionTypeButton4.text"/>
                     <Property name="name" type="java.lang.String" value="refreshActionTypeButton4" noResource="true"/>
                   </Properties>

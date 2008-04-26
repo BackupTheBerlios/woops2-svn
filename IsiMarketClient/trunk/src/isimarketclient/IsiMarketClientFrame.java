@@ -166,7 +166,7 @@ public class IsiMarketClientFrame extends FrameView {
         refreshActionTypeButton1.setText(resourceMap.getString("refreshActionTypeButton1.text")); // NOI18N
         refreshActionTypeButton1.setName("refreshActionTypeButton1"); // NOI18N
 
-        refreshActionTypeButton4.setIcon(null);
+        refreshActionTypeButton4.setIcon(resourceMap.getIcon("refreshActionTypeButton4.icon")); // NOI18N
         refreshActionTypeButton4.setText(resourceMap.getString("refreshActionTypeButton4.text")); // NOI18N
         refreshActionTypeButton4.setName("refreshActionTypeButton4"); // NOI18N
 

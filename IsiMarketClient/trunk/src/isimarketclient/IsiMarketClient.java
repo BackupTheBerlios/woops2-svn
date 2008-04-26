@@ -1,7 +1,6 @@
 /*
  * IsiMarketClient.java
  */
-
 package isimarketclient;
 
 import isimarket.client.CorbaClient;
@@ -15,59 +14,60 @@ import org.jdesktop.application.SingleFrameApplication;
  * The main class of the application.
  */
 public class IsiMarketClient extends SingleFrameApplication {
+
     private IsiMarketClientLoginDialog loginFrame = null;
     private IsiMarketClientFrame mainView = null;
     private IsiMarketAdminFrame adminView = null;
     private IsiMarketConnection.UserType session = IsiMarketConnection.UserType.NONE;
     private CorbaClient client = null;
     private Wallet currentWallet = null;
-    
-    public CorbaClient getCorbaClient(){
+
+    public CorbaClient getCorbaClient() {
         return client;
     }
-    
-    public Wallet getWallet(){
+
+    public Wallet getWallet() {
         return currentWallet;
     }
-    
-    public void setWallet(Wallet w){
+
+    public void setWallet(Wallet w) {
         currentWallet = w;
     }
-    
+
     /**
      * At startup create and show the main frame of the application.
      */
-    @Override protected void startup() {
+    @Override
+    protected void startup() {
         // start client
         client = new CorbaClient();
-        try{
+        try {
             client.startClient();
-        }catch(Exception e){
-            JOptionPane.showMessageDialog(loginFrame, "Erreur :"+e, "Erreur demarrage client", JOptionPane.ERROR_MESSAGE);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(loginFrame, "Erreur :" + e, "Erreur demarrage client", JOptionPane.ERROR_MESSAGE);
         }
-        
+
         // start gui
         adminView = new IsiMarketAdminFrame();
-        
+
         loginFrame = new IsiMarketClientLoginDialog(adminView);
         show(loginFrame);
-        
-       waitConnectionType();
+
+        waitConnectionType();
     }
-    
-    private void waitConnectionType(){
+
+    private void waitConnectionType() {
         while (session == IsiMarketConnection.UserType.NONE) {
-            
+
         }
-        
-        if (session == IsiMarketConnection.UserType.ADMIN){
+
+        if (session == IsiMarketConnection.UserType.ADMIN) {
             adminView = new IsiMarketAdminFrame();
             show(adminView);
-        }
-        else if (session == IsiMarketConnection.UserType.OPERATOR){
-            if (currentWallet != null){
+        } else if (session == IsiMarketConnection.UserType.OPERATOR) {
+            if (currentWallet != null) {
                 mainView = new IsiMarketClientFrame(this);
-                mainView.cashField.setText(""+IsiMarketClientModel.cash);
+                mainView.cashField.setText("" + IsiMarketClientModel.cash);
                 mainView.opeatorField.setText(IsiMarketClientModel.login);
                 show(mainView);
             }
@@ -79,7 +79,8 @@ public class IsiMarketClient extends SingleFrameApplication {
      * Windows shown in our application come fully initialized from the GUI
      * builder, so this additional configuration is not needed.
      */
-    @Override protected void configureWindow(java.awt.Window root) {
+    @Override
+    protected void configureWindow(java.awt.Window root) {
     }
 
     /**

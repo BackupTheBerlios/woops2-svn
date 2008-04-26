@@ -26,7 +26,7 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="tabbedPane" alignment="0" pref="380" max="32767" attributes="0"/>
+                  <Component id="tabbedPane" alignment="0" pref="356" max="32767" attributes="0"/>
                   <Component id="quitButton" alignment="1" min="-2" pref="110" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -87,14 +87,14 @@
                       <EmptySpace min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="cashField" max="32767" attributes="1"/>
-                          <Component id="loginField" alignment="0" max="32767" attributes="1"/>
-                          <Component id="passwordField" alignment="0" pref="153" max="32767" attributes="1"/>
+                          <Component id="passwordField" alignment="0" max="32767" attributes="1"/>
+                          <Component id="loginField" alignment="0" pref="114" max="32767" attributes="1"/>
                       </Group>
-                      <EmptySpace pref="128" max="32767" attributes="0"/>
+                      <EmptySpace pref="143" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace pref="251" max="32767" attributes="0"/>
-                      <Component id="createButton" min="-2" pref="114" max="-2" attributes="0"/>
+                      <EmptySpace pref="228" max="32767" attributes="0"/>
+                      <Component id="createButton" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -117,9 +117,9 @@
                           <Component id="cashField" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="cashLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <EmptySpace pref="70" max="32767" attributes="0"/>
                       <Component id="createButton" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="37" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -176,7 +176,7 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-              <JTabbedPaneConstraints tabName="Mise &#xe0; Jour">
+              <JTabbedPaneConstraints tabName="MAJ Op&#xe9;rateur">
                 <Property name="tabTitle" type="java.lang.String" resourceKey="operatorUpdate.TabConstraints.tabTitle"/>
               </JTabbedPaneConstraints>
             </Constraint>
@@ -196,11 +196,11 @@
                           <Component id="updateLoginField" alignment="0" min="-2" pref="111" max="-2" attributes="1"/>
                           <Component id="updateCashField" alignment="0" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="166" max="32767" attributes="0"/>
+                      <EmptySpace pref="142" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace pref="251" max="32767" attributes="0"/>
-                      <Component id="updateButton" min="-2" pref="114" max="-2" attributes="0"/>
+                      <EmptySpace pref="256" max="32767" attributes="0"/>
+                      <Component id="updateButton" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -218,7 +218,7 @@
                           <Component id="updateCashField" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="updateCashLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="70" max="32767" attributes="0"/>
+                      <EmptySpace pref="96" max="32767" attributes="0"/>
                       <Component id="updateButton" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -257,6 +257,252 @@
                 <Property name="text" type="java.lang.String" resourceKey="updateCashField.text"/>
                 <Property name="name" type="java.lang.String" value="updateCashField" noResource="true"/>
               </Properties>
+            </Component>
+          </SubComponents>
+        </Container>
+        <Container class="javax.swing.JPanel" name="newActionPanel">
+          <Properties>
+            <Property name="name" type="java.lang.String" value="newActionPanel" noResource="true"/>
+          </Properties>
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
+              <JTabbedPaneConstraints tabName="Nouvelle Action">
+                <Property name="tabTitle" type="java.lang.String" resourceKey="newActionPanel.TabConstraints.tabTitle"/>
+              </JTabbedPaneConstraints>
+            </Constraint>
+          </Constraints>
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="codeLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="quantityLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="labelLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="priceLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="labelField" alignment="0" max="32767" attributes="1"/>
+                          <Component id="priceField" alignment="0" max="32767" attributes="1"/>
+                          <Component id="quantityField" alignment="0" max="32767" attributes="1"/>
+                          <Component id="codeField" alignment="0" min="-2" pref="104" max="-2" attributes="1"/>
+                      </Group>
+                      <EmptySpace pref="191" max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace pref="240" max="32767" attributes="0"/>
+                      <Component id="addActionButton" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="codeLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="codeField" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="labelLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="labelField" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="priceLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="priceField" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="quantityLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="quantityField" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace pref="44" max="32767" attributes="0"/>
+                      <Component id="addActionButton" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
+            <Component class="javax.swing.JLabel" name="codeLabel">
+              <Properties>
+                <Property name="text" type="java.lang.String" resourceKey="codeLabel.text"/>
+                <Property name="name" type="java.lang.String" value="codeLabel" noResource="true"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="labelLabel">
+              <Properties>
+                <Property name="text" type="java.lang.String" resourceKey="labelLabel.text"/>
+                <Property name="name" type="java.lang.String" value="labelLabel" noResource="true"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="priceLabel">
+              <Properties>
+                <Property name="text" type="java.lang.String" resourceKey="priceLabel.text"/>
+                <Property name="name" type="java.lang.String" value="priceLabel" noResource="true"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="quantityLabel">
+              <Properties>
+                <Property name="text" type="java.lang.String" resourceKey="quantityLabel.text"/>
+                <Property name="name" type="java.lang.String" value="quantityLabel" noResource="true"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="codeField">
+              <Properties>
+                <Property name="text" type="java.lang.String" resourceKey="codeField.text"/>
+                <Property name="name" type="java.lang.String" value="codeField" noResource="true"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="labelField">
+              <Properties>
+                <Property name="text" type="java.lang.String" resourceKey="labelField.text"/>
+                <Property name="name" type="java.lang.String" value="labelField" noResource="true"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="priceField">
+              <Properties>
+                <Property name="text" type="java.lang.String" resourceKey="priceField.text"/>
+                <Property name="name" type="java.lang.String" value="priceField" noResource="true"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="quantityField">
+              <Properties>
+                <Property name="text" type="java.lang.String" resourceKey="quantityField.text"/>
+                <Property name="name" type="java.lang.String" value="quantityField" noResource="true"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="addActionButton">
+              <Properties>
+                <Property name="text" type="java.lang.String" resourceKey="addActionButton.text"/>
+                <Property name="name" type="java.lang.String" value="addActionButton" noResource="true"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addActionButtonActionPerformed"/>
+              </Events>
+            </Component>
+          </SubComponents>
+        </Container>
+        <Container class="javax.swing.JPanel" name="updateActionPanel">
+          <Properties>
+            <Property name="name" type="java.lang.String" value="updateActionPanel" noResource="true"/>
+          </Properties>
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
+              <JTabbedPaneConstraints tabName="MAJ Action">
+                <Property name="tabTitle" type="java.lang.String" resourceKey="updateActionPanel.TabConstraints.tabTitle"/>
+              </JTabbedPaneConstraints>
+            </Constraint>
+          </Constraints>
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="updateCodeLabel" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+                                      <Component id="updateCodeField" min="-2" pref="104" max="-2" attributes="1"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="updateQuantityLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="updatePriceLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="updateQuantityField" pref="104" max="32767" attributes="1"/>
+                                          <Component id="updatePriceField" alignment="0" pref="104" max="32767" attributes="1"/>
+                                      </Group>
+                                  </Group>
+                              </Group>
+                              <EmptySpace min="-2" pref="191" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="updateActionButton" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="updateCodeLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="updateCodeField" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="updatePriceLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="updatePriceField" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="updateQuantityLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="updateQuantityField" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace pref="70" max="32767" attributes="0"/>
+                      <Component id="updateActionButton" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
+            <Component class="javax.swing.JLabel" name="updateCodeLabel">
+              <Properties>
+                <Property name="text" type="java.lang.String" resourceKey="updateCodeLabel.text"/>
+                <Property name="name" type="java.lang.String" value="updateCodeLabel" noResource="true"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="updateCodeField">
+              <Properties>
+                <Property name="name" type="java.lang.String" value="updateCodeField" noResource="true"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="updatePriceLabel">
+              <Properties>
+                <Property name="text" type="java.lang.String" resourceKey="updatePriceLabel.text"/>
+                <Property name="name" type="java.lang.String" value="updatePriceLabel" noResource="true"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="updatePriceField">
+              <Properties>
+                <Property name="name" type="java.lang.String" value="updatePriceField" noResource="true"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="updateQuantityLabel">
+              <Properties>
+                <Property name="text" type="java.lang.String" resourceKey="updateQuantityLabel.text"/>
+                <Property name="name" type="java.lang.String" value="updateQuantityLabel" noResource="true"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="updateQuantityField">
+              <Properties>
+                <Property name="name" type="java.lang.String" value="updateQuantityField" noResource="true"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="updateActionButton">
+              <Properties>
+                <Property name="text" type="java.lang.String" resourceKey="updateActionButton.text"/>
+                <Property name="name" type="java.lang.String" value="updateActionButton" noResource="true"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="updateActionButtonActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
