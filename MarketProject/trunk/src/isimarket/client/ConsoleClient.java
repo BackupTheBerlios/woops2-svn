@@ -43,7 +43,7 @@ public class ConsoleClient {
 			
 			// TODO creer un operator test
 			System.out.println("createOperator ... ");
-			//administrationServantRef.createOperator("test","password",1000.0f);
+			administrationServantRef.createOperator("test","password",1000.0f);
 			System.out.println("updateCash ... ");
 			//administrationServantRef.updateCash("test",3000.0f);
 			System.out.println("createNewActionType ... ");

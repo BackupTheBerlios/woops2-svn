@@ -50,7 +50,7 @@ public class Server {
             bindReference(walletServantRef, ncRef,ServerConstants._REF_WALLET_SERVANT);
             
             // TODO verifier si les tables sont deja creer
-            TableManager.createTables();
+            // TableManager.createTables();
             
             System.out.println("server launched ...");
             
