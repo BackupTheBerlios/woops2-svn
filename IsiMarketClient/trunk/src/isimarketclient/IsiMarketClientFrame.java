@@ -23,7 +23,7 @@ public class IsiMarketClientFrame extends FrameView {
     
     public IsiMarketClientFrame(SingleFrameApplication app) {
         super(app);
-
+        
         initComponents();
 
         // status bar initialization - message timeout, idle icon and busy animation, etc
@@ -304,7 +304,6 @@ public class IsiMarketClientFrame extends FrameView {
         cashLabel.setName("cashLabel"); // NOI18N
 
         opeatorField.setEditable(false);
-        opeatorField.setText(resourceMap.getString("opeatorField.text")); // NOI18N
         opeatorField.setName("opeatorField"); // NOI18N
 
         cashField.setEditable(false);
@@ -412,7 +411,7 @@ public class IsiMarketClientFrame extends FrameView {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buyActionTypeButton;
     private javax.swing.JButton buyActionTypeButton1;
-    private javax.swing.JTextField cashField;
+    public javax.swing.JTextField cashField;
     private javax.swing.JLabel cashLabel;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -422,7 +421,7 @@ public class IsiMarketClientFrame extends FrameView {
     private javax.swing.JPanel marketPanel;
     private javax.swing.JTable marketTable;
     private javax.swing.JMenuBar menuBar;
-    private javax.swing.JTextField opeatorField;
+    public javax.swing.JTextField opeatorField;
     private javax.swing.JLabel operatorLabel;
     private javax.swing.JPanel operatorPanel;
     private javax.swing.JProgressBar progressBar;

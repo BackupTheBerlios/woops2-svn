@@ -66,8 +66,10 @@ public class IsiMarketClient extends SingleFrameApplication {
         }
         else if (session == IsiMarketConnection.UserType.OPERATOR){
             if (currentWallet != null){
-            mainView = new IsiMarketClientFrame(this);
-            show(mainView);
+                mainView = new IsiMarketClientFrame(this);
+                mainView.cashField.setText(""+IsiMarketClientModel.cash);
+                mainView.opeatorField.setText(IsiMarketClientModel.login);
+                show(mainView);
             }
         }
     }

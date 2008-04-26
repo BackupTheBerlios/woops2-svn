@@ -321,9 +321,11 @@
         <Component class="javax.swing.JTextField" name="opeatorField">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
-            <Property name="text" type="java.lang.String" resourceKey="opeatorField.text"/>
             <Property name="name" type="java.lang.String" value="opeatorField" noResource="true"/>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JTextField" name="cashField">
           <Properties>
@@ -331,6 +333,9 @@
             <Property name="text" type="java.lang.String" resourceKey="cashField.text"/>
             <Property name="name" type="java.lang.String" value="cashField" noResource="true"/>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+          </AuxValues>
         </Component>
       </SubComponents>
     </Container>
