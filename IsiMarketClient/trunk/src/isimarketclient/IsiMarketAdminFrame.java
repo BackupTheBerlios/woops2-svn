@@ -34,20 +34,21 @@ public class IsiMarketAdminFrame extends javax.swing.JFrame {
         passwordLabel = new javax.swing.JLabel();
         loginField = new javax.swing.JTextField();
         passwordField = new javax.swing.JTextField();
-        cashSpinner = new javax.swing.JSpinner();
         createButton = new javax.swing.JButton();
         cashLabel = new javax.swing.JLabel();
+        cashField = new javax.swing.JTextField();
         operatorUpdate = new javax.swing.JPanel();
         updateLoginLabel = new javax.swing.JLabel();
         updateLoginField = new javax.swing.JTextField();
-        updateCashField = new javax.swing.JLabel();
-        updateCashSpinner = new javax.swing.JSpinner();
+        updateCashLabel = new javax.swing.JLabel();
         updateButton = new javax.swing.JButton();
+        updateCashField = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(isimarketclient.IsiMarketClient.class).getContext().getResourceMap(IsiMarketAdminFrame.class);
+        setTitle(resourceMap.getString("Form.title")); // NOI18N
         setName("Form"); // NOI18N
 
-        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(isimarketclient.IsiMarketClient.class).getContext().getResourceMap(IsiMarketAdminFrame.class);
         quitButton.setText(resourceMap.getString("quitButton.text")); // NOI18N
         quitButton.setName("quitButton"); // NOI18N
         quitButton.addActionListener(new java.awt.event.ActionListener() {
@@ -70,8 +71,6 @@ public class IsiMarketAdminFrame extends javax.swing.JFrame {
 
         passwordField.setName("passwordField"); // NOI18N
 
-        cashSpinner.setName("cashSpinner"); // NOI18N
-
         createButton.setText(resourceMap.getString("createButton.text")); // NOI18N
         createButton.setName("createButton"); // NOI18N
         createButton.addActionListener(new java.awt.event.ActionListener() {
@@ -83,6 +82,9 @@ public class IsiMarketAdminFrame extends javax.swing.JFrame {
         cashLabel.setText(resourceMap.getString("cashLabel.text")); // NOI18N
         cashLabel.setName("cashLabel"); // NOI18N
 
+        cashField.setText(resourceMap.getString("cashField.text")); // NOI18N
+        cashField.setName("cashField"); // NOI18N
+
         javax.swing.GroupLayout newOperatorPanelLayout = new javax.swing.GroupLayout(newOperatorPanel);
         newOperatorPanel.setLayout(newOperatorPanelLayout);
         newOperatorPanelLayout.setHorizontalGroup(
@@ -92,13 +94,13 @@ public class IsiMarketAdminFrame extends javax.swing.JFrame {
                 .addGroup(newOperatorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(loginLabel)
                     .addComponent(passwordLabel)
-                    .addComponent(cashLabel))
+                    .addComponent(cashLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(newOperatorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(cashField)
                     .addComponent(loginField)
-                    .addComponent(passwordField, javax.swing.GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE)
-                    .addComponent(cashSpinner))
-                .addContainerGap(139, Short.MAX_VALUE))
+                    .addComponent(passwordField, javax.swing.GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE))
+                .addContainerGap(128, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, newOperatorPanelLayout.createSequentialGroup()
                 .addContainerGap(251, Short.MAX_VALUE)
                 .addComponent(createButton, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -117,11 +119,11 @@ public class IsiMarketAdminFrame extends javax.swing.JFrame {
                     .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(newOperatorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cashLabel)
-                    .addComponent(cashSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cashField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cashLabel))
                 .addGap(18, 18, 18)
                 .addComponent(createButton)
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addContainerGap(37, Short.MAX_VALUE))
         );
 
         tabbedPane.addTab(resourceMap.getString("newOperatorPanel.TabConstraints.tabTitle"), newOperatorPanel); // NOI18N
@@ -133,10 +135,8 @@ public class IsiMarketAdminFrame extends javax.swing.JFrame {
 
         updateLoginField.setName("updateLoginField"); // NOI18N
 
-        updateCashField.setText(resourceMap.getString("updateCashField.text")); // NOI18N
-        updateCashField.setName("updateCashField"); // NOI18N
-
-        updateCashSpinner.setName("updateCashSpinner"); // NOI18N
+        updateCashLabel.setText(resourceMap.getString("updateCashLabel.text")); // NOI18N
+        updateCashLabel.setName("updateCashLabel"); // NOI18N
 
         updateButton.setText(resourceMap.getString("updateButton.text")); // NOI18N
         updateButton.setName("updateButton"); // NOI18N
@@ -146,22 +146,23 @@ public class IsiMarketAdminFrame extends javax.swing.JFrame {
             }
         });
 
+        updateCashField.setText(resourceMap.getString("updateCashField.text")); // NOI18N
+        updateCashField.setName("updateCashField"); // NOI18N
+
         javax.swing.GroupLayout operatorUpdateLayout = new javax.swing.GroupLayout(operatorUpdate);
         operatorUpdate.setLayout(operatorUpdateLayout);
         operatorUpdateLayout.setHorizontalGroup(
             operatorUpdateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(operatorUpdateLayout.createSequentialGroup()
                 .addContainerGap()
+                .addGroup(operatorUpdateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(updateCashLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(updateLoginLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(operatorUpdateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(operatorUpdateLayout.createSequentialGroup()
-                        .addComponent(updateLoginLabel)
-                        .addGap(48, 48, 48)
-                        .addComponent(updateLoginField, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(operatorUpdateLayout.createSequentialGroup()
-                        .addComponent(updateCashField)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(updateCashSpinner)))
-                .addContainerGap(181, Short.MAX_VALUE))
+                    .addComponent(updateLoginField, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(updateCashField))
+                .addContainerGap(166, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, operatorUpdateLayout.createSequentialGroup()
                 .addContainerGap(251, Short.MAX_VALUE)
                 .addComponent(updateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -176,9 +177,9 @@ public class IsiMarketAdminFrame extends javax.swing.JFrame {
                     .addComponent(updateLoginField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(operatorUpdateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(updateCashField)
-                    .addComponent(updateCashSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
+                    .addComponent(updateCashField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(updateCashLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
                 .addComponent(updateButton)
                 .addContainerGap())
         );
@@ -215,19 +216,27 @@ public class IsiMarketAdminFrame extends javax.swing.JFrame {
 
     private void createButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createButtonActionPerformed
         try{
+        Float cash = new Float(cashField.getText());
         IsiMarketClient.getApplication().getCorbaClient()
                 .getAdministrationServantRef().createOperator(loginField.getText(), passwordField.getText(), 
-                0.0f);
+                cash);
         JOptionPane.showMessageDialog(this, "Creation OK !", "IsimarketClient", JOptionPane.INFORMATION_MESSAGE);
         } catch(Exception e){
             e.printStackTrace();
              JOptionPane.showMessageDialog(this, "Erreur :"+e, "Erreur", JOptionPane.ERROR_MESSAGE);
         }
-         
     }//GEN-LAST:event_createButtonActionPerformed
 
     private void updateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButtonActionPerformed
-        // TODO add your handling code here:
+       try{
+        Float cash = new Float(updateCashField.getText());
+        IsiMarketClient.getApplication().getCorbaClient()
+                .getAdministrationServantRef().updateCash(updateLoginField.getText(), cash);
+        JOptionPane.showMessageDialog(this, "Mise à jour OK !", "IsimarketClient", JOptionPane.INFORMATION_MESSAGE);
+        } catch(Exception e){
+            e.printStackTrace();
+             JOptionPane.showMessageDialog(this, "Erreur :"+e, "Erreur", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_updateButtonActionPerformed
     
     /**
@@ -242,8 +251,8 @@ public class IsiMarketAdminFrame extends javax.swing.JFrame {
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField cashField;
     private javax.swing.JLabel cashLabel;
-    private javax.swing.JSpinner cashSpinner;
     private javax.swing.JButton createButton;
     private javax.swing.JTextField loginField;
     private javax.swing.JLabel loginLabel;
@@ -254,8 +263,8 @@ public class IsiMarketAdminFrame extends javax.swing.JFrame {
     private javax.swing.JButton quitButton;
     private javax.swing.JTabbedPane tabbedPane;
     private javax.swing.JButton updateButton;
-    private javax.swing.JLabel updateCashField;
-    private javax.swing.JSpinner updateCashSpinner;
+    private javax.swing.JTextField updateCashField;
+    private javax.swing.JLabel updateCashLabel;
     private javax.swing.JTextField updateLoginField;
     private javax.swing.JLabel updateLoginLabel;
     // End of variables declaration//GEN-END:variables
