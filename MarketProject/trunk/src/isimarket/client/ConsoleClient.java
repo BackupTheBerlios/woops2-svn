@@ -28,29 +28,16 @@ public class ConsoleClient {
 	
 	public static void main(String[] args) {
         try {
-        	Properties props = new Properties ();
-			props.put("org.omg.CORBA.ORBInitialPort", "900");
-			props.put("org.omg.CORBA.ORBInitialHost",
-			"localhost");
-			ORB orb = ORB.init(args, props);
-
-			// get the root naming context
-			org.omg.CORBA.Object objRef = orb.resolve_initial_references(ServerConstants._NAMING_SERVICE_NAME);
-			NamingContext ncRef = NamingContextHelper.narrow(objRef);
-
-			// resolve the Object Reference in Naming
-//			NameComponent nc = new NameComponent(ServerConstants._REF_ADMINISTRATION_SERVANT, "");
-//			NameComponent path[] = {nc};
-//			AdministrationServant administrationServantRef = AdministrationServantHelper.narrow(ncRef.resolve(path));
-			
-			AdministrationServant administrationServantRef = AdministrationServantHelper.narrow((Object) bindReference(ncRef,ServerConstants._REF_ADMINISTRATION_SERVANT ));
-			ActionTypeServant actionTypeServantRef = ActionTypeServantHelper.narrow((Object) bindReference(ncRef,ServerConstants._REF_ACTION_SERVANT ));
-			AlarmServant alarmServant = AlarmServantHelper.narrow((Object) bindReference(ncRef,ServerConstants._REF_ALARM_SERVANT ));
-			WalletServant walletServant = WalletServantHelper.narrow((Object) bindReference(ncRef,ServerConstants._REF_WALLET_SERVANT ));
-			
+        	CorbaClient client = new CorbaClient();
+        	client.startClient();
+        	
+			AdministrationServant administrationServantRef = client.getAdministrationServantRef();
 			System.out.println("administrationServantRef @ "+administrationServantRef);
+			ActionTypeServant actionTypeServantRef = client.getActionTypeServantRef();
 			System.out.println("actionTypeServantRef @"+actionTypeServantRef);
+			AlarmServant alarmServant = client.getAlarmServant();
 			System.out.println("alarmServant @"+alarmServant);
+			WalletServant walletServant = client.getWalletServant();
 			System.out.println("walletServant @"+walletServant);
 			System.out.println("client launched ...");
 			
@@ -61,19 +48,10 @@ public class ConsoleClient {
 			//administrationServantRef.updateCash("test",3000.0f);
 			System.out.println("createNewActionType ... ");
 			//actionTypeServantRef.createNewActionType("tst4","action_de_test4","0000-00-00 00:00",10.0f,1000,10.0f);
-			
-			
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 	
-	private static Object bindReference(NamingContext ncRef, String name) 
-			throws NotFound, CannotProceed, InvalidName{
-		NameComponent nc = new NameComponent(name, "");
-		NameComponent path[] = {nc};
-		return ncRef.resolve(path);
-	}
-
 }
