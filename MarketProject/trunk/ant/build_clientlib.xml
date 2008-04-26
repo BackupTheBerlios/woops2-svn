@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <!-- Script for building jar application -->
-<project name="IsiMarket Client(lib)" default="build" basedir="../">
+<project name="IsiMarket Client(lib)" default="build.jar" basedir="../">
 
 	<!-- Configure the context path for this application -->
 	<property name="project.name" value="IsiMarketClientLib" />
@@ -67,11 +67,13 @@
 		</jar>
 		<delete dir="${build.dir}" />
 		<mkdir dir="${dist.dir}/lib/" />
+		<!--
 		<copy todir="${dist.dir}/lib/">
 			<fileset dir="${lib.dir}">
 				<include name="**/*.jar" />
 			</fileset>
 		</copy>
+		-->
 	</target>
 
 </project>
