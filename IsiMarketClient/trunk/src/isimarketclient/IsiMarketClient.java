@@ -7,6 +7,7 @@ import isimarket.client.CorbaClient;
 import isimarket.model.Wallet;
 import isimarketclient.IsiMarketConnection.UserType;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import org.jdesktop.application.Application;
 import org.jdesktop.application.SingleFrameApplication;
 
@@ -67,8 +68,26 @@ public class IsiMarketClient extends SingleFrameApplication {
         } else if (session == IsiMarketConnection.UserType.OPERATOR) {
             if (currentWallet != null) {
                 mainView = new IsiMarketClientFrame(this);
+                // get infos
                 mainView.cashField.setText("" + IsiMarketClientModel.cash);
                 mainView.opeatorField.setText(IsiMarketClientModel.login);
+                // update actions
+                
+                IsiMarketClientModel.market = client.getActionTypeServantRef().getActionTypeList();
+                
+                Object[][] table = new Object[IsiMarketClientModel.market.length][6];
+                Object[] columns = new Object[6];
+                
+                for (int i = 0 ; i < IsiMarketClientModel.market.length; i++){
+                    table[i][0] = IsiMarketClientModel.market[i].code;
+                    table[i][1] = IsiMarketClientModel.market[i].label;
+                    table[i][2] = IsiMarketClientModel.market[i].currentPrice;
+                    table[i][3] = IsiMarketClientModel.market[i].quantity;
+                    table[i][4] = IsiMarketClientModel.market[i].introductionPrice;
+                    table[i][5] = IsiMarketClientModel.market[i].introductionDate;
+                }
+                
+                //mainView.marketTable = new JTable(table, columns);
                 show(mainView);
             }
         }

@@ -110,12 +110,12 @@ public class IsiMarketClientFrame extends FrameView {
         refreshActionTypeButton4 = new javax.swing.JButton();
         operatorPanel = new javax.swing.JPanel();
         jscrollPaneOperatorPanel = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        walletTable = new javax.swing.JTable();
         buyActionTypeButton1 = new javax.swing.JButton();
         showActionTypeButton1 = new javax.swing.JButton();
         refreshActionTypeButton2 = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
+        alarmPanel = new javax.swing.JPanel();
+        eventPanel = new javax.swing.JPanel();
         operatorLabel = new javax.swing.JLabel();
         cashLabel = new javax.swing.JLabel();
         opeatorField = new javax.swing.JTextField();
@@ -208,7 +208,7 @@ public class IsiMarketClientFrame extends FrameView {
 
         jscrollPaneOperatorPanel.setName("jscrollPaneOperatorPanel"); // NOI18N
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        walletTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -219,8 +219,8 @@ public class IsiMarketClientFrame extends FrameView {
                 "Code", "Prix d'achat", "Quantité", "Date"
             }
         ));
-        jTable1.setName("jTable1"); // NOI18N
-        jscrollPaneOperatorPanel.setViewportView(jTable1);
+        walletTable.setName("walletTable"); // NOI18N
+        jscrollPaneOperatorPanel.setViewportView(walletTable);
 
         buyActionTypeButton1.setIcon(resourceMap.getIcon("buyActionTypeButton1.icon")); // NOI18N
         buyActionTypeButton1.setText(resourceMap.getString("buyActionTypeButton1.text")); // NOI18N
@@ -267,35 +267,35 @@ public class IsiMarketClientFrame extends FrameView {
 
         tabbedPane.addTab(resourceMap.getString("operatorPanel.TabConstraints.tabTitle"), operatorPanel); // NOI18N
 
-        jPanel1.setName("jPanel1"); // NOI18N
+        alarmPanel.setName("alarmPanel"); // NOI18N
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout alarmPanelLayout = new javax.swing.GroupLayout(alarmPanel);
+        alarmPanel.setLayout(alarmPanelLayout);
+        alarmPanelLayout.setHorizontalGroup(
+            alarmPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 714, Short.MAX_VALUE)
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        alarmPanelLayout.setVerticalGroup(
+            alarmPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 293, Short.MAX_VALUE)
         );
 
-        tabbedPane.addTab(resourceMap.getString("jPanel1.TabConstraints.tabTitle"), jPanel1); // NOI18N
+        tabbedPane.addTab(resourceMap.getString("alarmPanel.TabConstraints.tabTitle"), alarmPanel); // NOI18N
 
-        jPanel2.setName("jPanel2"); // NOI18N
+        eventPanel.setName("eventPanel"); // NOI18N
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout eventPanelLayout = new javax.swing.GroupLayout(eventPanel);
+        eventPanel.setLayout(eventPanelLayout);
+        eventPanelLayout.setHorizontalGroup(
+            eventPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 714, Short.MAX_VALUE)
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        eventPanelLayout.setVerticalGroup(
+            eventPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 293, Short.MAX_VALUE)
         );
 
-        tabbedPane.addTab(resourceMap.getString("jPanel2.TabConstraints.tabTitle"), jPanel2); // NOI18N
+        tabbedPane.addTab(resourceMap.getString("eventPanel.TabConstraints.tabTitle"), eventPanel); // NOI18N
 
         operatorLabel.setText(resourceMap.getString("operatorLabel.text")); // NOI18N
         operatorLabel.setName("operatorLabel"); // NOI18N
@@ -409,17 +409,16 @@ public class IsiMarketClientFrame extends FrameView {
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel alarmPanel;
     private javax.swing.JButton buyActionTypeButton;
     private javax.swing.JButton buyActionTypeButton1;
     public javax.swing.JTextField cashField;
     private javax.swing.JLabel cashLabel;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JPanel eventPanel;
     private javax.swing.JScrollPane jscrollPaneOperatorPanel;
     private javax.swing.JPanel mainPanel;
     private javax.swing.JPanel marketPanel;
-    private javax.swing.JTable marketTable;
+    public javax.swing.JTable marketTable;
     private javax.swing.JMenuBar menuBar;
     public javax.swing.JTextField opeatorField;
     private javax.swing.JLabel operatorLabel;
@@ -435,6 +434,7 @@ public class IsiMarketClientFrame extends FrameView {
     private javax.swing.JLabel statusMessageLabel;
     private javax.swing.JPanel statusPanel;
     private javax.swing.JTabbedPane tabbedPane;
+    private javax.swing.JTable walletTable;
     // End of variables declaration//GEN-END:variables
 
     private final Timer messageTimer;
