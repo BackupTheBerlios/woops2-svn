@@ -3,7 +3,7 @@
 <project name="IsiMarket Server" default="build.jar" basedir="../">
 
 	<!-- Configure the context path for this application -->
-	<property name="project.name" value="IsiMarketClientLib" />
+	<property name="project.name" value="IsiMarketServer" />
 	<property name="build.dir" value="${basedir}/tmp" />
 	<property name="ant.dir" value="${basedir}" />
 	<property name="src.dir" value="${basedir}/src" />

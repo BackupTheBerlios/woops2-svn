@@ -30,7 +30,6 @@
 
 	<target name="prepare" depends="clean" description="Create build directories.">
 		<mkdir dir="${build.dir}/${project.name}" />
-		<mkdir dir="${build.dir}/${project.name}/lib" />
 		<mkdir dir="${dist.dir}" />
 	</target>
 
@@ -66,7 +65,6 @@
 			</manifest>
 		</jar>
 		<delete dir="${build.dir}" />
-		<mkdir dir="${dist.dir}/lib/" />
 		<!--
 		<copy todir="${dist.dir}/lib/">
 			<fileset dir="${lib.dir}">
