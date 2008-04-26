@@ -21,7 +21,7 @@ public class TableManager {
 			+ " quantity integer, action_type_code varchar(5), wallet_id integer, "
 			+ " foreign key (action_type_code) references actiontype(code),"
 			+ " foreign key (wallet_id) references wallet(wallet_id))";
-	private static final String _DROP_WALLETACTION = "drop table walletaction";
+	private static final String _DROP_WALLETACTION = "drop table action";
 
 	// Event
 	private static final String _CREATE_EVENT = "create table event(event_id "+_GEN_IDENTITY+", price float, date varchar(16), action_type_code varchar(5),"
