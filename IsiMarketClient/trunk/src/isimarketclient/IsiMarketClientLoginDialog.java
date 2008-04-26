@@ -4,6 +4,12 @@
 
 package isimarketclient;
 
+import isimarket.model.Wallet;
+import isimarket.servants.walletservant.WalletServantPackage.UnknownOperatorException;
+import isimarket.servants.walletservant.WalletServantPackage.WrongPasswordException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import org.jdesktop.application.Action;
 
 public class IsiMarketClientLoginDialog extends javax.swing.JDialog {
@@ -138,13 +144,22 @@ public class IsiMarketClientLoginDialog extends javax.swing.JDialog {
     private void connectionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_connectionButtonActionPerformed
         String login = loginTextField.getText();
         String pwd = passwordField.getText();
+        
+        IsiMarketClient main = IsiMarketClient.getApplication();
+        
         if (login.equals("admin")){
-            IsiMarketClient.getApplication().setConnectionType(IsiMarketConnection.UserType.ADMIN);
+            main.setConnectionType(IsiMarketConnection.UserType.ADMIN);
         }
         else {
-            IsiMarketClient.getApplication().setConnectionType(IsiMarketConnection.UserType.OPERATOR);
+            try {
+                main.setConnectionType(IsiMarketConnection.UserType.OPERATOR);
+                Wallet w = main.getCorbaClient().getWalletServant().authentication(login, pwd);
+                main.setWallet(w);
+                this.dispose();
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "Erreur :"+e, "Erreur", JOptionPane.ERROR_MESSAGE);
+            }
         }
-        this.dispose();
 }//GEN-LAST:event_connectionButtonActionPerformed
 
     private void quitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quitButtonActionPerformed

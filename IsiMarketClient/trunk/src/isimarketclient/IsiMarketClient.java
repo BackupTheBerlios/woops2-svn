@@ -5,6 +5,7 @@
 package isimarketclient;
 
 import isimarket.client.CorbaClient;
+import isimarket.model.Wallet;
 import isimarketclient.IsiMarketConnection.UserType;
 import javax.swing.JOptionPane;
 import org.jdesktop.application.Application;
@@ -19,9 +20,18 @@ public class IsiMarketClient extends SingleFrameApplication {
     private IsiMarketAdminFrame adminView = null;
     private IsiMarketConnection.UserType session = IsiMarketConnection.UserType.NONE;
     private CorbaClient client = null;
+    private Wallet currentWallet = null;
     
     public CorbaClient getCorbaClient(){
         return client;
+    }
+    
+    public Wallet getWallet(){
+        return currentWallet;
+    }
+    
+    public void setWallet(Wallet w){
+        currentWallet = w;
     }
     
     /**
@@ -42,8 +52,12 @@ public class IsiMarketClient extends SingleFrameApplication {
         loginFrame = new IsiMarketClientLoginDialog(adminView);
         show(loginFrame);
         
+       waitConnectionType();
+    }
+    
+    private void waitConnectionType(){
         while (session == IsiMarketConnection.UserType.NONE) {
-
+            
         }
         
         if (session == IsiMarketConnection.UserType.ADMIN){
@@ -51,8 +65,10 @@ public class IsiMarketClient extends SingleFrameApplication {
             show(adminView);
         }
         else if (session == IsiMarketConnection.UserType.OPERATOR){
+            if (currentWallet != null){
             mainView = new IsiMarketClientFrame(this);
             show(mainView);
+            }
         }
     }
 
