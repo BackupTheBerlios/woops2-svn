@@ -49,8 +49,8 @@ public class Server {
             bindReference(alarmServantRef, ncRef,ServerConstants._REF_ALARM_SERVANT);
             bindReference(walletServantRef, ncRef,ServerConstants._REF_WALLET_SERVANT);
             
-            // TODO verifier si les tables sont deja creer
-            // TableManager.createTables();
+            // cf script create table
+            //TableManager.createTables();
             
             System.out.println("server launched ...");
             
