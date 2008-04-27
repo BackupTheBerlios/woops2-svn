@@ -434,7 +434,7 @@ public class IsiMarketAdminFrame extends javax.swing.JFrame {
                 .updateActionTypeCurrentPrice(updateCodeField.getText(), price);
         IsiMarketClient.getApplication().getCorbaClient().getActionTypeServantRef()
                 .updateActionTypeQuantity(updateCodeField.getText(), quantity);
-        JOptionPane.showMessageDialog(this, "Creation Action OK !", "IsimarketClient", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(this, "MAJ Action OK !", "IsimarketClient", JOptionPane.INFORMATION_MESSAGE);
         } catch(Exception e){
             e.printStackTrace();
              JOptionPane.showMessageDialog(this, "Erreur :"+e, "Erreur", JOptionPane.ERROR_MESSAGE);

@@ -169,6 +169,11 @@ public class IsiMarketClientFrame extends FrameView {
         refreshActionTypeButton4.setIcon(resourceMap.getIcon("refreshActionTypeButton4.icon")); // NOI18N
         refreshActionTypeButton4.setText(resourceMap.getString("refreshActionTypeButton4.text")); // NOI18N
         refreshActionTypeButton4.setName("refreshActionTypeButton4"); // NOI18N
+        refreshActionTypeButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                refreshActionTypeButton4ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout marketPanelLayout = new javax.swing.GroupLayout(marketPanel);
         marketPanel.setLayout(marketPanelLayout);
@@ -352,6 +357,11 @@ public class IsiMarketClientFrame extends FrameView {
         exitMenuItem.setAction(actionMap.get("quit")); // NOI18N
         exitMenuItem.setText(resourceMap.getString("exitMenuItem.text")); // NOI18N
         exitMenuItem.setName("exitMenuItem"); // NOI18N
+        exitMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                exitMenuItemActionPerformed(evt);
+            }
+        });
         fileMenu.add(exitMenuItem);
 
         menuBar.add(fileMenu);
@@ -407,6 +417,14 @@ public class IsiMarketClientFrame extends FrameView {
         setMenuBar(menuBar);
         setStatusBar(statusPanel);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void refreshActionTypeButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshActionTypeButton4ActionPerformed
+        IsiMarketClient.getApplication().updateMarket(this);
+    }//GEN-LAST:event_refreshActionTypeButton4ActionPerformed
+
+    private void exitMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitMenuItemActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_exitMenuItemActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel alarmPanel;

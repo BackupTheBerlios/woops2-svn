@@ -8,6 +8,7 @@ import isimarket.model.Wallet;
 import isimarketclient.IsiMarketConnection.UserType;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.table.TableModel;
 import org.jdesktop.application.Application;
 import org.jdesktop.application.SingleFrameApplication;
 
@@ -72,24 +73,23 @@ public class IsiMarketClient extends SingleFrameApplication {
                 mainView.cashField.setText("" + IsiMarketClientModel.cash);
                 mainView.opeatorField.setText(IsiMarketClientModel.login);
                 // update actions
-                
-                IsiMarketClientModel.market = client.getActionTypeServantRef().getActionTypeList();
-                
-                Object[][] table = new Object[IsiMarketClientModel.market.length][6];
-                Object[] columns = new Object[6];
-                
-                for (int i = 0 ; i < IsiMarketClientModel.market.length; i++){
-                    table[i][0] = IsiMarketClientModel.market[i].code;
-                    table[i][1] = IsiMarketClientModel.market[i].label;
-                    table[i][2] = IsiMarketClientModel.market[i].currentPrice;
-                    table[i][3] = IsiMarketClientModel.market[i].quantity;
-                    table[i][4] = IsiMarketClientModel.market[i].introductionPrice;
-                    table[i][5] = IsiMarketClientModel.market[i].introductionDate;
-                }
-                
+                updateMarket(mainView);
+
                 //mainView.marketTable = new JTable(table, columns);
                 show(mainView);
             }
+        }
+    }
+
+    public void updateMarket(IsiMarketClientFrame mainView) {
+        IsiMarketClientModel.market = client.getActionTypeServantRef().getActionTypeList();
+
+        TableModel tModel = mainView.marketTable.getModel();
+        for (int i = 0; i < IsiMarketClientModel.market.length; i++) {
+            tModel.setValueAt(IsiMarketClientModel.market[i].code, i, 0);
+            tModel.setValueAt(IsiMarketClientModel.market[i].label, i, 1);
+            tModel.setValueAt(IsiMarketClientModel.market[i].currentPrice, i, 2);
+            tModel.setValueAt(IsiMarketClientModel.market[i].quantity, i, 3);
         }
     }
 
