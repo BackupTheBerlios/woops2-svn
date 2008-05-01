@@ -9,6 +9,6 @@ package isimarketclient;
  *
  * @author Arno
  */
-public class IsiMarketConnection {
+public class IsiMarketConstants {
     public enum UserType{NONE, OPERATOR , ADMIN };
 }

@@ -12,10 +12,10 @@ import javax.swing.JOptionPane;
  *
  * @author  Arno
  */
-public class IsiMarketAdminFrame extends javax.swing.JFrame {
+public class AdminFrame extends javax.swing.JFrame {
     
     /** Creates new form IsiMarketAdminFrame */
-    public IsiMarketAdminFrame() {
+    public AdminFrame() {
         initComponents();
     }
     
@@ -63,7 +63,7 @@ public class IsiMarketAdminFrame extends javax.swing.JFrame {
         updateActionButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(isimarketclient.IsiMarketClient.class).getContext().getResourceMap(IsiMarketAdminFrame.class);
+        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(isimarketclient.IsiMarketClient.class).getContext().getResourceMap(AdminFrame.class);
         setTitle(resourceMap.getString("Form.title")); // NOI18N
         setName("Form"); // NOI18N
 
@@ -447,7 +447,7 @@ public class IsiMarketAdminFrame extends javax.swing.JFrame {
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new IsiMarketAdminFrame().setVisible(true);
+                new AdminFrame().setVisible(true);
             }
         });
     }

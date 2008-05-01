@@ -5,7 +5,7 @@ package isimarketclient;
 
 import isimarket.client.CorbaClient;
 import isimarket.model.Wallet;
-import isimarketclient.IsiMarketConnection.UserType;
+import isimarketclient.IsiMarketConstants.UserType;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.TableModel;
@@ -17,10 +17,10 @@ import org.jdesktop.application.SingleFrameApplication;
  */
 public class IsiMarketClient extends SingleFrameApplication {
 
-    private IsiMarketClientLoginDialog loginFrame = null;
+    private ClientLoginDialog loginFrame = null;
     private IsiMarketClientFrame mainView = null;
-    private IsiMarketAdminFrame adminView = null;
-    private IsiMarketConnection.UserType session = IsiMarketConnection.UserType.NONE;
+    private AdminFrame adminView = null;
+    private IsiMarketConstants.UserType session = IsiMarketConstants.UserType.NONE;
     private CorbaClient client = null;
     private Wallet currentWallet = null;
 
@@ -50,23 +50,23 @@ public class IsiMarketClient extends SingleFrameApplication {
         }
 
         // start gui
-        adminView = new IsiMarketAdminFrame();
+        adminView = new AdminFrame();
 
-        loginFrame = new IsiMarketClientLoginDialog(adminView);
+        loginFrame = new ClientLoginDialog(adminView);
         show(loginFrame);
 
         waitConnectionType();
     }
 
     private void waitConnectionType() {
-        while (session == IsiMarketConnection.UserType.NONE) {
+        while (session == IsiMarketConstants.UserType.NONE) {
 
         }
 
-        if (session == IsiMarketConnection.UserType.ADMIN) {
-            adminView = new IsiMarketAdminFrame();
+        if (session == IsiMarketConstants.UserType.ADMIN) {
+            adminView = new AdminFrame();
             show(adminView);
-        } else if (session == IsiMarketConnection.UserType.OPERATOR) {
+        } else if (session == IsiMarketConstants.UserType.OPERATOR) {
             if (currentWallet != null) {
                 mainView = new IsiMarketClientFrame(this);
                 // get infos
@@ -92,7 +92,11 @@ public class IsiMarketClient extends SingleFrameApplication {
             tModel.setValueAt(IsiMarketClientModel.market[i].quantity, i, 3);
         }
     }
-
+    
+    public void displayActionType(int rowNb){
+        
+    }
+    
     /**
      * This method is to initialize the specified window by injecting resources.
      * Windows shown in our application come fully initialized from the GUI

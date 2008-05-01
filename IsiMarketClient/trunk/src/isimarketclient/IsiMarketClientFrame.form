@@ -13,7 +13,7 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="tabbedPane" alignment="0" pref="719" max="32767" attributes="0"/>
+                      <Component id="tabbedPane" alignment="0" pref="715" max="32767" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="cashLabel" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -44,7 +44,7 @@
                       <Component id="cashField" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="tabbedPane" pref="321" max="32767" attributes="0"/>
+                  <Component id="tabbedPane" pref="330" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -77,10 +77,10 @@
                           <Component id="scrollMarketPanel" min="-2" pref="483" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="refreshActionTypeButton1" alignment="1" pref="205" max="32767" attributes="1"/>
-                              <Component id="showActionTypeButton" alignment="1" pref="205" max="32767" attributes="1"/>
-                              <Component id="buyActionTypeButton" alignment="0" pref="205" max="32767" attributes="1"/>
-                              <Component id="refreshActionTypeButton4" pref="205" max="32767" attributes="1"/>
+                              <Component id="refreshActionTypeButton1" alignment="1" pref="194" max="32767" attributes="1"/>
+                              <Component id="showActionTypeButton" alignment="1" pref="194" max="32767" attributes="1"/>
+                              <Component id="buyActionTypeButton" alignment="0" pref="194" max="32767" attributes="1"/>
+                              <Component id="refreshActionTypeButton4" pref="194" max="32767" attributes="1"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
@@ -144,6 +144,9 @@
                     <Property name="text" type="java.lang.String" resourceKey="showActionTypeButton.text"/>
                     <Property name="name" type="java.lang.String" value="showActionTypeButton" noResource="true"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="showActionTypeButtonActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JButton" name="refreshActionTypeButton1">
                   <Properties>
@@ -184,12 +187,12 @@
                           <Component id="jscrollPaneOperatorPanel" min="-2" pref="482" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="buyActionTypeButton1" alignment="0" pref="206" max="32767" attributes="1"/>
+                              <Component id="buyActionTypeButton1" alignment="0" pref="195" max="32767" attributes="1"/>
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="showActionTypeButton1" pref="206" max="32767" attributes="1"/>
+                                  <Component id="showActionTypeButton1" pref="195" max="32767" attributes="1"/>
                               </Group>
-                              <Component id="refreshActionTypeButton2" alignment="0" pref="206" max="32767" attributes="1"/>
+                              <Component id="refreshActionTypeButton2" alignment="0" pref="195" max="32767" attributes="1"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
@@ -200,7 +203,7 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="1" attributes="0">
-                              <Component id="jscrollPaneOperatorPanel" alignment="0" pref="271" max="32767" attributes="0"/>
+                              <Component id="jscrollPaneOperatorPanel" alignment="0" pref="269" max="32767" attributes="0"/>
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="buyActionTypeButton1" min="-2" pref="67" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
@@ -273,7 +276,7 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <EmptySpace min="0" pref="714" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="707" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
@@ -298,7 +301,7 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <EmptySpace min="0" pref="714" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="707" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
@@ -419,7 +422,7 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="statusMessageLabel" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="569" max="32767" attributes="0"/>
+                  <EmptySpace pref="555" max="32767" attributes="0"/>
                   <Component id="progressBar" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="statusAnimationLabel" min="-2" max="-2" attributes="0"/>
@@ -491,6 +494,6 @@
     <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
     <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
-    <AuxValue name="designerSize" type="java.awt.Dimension" value="-84,-19,0,5,115,114,0,18,106,97,118,97,46,97,119,116,46,68,105,109,101,110,115,105,111,110,65,-114,-39,-41,-84,95,68,20,2,0,2,73,0,6,104,101,105,103,104,116,73,0,5,119,105,100,116,104,120,112,0,0,1,-73,0,0,2,-29"/>
+    <AuxValue name="designerSize" type="java.awt.Dimension" value="-84,-19,0,5,115,114,0,18,106,97,118,97,46,97,119,116,46,68,105,109,101,110,115,105,111,110,65,-114,-39,-41,-84,95,68,20,2,0,2,73,0,6,104,101,105,103,104,116,73,0,5,119,105,100,116,104,120,112,0,0,1,-44,0,0,2,-29"/>
   </AuxValues>
 </Form>

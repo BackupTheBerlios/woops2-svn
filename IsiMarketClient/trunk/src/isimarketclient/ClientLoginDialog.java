@@ -12,9 +12,9 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import org.jdesktop.application.Action;
 
-public class IsiMarketClientLoginDialog extends javax.swing.JDialog {
+public class ClientLoginDialog extends javax.swing.JDialog {
     
-    public IsiMarketClientLoginDialog(java.awt.Frame parent) {
+    public ClientLoginDialog(java.awt.Frame parent) {
         super(parent);
         initComponents();
         getRootPane().setDefaultButton(connectionButton);
@@ -47,9 +47,9 @@ public class IsiMarketClientLoginDialog extends javax.swing.JDialog {
         setName("aboutBox"); // NOI18N
         setResizable(false);
 
-        javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(isimarketclient.IsiMarketClient.class).getContext().getActionMap(IsiMarketClientLoginDialog.class, this);
+        javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(isimarketclient.IsiMarketClient.class).getContext().getActionMap(ClientLoginDialog.class, this);
         quitButton.setAction(actionMap.get("closeAboutBox")); // NOI18N
-        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(isimarketclient.IsiMarketClient.class).getContext().getResourceMap(IsiMarketClientLoginDialog.class);
+        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(isimarketclient.IsiMarketClient.class).getContext().getResourceMap(ClientLoginDialog.class);
         quitButton.setText(resourceMap.getString("quitButton.text")); // NOI18N
         quitButton.setName("quitButton"); // NOI18N
         quitButton.addActionListener(new java.awt.event.ActionListener() {
@@ -148,12 +148,12 @@ public class IsiMarketClientLoginDialog extends javax.swing.JDialog {
         IsiMarketClient main = IsiMarketClient.getApplication();
         
         if (login.equals("admin")){
-            main.setConnectionType(IsiMarketConnection.UserType.ADMIN);
+            main.setConnectionType(IsiMarketConstants.UserType.ADMIN);
             this.dispose();
         }
         else {
             try {
-                main.setConnectionType(IsiMarketConnection.UserType.OPERATOR);
+                main.setConnectionType(IsiMarketConstants.UserType.OPERATOR);
                 Wallet w = main.getCorbaClient().getWalletServant().authentication(login, pwd);
                 main.setWallet(w);
                 IsiMarketClientModel.login = login;
