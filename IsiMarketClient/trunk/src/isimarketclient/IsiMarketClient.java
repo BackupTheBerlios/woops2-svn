@@ -4,6 +4,7 @@
 package isimarketclient;
 
 import isimarket.client.CorbaClient;
+import isimarket.model.ActionType;
 import isimarket.model.Wallet;
 import isimarketclient.IsiMarketConstants.UserType;
 import javax.swing.JOptionPane;
@@ -18,6 +19,7 @@ import org.jdesktop.application.SingleFrameApplication;
 public class IsiMarketClient extends SingleFrameApplication {
 
     private ClientLoginDialog loginFrame = null;
+    private DisplayActionTypeDialog displayActionTypeDialog = null;
     private IsiMarketClientFrame mainView = null;
     private AdminFrame adminView = null;
     private IsiMarketConstants.UserType session = IsiMarketConstants.UserType.NONE;
@@ -94,7 +96,15 @@ public class IsiMarketClient extends SingleFrameApplication {
     }
     
     public void displayActionType(int rowNb){
-        
+        displayActionTypeDialog = new DisplayActionTypeDialog(mainView.getFrame());
+        ActionType at = IsiMarketClientModel.market[rowNb];
+        displayActionTypeDialog.codeField.setText(at.code);
+        displayActionTypeDialog.labelField.setText(at.label);
+        displayActionTypeDialog.introDateField.setText(at.introductionDate);
+        displayActionTypeDialog.introPriceLabel.setText(""+at.introductionPrice);
+        displayActionTypeDialog.currentPriceField.setText(""+at.currentPrice);
+        displayActionTypeDialog.quantityField.setText(""+at.quantity);
+        show(displayActionTypeDialog);
     }
     
     /**

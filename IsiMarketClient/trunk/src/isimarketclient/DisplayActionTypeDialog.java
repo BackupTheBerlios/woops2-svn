@@ -64,36 +64,42 @@ public class DisplayActionTypeDialog extends javax.swing.JDialog {
         jLabel1.setText(resourceMap.getString("jLabel1.text")); // NOI18N
         jLabel1.setName("jLabel1"); // NOI18N
 
+        codeField.setEditable(false);
         codeField.setText(resourceMap.getString("codeField.text")); // NOI18N
         codeField.setName("codeField"); // NOI18N
 
         jLabel2.setText(resourceMap.getString("jLabel2.text")); // NOI18N
         jLabel2.setName("jLabel2"); // NOI18N
 
+        labelField.setEditable(false);
         labelField.setText(resourceMap.getString("labelField.text")); // NOI18N
         labelField.setName("labelField"); // NOI18N
 
         jLabel3.setText(resourceMap.getString("jLabel3.text")); // NOI18N
         jLabel3.setName("jLabel3"); // NOI18N
 
+        introDateField.setEditable(false);
         introDateField.setText(resourceMap.getString("introDateField.text")); // NOI18N
         introDateField.setName("introDateField"); // NOI18N
 
         jLabel4.setText(resourceMap.getString("jLabel4.text")); // NOI18N
         jLabel4.setName("jLabel4"); // NOI18N
 
+        introPriceLabel.setEditable(false);
         introPriceLabel.setText(resourceMap.getString("introPriceLabel.text")); // NOI18N
         introPriceLabel.setName("introPriceLabel"); // NOI18N
 
         jLabel5.setText(resourceMap.getString("jLabel5.text")); // NOI18N
         jLabel5.setName("jLabel5"); // NOI18N
 
+        currentPriceField.setEditable(false);
         currentPriceField.setText(resourceMap.getString("currentPriceField.text")); // NOI18N
         currentPriceField.setName("currentPriceField"); // NOI18N
 
         jLabel6.setText(resourceMap.getString("jLabel6.text")); // NOI18N
         jLabel6.setName("jLabel6"); // NOI18N
 
+        quantityField.setEditable(false);
         quantityField.setText(resourceMap.getString("quantityField.text")); // NOI18N
         quantityField.setName("quantityField"); // NOI18N
 

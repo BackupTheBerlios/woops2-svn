@@ -152,6 +152,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="codeField">
       <Properties>
+        <Property name="editable" type="boolean" value="false"/>
         <Property name="text" type="java.lang.String" resourceKey="codeField.text"/>
         <Property name="name" type="java.lang.String" value="codeField" noResource="true"/>
       </Properties>
@@ -167,6 +168,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="labelField">
       <Properties>
+        <Property name="editable" type="boolean" value="false"/>
         <Property name="text" type="java.lang.String" resourceKey="labelField.text"/>
         <Property name="name" type="java.lang.String" value="labelField" noResource="true"/>
       </Properties>
@@ -182,6 +184,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="introDateField">
       <Properties>
+        <Property name="editable" type="boolean" value="false"/>
         <Property name="text" type="java.lang.String" resourceKey="introDateField.text"/>
         <Property name="name" type="java.lang.String" value="introDateField" noResource="true"/>
       </Properties>
@@ -197,6 +200,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="introPriceLabel">
       <Properties>
+        <Property name="editable" type="boolean" value="false"/>
         <Property name="text" type="java.lang.String" resourceKey="introPriceLabel.text"/>
         <Property name="name" type="java.lang.String" value="introPriceLabel" noResource="true"/>
       </Properties>
@@ -212,6 +216,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="currentPriceField">
       <Properties>
+        <Property name="editable" type="boolean" value="false"/>
         <Property name="text" type="java.lang.String" resourceKey="currentPriceField.text"/>
         <Property name="name" type="java.lang.String" value="currentPriceField" noResource="true"/>
       </Properties>
@@ -227,6 +232,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="quantityField">
       <Properties>
+        <Property name="editable" type="boolean" value="false"/>
         <Property name="text" type="java.lang.String" resourceKey="quantityField.text"/>
         <Property name="name" type="java.lang.String" value="quantityField" noResource="true"/>
       </Properties>
