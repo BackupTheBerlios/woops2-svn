@@ -53,17 +53,17 @@
                           <Group type="102" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="1" attributes="0">
-                                  <Component id="buyPriceField" alignment="0" pref="140" max="32767" attributes="0"/>
+                                  <Component id="buyPriceField" alignment="0" pref="158" max="32767" attributes="0"/>
                                   <Group type="102" alignment="1" attributes="0">
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="labelField" pref="140" max="32767" attributes="0"/>
+                                      <Component id="labelField" pref="158" max="32767" attributes="0"/>
                                   </Group>
-                                  <Component id="currentPriceField" alignment="1" pref="140" max="32767" attributes="0"/>
+                                  <Component id="currentPriceField" alignment="1" pref="158" max="32767" attributes="0"/>
                               </Group>
                           </Group>
-                          <Component id="quantityField" pref="140" max="32767" attributes="0"/>
-                          <Component id="quantityToSellField" alignment="0" pref="140" max="32767" attributes="0"/>
-                          <Component id="cashSoldField" alignment="1" pref="140" max="32767" attributes="0"/>
+                          <Component id="quantityField" pref="158" max="32767" attributes="0"/>
+                          <Component id="quantityToSellField" alignment="0" pref="158" max="32767" attributes="0"/>
+                          <Component id="cashSoldField" alignment="1" pref="158" max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>

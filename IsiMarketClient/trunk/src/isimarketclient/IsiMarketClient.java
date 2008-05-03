@@ -11,6 +11,7 @@ import isimarket.servants.walletservant.WalletServantPackage.NotEnoughAvailableA
 import isimarket.servants.walletservant.WalletServantPackage.NotEnoughCashException;
 import isimarketclient.IsiMarketConstants.UserType;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import org.jdesktop.application.Application;
 import org.jdesktop.application.SingleFrameApplication;
@@ -24,10 +25,8 @@ public class IsiMarketClient extends SingleFrameApplication {
     private DisplayActionTypeDialog displayActionTypeDialog = null;
     private BuyActionTypeDialog buyActionTypeDialog = null;
     private SellActionDialog sellActionDialog = null;
-    
     private IsiMarketClientFrame mainView = null;
     private AdminFrame adminView = null;
-    
     private IsiMarketConstants.UserType session = IsiMarketConstants.UserType.NONE;
     private CorbaClient client = null;
 
@@ -77,53 +76,57 @@ public class IsiMarketClient extends SingleFrameApplication {
         }
     }
 
-     public void updateDataTables() {
+    public void updateDataTables() {
         // update actions
         updateMarket();
         updateWalletActions();
     }
-    
+
     public void updateMarket() {
         IsiMarketClientModel.market = client.getActionTypeServantRef().getActionTypeList();
 
-        TableModel tModel = mainView.marketTable.getModel();
-        for (int i = 0; i < IsiMarketClientModel.market.length; i++) {
-            tModel.setValueAt(null, i, 0);
-            tModel.setValueAt(null, i, 1);
-            tModel.setValueAt(null, i, 2);
-            tModel.setValueAt(null, i, 3);
+        DefaultTableModel tModel = (DefaultTableModel) mainView.marketTable.getModel();
+        for (int i = 0; i < tModel.getRowCount(); i++) {
+            if (i < IsiMarketClientModel.market.length) {
+                tModel.setValueAt(IsiMarketClientModel.market[i].code, i, 0);
+                tModel.setValueAt(IsiMarketClientModel.market[i].label, i, 1);
+                tModel.setValueAt(IsiMarketClientModel.market[i].currentPrice, i, 2);
+                tModel.setValueAt(IsiMarketClientModel.market[i].quantity, i, 3);
+            } else {
+                tModel.setValueAt(null, i, 0);
+                tModel.setValueAt(null, i, 1);
+                tModel.setValueAt(null, i, 2);
+                tModel.setValueAt(null, i, 3);
+
+            }
         }
-        mainView.marketTable.repaint();
-        for (int i = 0; i < IsiMarketClientModel.market.length; i++) {
-            tModel.setValueAt(IsiMarketClientModel.market[i].code, i, 0);
-            tModel.setValueAt(IsiMarketClientModel.market[i].label, i, 1);
-            tModel.setValueAt(IsiMarketClientModel.market[i].currentPrice, i, 2);
-            tModel.setValueAt(IsiMarketClientModel.market[i].quantity, i, 3);
-        }
+
+        tModel.fireTableDataChanged();
     }
 
     public void updateWalletActions() {
         IsiMarketClientModel.actions = client.getWalletServant().getActionListFromWallet(IsiMarketClientModel.wallet.walletId);
         float walletValue = 0.0f;
-        TableModel tModel = mainView.walletTable.getModel();
-        for (int i = 0; i < IsiMarketClientModel.actions.length; i++) {
-            tModel.setValueAt(null, i, 0);
-            tModel.setValueAt(null, i, 1);
-            tModel.setValueAt(null, i, 2);
-            tModel.setValueAt(null, i, 3);
-            tModel.setValueAt(null, i, 4);
-        }
-        mainView.walletTable.repaint();
-        for (int i = 0; i < IsiMarketClientModel.actions.length; i++) {
-            tModel.setValueAt(IsiMarketClientModel.actions[i].actiontype.code, i, 0);
-            tModel.setValueAt(IsiMarketClientModel.actions[i].buyPrice, i, 1);
-            tModel.setValueAt(IsiMarketClientModel.actions[i].quantity, i, 2);
-            float tmpValue = IsiMarketClientModel.actions[i].quantity * IsiMarketClientModel.actions[i].buyPrice;
-            walletValue += tmpValue;
-            tModel.setValueAt(tmpValue, i, 3);
-            tModel.setValueAt(IsiMarketClientModel.actions[i].buyDate, i, 4);
-        }
+        DefaultTableModel tModel = (DefaultTableModel) mainView.walletTable.getModel();
 
+        for (int i = 0; i < tModel.getRowCount(); i++) {
+            if (i < IsiMarketClientModel.actions.length) {
+                tModel.setValueAt(IsiMarketClientModel.actions[i].actiontype.code, i, 0);
+                tModel.setValueAt(IsiMarketClientModel.actions[i].buyPrice, i, 1);
+                tModel.setValueAt(IsiMarketClientModel.actions[i].quantity, i, 2);
+                float tmpValue = IsiMarketClientModel.actions[i].quantity * IsiMarketClientModel.actions[i].buyPrice;
+                walletValue += tmpValue;
+                tModel.setValueAt(tmpValue, i, 3);
+                tModel.setValueAt(IsiMarketClientModel.actions[i].buyDate, i, 4);
+            } else {
+                tModel.setValueAt(null, i, 0);
+                tModel.setValueAt(null, i, 1);
+                tModel.setValueAt(null, i, 2);
+                tModel.setValueAt(null, i, 3);
+                tModel.setValueAt(null, i, 4);
+            }
+        }
+        tModel.fireTableDataChanged();
         mainView.walletValueField.setText("" + walletValue);
     }
 
@@ -150,14 +153,14 @@ public class IsiMarketClient extends SingleFrameApplication {
     }
 
     public void showSellActionType(int rowNb) {
-        
+
         sellActionDialog = new SellActionDialog(mainView.getFrame());
         Action action = IsiMarketClientModel.actions[rowNb];
         sellActionDialog.currentAction = action;
         sellActionDialog.labelField.setText(action.actiontype.label);
-        sellActionDialog.currentPriceField.setText(""+action.actiontype.currentPrice);
-        sellActionDialog.buyPriceField.setText(""+action.buyPrice);
-        sellActionDialog.quantityField.setText(""+action.quantity);
+        sellActionDialog.currentPriceField.setText("" + action.actiontype.currentPrice);
+        sellActionDialog.buyPriceField.setText("" + action.buyPrice);
+        sellActionDialog.quantityField.setText("" + action.quantity);
         show(sellActionDialog);
     }
 
@@ -167,20 +170,18 @@ public class IsiMarketClient extends SingleFrameApplication {
         addToWalletCash(cash);
         updateDataTables();
     }
-    
-    public void SellAction(int qt) throws NotEnoughAvailableActionsException{
-        client.getWalletServant().sellAction(IsiMarketClientModel.wallet.walletId, ""+sellActionDialog.currentAction.actiontype.code 
-                , sellActionDialog.currentAction.actionId , qt);
+
+    public void SellAction(int qt) throws NotEnoughAvailableActionsException {
+        client.getWalletServant().sellAction(IsiMarketClientModel.wallet.walletId, "" + sellActionDialog.currentAction.actiontype.code, sellActionDialog.currentAction.actionId, qt);
         float cash = sellActionDialog.currentAction.actiontype.currentPrice * qt;
         addToWalletCash(cash);
         updateDataTables();
     }
-    
-    private void addToWalletCash(float c)
-    {
+
+    private void addToWalletCash(float c) {
         float totalCash = new Float(mainView.cashField.getText());
         totalCash += c;
-        mainView.cashField.setText(""+totalCash);
+        mainView.cashField.setText("" + totalCash);
     }
 
     /**

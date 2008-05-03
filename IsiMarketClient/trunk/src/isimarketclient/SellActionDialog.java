@@ -227,14 +227,14 @@ private void sellButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
 }
 
 private void countCashButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_countCashButtonActionPerformed
-    quantityToSellFieldActionPerformed(evt);
-}//GEN-LAST:event_countCashButtonActionPerformed
-
-private void quantityToSellFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quantityToSellFieldActionPerformed
     Integer q = new Integer(quantityToSellField.getText());
     Float p = new Float(currentPriceField.getText());
     Float s = q*p;
     cashSoldField.setText(""+s);
+}//GEN-LAST:event_countCashButtonActionPerformed
+
+private void quantityToSellFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quantityToSellFieldActionPerformed
+    countCashButtonActionPerformed(null);
 }//GEN-LAST:event_quantityToSellFieldActionPerformed
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
