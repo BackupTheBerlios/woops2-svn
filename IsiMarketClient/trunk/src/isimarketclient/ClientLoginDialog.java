@@ -155,9 +155,8 @@ public class ClientLoginDialog extends javax.swing.JDialog {
             try {
                 main.setConnectionType(IsiMarketConstants.UserType.OPERATOR);
                 Wallet w = main.getCorbaClient().getWalletServant().authentication(login, pwd);
-                main.setWallet(w);
+                IsiMarketClientModel.wallet = w;
                 IsiMarketClientModel.login = login;
-                IsiMarketClientModel.cash = w.cash;
                 this.dispose();
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(this, "Erreur :"+e, "Erreur", JOptionPane.ERROR_MESSAGE);

@@ -7,6 +7,7 @@ package isimarketclient;
 
 import isimarket.model.Action;
 import isimarket.model.ActionType;
+import isimarket.model.Wallet;
 
 /**
  *
@@ -14,7 +15,7 @@ import isimarket.model.ActionType;
  */
 public class IsiMarketClientModel {
     public static String login;
-    public static float cash;
+    public static Wallet wallet;
     public static Action[] actions;
     public static ActionType[] market;
 }

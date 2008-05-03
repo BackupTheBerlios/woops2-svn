@@ -6,7 +6,11 @@ package isimarketclient;
 import isimarket.client.CorbaClient;
 import isimarket.model.ActionType;
 import isimarket.model.Wallet;
+import isimarket.servants.walletservant.WalletServantPackage.BadQuantityException;
+import isimarket.servants.walletservant.WalletServantPackage.NotEnoughCashException;
 import isimarketclient.IsiMarketConstants.UserType;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.TableModel;
@@ -20,22 +24,14 @@ public class IsiMarketClient extends SingleFrameApplication {
 
     private ClientLoginDialog loginFrame = null;
     private DisplayActionTypeDialog displayActionTypeDialog = null;
+    private BuyActionTypeDialog buyActionTypeDialog = null;
     private IsiMarketClientFrame mainView = null;
     private AdminFrame adminView = null;
     private IsiMarketConstants.UserType session = IsiMarketConstants.UserType.NONE;
     private CorbaClient client = null;
-    private Wallet currentWallet = null;
 
     public CorbaClient getCorbaClient() {
         return client;
-    }
-
-    public Wallet getWallet() {
-        return currentWallet;
-    }
-
-    public void setWallet(Wallet w) {
-        currentWallet = w;
     }
 
     /**
@@ -69,10 +65,10 @@ public class IsiMarketClient extends SingleFrameApplication {
             adminView = new AdminFrame();
             show(adminView);
         } else if (session == IsiMarketConstants.UserType.OPERATOR) {
-            if (currentWallet != null) {
+            if (IsiMarketClientModel.wallet != null) {
                 mainView = new IsiMarketClientFrame(this);
                 // get infos
-                mainView.cashField.setText("" + IsiMarketClientModel.cash);
+                mainView.cashField.setText("" + IsiMarketClientModel.wallet.cash);
                 mainView.opeatorField.setText(IsiMarketClientModel.login);
                 // update actions
                 updateMarket(mainView);
@@ -107,6 +103,19 @@ public class IsiMarketClient extends SingleFrameApplication {
         show(displayActionTypeDialog);
     }
     
+     public void showBuyActionType(int rowNb){
+        buyActionTypeDialog = new BuyActionTypeDialog(mainView.getFrame());
+        ActionType at = IsiMarketClientModel.market[rowNb];
+        buyActionTypeDialog.at = at;
+        buyActionTypeDialog.labelField.setText(at.label);
+        buyActionTypeDialog.priceField.setText(""+at.currentPrice);
+        buyActionTypeDialog.totalQuantityField.setText(""+at.quantity);
+        show(buyActionTypeDialog);
+     }
+     
+     public void buyActionType(int qt) throws BadQuantityException, NotEnoughCashException{
+            client.getWalletServant().buyAction(IsiMarketClientModel.wallet.walletId, "" + buyActionTypeDialog.at.code, qt);
+     }
     /**
      * This method is to initialize the specified window by injecting resources.
      * Windows shown in our application come fully initialized from the GUI

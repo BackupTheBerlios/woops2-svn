@@ -137,6 +137,9 @@
                     <Property name="text" type="java.lang.String" resourceKey="buyActionTypeButton.text"/>
                     <Property name="name" type="java.lang.String" value="buyActionTypeButton" noResource="true"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buyActionTypeButtonActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JButton" name="showActionTypeButton">
                   <Properties>
