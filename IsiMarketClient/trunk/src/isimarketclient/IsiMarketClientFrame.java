@@ -242,6 +242,11 @@ public class IsiMarketClientFrame extends FrameView {
         buyActionTypeButton1.setIcon(resourceMap.getIcon("buyActionTypeButton1.icon")); // NOI18N
         buyActionTypeButton1.setText(resourceMap.getString("buyActionTypeButton1.text")); // NOI18N
         buyActionTypeButton1.setName("buyActionTypeButton1"); // NOI18N
+        buyActionTypeButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buyActionTypeButton1ActionPerformed(evt);
+            }
+        });
 
         showActionTypeButton1.setIcon(resourceMap.getIcon("showActionTypeButton1.icon")); // NOI18N
         showActionTypeButton1.setText(resourceMap.getString("showActionTypeButton1.text")); // NOI18N
@@ -470,6 +475,11 @@ public class IsiMarketClientFrame extends FrameView {
 private void refreshActionTypeButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshActionTypeButton2ActionPerformed
     IsiMarketClient.getApplication().updateWalletActions(this);
 }//GEN-LAST:event_refreshActionTypeButton2ActionPerformed
+
+private void buyActionTypeButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buyActionTypeButton1ActionPerformed
+    int rowNb = marketTable.getSelectedRow();
+    IsiMarketClient.getApplication().showSellActionType(rowNb);
+}//GEN-LAST:event_buyActionTypeButton1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel alarmPanel;

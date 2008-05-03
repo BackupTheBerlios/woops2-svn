@@ -60,7 +60,6 @@ public class IsiMarketClient extends SingleFrameApplication {
 
     private void waitConnectionType() {
         while (session == IsiMarketConstants.UserType.NONE) {
-
         }
 
         if (session == IsiMarketConstants.UserType.ADMIN) {
@@ -90,7 +89,7 @@ public class IsiMarketClient extends SingleFrameApplication {
             tModel.setValueAt(IsiMarketClientModel.market[i].quantity, i, 3);
         }
     }
-    
+
     public void updateWalletActions(IsiMarketClientFrame mainView) {
         IsiMarketClientModel.actions = client.getWalletServant().getActionListFromWallet(IsiMarketClientModel.wallet.walletId);
         float walletValue = 0.0f;
@@ -99,40 +98,53 @@ public class IsiMarketClient extends SingleFrameApplication {
             tModel.setValueAt(IsiMarketClientModel.actions[i].actiontype.code, i, 0);
             tModel.setValueAt(IsiMarketClientModel.actions[i].buyPrice, i, 1);
             tModel.setValueAt(IsiMarketClientModel.actions[i].quantity, i, 2);
-            float tmpValue = IsiMarketClientModel.actions[i].quantity *IsiMarketClientModel.actions[i].buyPrice;
+            float tmpValue = IsiMarketClientModel.actions[i].quantity * IsiMarketClientModel.actions[i].buyPrice;
             walletValue += tmpValue;
-            tModel.setValueAt(tmpValue , i, 3);
+            tModel.setValueAt(tmpValue, i, 3);
             tModel.setValueAt(IsiMarketClientModel.actions[i].buyDate, i, 4);
         }
-        
-        mainView.walletValueField.setText(""+walletValue);
+
+        mainView.walletValueField.setText("" + walletValue);
     }
-    
-    public void displayActionType(int rowNb){
+
+    public void displayActionType(int rowNb) {
         displayActionTypeDialog = new DisplayActionTypeDialog(mainView.getFrame());
         ActionType at = IsiMarketClientModel.market[rowNb];
         displayActionTypeDialog.codeField.setText(at.code);
         displayActionTypeDialog.labelField.setText(at.label);
         displayActionTypeDialog.introDateField.setText(at.introductionDate);
-        displayActionTypeDialog.introPriceLabel.setText(""+at.introductionPrice);
-        displayActionTypeDialog.currentPriceField.setText(""+at.currentPrice);
-        displayActionTypeDialog.quantityField.setText(""+at.quantity);
+        displayActionTypeDialog.introPriceLabel.setText("" + at.introductionPrice);
+        displayActionTypeDialog.currentPriceField.setText("" + at.currentPrice);
+        displayActionTypeDialog.quantityField.setText("" + at.quantity);
         show(displayActionTypeDialog);
     }
-    
-     public void showBuyActionType(int rowNb){
+
+    public void showBuyActionType(int rowNb) {
         buyActionTypeDialog = new BuyActionTypeDialog(mainView.getFrame());
         ActionType at = IsiMarketClientModel.market[rowNb];
         buyActionTypeDialog.at = at;
         buyActionTypeDialog.labelField.setText(at.label);
-        buyActionTypeDialog.priceField.setText(""+at.currentPrice);
-        buyActionTypeDialog.totalQuantityField.setText(""+at.quantity);
+        buyActionTypeDialog.priceField.setText("" + at.currentPrice);
+        buyActionTypeDialog.totalQuantityField.setText("" + at.quantity);
         show(buyActionTypeDialog);
-     }
-     
-     public void buyActionType(int qt) throws BadQuantityException, NotEnoughCashException{
-            client.getWalletServant().buyAction(IsiMarketClientModel.wallet.walletId, "" + buyActionTypeDialog.at.code, qt);
-     }
+    }
+
+    public void showSellActionType(int rowNb) {
+        
+        buyActionTypeDialog = new BuyActionTypeDialog(mainView.getFrame());
+        ActionType at = IsiMarketClientModel.market[rowNb];
+        buyActionTypeDialog.at = at;
+        buyActionTypeDialog.labelField.setText(at.label);
+        buyActionTypeDialog.priceField.setText("" + at.currentPrice);
+        buyActionTypeDialog.totalQuantityField.setText("" + at.quantity);
+        
+        show(buyActionTypeDialog);
+    }
+
+    public void buyActionType(int qt) throws BadQuantityException, NotEnoughCashException {
+        client.getWalletServant().buyAction(IsiMarketClientModel.wallet.walletId, "" + buyActionTypeDialog.at.code, qt);
+    }
+
     /**
      * This method is to initialize the specified window by injecting resources.
      * Windows shown in our application come fully initialized from the GUI
