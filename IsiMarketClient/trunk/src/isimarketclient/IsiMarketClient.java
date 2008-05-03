@@ -88,6 +88,13 @@ public class IsiMarketClient extends SingleFrameApplication {
 
         TableModel tModel = mainView.marketTable.getModel();
         for (int i = 0; i < IsiMarketClientModel.market.length; i++) {
+            tModel.setValueAt(null, i, 0);
+            tModel.setValueAt(null, i, 1);
+            tModel.setValueAt(null, i, 2);
+            tModel.setValueAt(null, i, 3);
+        }
+        mainView.marketTable.repaint();
+        for (int i = 0; i < IsiMarketClientModel.market.length; i++) {
             tModel.setValueAt(IsiMarketClientModel.market[i].code, i, 0);
             tModel.setValueAt(IsiMarketClientModel.market[i].label, i, 1);
             tModel.setValueAt(IsiMarketClientModel.market[i].currentPrice, i, 2);
@@ -99,6 +106,14 @@ public class IsiMarketClient extends SingleFrameApplication {
         IsiMarketClientModel.actions = client.getWalletServant().getActionListFromWallet(IsiMarketClientModel.wallet.walletId);
         float walletValue = 0.0f;
         TableModel tModel = mainView.walletTable.getModel();
+        for (int i = 0; i < IsiMarketClientModel.actions.length; i++) {
+            tModel.setValueAt(null, i, 0);
+            tModel.setValueAt(null, i, 1);
+            tModel.setValueAt(null, i, 2);
+            tModel.setValueAt(null, i, 3);
+            tModel.setValueAt(null, i, 4);
+        }
+        mainView.walletTable.repaint();
         for (int i = 0; i < IsiMarketClientModel.actions.length; i++) {
             tModel.setValueAt(IsiMarketClientModel.actions[i].actiontype.code, i, 0);
             tModel.setValueAt(IsiMarketClientModel.actions[i].buyPrice, i, 1);
