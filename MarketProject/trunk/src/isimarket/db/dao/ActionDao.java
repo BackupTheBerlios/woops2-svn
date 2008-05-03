@@ -41,7 +41,7 @@ public class ActionDao {
 			stmt.setString(2, _action.buyDate);
 			stmt.setInt(3, _action.quantity);
 			stmt.setString(4, _action.actiontype.code);
-			stmt.setInt(6, _action.wallet.walletId);
+			stmt.setInt(5, _action.wallet.walletId);
 			stmt.executeUpdate();
 		} catch (SQLException e) {
 			System.out.println("ActionDao -> insert(): " + e.getMessage());
