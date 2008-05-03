@@ -216,7 +216,10 @@ public class BuyActionTypeDialog extends javax.swing.JDialog {
     private void buyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buyButtonActionPerformed
         try {
             IsiMarketClient.getApplication().buyActionType(new Integer(requestedQuantityField.getText()));//GEN-LAST:event_buyButtonActionPerformed
+            IsiMarketClient.getApplication().updateTablesData();
+            this.dispose();
             JOptionPane.showMessageDialog(this, "Achat ok !", "IsimarketClient", JOptionPane.INFORMATION_MESSAGE);
+            
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Erreur :"+e, "Erreur", JOptionPane.ERROR_MESSAGE);
         }

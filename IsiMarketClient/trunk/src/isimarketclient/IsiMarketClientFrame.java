@@ -120,6 +120,8 @@ public class IsiMarketClientFrame extends FrameView {
         cashLabel = new javax.swing.JLabel();
         opeatorField = new javax.swing.JTextField();
         cashField = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        walletValueField = new javax.swing.JTextField();
         menuBar = new javax.swing.JMenuBar();
         javax.swing.JMenu fileMenu = new javax.swing.JMenu();
         javax.swing.JMenuItem exitMenuItem = new javax.swing.JMenuItem();
@@ -225,13 +227,13 @@ public class IsiMarketClientFrame extends FrameView {
 
         walletTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null ,null},
+                {null, null, null, null ,null},
+                {null, null, null, null ,null},
+                {null, null, null, null ,null}
             },
             new String [] {
-                "Code", "Prix d'achat", "Quantité", "Date"
+                "Code", "Prix d'achat", "Quantité","Valeur" ,"Date"
             }
         ));
         walletTable.setName("walletTable"); // NOI18N
@@ -248,6 +250,11 @@ public class IsiMarketClientFrame extends FrameView {
         refreshActionTypeButton2.setIcon(resourceMap.getIcon("refreshActionTypeButton2.icon")); // NOI18N
         refreshActionTypeButton2.setText(resourceMap.getString("refreshActionTypeButton2.text")); // NOI18N
         refreshActionTypeButton2.setName("refreshActionTypeButton2"); // NOI18N
+        refreshActionTypeButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                refreshActionTypeButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout operatorPanelLayout = new javax.swing.GroupLayout(operatorPanel);
         operatorPanel.setLayout(operatorPanelLayout);
@@ -319,11 +326,19 @@ public class IsiMarketClientFrame extends FrameView {
         cashLabel.setName("cashLabel"); // NOI18N
 
         opeatorField.setEditable(false);
+        opeatorField.setText(resourceMap.getString("opeatorField.text")); // NOI18N
         opeatorField.setName("opeatorField"); // NOI18N
 
         cashField.setEditable(false);
         cashField.setText(resourceMap.getString("cashField.text")); // NOI18N
         cashField.setName("cashField"); // NOI18N
+
+        jLabel1.setText(resourceMap.getString("jLabel1.text")); // NOI18N
+        jLabel1.setName("jLabel1"); // NOI18N
+
+        walletValueField.setEditable(false);
+        walletValueField.setText(resourceMap.getString("walletValueField.text")); // NOI18N
+        walletValueField.setName("walletValueField"); // NOI18N
 
         javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);
         mainPanel.setLayout(mainPanelLayout);
@@ -340,7 +355,11 @@ public class IsiMarketClientFrame extends FrameView {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(opeatorField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cashField, javax.swing.GroupLayout.Alignment.LEADING))))
+                            .addComponent(cashField, javax.swing.GroupLayout.Alignment.LEADING))
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(walletValueField, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         mainPanelLayout.setVerticalGroup(
@@ -349,7 +368,9 @@ public class IsiMarketClientFrame extends FrameView {
                 .addContainerGap()
                 .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(operatorLabel)
-                    .addComponent(opeatorField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(opeatorField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1)
+                    .addComponent(walletValueField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cashLabel)
@@ -446,6 +467,10 @@ public class IsiMarketClientFrame extends FrameView {
         IsiMarketClient.getApplication().showBuyActionType(rowNb);
     }//GEN-LAST:event_buyActionTypeButtonActionPerformed
 
+private void refreshActionTypeButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshActionTypeButton2ActionPerformed
+    IsiMarketClient.getApplication().updateWalletActions(this);
+}//GEN-LAST:event_refreshActionTypeButton2ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel alarmPanel;
     private javax.swing.JButton buyActionTypeButton;
@@ -453,6 +478,7 @@ public class IsiMarketClientFrame extends FrameView {
     public javax.swing.JTextField cashField;
     private javax.swing.JLabel cashLabel;
     private javax.swing.JPanel eventPanel;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jscrollPaneOperatorPanel;
     private javax.swing.JPanel mainPanel;
     private javax.swing.JPanel marketPanel;
@@ -472,7 +498,8 @@ public class IsiMarketClientFrame extends FrameView {
     private javax.swing.JLabel statusMessageLabel;
     private javax.swing.JPanel statusPanel;
     private javax.swing.JTabbedPane tabbedPane;
-    private javax.swing.JTable walletTable;
+    public javax.swing.JTable walletTable;
+    public javax.swing.JTextField walletValueField;
     // End of variables declaration//GEN-END:variables
 
     private final Timer messageTimer;

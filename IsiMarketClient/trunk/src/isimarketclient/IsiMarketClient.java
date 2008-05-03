@@ -5,14 +5,10 @@ package isimarketclient;
 
 import isimarket.client.CorbaClient;
 import isimarket.model.ActionType;
-import isimarket.model.Wallet;
 import isimarket.servants.walletservant.WalletServantPackage.BadQuantityException;
 import isimarket.servants.walletservant.WalletServantPackage.NotEnoughCashException;
 import isimarketclient.IsiMarketConstants.UserType;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import javax.swing.JTable;
 import javax.swing.table.TableModel;
 import org.jdesktop.application.Application;
 import org.jdesktop.application.SingleFrameApplication;
@@ -56,6 +52,12 @@ public class IsiMarketClient extends SingleFrameApplication {
         waitConnectionType();
     }
 
+    public void updateTablesData() {
+        // update actions
+        updateMarket(mainView);
+        updateWalletActions(mainView);
+    }
+
     private void waitConnectionType() {
         while (session == IsiMarketConstants.UserType.NONE) {
 
@@ -70,9 +72,7 @@ public class IsiMarketClient extends SingleFrameApplication {
                 // get infos
                 mainView.cashField.setText("" + IsiMarketClientModel.wallet.cash);
                 mainView.opeatorField.setText(IsiMarketClientModel.login);
-                // update actions
-                updateMarket(mainView);
-
+                updateTablesData();
                 //mainView.marketTable = new JTable(table, columns);
                 show(mainView);
             }
@@ -89,6 +89,23 @@ public class IsiMarketClient extends SingleFrameApplication {
             tModel.setValueAt(IsiMarketClientModel.market[i].currentPrice, i, 2);
             tModel.setValueAt(IsiMarketClientModel.market[i].quantity, i, 3);
         }
+    }
+    
+    public void updateWalletActions(IsiMarketClientFrame mainView) {
+        IsiMarketClientModel.actions = client.getWalletServant().getActionListFromWallet(IsiMarketClientModel.wallet.walletId);
+        float walletValue = 0.0f;
+        TableModel tModel = mainView.walletTable.getModel();
+        for (int i = 0; i < IsiMarketClientModel.actions.length; i++) {
+            tModel.setValueAt(IsiMarketClientModel.actions[i].actiontype.code, i, 0);
+            tModel.setValueAt(IsiMarketClientModel.actions[i].buyPrice, i, 1);
+            tModel.setValueAt(IsiMarketClientModel.actions[i].quantity, i, 2);
+            float tmpValue = IsiMarketClientModel.actions[i].quantity *IsiMarketClientModel.actions[i].buyPrice;
+            walletValue += tmpValue;
+            tModel.setValueAt(tmpValue , i, 3);
+            tModel.setValueAt(IsiMarketClientModel.actions[i].buyDate, i, 4);
+        }
+        
+        mainView.walletValueField.setText(""+walletValue);
     }
     
     public void displayActionType(int rowNb){
