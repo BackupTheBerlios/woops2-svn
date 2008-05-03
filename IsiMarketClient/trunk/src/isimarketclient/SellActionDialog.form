@@ -30,6 +30,14 @@
                       <EmptySpace min="-2" pref="70" max="-2" attributes="0"/>
                       <Component id="appTitleLabel" min="-2" max="-2" attributes="0"/>
                   </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="sellButton1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="sellButton" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="closeButton" min="-2" max="-2" attributes="0"/>
+                  </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -38,29 +46,25 @@
                           <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel6" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="1" attributes="0">
-                                  <Component id="buyPriceField" alignment="0" pref="153" max="32767" attributes="0"/>
+                                  <Component id="buyPriceField" alignment="0" pref="140" max="32767" attributes="0"/>
                                   <Group type="102" alignment="1" attributes="0">
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="labelField" pref="153" max="32767" attributes="0"/>
+                                      <Component id="labelField" pref="140" max="32767" attributes="0"/>
                                   </Group>
-                                  <Component id="currentPriceField" alignment="1" pref="153" max="32767" attributes="0"/>
+                                  <Component id="currentPriceField" alignment="1" pref="140" max="32767" attributes="0"/>
                               </Group>
                           </Group>
-                          <Component id="quantityField" pref="153" max="32767" attributes="0"/>
-                          <Component id="quantityToSellField" alignment="0" pref="153" max="32767" attributes="0"/>
+                          <Component id="quantityField" pref="140" max="32767" attributes="0"/>
+                          <Component id="quantityToSellField" alignment="0" pref="140" max="32767" attributes="0"/>
+                          <Component id="cashSoldField" alignment="1" pref="140" max="32767" attributes="0"/>
                       </Group>
-                  </Group>
-                  <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace pref="174" max="32767" attributes="0"/>
-                      <Component id="sellButton" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="closeButton" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -97,12 +101,18 @@
                   <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="quantityToSellField" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="cashSoldField" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="closeButton" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="sellButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="sellButton1" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -147,6 +157,9 @@
         <Property name="text" type="java.lang.String" resourceKey="labelField.text"/>
         <Property name="name" type="java.lang.String" value="labelField" noResource="true"/>
       </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+      </AuxValues>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
@@ -160,6 +173,9 @@
         <Property name="text" type="java.lang.String" resourceKey="currentPriceField.text"/>
         <Property name="name" type="java.lang.String" value="currentPriceField" noResource="true"/>
       </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+      </AuxValues>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">
       <Properties>
@@ -173,6 +189,9 @@
         <Property name="text" type="java.lang.String" resourceKey="buyPriceField.text"/>
         <Property name="name" type="java.lang.String" value="buyPriceField" noResource="true"/>
       </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+      </AuxValues>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel4">
       <Properties>
@@ -186,6 +205,9 @@
         <Property name="text" type="java.lang.String" resourceKey="quantityField.text"/>
         <Property name="name" type="java.lang.String" value="quantityField" noResource="true"/>
       </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+      </AuxValues>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel5">
       <Properties>
@@ -195,8 +217,12 @@
     </Component>
     <Component class="javax.swing.JTextField" name="quantityToSellField">
       <Properties>
+        <Property name="text" type="java.lang.String" resourceKey="quantityToSellField.text"/>
         <Property name="name" type="java.lang.String" value="quantityToSellField" noResource="true"/>
       </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+      </AuxValues>
     </Component>
     <Component class="javax.swing.JButton" name="sellButton">
       <Properties>
@@ -208,6 +234,33 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="sellButtonActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel6">
+      <Properties>
+        <Property name="text" type="java.lang.String" resourceKey="jLabel6.text"/>
+        <Property name="name" type="java.lang.String" value="jLabel6" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="cashSoldField">
+      <Properties>
+        <Property name="text" type="java.lang.String" resourceKey="cashSoldField.text"/>
+        <Property name="name" type="java.lang.String" value="cashSoldField" noResource="true"/>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JButton" name="sellButton1">
+      <Properties>
+        <Property name="action" type="javax.swing.Action" editor="org.netbeans.modules.swingapp.ActionEditor">
+          <action class="isimarketclient.IsiMarketClientAboutBox" id="closeAboutBox" methodName="closeAboutBox"/>
+        </Property>
+        <Property name="text" type="java.lang.String" resourceKey="sellButton1.text"/>
+        <Property name="name" type="java.lang.String" value="sellButton1" noResource="true"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="sellButton1ActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

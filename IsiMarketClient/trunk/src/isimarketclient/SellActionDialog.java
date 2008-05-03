@@ -8,6 +8,8 @@ import org.jdesktop.application.Action;
 
 public class SellActionDialog extends javax.swing.JDialog {
 
+    public Action currentAction = null;
+    
     public SellActionDialog(java.awt.Frame parent) {
         super(parent);
         initComponents();
@@ -39,6 +41,9 @@ public class SellActionDialog extends javax.swing.JDialog {
         jLabel5 = new javax.swing.JLabel();
         quantityToSellField = new javax.swing.JTextField();
         sellButton = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        cashSoldField = new javax.swing.JTextField();
+        sellButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setModal(true);
@@ -91,6 +96,7 @@ public class SellActionDialog extends javax.swing.JDialog {
         jLabel5.setText(resourceMap.getString("jLabel5.text")); // NOI18N
         jLabel5.setName("jLabel5"); // NOI18N
 
+        quantityToSellField.setText(resourceMap.getString("quantityToSellField.text")); // NOI18N
         quantityToSellField.setName("quantityToSellField"); // NOI18N
 
         sellButton.setAction(actionMap.get("closeAboutBox")); // NOI18N
@@ -99,6 +105,21 @@ public class SellActionDialog extends javax.swing.JDialog {
         sellButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 sellButtonActionPerformed(evt);
+            }
+        });
+
+        jLabel6.setText(resourceMap.getString("jLabel6.text")); // NOI18N
+        jLabel6.setName("jLabel6"); // NOI18N
+
+        cashSoldField.setText(resourceMap.getString("cashSoldField.text")); // NOI18N
+        cashSoldField.setName("cashSoldField"); // NOI18N
+
+        sellButton1.setAction(actionMap.get("closeAboutBox")); // NOI18N
+        sellButton1.setText(resourceMap.getString("sellButton1.text")); // NOI18N
+        sellButton1.setName("sellButton1"); // NOI18N
+        sellButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sellButton1ActionPerformed(evt);
             }
         });
 
@@ -111,6 +132,13 @@ public class SellActionDialog extends javax.swing.JDialog {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(70, 70, 70)
                         .addComponent(appTitleLabel))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(sellButton1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(sellButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(closeButton))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -118,24 +146,21 @@ public class SellActionDialog extends javax.swing.JDialog {
                             .addComponent(jLabel4)
                             .addComponent(jLabel1)
                             .addComponent(jLabel2)
-                            .addComponent(jLabel3))
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel6))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(buyPriceField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE)
+                                    .addComponent(buyPriceField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
                                     .addGroup(layout.createSequentialGroup()
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(labelField, javax.swing.GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE))
-                                    .addComponent(currentPriceField, javax.swing.GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE)))
-                            .addComponent(quantityField, javax.swing.GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE)
-                            .addComponent(quantityToSellField, javax.swing.GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap(174, Short.MAX_VALUE)
-                        .addComponent(sellButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(closeButton)))
+                                        .addComponent(labelField, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE))
+                                    .addComponent(currentPriceField, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)))
+                            .addComponent(quantityField, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+                            .addComponent(quantityToSellField, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+                            .addComponent(cashSoldField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -163,11 +188,16 @@ public class SellActionDialog extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(quantityToSellField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(cashSoldField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(closeButton)
-                    .addComponent(sellButton))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(sellButton)
+                    .addComponent(sellButton1))
+                .addContainerGap())
         );
 
         pack();
@@ -180,20 +210,27 @@ private void closeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
 private void sellButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sellButtonActionPerformed
 // TODO add your handling code here:
 }//GEN-LAST:event_sellButtonActionPerformed
+
+private void sellButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sellButton1ActionPerformed
+// TODO add your handling code here:
+}//GEN-LAST:event_sellButton1ActionPerformed
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField buyPriceField;
+    public javax.swing.JTextField buyPriceField;
+    public javax.swing.JTextField cashSoldField;
     private javax.swing.JButton closeButton;
-    private javax.swing.JTextField currentPriceField;
+    public javax.swing.JTextField currentPriceField;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JTextField labelField;
-    private javax.swing.JTextField quantityField;
-    private javax.swing.JTextField quantityToSellField;
+    private javax.swing.JLabel jLabel6;
+    public javax.swing.JTextField labelField;
+    public javax.swing.JTextField quantityField;
+    public javax.swing.JTextField quantityToSellField;
     private javax.swing.JButton sellButton;
+    private javax.swing.JButton sellButton1;
     // End of variables declaration//GEN-END:variables
     
 }

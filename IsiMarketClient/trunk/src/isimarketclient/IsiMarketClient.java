@@ -4,6 +4,7 @@
 package isimarketclient;
 
 import isimarket.client.CorbaClient;
+import isimarket.model.Action;
 import isimarket.model.ActionType;
 import isimarket.servants.walletservant.WalletServantPackage.BadQuantityException;
 import isimarket.servants.walletservant.WalletServantPackage.NotEnoughCashException;
@@ -21,8 +22,11 @@ public class IsiMarketClient extends SingleFrameApplication {
     private ClientLoginDialog loginFrame = null;
     private DisplayActionTypeDialog displayActionTypeDialog = null;
     private BuyActionTypeDialog buyActionTypeDialog = null;
+    private SellActionDialog sellActionDialog = null;
+    
     private IsiMarketClientFrame mainView = null;
     private AdminFrame adminView = null;
+    
     private IsiMarketConstants.UserType session = IsiMarketConstants.UserType.NONE;
     private CorbaClient client = null;
 
@@ -131,14 +135,14 @@ public class IsiMarketClient extends SingleFrameApplication {
 
     public void showSellActionType(int rowNb) {
         
-        buyActionTypeDialog = new BuyActionTypeDialog(mainView.getFrame());
-        ActionType at = IsiMarketClientModel.market[rowNb];
-        buyActionTypeDialog.at = at;
-        buyActionTypeDialog.labelField.setText(at.label);
-        buyActionTypeDialog.priceField.setText("" + at.currentPrice);
-        buyActionTypeDialog.totalQuantityField.setText("" + at.quantity);
+        sellActionDialog = new SellActionDialog(mainView.getFrame());
+        Action action = IsiMarketClientModel.actions[rowNb];
+        sellActionDialog.labelField.setText(action.actiontype.label);
+        sellActionDialog.currentPriceField.setText(""+action.actiontype.currentPrice);
+        sellActionDialog.buyPriceField.setText(""+action.buyPrice);
+        sellActionDialog.quantityField.setText(""+action.quantity);
         
-        show(buyActionTypeDialog);
+        show(sellActionDialog);
     }
 
     public void buyActionType(int qt) throws BadQuantityException, NotEnoughCashException {
