@@ -83,7 +83,7 @@ public class WalletServantImpl extends _WalletServantImplBase {
 		
 		if (op == null) throw new UnknownOperatorException("Operateur inconnu");
 		
-		if (!(op.password.equals(_password))) throw new WrongPasswordException("Mot de passe erroné");
+		if (!(op.password.equals(_password))) throw new WrongPasswordException("Mot de passe erronï¿½");
 		
 		return op.wallet;
 	}
@@ -100,9 +100,13 @@ public class WalletServantImpl extends _WalletServantImplBase {
 		
 		float transaction = _quantity * actionType.currentPrice;
 		
-		if (_quantity < action.quantity) this.actionDao.updateQuantity(action.actionId, action.quantity);
-		else if (_quantity == action.quantity) this.actionDao.delete(action);
-		else throw new NotEnoughAvailableActionsException("Nombre d'actions choisi trop grand");
+		if (_quantity <= action.quantity) 
+			this.actionDao.updateQuantity(action.actionId, action.quantity);
+		else
+			throw new NotEnoughAvailableActionsException("Nombre d'actions choisi trop grand");
+		if (_quantity == action.quantity) 
+			this.actionDao.delete(action);
+		
 		this.actionTypeDao.updateQuantity(actionType.code, actionType.quantity + _quantity);
 		this.walletDao.updateCash(wallet.walletId, wallet.cash + transaction);
 		
