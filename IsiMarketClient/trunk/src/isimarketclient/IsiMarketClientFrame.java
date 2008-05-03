@@ -455,7 +455,7 @@ public class IsiMarketClientFrame extends FrameView {
     }// </editor-fold>//GEN-END:initComponents
 
     private void refreshActionTypeButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshActionTypeButton4ActionPerformed
-        IsiMarketClient.getApplication().updateMarket(this);
+        IsiMarketClient.getApplication().updateDataTables();
     }//GEN-LAST:event_refreshActionTypeButton4ActionPerformed
 
     private void exitMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitMenuItemActionPerformed
@@ -473,7 +473,7 @@ public class IsiMarketClientFrame extends FrameView {
     }//GEN-LAST:event_buyActionTypeButtonActionPerformed
 
 private void refreshActionTypeButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshActionTypeButton2ActionPerformed
-    IsiMarketClient.getApplication().updateWalletActions(this);
+    IsiMarketClient.getApplication().updateDataTables();
 }//GEN-LAST:event_refreshActionTypeButton2ActionPerformed
 
 private void buyActionTypeButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buyActionTypeButton1ActionPerformed

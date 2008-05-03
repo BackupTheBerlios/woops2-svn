@@ -57,12 +57,6 @@ public class IsiMarketClient extends SingleFrameApplication {
         waitConnectionType();
     }
 
-    public void updateTablesData() {
-        // update actions
-        updateMarket(mainView);
-        updateWalletActions(mainView);
-    }
-
     private void waitConnectionType() {
         while (session == IsiMarketConstants.UserType.NONE) {
         }
@@ -76,14 +70,20 @@ public class IsiMarketClient extends SingleFrameApplication {
                 // get infos
                 mainView.cashField.setText("" + IsiMarketClientModel.wallet.cash);
                 mainView.opeatorField.setText(IsiMarketClientModel.login);
-                updateTablesData();
+                updateDataTables();
                 //mainView.marketTable = new JTable(table, columns);
                 show(mainView);
             }
         }
     }
 
-    public void updateMarket(IsiMarketClientFrame mainView) {
+     public void updateDataTables() {
+        // update actions
+        updateMarket();
+        updateWalletActions();
+    }
+    
+    public void updateMarket() {
         IsiMarketClientModel.market = client.getActionTypeServantRef().getActionTypeList();
 
         TableModel tModel = mainView.marketTable.getModel();
@@ -95,7 +95,7 @@ public class IsiMarketClient extends SingleFrameApplication {
         }
     }
 
-    public void updateWalletActions(IsiMarketClientFrame mainView) {
+    public void updateWalletActions() {
         IsiMarketClientModel.actions = client.getWalletServant().getActionListFromWallet(IsiMarketClientModel.wallet.walletId);
         float walletValue = 0.0f;
         TableModel tModel = mainView.walletTable.getModel();
@@ -143,23 +143,28 @@ public class IsiMarketClient extends SingleFrameApplication {
         sellActionDialog.currentPriceField.setText(""+action.actiontype.currentPrice);
         sellActionDialog.buyPriceField.setText(""+action.buyPrice);
         sellActionDialog.quantityField.setText(""+action.quantity);
-        
         show(sellActionDialog);
     }
 
     public void buyActionType(int qt) throws BadQuantityException, NotEnoughCashException {
         client.getWalletServant().buyAction(IsiMarketClientModel.wallet.walletId, "" + buyActionTypeDialog.at.code, qt);
-        updateTablesData();
+        float cash = buyActionTypeDialog.at.currentPrice * qt * -1;
+        addToWalletCash(cash);
+        updateDataTables();
     }
     
     public void SellAction(int qt) throws NotEnoughAvailableActionsException{
         client.getWalletServant().sellAction(IsiMarketClientModel.wallet.walletId, ""+sellActionDialog.currentAction.actiontype.code 
                 , sellActionDialog.currentAction.actionId , qt);
-        updateTablesData();
-        
         float cash = sellActionDialog.currentAction.actiontype.currentPrice * qt;
+        addToWalletCash(cash);
+        updateDataTables();
+    }
+    
+    private void addToWalletCash(float c)
+    {
         float totalCash = new Float(mainView.cashField.getText());
-        totalCash += cash;
+        totalCash += c;
         mainView.cashField.setText(""+totalCash);
     }
 
