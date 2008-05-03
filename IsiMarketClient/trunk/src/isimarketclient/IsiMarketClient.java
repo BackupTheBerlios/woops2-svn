@@ -149,11 +149,18 @@ public class IsiMarketClient extends SingleFrameApplication {
 
     public void buyActionType(int qt) throws BadQuantityException, NotEnoughCashException {
         client.getWalletServant().buyAction(IsiMarketClientModel.wallet.walletId, "" + buyActionTypeDialog.at.code, qt);
+        updateTablesData();
     }
     
     public void SellAction(int qt) throws NotEnoughAvailableActionsException{
         client.getWalletServant().sellAction(IsiMarketClientModel.wallet.walletId, ""+sellActionDialog.currentAction.actiontype.code 
                 , sellActionDialog.currentAction.actionId , qt);
+        updateTablesData();
+        
+        float cash = sellActionDialog.currentAction.actiontype.currentPrice * qt;
+        float totalCash = new Float(mainView.cashField.getText());
+        totalCash += cash;
+        mainView.cashField.setText(""+totalCash);
     }
 
     /**
