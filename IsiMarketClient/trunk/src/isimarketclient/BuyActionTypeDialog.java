@@ -5,10 +5,6 @@
 package isimarketclient;
 
 import isimarket.model.ActionType;
-import isimarket.servants.walletservant.WalletServantPackage.BadQuantityException;
-import isimarket.servants.walletservant.WalletServantPackage.NotEnoughCashException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import org.jdesktop.application.Action;
 
@@ -35,7 +31,7 @@ public class BuyActionTypeDialog extends javax.swing.JDialog {
     private void initComponents() {
 
         closeButton = new javax.swing.JButton();
-        appTitleLabel = new javax.swing.JLabel();
+        javax.swing.JLabel appTitleLabel = new javax.swing.JLabel();
         buyButton = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         labelField = new javax.swing.JTextField();
@@ -46,7 +42,7 @@ public class BuyActionTypeDialog extends javax.swing.JDialog {
         jLabel5 = new javax.swing.JLabel();
         totalQuantityField = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        quantityField1 = new javax.swing.JTextField();
+        requestedQuantityField = new javax.swing.JTextField();
         totalButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -107,11 +103,11 @@ public class BuyActionTypeDialog extends javax.swing.JDialog {
         jLabel6.setText(resourceMap.getString("jLabel6.text")); // NOI18N
         jLabel6.setName("jLabel6"); // NOI18N
 
-        quantityField1.setText(resourceMap.getString("quantityField1.text")); // NOI18N
-        quantityField1.setName("quantityField1"); // NOI18N
-        quantityField1.addActionListener(new java.awt.event.ActionListener() {
+        requestedQuantityField.setText(resourceMap.getString("requestedQuantityField.text")); // NOI18N
+        requestedQuantityField.setName("requestedQuantityField"); // NOI18N
+        requestedQuantityField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                quantityField1ActionPerformed(evt);
+                requestedQuantityFieldActionPerformed(evt);
             }
         });
 
@@ -151,7 +147,7 @@ public class BuyActionTypeDialog extends javax.swing.JDialog {
                             .addComponent(labelField, javax.swing.GroupLayout.DEFAULT_SIZE, 207, Short.MAX_VALUE)
                             .addComponent(priceField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 207, Short.MAX_VALUE)
                             .addComponent(totalQuantityField, javax.swing.GroupLayout.DEFAULT_SIZE, 207, Short.MAX_VALUE)
-                            .addComponent(quantityField1, javax.swing.GroupLayout.DEFAULT_SIZE, 207, Short.MAX_VALUE)))
+                            .addComponent(requestedQuantityField, javax.swing.GroupLayout.DEFAULT_SIZE, 207, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jLabel4)
@@ -179,7 +175,7 @@ public class BuyActionTypeDialog extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(quantityField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(requestedQuantityField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
@@ -199,9 +195,9 @@ public class BuyActionTypeDialog extends javax.swing.JDialog {
         this.dispose();
     }//GEN-LAST:event_closeButtonActionPerformed
 
-    private void quantityField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quantityField1ActionPerformed
+    private void requestedQuantityFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_requestedQuantityFieldActionPerformed
         try{
-            int q = new Integer(quantityField1.getText());
+            int q = new Integer(requestedQuantityField.getText());
             float p = at.currentPrice;
             float tp = q * p;
             int tq = at.quantity - q;
@@ -211,22 +207,22 @@ public class BuyActionTypeDialog extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(this, "Erreur :"+e, "Erreur", JOptionPane.ERROR_MESSAGE);
         }
         
-    }//GEN-LAST:event_quantityField1ActionPerformed
+}//GEN-LAST:event_requestedQuantityFieldActionPerformed
 
     private void totalButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_totalButtonActionPerformed
-        quantityField1ActionPerformed(evt);
+        requestedQuantityFieldActionPerformed(evt);
 }//GEN-LAST:event_totalButtonActionPerformed
 
     private void buyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buyButtonActionPerformed
         try {
-            IsiMarketClient.getApplication().buyActionType(new Integer(totalQuantityField.getText()));//GEN-LAST:event_buyButtonActionPerformed
+            IsiMarketClient.getApplication().buyActionType(new Integer(requestedQuantityField.getText()));//GEN-LAST:event_buyButtonActionPerformed
+            JOptionPane.showMessageDialog(this, "Achat ok !", "IsimarketClient", JOptionPane.INFORMATION_MESSAGE);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Erreur :"+e, "Erreur", JOptionPane.ERROR_MESSAGE);
         }
 }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel appTitleLabel;
     private javax.swing.JButton buyButton;
     private javax.swing.JButton closeButton;
     private javax.swing.JLabel jLabel2;
@@ -236,7 +232,7 @@ public class BuyActionTypeDialog extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel6;
     public javax.swing.JTextField labelField;
     public javax.swing.JTextField priceField;
-    public javax.swing.JTextField quantityField1;
+    public javax.swing.JTextField requestedQuantityField;
     private javax.swing.JButton totalButton;
     public javax.swing.JTextField totalPriceField;
     public javax.swing.JTextField totalQuantityField;

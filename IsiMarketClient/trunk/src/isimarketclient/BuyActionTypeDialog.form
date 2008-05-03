@@ -51,7 +51,7 @@
                           <Component id="labelField" pref="207" max="32767" attributes="0"/>
                           <Component id="priceField" alignment="1" pref="207" max="32767" attributes="0"/>
                           <Component id="totalQuantityField" alignment="0" pref="207" max="32767" attributes="0"/>
-                          <Component id="quantityField1" alignment="0" pref="207" max="32767" attributes="0"/>
+                          <Component id="requestedQuantityField" alignment="0" pref="207" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
@@ -88,7 +88,7 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="quantityField1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="requestedQuantityField" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -212,13 +212,13 @@
         <Property name="name" type="java.lang.String" value="jLabel6" noResource="true"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="quantityField1">
+    <Component class="javax.swing.JTextField" name="requestedQuantityField">
       <Properties>
-        <Property name="text" type="java.lang.String" resourceKey="quantityField1.text"/>
-        <Property name="name" type="java.lang.String" value="quantityField1" noResource="true"/>
+        <Property name="text" type="java.lang.String" resourceKey="requestedQuantityField.text"/>
+        <Property name="name" type="java.lang.String" value="requestedQuantityField" noResource="true"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="quantityField1ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="requestedQuantityFieldActionPerformed"/>
       </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>

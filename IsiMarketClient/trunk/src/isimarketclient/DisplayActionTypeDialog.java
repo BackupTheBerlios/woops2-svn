@@ -139,7 +139,7 @@ public class DisplayActionTypeDialog extends javax.swing.JDialog {
                         .addContainerGap(313, Short.MAX_VALUE)
                         .addComponent(closeButton))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(116, 116, 116)
+                        .addGap(111, 111, 111)
                         .addComponent(appTitleLabel)))
                 .addContainerGap())
         );
