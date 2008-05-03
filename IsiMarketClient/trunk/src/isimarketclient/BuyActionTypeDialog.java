@@ -31,7 +31,7 @@ public class BuyActionTypeDialog extends javax.swing.JDialog {
     private void initComponents() {
 
         closeButton = new javax.swing.JButton();
-        javax.swing.JLabel appTitleLabel = new javax.swing.JLabel();
+        javax.swing.JLabel buyTitle = new javax.swing.JLabel();
         buyButton = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         labelField = new javax.swing.JTextField();
@@ -61,9 +61,9 @@ public class BuyActionTypeDialog extends javax.swing.JDialog {
             }
         });
 
-        appTitleLabel.setFont(appTitleLabel.getFont().deriveFont(appTitleLabel.getFont().getStyle() | java.awt.Font.BOLD, appTitleLabel.getFont().getSize()+4));
-        appTitleLabel.setText(resourceMap.getString("Application.title")); // NOI18N
-        appTitleLabel.setName("appTitleLabel"); // NOI18N
+        buyTitle.setFont(buyTitle.getFont().deriveFont(buyTitle.getFont().getStyle() | java.awt.Font.BOLD, buyTitle.getFont().getSize()+4));
+        buyTitle.setText(resourceMap.getString("Application.title")); // NOI18N
+        buyTitle.setName("buyTitle"); // NOI18N
 
         buyButton.setText(resourceMap.getString("buyButton.text")); // NOI18N
         buyButton.setName("buyButton"); // NOI18N
@@ -127,7 +127,7 @@ public class BuyActionTypeDialog extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(116, 116, 116)
-                        .addComponent(appTitleLabel))
+                        .addComponent(buyTitle))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(82, 82, 82)
                         .addComponent(totalButton)
@@ -159,7 +159,7 @@ public class BuyActionTypeDialog extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(appTitleLabel)
+                .addComponent(buyTitle)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)

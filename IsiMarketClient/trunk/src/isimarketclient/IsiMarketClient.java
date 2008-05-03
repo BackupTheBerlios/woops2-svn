@@ -7,6 +7,7 @@ import isimarket.client.CorbaClient;
 import isimarket.model.Action;
 import isimarket.model.ActionType;
 import isimarket.servants.walletservant.WalletServantPackage.BadQuantityException;
+import isimarket.servants.walletservant.WalletServantPackage.NotEnoughAvailableActionsException;
 import isimarket.servants.walletservant.WalletServantPackage.NotEnoughCashException;
 import isimarketclient.IsiMarketConstants.UserType;
 import javax.swing.JOptionPane;
@@ -137,6 +138,7 @@ public class IsiMarketClient extends SingleFrameApplication {
         
         sellActionDialog = new SellActionDialog(mainView.getFrame());
         Action action = IsiMarketClientModel.actions[rowNb];
+        sellActionDialog.currentAction = action;
         sellActionDialog.labelField.setText(action.actiontype.label);
         sellActionDialog.currentPriceField.setText(""+action.actiontype.currentPrice);
         sellActionDialog.buyPriceField.setText(""+action.buyPrice);
@@ -147,6 +149,11 @@ public class IsiMarketClient extends SingleFrameApplication {
 
     public void buyActionType(int qt) throws BadQuantityException, NotEnoughCashException {
         client.getWalletServant().buyAction(IsiMarketClientModel.wallet.walletId, "" + buyActionTypeDialog.at.code, qt);
+    }
+    
+    public void SellAction(int qt) throws NotEnoughAvailableActionsException{
+        client.getWalletServant().sellAction(IsiMarketClientModel.wallet.walletId, ""+sellActionDialog.currentAction.actiontype.code 
+                , sellActionDialog.currentAction.actionId , qt);
     }
 
     /**

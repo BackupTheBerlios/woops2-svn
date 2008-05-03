@@ -468,7 +468,7 @@ public class IsiMarketClientFrame extends FrameView {
     }//GEN-LAST:event_showActionTypeButtonActionPerformed
 
     private void buyActionTypeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buyActionTypeButtonActionPerformed
-        int rowNb = walletTable.getSelectedRow();
+        int rowNb = marketTable.getSelectedRow();
         IsiMarketClient.getApplication().showBuyActionType(rowNb);
     }//GEN-LAST:event_buyActionTypeButtonActionPerformed
 
@@ -477,7 +477,7 @@ private void refreshActionTypeButton2ActionPerformed(java.awt.event.ActionEvent 
 }//GEN-LAST:event_refreshActionTypeButton2ActionPerformed
 
 private void buyActionTypeButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buyActionTypeButton1ActionPerformed
-    int rowNb = marketTable.getSelectedRow();
+    int rowNb = walletTable.getSelectedRow();
     IsiMarketClient.getApplication().showSellActionType(rowNb);
 }//GEN-LAST:event_buyActionTypeButton1ActionPerformed
 

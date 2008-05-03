@@ -4,7 +4,9 @@
 
 package isimarketclient;
 
-import org.jdesktop.application.Action;
+import isimarket.model.Action;
+import javax.swing.JOptionPane;
+
 
 public class SellActionDialog extends javax.swing.JDialog {
 
@@ -16,7 +18,8 @@ public class SellActionDialog extends javax.swing.JDialog {
         getRootPane().setDefaultButton(closeButton);
     }
 
-    @Action public void closeAboutBox() {
+    @org.jdesktop.application.Action 
+    public void closeAboutBox() {
         setVisible(false);
     }
 
@@ -29,7 +32,7 @@ public class SellActionDialog extends javax.swing.JDialog {
     private void initComponents() {
 
         closeButton = new javax.swing.JButton();
-        javax.swing.JLabel appTitleLabel = new javax.swing.JLabel();
+        javax.swing.JLabel sellActionTitle = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         labelField = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
@@ -43,7 +46,7 @@ public class SellActionDialog extends javax.swing.JDialog {
         sellButton = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         cashSoldField = new javax.swing.JTextField();
-        sellButton1 = new javax.swing.JButton();
+        countCashButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setModal(true);
@@ -61,9 +64,9 @@ public class SellActionDialog extends javax.swing.JDialog {
             }
         });
 
-        appTitleLabel.setFont(appTitleLabel.getFont().deriveFont(appTitleLabel.getFont().getStyle() | java.awt.Font.BOLD, appTitleLabel.getFont().getSize()+4));
-        appTitleLabel.setText(resourceMap.getString("Application.title")); // NOI18N
-        appTitleLabel.setName("appTitleLabel"); // NOI18N
+        sellActionTitle.setFont(sellActionTitle.getFont().deriveFont(sellActionTitle.getFont().getStyle() | java.awt.Font.BOLD, sellActionTitle.getFont().getSize()+4));
+        sellActionTitle.setText(resourceMap.getString("Application.title")); // NOI18N
+        sellActionTitle.setName("sellActionTitle"); // NOI18N
 
         jLabel1.setText(resourceMap.getString("jLabel1.text")); // NOI18N
         jLabel1.setName("jLabel1"); // NOI18N
@@ -98,6 +101,11 @@ public class SellActionDialog extends javax.swing.JDialog {
 
         quantityToSellField.setText(resourceMap.getString("quantityToSellField.text")); // NOI18N
         quantityToSellField.setName("quantityToSellField"); // NOI18N
+        quantityToSellField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                quantityToSellFieldActionPerformed(evt);
+            }
+        });
 
         sellButton.setAction(actionMap.get("closeAboutBox")); // NOI18N
         sellButton.setText(resourceMap.getString("sellButton.text")); // NOI18N
@@ -114,12 +122,12 @@ public class SellActionDialog extends javax.swing.JDialog {
         cashSoldField.setText(resourceMap.getString("cashSoldField.text")); // NOI18N
         cashSoldField.setName("cashSoldField"); // NOI18N
 
-        sellButton1.setAction(actionMap.get("closeAboutBox")); // NOI18N
-        sellButton1.setText(resourceMap.getString("sellButton1.text")); // NOI18N
-        sellButton1.setName("sellButton1"); // NOI18N
-        sellButton1.addActionListener(new java.awt.event.ActionListener() {
+        countCashButton.setAction(actionMap.get("closeAboutBox")); // NOI18N
+        countCashButton.setText(resourceMap.getString("countCashButton.text")); // NOI18N
+        countCashButton.setName("countCashButton"); // NOI18N
+        countCashButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                sellButton1ActionPerformed(evt);
+                countCashButtonActionPerformed(evt);
             }
         });
 
@@ -131,10 +139,10 @@ public class SellActionDialog extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(70, 70, 70)
-                        .addComponent(appTitleLabel))
+                        .addComponent(sellActionTitle))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(sellButton1)
+                        .addComponent(countCashButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(sellButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -167,7 +175,7 @@ public class SellActionDialog extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(appTitleLabel)
+                .addComponent(sellActionTitle)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
@@ -196,7 +204,7 @@ public class SellActionDialog extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(closeButton)
                     .addComponent(sellButton)
-                    .addComponent(sellButton1))
+                    .addComponent(countCashButton))
                 .addContainerGap())
         );
 
@@ -208,17 +216,32 @@ private void closeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
 }//GEN-LAST:event_closeButtonActionPerformed
 
 private void sellButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sellButtonActionPerformed
-// TODO add your handling code here:
-}//GEN-LAST:event_sellButtonActionPerformed
+        try {
+            IsiMarketClient.getApplication().SellAction(new Integer(quantityToSellField.getText()));//GEN-LAST:event_sellButtonActionPerformed
+            this.dispose();
+            JOptionPane.showMessageDialog(this, "Vente ok !", "IsimarketClient", JOptionPane.INFORMATION_MESSAGE);
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Erreur :"+e, "Erreur", JOptionPane.ERROR_MESSAGE);
+        }
+}
 
-private void sellButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sellButton1ActionPerformed
-// TODO add your handling code here:
-}//GEN-LAST:event_sellButton1ActionPerformed
+private void countCashButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_countCashButtonActionPerformed
+    quantityToSellFieldActionPerformed(evt);
+}//GEN-LAST:event_countCashButtonActionPerformed
+
+private void quantityToSellFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quantityToSellFieldActionPerformed
+    Integer q = new Integer(quantityToSellField.getText());
+    Float p = new Float(currentPriceField.getText());
+    Float s = q*p;
+    cashSoldField.setText(""+s);
+}//GEN-LAST:event_quantityToSellFieldActionPerformed
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JTextField buyPriceField;
     public javax.swing.JTextField cashSoldField;
     private javax.swing.JButton closeButton;
+    private javax.swing.JButton countCashButton;
     public javax.swing.JTextField currentPriceField;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -230,7 +253,6 @@ private void sellButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
     public javax.swing.JTextField quantityField;
     public javax.swing.JTextField quantityToSellField;
     private javax.swing.JButton sellButton;
-    private javax.swing.JButton sellButton1;
     // End of variables declaration//GEN-END:variables
     
 }

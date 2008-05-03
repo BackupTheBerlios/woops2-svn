@@ -15,6 +15,7 @@ import isimarket.model.Wallet;
  */
 public class IsiMarketClientModel {
     public static String login;
+    public static String password;
     public static Wallet wallet;
     public static Action[] actions;
     public static ActionType[] market;
