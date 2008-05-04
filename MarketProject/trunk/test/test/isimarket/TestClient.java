@@ -17,8 +17,8 @@ public class TestClient {
 	private org.omg.CORBA.Object objRef;
 	private NamingContext ncRef;
 	private NameComponent paths[];
-	private AdministrationServant administrationServantRef;
-	private ActionTypeServant actionTypeServantRef;
+	private AdministrationServant administrationServant;
+	private ActionTypeServant actionTypeServant;
 
 	public void init(String[] args) {
 		try {
@@ -30,11 +30,8 @@ public class TestClient {
 			NameComponent ncActionType = new NameComponent(ServerConstants._REF_ACTION_SERVANT, "");
 			paths = new NameComponent[] { ncAdmin, ncActionType };
 			// servants
-			administrationServantRef = AdministrationServantHelper.narrow(ncRef.resolve(paths));
-			actionTypeServantRef = ActionTypeServantHelper.narrow(ncRef.resolve(paths));
-			
-			System.out.println("administrationServantRef @ "+administrationServantRef);
-			System.out.println("actionTypeServantRef @ "+actionTypeServantRef);
+			administrationServant = AdministrationServantHelper.narrow(ncRef.resolve(paths));
+			actionTypeServant = ActionTypeServantHelper.narrow(ncRef.resolve(paths));
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -73,21 +70,21 @@ public class TestClient {
 		this.paths = paths;
 	}
 
-	public AdministrationServant getAdministrationServantRef() {
-		return administrationServantRef;
+	public AdministrationServant getAdministrationServant() {
+		return administrationServant;
 	}
 
-	public void setAdministrationServantRef(
-			AdministrationServant administrationServantRef) {
-		this.administrationServantRef = administrationServantRef;
+	public void setAdministrationServant(
+			AdministrationServant administrationServant) {
+		this.administrationServant = administrationServant;
 	}
 
-	public ActionTypeServant getActionTypeServantRef() {
-		return actionTypeServantRef;
+	public ActionTypeServant getActionTypeServant() {
+		return actionTypeServant;
 	}
 
-	public void setActionTypeServantRef(ActionTypeServant actionTypeServantRef) {
-		this.actionTypeServantRef = actionTypeServantRef;
+	public void setActionTypeServantRef(ActionTypeServant actionTypeServant) {
+		this.actionTypeServant = actionTypeServant;
 	}
 
 }

@@ -49,6 +49,8 @@ module isimarket{
 		    float currentPrice);
 					void updateActionTypeQuantity(in string code, in long quantity);
 		    		void updateActionTypeCurrentPrice(in string code, in float currentPrice);
+		    		void deleteActionType(in string actionTypeCode);
+		    		ActionTypeDao getActionTypeDao();
 					EventList getEvents(in string actionTypeCode);
 				};
 			};
