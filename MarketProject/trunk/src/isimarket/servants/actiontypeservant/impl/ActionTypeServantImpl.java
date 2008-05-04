@@ -59,4 +59,13 @@ public class ActionTypeServantImpl extends _ActionTypeServantImplBase{
 		this.actionTypeDao.updateCurrentPrice(code, newCurrentPrice);
 	}
 
+	@Override
+	public void deleteActionType(String actionTypeCode) {
+		this.actionTypeDao.delete(actionTypeCode);
+	}
+
+	public ActionTypeDao getActionTypeDao() {
+		return actionTypeDao;
+	}
+
 }
