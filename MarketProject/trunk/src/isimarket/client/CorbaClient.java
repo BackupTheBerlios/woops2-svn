@@ -20,8 +20,6 @@ import org.omg.CosNaming.NamingContextPackage.CannotProceed;
 import org.omg.CosNaming.NamingContextPackage.InvalidName;
 import org.omg.CosNaming.NamingContextPackage.NotFound;
 
-import com.sun.corba.se.spi.orbutil.fsm.Action;
-
 
 public class CorbaClient {
 
@@ -45,7 +43,7 @@ public class CorbaClient {
 			NamingContext ncRef = NamingContextHelper.narrow(objRef);
 			
 			administrationServantRef = AdministrationServantHelper.narrow((Object) bindReference(ncRef,ServerConstants._REF_ADMINISTRATION_SERVANT ));
-			actionTypeServantRef = ActionTypeServantHelper.narrow((Object) bindReference(ncRef,ServerConstants._REF_ACTION_SERVANT ));
+			actionTypeServantRef = ActionTypeServantHelper.narrow((Object) bindReference(ncRef,ServerConstants._REF_ACTIONTYPE_SERVANT ));
 			alarmServant = AlarmServantHelper.narrow((Object) bindReference(ncRef,ServerConstants._REF_ALARM_SERVANT ));
 			walletServant = WalletServantHelper.narrow((Object) bindReference(ncRef,ServerConstants._REF_WALLET_SERVANT ));
 			System.out.println("administrationServantRef @ "+administrationServantRef);

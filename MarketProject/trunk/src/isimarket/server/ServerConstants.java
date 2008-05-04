@@ -8,7 +8,7 @@ public class ServerConstants {
 	public static final String _REF_WALLET_SERVANT = "WalletServant";
 	public static final String _REF_ALARM_SERVANT = "AlarmServant";
 	public static final String _REF_ADMINISTRATION_SERVANT = "AdministrationServant";
-	public static final String _REF_ACTION_SERVANT = "ActionServant";
+	public static final String _REF_ACTIONTYPE_SERVANT = "ActionTypeServant";
 	
 	/**
 	 * Gestion de format des dates

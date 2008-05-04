@@ -1,6 +1,5 @@
 package isimarket.server;
 
-import isimarket.db.manager.TableManager;
 import isimarket.servants.actiontypeservant.impl.ActionTypeServantImpl;
 import isimarket.servants.administrationservant.impl.AdministrationServantImpl;
 import isimarket.servants.alarmservant.impl.AlarmServantImpl;
@@ -44,7 +43,7 @@ public class Server {
             NamingContext ncRef = NamingContextHelper.narrow(objRef);
  
             // bind the Object Reference in Naming
-            bindReference(actionTypeServantRef, ncRef,ServerConstants._REF_ACTION_SERVANT);
+            bindReference(actionTypeServantRef, ncRef,ServerConstants._REF_ACTIONTYPE_SERVANT);
             bindReference(administrationServantRef, ncRef,ServerConstants._REF_ADMINISTRATION_SERVANT);
             bindReference(alarmServantRef, ncRef,ServerConstants._REF_ALARM_SERVANT);
             bindReference(walletServantRef, ncRef,ServerConstants._REF_WALLET_SERVANT);

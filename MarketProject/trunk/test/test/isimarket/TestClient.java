@@ -27,11 +27,14 @@ public class TestClient {
 					.resolve_initial_references(ServerConstants._NAMING_SERVICE_NAME);
 			ncRef = NamingContextHelper.narrow(objRef);
 			NameComponent ncAdmin = new NameComponent(ServerConstants._REF_ADMINISTRATION_SERVANT,"");
-			NameComponent ncActionType = new NameComponent(ServerConstants._REF_ACTION_SERVANT, "");
+			NameComponent ncActionType = new NameComponent(ServerConstants._REF_ACTIONTYPE_SERVANT, "");
 			paths = new NameComponent[] { ncAdmin, ncActionType };
 			// servants
 			administrationServant = AdministrationServantHelper.narrow(ncRef.resolve(paths));
 			actionTypeServant = ActionTypeServantHelper.narrow(ncRef.resolve(paths));
+			
+			System.out.println("administrationServant @ "+administrationServant);
+			System.out.println("actionTypeServant @ "+actionTypeServant);
 
 		} catch (Exception e) {
 			e.printStackTrace();

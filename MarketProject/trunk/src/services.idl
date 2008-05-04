@@ -45,12 +45,12 @@ module isimarket{
 				interface ActionTypeServant{
 					ActionTypeList getActionTypeList();
 					ActionType getActionType(in string actionTypeCode);
+					ActionType getLastInsertedActionType();
 					void createActionType(in string code,in string label,in string introductionDate, in float introductionPrice, in long quantity, in
 		    float currentPrice);
 					void updateActionTypeQuantity(in string code, in long quantity);
 		    		void updateActionTypeCurrentPrice(in string code, in float currentPrice);
 		    		void deleteActionType(in string actionTypeCode);
-		    		ActionTypeDao getActionTypeDao();
 					EventList getEvents(in string actionTypeCode);
 				};
 			};

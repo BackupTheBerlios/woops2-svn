@@ -1,10 +1,14 @@
 package test.isimarket.servants.actiontypeservant;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import isimarket.model.ActionType;
 import isimarket.servants.actiontypeservant.ActionTypeServant;
 import isimarket.server.ServerConstants;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Test;
 
 import test.isimarket.TestClient;
 
@@ -19,22 +23,29 @@ public class ActionTypeServantImplTest {
 	private ActionTypeServant atServant;
 
 	@Before
-	protected void setUp() throws Exception {
+	public void setUp() throws Exception {
 		client = new TestClient();
+		client.init(null);
 		atServant = client.getActionTypeServant();
 		
 		atServant.createActionType(_CODE, _LABEL, ServerConstants.now(), 10.0f, 100, 10.5f);
 	}
 	
 	@After
-	protected void tearDown() {
+	public void tearDown() {
 		atServant.deleteActionType(_CODE);
 		atServant = null;
 		client = null;
 	}
 
+	@Test
 	public void testGetActionType() {
+		ActionType at = atServant.getLastInsertedActionType();
 		
+		assertNotNull("actionType null", at);
+		assertEquals("code", _CODE, at.code);
+		assertEquals("label", _LABEL, at.label);
+		System.out.println(at.introductionDate);
 	}
 
 	public void testGetActionTypeList() {
