@@ -31,7 +31,6 @@ public class IsiMarketClientFrame extends FrameView {
         int messageTimeout = resourceMap.getInteger("StatusBar.messageTimeout");
         messageTimer = new Timer(messageTimeout, new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                statusMessageLabel.setText("");
             }
         });
         messageTimer.setRepeats(false);
@@ -42,12 +41,9 @@ public class IsiMarketClientFrame extends FrameView {
         busyIconTimer = new Timer(busyAnimationRate, new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 busyIconIndex = (busyIconIndex + 1) % busyIcons.length;
-                statusAnimationLabel.setIcon(busyIcons[busyIconIndex]);
             }
         });
         idleIcon = resourceMap.getIcon("StatusBar.idleIcon");
-        statusAnimationLabel.setIcon(idleIcon);
-        progressBar.setVisible(false);
 
         // connecting action tasks to status bar via TaskMonitor
         TaskMonitor taskMonitor = new TaskMonitor(getApplication().getContext());
@@ -56,26 +52,16 @@ public class IsiMarketClientFrame extends FrameView {
                 String propertyName = evt.getPropertyName();
                 if ("started".equals(propertyName)) {
                     if (!busyIconTimer.isRunning()) {
-                        statusAnimationLabel.setIcon(busyIcons[0]);
                         busyIconIndex = 0;
                         busyIconTimer.start();
                     }
-                    progressBar.setVisible(true);
-                    progressBar.setIndeterminate(true);
                 } else if ("done".equals(propertyName)) {
                     busyIconTimer.stop();
-                    statusAnimationLabel.setIcon(idleIcon);
-                    progressBar.setVisible(false);
-                    progressBar.setValue(0);
                 } else if ("message".equals(propertyName)) {
                     String text = (String)(evt.getNewValue());
-                    statusMessageLabel.setText((text == null) ? "" : text);
                     messageTimer.restart();
                 } else if ("progress".equals(propertyName)) {
                     int value = (Integer)(evt.getNewValue());
-                    progressBar.setVisible(true);
-                    progressBar.setIndeterminate(false);
-                    progressBar.setValue(value);
                 }
             }
         });
@@ -107,31 +93,27 @@ public class IsiMarketClientFrame extends FrameView {
         buyActionTypeButton = new javax.swing.JButton();
         showActionTypeButton = new javax.swing.JButton();
         refreshActionTypeButton1 = new javax.swing.JButton();
-        refreshActionTypeButton4 = new javax.swing.JButton();
         operatorPanel = new javax.swing.JPanel();
         jscrollPaneOperatorPanel = new javax.swing.JScrollPane();
         walletTable = new javax.swing.JTable();
         buyActionTypeButton1 = new javax.swing.JButton();
         showActionTypeButton1 = new javax.swing.JButton();
-        refreshActionTypeButton2 = new javax.swing.JButton();
         alarmPanel = new javax.swing.JPanel();
         eventPanel = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        logArea = new javax.swing.JTextArea();
         operatorLabel = new javax.swing.JLabel();
         cashLabel = new javax.swing.JLabel();
         opeatorField = new javax.swing.JTextField();
         cashField = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
+        walletValueLabel = new javax.swing.JLabel();
         walletValueField = new javax.swing.JTextField();
+        refreshActionTypeButton4 = new javax.swing.JButton();
         menuBar = new javax.swing.JMenuBar();
         javax.swing.JMenu fileMenu = new javax.swing.JMenu();
         javax.swing.JMenuItem exitMenuItem = new javax.swing.JMenuItem();
         javax.swing.JMenu helpMenu = new javax.swing.JMenu();
         javax.swing.JMenuItem aboutMenuItem = new javax.swing.JMenuItem();
-        statusPanel = new javax.swing.JPanel();
-        javax.swing.JSeparator statusPanelSeparator = new javax.swing.JSeparator();
-        statusMessageLabel = new javax.swing.JLabel();
-        statusAnimationLabel = new javax.swing.JLabel();
-        progressBar = new javax.swing.JProgressBar();
 
         mainPanel.setName("mainPanel"); // NOI18N
 
@@ -178,15 +160,6 @@ public class IsiMarketClientFrame extends FrameView {
         refreshActionTypeButton1.setText(resourceMap.getString("refreshActionTypeButton1.text")); // NOI18N
         refreshActionTypeButton1.setName("refreshActionTypeButton1"); // NOI18N
 
-        refreshActionTypeButton4.setIcon(resourceMap.getIcon("refreshActionTypeButton4.icon")); // NOI18N
-        refreshActionTypeButton4.setText(resourceMap.getString("refreshActionTypeButton4.text")); // NOI18N
-        refreshActionTypeButton4.setName("refreshActionTypeButton4"); // NOI18N
-        refreshActionTypeButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                refreshActionTypeButton4ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout marketPanelLayout = new javax.swing.GroupLayout(marketPanel);
         marketPanel.setLayout(marketPanelLayout);
         marketPanelLayout.setHorizontalGroup(
@@ -196,10 +169,9 @@ public class IsiMarketClientFrame extends FrameView {
                 .addComponent(scrollMarketPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 483, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(marketPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(refreshActionTypeButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE)
-                    .addComponent(showActionTypeButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE)
-                    .addComponent(buyActionTypeButton, javax.swing.GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE)
-                    .addComponent(refreshActionTypeButton4, javax.swing.GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE))
+                    .addComponent(refreshActionTypeButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE)
+                    .addComponent(showActionTypeButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE)
+                    .addComponent(buyActionTypeButton, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE))
                 .addContainerGap())
         );
         marketPanelLayout.setVerticalGroup(
@@ -207,15 +179,13 @@ public class IsiMarketClientFrame extends FrameView {
             .addGroup(marketPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(marketPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(scrollMarketPanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 271, Short.MAX_VALUE)
+                    .addComponent(scrollMarketPanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 247, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, marketPanelLayout.createSequentialGroup()
                         .addComponent(buyActionTypeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(showActionTypeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(refreshActionTypeButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(refreshActionTypeButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(refreshActionTypeButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
 
@@ -252,15 +222,6 @@ public class IsiMarketClientFrame extends FrameView {
         showActionTypeButton1.setText(resourceMap.getString("showActionTypeButton1.text")); // NOI18N
         showActionTypeButton1.setName("showActionTypeButton1"); // NOI18N
 
-        refreshActionTypeButton2.setIcon(resourceMap.getIcon("refreshActionTypeButton2.icon")); // NOI18N
-        refreshActionTypeButton2.setText(resourceMap.getString("refreshActionTypeButton2.text")); // NOI18N
-        refreshActionTypeButton2.setName("refreshActionTypeButton2"); // NOI18N
-        refreshActionTypeButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                refreshActionTypeButton2ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout operatorPanelLayout = new javax.swing.GroupLayout(operatorPanel);
         operatorPanel.setLayout(operatorPanelLayout);
         operatorPanelLayout.setHorizontalGroup(
@@ -270,11 +231,10 @@ public class IsiMarketClientFrame extends FrameView {
                 .addComponent(jscrollPaneOperatorPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 482, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(operatorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(buyActionTypeButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)
+                    .addComponent(buyActionTypeButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 202, Short.MAX_VALUE)
                     .addGroup(operatorPanelLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(showActionTypeButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE))
-                    .addComponent(refreshActionTypeButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE))
+                        .addComponent(showActionTypeButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 202, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         operatorPanelLayout.setVerticalGroup(
@@ -282,13 +242,11 @@ public class IsiMarketClientFrame extends FrameView {
             .addGroup(operatorPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(operatorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jscrollPaneOperatorPanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 269, Short.MAX_VALUE)
+                    .addComponent(jscrollPaneOperatorPanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 247, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, operatorPanelLayout.createSequentialGroup()
                         .addComponent(buyActionTypeButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(showActionTypeButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(refreshActionTypeButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(showActionTypeButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
 
@@ -300,26 +258,40 @@ public class IsiMarketClientFrame extends FrameView {
         alarmPanel.setLayout(alarmPanelLayout);
         alarmPanelLayout.setHorizontalGroup(
             alarmPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 707, Short.MAX_VALUE)
+            .addGap(0, 714, Short.MAX_VALUE)
         );
         alarmPanelLayout.setVerticalGroup(
             alarmPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 293, Short.MAX_VALUE)
+            .addGap(0, 271, Short.MAX_VALUE)
         );
 
         tabbedPane.addTab(resourceMap.getString("alarmPanel.TabConstraints.tabTitle"), alarmPanel); // NOI18N
 
         eventPanel.setName("eventPanel"); // NOI18N
 
+        jScrollPane1.setName("jScrollPane1"); // NOI18N
+
+        logArea.setColumns(20);
+        logArea.setEditable(false);
+        logArea.setRows(5);
+        logArea.setName("logArea"); // NOI18N
+        jScrollPane1.setViewportView(logArea);
+
         javax.swing.GroupLayout eventPanelLayout = new javax.swing.GroupLayout(eventPanel);
         eventPanel.setLayout(eventPanelLayout);
         eventPanelLayout.setHorizontalGroup(
             eventPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 707, Short.MAX_VALUE)
+            .addGroup(eventPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 690, Short.MAX_VALUE)
+                .addContainerGap())
         );
         eventPanelLayout.setVerticalGroup(
             eventPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 293, Short.MAX_VALUE)
+            .addGroup(eventPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 247, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         tabbedPane.addTab(resourceMap.getString("eventPanel.TabConstraints.tabTitle"), eventPanel); // NOI18N
@@ -338,50 +310,66 @@ public class IsiMarketClientFrame extends FrameView {
         cashField.setText(resourceMap.getString("cashField.text")); // NOI18N
         cashField.setName("cashField"); // NOI18N
 
-        jLabel1.setText(resourceMap.getString("jLabel1.text")); // NOI18N
-        jLabel1.setName("jLabel1"); // NOI18N
+        walletValueLabel.setText(resourceMap.getString("walletValueLabel.text")); // NOI18N
+        walletValueLabel.setName("walletValueLabel"); // NOI18N
 
         walletValueField.setEditable(false);
         walletValueField.setText(resourceMap.getString("walletValueField.text")); // NOI18N
         walletValueField.setName("walletValueField"); // NOI18N
 
+        refreshActionTypeButton4.setIcon(resourceMap.getIcon("refreshActionTypeButton4.icon")); // NOI18N
+        refreshActionTypeButton4.setText(resourceMap.getString("refreshActionTypeButton4.text")); // NOI18N
+        refreshActionTypeButton4.setName("refreshActionTypeButton4"); // NOI18N
+        refreshActionTypeButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                refreshActionTypeButton4ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);
         mainPanel.setLayout(mainPanelLayout);
         mainPanelLayout.setHorizontalGroup(
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(mainPanelLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(tabbedPane, javax.swing.GroupLayout.DEFAULT_SIZE, 715, Short.MAX_VALUE)
-                    .addGroup(mainPanelLayout.createSequentialGroup()
+                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(tabbedPane, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 722, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, mainPanelLayout.createSequentialGroup()
                         .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cashLabel)
-                            .addComponent(operatorLabel))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(opeatorField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cashField, javax.swing.GroupLayout.Alignment.LEADING))
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(walletValueField, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(operatorLabel)
+                            .addComponent(cashLabel))
+                        .addGap(27, 27, 27)
+                        .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(opeatorField, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(cashField, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(walletValueField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 141, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 276, Short.MAX_VALUE)
+                        .addComponent(refreshActionTypeButton4))
+                    .addComponent(walletValueLabel, javax.swing.GroupLayout.Alignment.LEADING))
                 .addContainerGap())
         );
         mainPanelLayout.setVerticalGroup(
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(mainPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(operatorLabel)
-                    .addComponent(opeatorField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1)
-                    .addComponent(walletValueField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cashLabel)
-                    .addComponent(cashField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(mainPanelLayout.createSequentialGroup()
+                        .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(operatorLabel)
+                            .addComponent(opeatorField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(cashLabel)
+                            .addComponent(cashField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(walletValueLabel)
+                            .addComponent(walletValueField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(refreshActionTypeButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(tabbedPane, javax.swing.GroupLayout.DEFAULT_SIZE, 330, Short.MAX_VALUE))
+                .addComponent(tabbedPane, javax.swing.GroupLayout.DEFAULT_SIZE, 308, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         menuBar.setName("menuBar"); // NOI18N
@@ -412,46 +400,8 @@ public class IsiMarketClientFrame extends FrameView {
 
         menuBar.add(helpMenu);
 
-        statusPanel.setName("statusPanel"); // NOI18N
-
-        statusPanelSeparator.setName("statusPanelSeparator"); // NOI18N
-
-        statusMessageLabel.setName("statusMessageLabel"); // NOI18N
-
-        statusAnimationLabel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        statusAnimationLabel.setName("statusAnimationLabel"); // NOI18N
-
-        progressBar.setName("progressBar"); // NOI18N
-
-        javax.swing.GroupLayout statusPanelLayout = new javax.swing.GroupLayout(statusPanel);
-        statusPanel.setLayout(statusPanelLayout);
-        statusPanelLayout.setHorizontalGroup(
-            statusPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(statusPanelSeparator, javax.swing.GroupLayout.DEFAULT_SIZE, 739, Short.MAX_VALUE)
-            .addGroup(statusPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(statusMessageLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 555, Short.MAX_VALUE)
-                .addComponent(progressBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(statusAnimationLabel)
-                .addContainerGap())
-        );
-        statusPanelLayout.setVerticalGroup(
-            statusPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(statusPanelLayout.createSequentialGroup()
-                .addComponent(statusPanelSeparator, javax.swing.GroupLayout.PREFERRED_SIZE, 2, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(statusPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(statusMessageLabel)
-                    .addComponent(statusAnimationLabel)
-                    .addComponent(progressBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(3, 3, 3))
-        );
-
         setComponent(mainPanel);
         setMenuBar(menuBar);
-        setStatusBar(statusPanel);
     }// </editor-fold>//GEN-END:initComponents
 
     private void refreshActionTypeButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshActionTypeButton4ActionPerformed
@@ -472,10 +422,6 @@ public class IsiMarketClientFrame extends FrameView {
         IsiMarketClient.getApplication().showBuyActionType(rowNb);
     }//GEN-LAST:event_buyActionTypeButtonActionPerformed
 
-private void refreshActionTypeButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshActionTypeButton2ActionPerformed
-    IsiMarketClient.getApplication().updateDataTables();
-}//GEN-LAST:event_refreshActionTypeButton2ActionPerformed
-
 private void buyActionTypeButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buyActionTypeButton1ActionPerformed
     int rowNb = walletTable.getSelectedRow();
     IsiMarketClient.getApplication().showSellActionType(rowNb);
@@ -488,8 +434,9 @@ private void buyActionTypeButton1ActionPerformed(java.awt.event.ActionEvent evt)
     public javax.swing.JTextField cashField;
     private javax.swing.JLabel cashLabel;
     private javax.swing.JPanel eventPanel;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jscrollPaneOperatorPanel;
+    public javax.swing.JTextArea logArea;
     private javax.swing.JPanel mainPanel;
     private javax.swing.JPanel marketPanel;
     public javax.swing.JTable marketTable;
@@ -497,19 +444,15 @@ private void buyActionTypeButton1ActionPerformed(java.awt.event.ActionEvent evt)
     public javax.swing.JTextField opeatorField;
     private javax.swing.JLabel operatorLabel;
     private javax.swing.JPanel operatorPanel;
-    private javax.swing.JProgressBar progressBar;
     private javax.swing.JButton refreshActionTypeButton1;
-    private javax.swing.JButton refreshActionTypeButton2;
     private javax.swing.JButton refreshActionTypeButton4;
     private javax.swing.JScrollPane scrollMarketPanel;
     private javax.swing.JButton showActionTypeButton;
     private javax.swing.JButton showActionTypeButton1;
-    private javax.swing.JLabel statusAnimationLabel;
-    private javax.swing.JLabel statusMessageLabel;
-    private javax.swing.JPanel statusPanel;
     private javax.swing.JTabbedPane tabbedPane;
     public javax.swing.JTable walletTable;
     public javax.swing.JTextField walletValueField;
+    private javax.swing.JLabel walletValueLabel;
     // End of variables declaration//GEN-END:variables
 
     private final Timer messageTimer;

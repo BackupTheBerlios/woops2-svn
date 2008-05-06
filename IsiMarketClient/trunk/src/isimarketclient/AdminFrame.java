@@ -6,6 +6,7 @@
 
 package isimarketclient;
 
+import isimarket.server.ServerConstants;
 import javax.swing.JOptionPane;
 
 /**
@@ -418,7 +419,7 @@ public class AdminFrame extends javax.swing.JFrame {
         Float price = new Float(priceField.getText());
         Integer quantity = new Integer(quantityField.getText());
         IsiMarketClient.getApplication().getCorbaClient().getActionTypeServantRef()
-                .createActionType(codeField.getText(), labelField.getText(), "", price, quantity, price);
+                .createActionType(codeField.getText(), labelField.getText(), ServerConstants.now(), price, quantity, price);
         JOptionPane.showMessageDialog(this, "Creation Action OK !", "IsimarketClient", JOptionPane.INFORMATION_MESSAGE);
         } catch(Exception e){
             e.printStackTrace();
