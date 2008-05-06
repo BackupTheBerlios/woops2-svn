@@ -25,8 +25,8 @@ public class ActionTypeServantImplTest {
 	@Before
 	public void setUp() throws Exception {
 		client = new TestClient();
-		client.init(null);
-		atServant = client.getActionTypeServant();
+		client.startClient();
+		atServant = client.getActionTypeServantRef();
 		
 		atServant.createActionType(_CODE, _LABEL, ServerConstants.now(), 10.0f, 100, 10.5f);
 	}

@@ -1,93 +1,82 @@
 package test.isimarket;
 
+import java.util.Properties;
+
 import isimarket.servants.actiontypeservant.ActionTypeServant;
 import isimarket.servants.actiontypeservant.ActionTypeServantHelper;
 import isimarket.servants.administrationservant.AdministrationServant;
 import isimarket.servants.administrationservant.AdministrationServantHelper;
+import isimarket.servants.alarmservant.AlarmServant;
+import isimarket.servants.alarmservant.AlarmServantHelper;
+import isimarket.servants.walletservant.WalletServant;
+import isimarket.servants.walletservant.WalletServantHelper;
 import isimarket.server.ServerConstants;
 
 import org.omg.CORBA.ORB;
+import org.omg.CORBA.Object;
 import org.omg.CosNaming.NameComponent;
 import org.omg.CosNaming.NamingContext;
 import org.omg.CosNaming.NamingContextHelper;
+import org.omg.CosNaming.NamingContextPackage.CannotProceed;
+import org.omg.CosNaming.NamingContextPackage.InvalidName;
+import org.omg.CosNaming.NamingContextPackage.NotFound;
 
 public class TestClient {
 
-	private ORB orb;
-	private org.omg.CORBA.Object objRef;
-	private NamingContext ncRef;
-	private NameComponent paths[];
-	private AdministrationServant administrationServant;
-	private ActionTypeServant actionTypeServant;
+	private AdministrationServant administrationServantRef;
+	private ActionTypeServant actionTypeServantRef;
+	private AlarmServant alarmServant;
+	private WalletServant walletServant;
 
-	public void init(String[] args) {
-		try {
-			orb = ORB.init(args, null);
-			objRef = orb
-					.resolve_initial_references(ServerConstants._NAMING_SERVICE_NAME);
-			ncRef = NamingContextHelper.narrow(objRef);
-			NameComponent ncAdmin = new NameComponent(ServerConstants._REF_ADMINISTRATION_SERVANT,"");
-			NameComponent ncActionType = new NameComponent(ServerConstants._REF_ACTIONTYPE_SERVANT, "");
-			paths = new NameComponent[] { ncAdmin, ncActionType };
-			// servants
-			administrationServant = AdministrationServantHelper.narrow(ncRef.resolve(paths));
-			actionTypeServant = ActionTypeServantHelper.narrow(ncRef.resolve(paths));
+	public void startClient() {
+		String[] args = null;
+        try {
+        	Properties props = new Properties ();
+			props.put("org.omg.CORBA.ORBInitialPort", "900");
+			props.put("org.omg.CORBA.ORBInitialHost",
+			"localhost");
+			ORB orb = ORB.init(args, props);
+
+			// get the root naming context
+			org.omg.CORBA.Object objRef = orb.resolve_initial_references(ServerConstants._NAMING_SERVICE_NAME);
+			NamingContext ncRef = NamingContextHelper.narrow(objRef);
 			
-			System.out.println("administrationServant @ "+administrationServant);
-			System.out.println("actionTypeServant @ "+actionTypeServant);
-
+			administrationServantRef = AdministrationServantHelper.narrow((Object) bindReference(ncRef,ServerConstants._REF_ADMINISTRATION_SERVANT ));
+			actionTypeServantRef = ActionTypeServantHelper.narrow((Object) bindReference(ncRef,ServerConstants._REF_ACTIONTYPE_SERVANT ));
+			alarmServant = AlarmServantHelper.narrow((Object) bindReference(ncRef,ServerConstants._REF_ALARM_SERVANT ));
+			walletServant = WalletServantHelper.narrow((Object) bindReference(ncRef,ServerConstants._REF_WALLET_SERVANT ));
+			System.out.println("administrationServantRef @ "+administrationServantRef);
+			System.out.println("actionTypeServantRef @"+actionTypeServantRef);
+			System.out.println("alarmServant @"+alarmServant);
+			System.out.println("walletServant @"+walletServant);
+			System.out.println("client launched ...");
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-
-	public ORB getOrb() {
-		return orb;
+	
+	private Object bindReference(NamingContext ncRef, String name) 
+			throws NotFound, CannotProceed, InvalidName{
+		NameComponent nc = new NameComponent(name, "");
+		NameComponent path[] = {nc};
+		return ncRef.resolve(path);
 	}
 
-	public void setOrb(ORB orb) {
-		this.orb = orb;
+	public AdministrationServant getAdministrationServantRef() {
+		return administrationServantRef;
 	}
 
-	public org.omg.CORBA.Object getObjRef() {
-		return objRef;
+	public ActionTypeServant getActionTypeServantRef() {
+		return actionTypeServantRef;
 	}
 
-	public void setObjRef(org.omg.CORBA.Object objRef) {
-		this.objRef = objRef;
+	public AlarmServant getAlarmServant() {
+		return alarmServant;
 	}
 
-	public NamingContext getNcRef() {
-		return ncRef;
-	}
-
-	public void setNcRef(NamingContext ncRef) {
-		this.ncRef = ncRef;
-	}
-
-	public NameComponent[] getPaths() {
-		return paths;
-	}
-
-	public void setPaths(NameComponent[] paths) {
-		this.paths = paths;
-	}
-
-	public AdministrationServant getAdministrationServant() {
-		return administrationServant;
-	}
-
-	public void setAdministrationServant(
-			AdministrationServant administrationServant) {
-		this.administrationServant = administrationServant;
-	}
-
-	public ActionTypeServant getActionTypeServant() {
-		return actionTypeServant;
-	}
-
-	public void setActionTypeServantRef(ActionTypeServant actionTypeServant) {
-		this.actionTypeServant = actionTypeServant;
+	public WalletServant getWalletServant() {
+		return walletServant;
 	}
 
 }

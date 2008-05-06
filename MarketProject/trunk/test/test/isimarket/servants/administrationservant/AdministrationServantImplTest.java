@@ -12,13 +12,13 @@ public class AdministrationServantImplTest extends TestCase {
 	
 	protected void setUp() throws Exception {
 		client = new TestClient();
-		client.init(null);
+		client.startClient();
 		walletDao = new WalletDao();
 	}
 
 	public void testCreateWallet() {
 		float _cash = 1000.0f;
-		client.getAdministrationServant().createWallet(_cash);
+		client.getAdministrationServantRef().createWallet(_cash);
 		Wallet w = walletDao.getLastInsertedWallet();
 		assertEquals(w.cash, _cash);
 	}
