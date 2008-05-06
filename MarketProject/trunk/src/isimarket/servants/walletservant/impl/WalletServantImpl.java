@@ -98,13 +98,16 @@ public class WalletServantImpl extends _WalletServantImplBase {
 		ActionType actionType = this.actionTypeDao.get(_actionTypeCode);
 		Action action = this.actionDao.get(_actionId);
 		
-		float transaction = _quantity * actionType.currentPrice;
-		
-		if (_quantity <= action.quantity) 
+		if (_quantity <= action.quantity) {
+			action.quantity = action.quantity - _quantity;
 			this.actionDao.updateQuantity(action.actionId, action.quantity);
+		}
 		else
 			throw new NotEnoughAvailableActionsException("Nombre d'actions choisi trop grand");
-		if (_quantity == action.quantity) 
+		
+		float transaction = _quantity * actionType.currentPrice;
+		
+		if (action.quantity == 0) 
 			this.actionDao.delete(action);
 		
 		this.actionTypeDao.updateQuantity(actionType.code, actionType.quantity + _quantity);
