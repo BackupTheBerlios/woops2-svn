@@ -106,9 +106,9 @@ public class EventDao {
 		try {
 			stmt = DatabaseManager.getInstance().getConnection()
 					.prepareStatement(
-							"select * from action where "
-									+ _COL_ACTION_TYPE_CODE + " = "
-									+ actionTypeCode);
+							"select * from event where "
+									+ _COL_ACTION_TYPE_CODE + " = '"
+									+ actionTypeCode+"'");
 			res = stmt.executeQuery();
 			while (res.next()) {
 				list.add(new Event(res.getInt(_COL_EVENT_ID), res
