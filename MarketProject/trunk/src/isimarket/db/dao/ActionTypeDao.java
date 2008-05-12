@@ -102,7 +102,7 @@ public class ActionTypeDao {
 					.prepareStatement(
 							"select * from actiontype where " + _COL_CODE
 									+ " = select max(" + _COL_CODE
-									+ ") from action");
+									+ ") from actiontype");
 			res = stmt.executeQuery();
 			if (res.next()) {
 				return new ActionType(res.getString(_COL_CODE), res
