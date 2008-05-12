@@ -1,6 +1,7 @@
 package isimarket.servants.actiontypeservant.impl;
 
 import isimarket.db.dao.ActionTypeDao;
+import isimarket.db.dao.EventDao;
 import isimarket.model.ActionType;
 import isimarket.model.Event;
 import isimarket.servants.actiontypeservant._ActionTypeServantImplBase;
@@ -12,6 +13,8 @@ public class ActionTypeServantImpl extends _ActionTypeServantImplBase{
 	private static final long serialVersionUID = 1L;
 	
 	protected ActionTypeDao actionTypeDao = new ActionTypeDao();
+	
+	protected EventDao eventDao = new EventDao();
 
 	/**
 	 * 
@@ -33,7 +36,9 @@ public class ActionTypeServantImpl extends _ActionTypeServantImplBase{
 	 * 
 	 */
 	public Event[] getEvents(String _actionTypeCode) {
-		return null;
+		List<Event> eventlist = this.eventDao.getAllFromActionType(_actionTypeCode);
+		Event[] eventArray = new Event[eventlist.size()];
+		return eventlist.toArray(eventArray);
 	}
 
 	/**
