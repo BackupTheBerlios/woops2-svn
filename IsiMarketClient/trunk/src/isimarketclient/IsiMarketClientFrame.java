@@ -221,6 +221,11 @@ public class IsiMarketClientFrame extends FrameView {
         showActionTypeButton1.setIcon(resourceMap.getIcon("showActionTypeButton1.icon")); // NOI18N
         showActionTypeButton1.setText(resourceMap.getString("showActionTypeButton1.text")); // NOI18N
         showActionTypeButton1.setName("showActionTypeButton1"); // NOI18N
+        showActionTypeButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                showActionTypeButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout operatorPanelLayout = new javax.swing.GroupLayout(operatorPanel);
         operatorPanel.setLayout(operatorPanelLayout);
@@ -426,6 +431,11 @@ private void buyActionTypeButton1ActionPerformed(java.awt.event.ActionEvent evt)
     int rowNb = walletTable.getSelectedRow();
     IsiMarketClient.getApplication().showSellActionType(rowNb);
 }//GEN-LAST:event_buyActionTypeButton1ActionPerformed
+
+private void showActionTypeButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showActionTypeButton1ActionPerformed
+    int rowNb = walletTable.getSelectedRow();
+    IsiMarketClient.getApplication().displayActionTypeFromWallet(rowNb);
+}//GEN-LAST:event_showActionTypeButton1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel alarmPanel;

@@ -33,9 +33,9 @@
                               <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="currentPriceField" alignment="0" pref="274" max="32767" attributes="0"/>
-                                  <Component id="introPriceLabel" alignment="0" pref="274" max="32767" attributes="0"/>
-                                  <Component id="quantityField" alignment="0" pref="274" max="32767" attributes="0"/>
+                                  <Component id="currentPriceField" alignment="0" pref="276" max="32767" attributes="0"/>
+                                  <Component id="introPriceLabel" alignment="0" pref="276" max="32767" attributes="0"/>
+                                  <Component id="quantityField" alignment="0" pref="276" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
@@ -62,7 +62,7 @@
                       <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace pref="313" max="32767" attributes="0"/>
+                      <EmptySpace pref="351" max="32767" attributes="0"/>
                       <Component id="closeButton" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">

@@ -172,6 +172,18 @@ public class IsiMarketClient extends SingleFrameApplication {
         displayActionTypeDialog.quantityField.setText("" + at.quantity);
         show(displayActionTypeDialog);
     }
+    
+     public void displayActionTypeFromWallet(int rowNb) {
+         
+        Action a = IsiMarketClientModel.actions[rowNb];
+        int i = 0;
+        while(i < IsiMarketClientModel.market.length){
+            if (a.actiontype.code.equals(IsiMarketClientModel.market[i].code))
+                break;
+            i++;
+        }
+        displayActionType(i);
+    }
 
     public void showBuyActionType(int rowNb) {
         buyActionTypeDialog = new BuyActionTypeDialog(mainView.getFrame());
