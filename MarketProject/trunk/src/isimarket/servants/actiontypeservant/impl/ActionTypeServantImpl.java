@@ -3,7 +3,6 @@ package isimarket.servants.actiontypeservant.impl;
 import isimarket.db.dao.ActionTypeDao;
 import isimarket.db.dao.EventDao;
 import isimarket.model.ActionType;
-import isimarket.model.Event;
 import isimarket.servants.actiontypeservant._ActionTypeServantImplBase;
 
 import java.util.List;
@@ -30,15 +29,6 @@ public class ActionTypeServantImpl extends _ActionTypeServantImplBase{
 		List<ActionType> actionTypelist = this.actionTypeDao.getAll();
 		ActionType[] actionTypeArray = new ActionType[actionTypelist.size()];
 		return actionTypelist.toArray(actionTypeArray);
-	}
-
-	/**
-	 * 
-	 */
-	public Event[] getEventsForActionType(String _actionTypeCode) {
-		List<Event> eventlist = this.eventDao.getAllFromActionType(_actionTypeCode);
-		Event[] eventArray = new Event[eventlist.size()];
-		return eventlist.toArray(eventArray);
 	}
 
 	/**

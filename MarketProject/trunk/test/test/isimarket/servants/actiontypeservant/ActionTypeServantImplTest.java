@@ -2,9 +2,7 @@ package test.isimarket.servants.actiontypeservant;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
 import isimarket.model.ActionType;
-import isimarket.model.Event;
 import isimarket.servants.actiontypeservant.ActionTypeServant;
 import isimarket.servants.eventservant.EventServant;
 import isimarket.server.ServerConstants;
@@ -89,7 +87,7 @@ public class ActionTypeServantImplTest {
 		
 	}
 
-	public void testGetEvents() {
+	/*public void testGetEvents() {
 		ActionType at = atServant.getLastInsertedActionType();
 		evServant.createEvent(ServerConstants.now(), at.currentPrice, at.code);
 		
@@ -99,8 +97,8 @@ public class ActionTypeServantImplTest {
 		evServant.createEvent(ServerConstants.now(), at.currentPrice, at.code);
 		assertEquals("size", 2, evts.length);
 		
-		//evServant.deleteEvent(eventId);
-	}
+		evServant.deleteEvent(eventId);
+	}*/
 
 	@Test
 	public void testUpdateActionType() {
