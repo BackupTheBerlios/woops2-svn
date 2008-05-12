@@ -35,7 +35,7 @@ public class ActionTypeServantImpl extends _ActionTypeServantImplBase{
 	/**
 	 * 
 	 */
-	public Event[] getEvents(String _actionTypeCode) {
+	public Event[] getEventsForActionType(String _actionTypeCode) {
 		List<Event> eventlist = this.eventDao.getAllFromActionType(_actionTypeCode);
 		Event[] eventArray = new Event[eventlist.size()];
 		return eventlist.toArray(eventArray);
