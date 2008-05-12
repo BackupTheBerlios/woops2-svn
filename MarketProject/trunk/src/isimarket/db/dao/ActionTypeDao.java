@@ -2,6 +2,7 @@ package isimarket.db.dao;
 
 import isimarket.db.manager.DatabaseManager;
 import isimarket.model.ActionType;
+import isimarket.model.Event;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -69,7 +70,7 @@ public class ActionTypeDao {
 								.getInt(_COL_QUANTITY), res
 								.getFloat(_COL_CURRENT_PRICE));
 			} else {
-				System.out.println("Tye d'action inconnu : " + _code);
+				System.out.println("Type d'action inconnu : " + _code);
 				return null;
 			}
 		} catch (SQLException e) {

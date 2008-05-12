@@ -51,7 +51,7 @@ module isimarket{
 					void updateActionTypeQuantity(in string code, in long quantity);
 		    		void updateActionTypeCurrentPrice(in string code, in float currentPrice);
 		    		void deleteActionType(in string actionTypeCode);
-					EventList getEvents(in string actionTypeCode);
+					EventList getEventsForActionType(in string actionTypeCode);
 				};
 			};
 			
@@ -60,7 +60,6 @@ module isimarket{
 					void createEvent(in string date,in float price,in string actionTypeCode);
 					void deleteEvent(in long eventId);
 					Event get(in long eventId);
-					EventList getEventListFromActionType(in string actionTypeCode);
 				};
 			};
 		};
