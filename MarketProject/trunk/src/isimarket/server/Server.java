@@ -3,6 +3,8 @@ package isimarket.server;
 import isimarket.servants.actiontypeservant.impl.ActionTypeServantImpl;
 import isimarket.servants.administrationservant.impl.AdministrationServantImpl;
 import isimarket.servants.alarmservant.impl.AlarmServantImpl;
+import isimarket.servants.eventservant.EventServantHelper;
+import isimarket.servants.eventservant.impl.EventServantImpl;
 import isimarket.servants.walletservant.impl.WalletServantImpl;
 
 import java.util.Properties;
@@ -36,6 +38,8 @@ public class Server {
             orb.connect(alarmServantRef);
             WalletServantImpl walletServantRef = new WalletServantImpl();
             orb.connect(walletServantRef);
+            EventServantImpl eventServantRef = new EventServantImpl();
+            orb.connect(eventServantRef);
  
             // get the root naming context
             org.omg.CORBA.Object objRef = 
@@ -47,6 +51,7 @@ public class Server {
             bindReference(administrationServantRef, ncRef,ServerConstants._REF_ADMINISTRATION_SERVANT);
             bindReference(alarmServantRef, ncRef,ServerConstants._REF_ALARM_SERVANT);
             bindReference(walletServantRef, ncRef,ServerConstants._REF_WALLET_SERVANT);
+            bindReference(eventServantRef, ncRef,ServerConstants._REF_EVENT_SERVANT);
             
             // cf script create table
             //TableManager.createTables();

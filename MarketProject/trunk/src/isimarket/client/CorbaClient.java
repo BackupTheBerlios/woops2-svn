@@ -5,6 +5,8 @@ import isimarket.servants.administrationservant.AdministrationServant;
 import isimarket.servants.administrationservant.AdministrationServantHelper;
 import isimarket.servants.alarmservant.AlarmServant;
 import isimarket.servants.alarmservant.AlarmServantHelper;
+import isimarket.servants.eventservant.EventServant;
+import isimarket.servants.eventservant.EventServantHelper;
 import isimarket.servants.walletservant.WalletServant;
 import isimarket.servants.walletservant.WalletServantHelper;
 import isimarket.server.ServerConstants;
@@ -28,6 +30,7 @@ public class CorbaClient {
 	private ActionTypeServant actionTypeServantRef;
 	private AlarmServant alarmServant;
 	private WalletServant walletServant;
+	private EventServant eventServant;
 
 	public void startClient() {
 		String[] args = null;
@@ -46,10 +49,13 @@ public class CorbaClient {
 			actionTypeServantRef = ActionTypeServantHelper.narrow((Object) bindReference(ncRef,ServerConstants._REF_ACTIONTYPE_SERVANT ));
 			alarmServant = AlarmServantHelper.narrow((Object) bindReference(ncRef,ServerConstants._REF_ALARM_SERVANT ));
 			walletServant = WalletServantHelper.narrow((Object) bindReference(ncRef,ServerConstants._REF_WALLET_SERVANT ));
+			eventServant = EventServantHelper.narrow((Object) bindReference(ncRef,ServerConstants._REF_EVENT_SERVANT ));
+			
 			System.out.println("administrationServantRef @ "+administrationServantRef);
 			System.out.println("actionTypeServantRef @"+actionTypeServantRef);
 			System.out.println("alarmServant @"+alarmServant);
 			System.out.println("walletServant @"+walletServant);
+			System.out.println("eventServant @"+eventServant);
 			System.out.println("client launched ...");
 			
 		} catch (Exception e) {
@@ -78,5 +84,9 @@ public class CorbaClient {
 
 	public WalletServant getWalletServant() {
 		return walletServant;
+	}
+
+	public EventServant getEventServant() {
+		return eventServant;
 	}
 }

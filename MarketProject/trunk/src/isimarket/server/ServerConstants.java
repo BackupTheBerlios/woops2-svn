@@ -9,6 +9,7 @@ public class ServerConstants {
 	public static final String _REF_ALARM_SERVANT = "AlarmServant";
 	public static final String _REF_ADMINISTRATION_SERVANT = "AdministrationServant";
 	public static final String _REF_ACTIONTYPE_SERVANT = "ActionTypeServant";
+	public static final String _REF_EVENT_SERVANT = "EventServant";
 	
 	/**
 	 * Gestion de format des dates

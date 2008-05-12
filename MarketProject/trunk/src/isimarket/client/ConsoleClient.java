@@ -31,21 +31,11 @@ public class ConsoleClient {
         	CorbaClient client = new CorbaClient();
         	client.startClient();
         	
-			AdministrationServant administrationServantRef = client.getAdministrationServantRef();
-			System.out.println("administrationServantRef @ "+administrationServantRef);
-			ActionTypeServant actionTypeServantRef = client.getActionTypeServantRef();
-			System.out.println("actionTypeServantRef @"+actionTypeServantRef);
-			AlarmServant alarmServant = client.getAlarmServant();
-			System.out.println("alarmServant @"+alarmServant);
-			WalletServant walletServant = client.getWalletServant();
-			System.out.println("walletServant @"+walletServant);
-			System.out.println("client launched ...");
-			
 			// TODO creer un operator test
 			System.out.println("createOperator ... ");
-			administrationServantRef.createOperator("test","password",1000.0f);
+			client.getAdministrationServantRef().createOperator("test","password",1000.0f);
 			System.out.println("updateCash ... ");
-			//administrationServantRef.updateCash("test",3000.0f);
+			//client.getAdministrationServantRef().updateCash("test",3000.0f);
 			System.out.println("createNewActionType ... ");
 			//actionTypeServantRef.createNewActionType("tst4","action_de_test4","0000-00-00 00:00",10.0f,1000,10.0f);
 
