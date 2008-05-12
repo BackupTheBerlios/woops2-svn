@@ -6,13 +6,14 @@ package isimarketclient;
 import isimarket.client.CorbaClient;
 import isimarket.model.Action;
 import isimarket.model.ActionType;
+import isimarket.model.Event;
 import isimarket.servants.walletservant.WalletServantPackage.BadQuantityException;
 import isimarket.servants.walletservant.WalletServantPackage.NotEnoughAvailableActionsException;
 import isimarket.servants.walletservant.WalletServantPackage.NotEnoughCashException;
+import isimarket.server.ServerConstants;
 import isimarketclient.IsiMarketConstants.UserType;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
 import org.jdesktop.application.Application;
 import org.jdesktop.application.SingleFrameApplication;
 
@@ -80,6 +81,8 @@ public class IsiMarketClient extends SingleFrameApplication {
         // update actions
         updateMarket();
         updateWalletActions();
+        // update events
+        updateEvents();
     }
 
     public void updateMarket() {
@@ -129,6 +132,23 @@ public class IsiMarketClient extends SingleFrameApplication {
         tModel.fireTableDataChanged();
         mainView.walletValueField.setText("" + walletValue);
     }
+    
+    public void updateEvents(){
+        String logText = "";
+        for (int i = 0; i < IsiMarketClientModel.market.length ; i++) {
+            Event[] events = null;
+            
+            try {
+                events = client.getEventServant().getEventListFromActionType("" + IsiMarketClientModel.market[i].code);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            for(int j = 0; j < events.length; j++ ){
+                logText += ""+events[j].date+" "+IsiMarketClientModel.market[i].label+" => "+events[j].price+"\n";
+            } 
+        }
+        mainView.logArea.setText(logText);
+    }
 
     public void displayActionType(int rowNb) {
         displayActionTypeDialog = new DisplayActionTypeDialog(mainView.getFrame());
@@ -168,6 +188,8 @@ public class IsiMarketClient extends SingleFrameApplication {
         client.getWalletServant().buyAction(IsiMarketClientModel.wallet.walletId, "" + buyActionTypeDialog.at.code, qt);
         float cash = buyActionTypeDialog.at.currentPrice * qt * -1;
         addToWalletCash(cash);
+        client.getEventServant().createEvent(ServerConstants.now(), cash, buyActionTypeDialog.at.code);
+        
         updateDataTables();
     }
 
@@ -175,6 +197,9 @@ public class IsiMarketClient extends SingleFrameApplication {
         client.getWalletServant().sellAction(IsiMarketClientModel.wallet.walletId, "" + sellActionDialog.currentAction.actiontype.code, sellActionDialog.currentAction.actionId, qt);
         float cash = sellActionDialog.currentAction.actiontype.currentPrice * qt;
         addToWalletCash(cash);
+        //send event
+        client.getEventServant().createEvent(ServerConstants.now(), cash, sellActionDialog.currentAction.actiontype.code);
+        
         updateDataTables();
     }
 

@@ -30,13 +30,13 @@ public class ClientLoginDialog extends javax.swing.JDialog {
     private void initComponents() {
 
         quitButton = new javax.swing.JButton();
-        javax.swing.JLabel titleLabel = new javax.swing.JLabel();
         connectionButton = new javax.swing.JButton();
         loginTextField = new javax.swing.JTextField();
         userLabel = new javax.swing.JLabel();
         passwordLabel = new javax.swing.JLabel();
         logoLabel = new javax.swing.JLabel();
         passwordField = new javax.swing.JPasswordField();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setModal(true);
@@ -53,10 +53,6 @@ public class ClientLoginDialog extends javax.swing.JDialog {
                 quitButtonActionPerformed(evt);
             }
         });
-
-        titleLabel.setFont(titleLabel.getFont().deriveFont(titleLabel.getFont().getStyle() | java.awt.Font.BOLD, titleLabel.getFont().getSize()+4));
-        titleLabel.setText(resourceMap.getString("Application.title")); // NOI18N
-        titleLabel.setName("titleLabel"); // NOI18N
 
         connectionButton.setText(resourceMap.getString("connectionButton.text")); // NOI18N
         connectionButton.setName("connectionButton"); // NOI18N
@@ -82,6 +78,10 @@ public class ClientLoginDialog extends javax.swing.JDialog {
         passwordField.setText(resourceMap.getString("passwordField.text")); // NOI18N
         passwordField.setName("passwordField"); // NOI18N
 
+        jLabel1.setFont(resourceMap.getFont("jLabel1.font")); // NOI18N
+        jLabel1.setText(resourceMap.getString("jLabel1.text")); // NOI18N
+        jLabel1.setName("jLabel1"); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -91,22 +91,22 @@ public class ClientLoginDialog extends javax.swing.JDialog {
                 .addComponent(logoLabel)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(96, 96, 96)
-                        .addComponent(titleLabel))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(passwordLabel)
                             .addComponent(userLabel))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(passwordField, javax.swing.GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE)
-                            .addComponent(loginTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE)))
+                            .addComponent(passwordField, javax.swing.GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE)
+                            .addComponent(loginTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(connectionButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(quitButton)))
+                        .addComponent(quitButton))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(69, 69, 69)
+                        .addComponent(jLabel1)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -115,7 +115,8 @@ public class ClientLoginDialog extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(titleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(13, 13, 13)
+                        .addComponent(jLabel1)
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(loginTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -124,7 +125,7 @@ public class ClientLoginDialog extends javax.swing.JDialog {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(passwordLabel)
                             .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(quitButton)
                             .addComponent(connectionButton)))
@@ -164,6 +165,7 @@ public class ClientLoginDialog extends javax.swing.JDialog {
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton connectionButton;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JTextField loginTextField;
     private javax.swing.JLabel logoLabel;
     private javax.swing.JPasswordField passwordField;
