@@ -1,5 +1,6 @@
 package isimarket.servants.eventservant.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import isimarket.db.dao.ActionTypeDao;
@@ -41,9 +42,17 @@ public class EventServantImpl extends _EventServantImplBase {
 
 	@Override
 	public Event[] getEventListFromActionType(String actionTypeCode) {
-		List<Event> eventlist = this.eventDao.getAllFromActionType(actionTypeCode);
-		Event[] eventArray = new Event[eventlist.size()];
-		return eventlist.toArray(eventArray);
+		List<Event> eventlist = new ArrayList<Event>();
+		eventlist =	this.eventDao.getAllFromActionType(actionTypeCode);
+		Event[] eventArray = null;
+		if (eventlist.size() == 0)
+			eventArray = new Event[0];
+		else {
+			eventArray = new Event[eventlist.size()];
+			eventlist.toArray(eventArray);
+		}
+		
+		return eventArray;
 	}
 
 }
