@@ -144,7 +144,18 @@ public class IsiMarketClient extends SingleFrameApplication {
                 e.printStackTrace();
             }
             for(int j = 0; j < events.length; j++ ){
-                logText += "["+events[j].date+"]@"+IsiMarketClientModel.market[i].label+" : "+events[j].price+"\n";
+                String eventType;
+                Float price;
+                if (events[j].price > 0){ 
+                    eventType = "vente";
+                    price = events[j].price;
+                }
+                else{
+                    eventType = "achat";
+                    price = events[j].price * -1;
+                }
+                //logText += "["+events[j].date+"]@"+IsiMarketClientModel.market[i].label+" : "+eventType+" pour "+events[j].price+"\n";
+                logText += "["+events[j].date+"] "+eventType+" de "+price+" € d'actions "+IsiMarketClientModel.market[i].label+"\n";
             } 
         }
         mainView.logArea.setText(logText);
