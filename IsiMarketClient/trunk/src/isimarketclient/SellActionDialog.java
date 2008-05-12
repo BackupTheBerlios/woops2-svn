@@ -45,8 +45,8 @@ public class SellActionDialog extends javax.swing.JDialog {
         sellButton = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         cashSoldField = new javax.swing.JTextField();
-        countCashButton = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
+        countButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setModal(true);
@@ -118,18 +118,17 @@ public class SellActionDialog extends javax.swing.JDialog {
         cashSoldField.setText(resourceMap.getString("cashSoldField.text")); // NOI18N
         cashSoldField.setName("cashSoldField"); // NOI18N
 
-        countCashButton.setAction(actionMap.get("closeAboutBox")); // NOI18N
-        countCashButton.setText(resourceMap.getString("countCashButton.text")); // NOI18N
-        countCashButton.setName("countCashButton"); // NOI18N
-        countCashButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                countCashButtonActionPerformed(evt);
-            }
-        });
-
         jLabel7.setFont(resourceMap.getFont("jLabel7.font")); // NOI18N
         jLabel7.setText(resourceMap.getString("jLabel7.text")); // NOI18N
         jLabel7.setName("jLabel7"); // NOI18N
+
+        countButton.setText(resourceMap.getString("countButton.text")); // NOI18N
+        countButton.setName("countButton"); // NOI18N
+        countButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                countButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -139,7 +138,7 @@ public class SellActionDialog extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(countCashButton)
+                        .addComponent(countButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(sellButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -204,7 +203,7 @@ public class SellActionDialog extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(closeButton)
                     .addComponent(sellButton)
-                    .addComponent(countCashButton))
+                    .addComponent(countButton))
                 .addContainerGap())
         );
 
@@ -226,22 +225,22 @@ private void sellButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
         }
 }
 
-private void countCashButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_countCashButtonActionPerformed
-    Integer q = new Integer(quantityToSellField.getText());
-    Float p = new Float(currentPriceField.getText());
-    Float s = q*p;
-    cashSoldField.setText(""+s);
-}//GEN-LAST:event_countCashButtonActionPerformed
-
 private void quantityToSellFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quantityToSellFieldActionPerformed
-    countCashButtonActionPerformed(null);
+    countButtonActionPerformed(evt);
 }//GEN-LAST:event_quantityToSellFieldActionPerformed
+
+private void countButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_countButtonActionPerformed
+    Integer qty = new Integer(quantityToSellField.getText());
+    Float price = new Float(currentPriceField.getText());
+    Float total = qty * price;
+    cashSoldField.setText(""+total);
+}//GEN-LAST:event_countButtonActionPerformed
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JTextField buyPriceField;
     public javax.swing.JTextField cashSoldField;
     private javax.swing.JButton closeButton;
-    private javax.swing.JButton countCashButton;
+    private javax.swing.JButton countButton;
     public javax.swing.JTextField currentPriceField;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

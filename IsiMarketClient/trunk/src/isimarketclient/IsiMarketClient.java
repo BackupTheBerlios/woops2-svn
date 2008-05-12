@@ -144,7 +144,7 @@ public class IsiMarketClient extends SingleFrameApplication {
                 e.printStackTrace();
             }
             for(int j = 0; j < events.length; j++ ){
-                logText += ""+events[j].date+" "+IsiMarketClientModel.market[i].label+" => "+events[j].price+"\n";
+                logText += "["+events[j].date+"]@"+IsiMarketClientModel.market[i].label+" : "+events[j].price+"\n";
             } 
         }
         mainView.logArea.setText(logText);

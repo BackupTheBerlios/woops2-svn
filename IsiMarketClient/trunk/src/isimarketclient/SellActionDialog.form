@@ -28,7 +28,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="countCashButton" min="-2" max="-2" attributes="0"/>
+                      <Component id="countButton" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="sellButton" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
@@ -110,7 +110,7 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="closeButton" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="sellButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="countCashButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="countButton" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -239,24 +239,21 @@
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
       </AuxValues>
     </Component>
-    <Component class="javax.swing.JButton" name="countCashButton">
-      <Properties>
-        <Property name="action" type="javax.swing.Action" editor="org.netbeans.modules.swingapp.ActionEditor">
-          <action class="isimarketclient.IsiMarketClientAboutBox" id="closeAboutBox" methodName="closeAboutBox"/>
-        </Property>
-        <Property name="text" type="java.lang.String" resourceKey="countCashButton.text"/>
-        <Property name="name" type="java.lang.String" value="countCashButton" noResource="true"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="countCashButtonActionPerformed"/>
-      </Events>
-    </Component>
     <Component class="javax.swing.JLabel" name="jLabel7">
       <Properties>
         <Property name="font" type="java.awt.Font" resourceKey="jLabel7.font"/>
         <Property name="text" type="java.lang.String" resourceKey="jLabel7.text"/>
         <Property name="name" type="java.lang.String" value="jLabel7" noResource="true"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="countButton">
+      <Properties>
+        <Property name="text" type="java.lang.String" resourceKey="countButton.text"/>
+        <Property name="name" type="java.lang.String" value="countButton" noResource="true"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="countButtonActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>
