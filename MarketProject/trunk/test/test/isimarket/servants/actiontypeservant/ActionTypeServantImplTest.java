@@ -2,8 +2,11 @@ package test.isimarket.servants.actiontypeservant;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 import isimarket.model.ActionType;
+import isimarket.model.Event;
 import isimarket.servants.actiontypeservant.ActionTypeServant;
+import isimarket.servants.eventservant.EventServant;
 import isimarket.server.ServerConstants;
 
 import org.junit.After;
@@ -25,12 +28,15 @@ public class ActionTypeServantImplTest {
 	private TestClient client;
 	
 	private ActionTypeServant atServant;
+	
+	private EventServant evServant;
 
 	@Before
 	public void setUp() throws Exception {
 		client = new TestClient();
 		client.startClient();
-		atServant = client.getActionTypeServantRef();
+		atServant = client.getActionTypeServant();
+		evServant = client.getEventServant();
 		
 		atServant.createActionType(_CODE, _LABEL, ServerConstants.now(), 10.0f, _QUANTITY, _CURRENT_PRICE);
 	}
@@ -84,7 +90,16 @@ public class ActionTypeServantImplTest {
 	}
 
 	public void testGetEvents() {
+		ActionType at = atServant.getLastInsertedActionType();
+		evServant.createEvent(ServerConstants.now(), at.currentPrice, at.code);
 		
+		Event[] evts = atServant.getEventsForActionType(at.code);
+		assertEquals("size", 1, evts.length);
+		
+		evServant.createEvent(ServerConstants.now(), at.currentPrice, at.code);
+		assertEquals("size", 2, evts.length);
+		
+		//evServant.deleteEvent(eventId);
 	}
 
 	@Test

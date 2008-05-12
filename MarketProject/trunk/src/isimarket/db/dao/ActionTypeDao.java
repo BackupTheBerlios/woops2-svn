@@ -2,7 +2,6 @@ package isimarket.db.dao;
 
 import isimarket.db.manager.DatabaseManager;
 import isimarket.model.ActionType;
-import isimarket.model.Event;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
