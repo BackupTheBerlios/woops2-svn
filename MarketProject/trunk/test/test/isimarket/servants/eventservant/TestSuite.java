@@ -6,6 +6,7 @@ import org.junit.runners.Suite;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses( {
+	test.isimarket.servants.eventservant.EventServantImplTest.class
 })
 public class TestSuite {
 	// None.
