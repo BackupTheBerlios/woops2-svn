@@ -44,7 +44,7 @@ public class ActionTypeServantImplTest {
 
 	@Test
 	public void testGetActionType() {
-		ActionType at = atServant.getLastInsertedActionType();
+		ActionType at = atServant.getActionType(_CODE);
 		
 		assertNotNull("actionType not null", at);
 		assertEquals("code", _CODE, at.code);
