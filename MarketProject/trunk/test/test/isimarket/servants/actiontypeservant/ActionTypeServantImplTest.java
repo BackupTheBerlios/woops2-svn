@@ -57,10 +57,11 @@ public class ActionTypeServantImplTest {
 
 	@Test
 	public void testGetActionTypeList() {
+		int size = atServant.getActionTypeList().length;
 		atServant.createActionType("code1", "label1", ServerConstants.now(), 15.0f, 10, 20.0f);
 		
 		ActionType[] ats = atServant.getActionTypeList();
-		assertEquals("size", 2, ats.length);
+		assertEquals("size", size + 1, ats.length);
 		
 		assertNotNull("actionType not null", ats[0]);
 		assertEquals("code", _CODE, ats[0].code);
