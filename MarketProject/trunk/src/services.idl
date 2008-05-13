@@ -32,7 +32,7 @@ module isimarket{
 				interface AlarmServant{
 					AlarmTypeList getAlarmTypeList();
 					AlarmType getAlarmType(in long alarmTypeId);
-					void createAlarmType(in string label);
+					void createAlarmType(in string label, in string symbol);
 					void deleteAlarmType(in long alarmTypeId);
 					AlarmList getAlarmListFromWallet(in long walletId);
 					Alarm getAlarm(in long alarmId);
