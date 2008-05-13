@@ -55,9 +55,10 @@ public class AlarmServantImpl extends _AlarmServantImplBase {
 	 * 
 	 * @param _label
 	 */
-	public void createAlarmType(String _label) {
+	public void createAlarmType(String _label, String _symbol) {
 		AlarmType alarmType = new AlarmType();
 		alarmType.label = _label;
+		alarmType.symbol = _symbol;
 		this.alarmTypeDao.insert(alarmType);
 	}
 
