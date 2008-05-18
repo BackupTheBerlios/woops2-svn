@@ -1,34 +1,64 @@
 package test.isimarket.servants.administrationservant;
 
-import isimarket.db.dao.WalletDao;
-import isimarket.model.Wallet;
-import junit.framework.TestCase;
-import test.isimarket.TestClient;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import isimarket.client.CorbaClient;
+import isimarket.db.dao.OperatorDao;
+import isimarket.model.Operator;
+import isimarket.servants.administrationservant.AdministrationServant;
+
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
 
 public class AdministrationServantImplTest {
 	
-	private TestClient client;
-	private WalletDao walletDao;
+	private static final String _LOGIN = "login";
 	
-	protected void setUp() throws Exception {
-		client = new TestClient();
+	private static final String _PASSWORD = "password";
+	
+	private static final float _CASH = 1000.0f;
+
+	private CorbaClient client;
+	
+	private AdministrationServant adServant;
+	
+	private OperatorDao operatorDao;
+
+	@Before
+	public void setUp() throws Exception {
+		client = new CorbaClient();
 		client.startClient();
-		walletDao = new WalletDao();
+		adServant = client.getAdministrationServantRef();
+		operatorDao = new OperatorDao();
+		
+		adServant.createOperator(_LOGIN, _PASSWORD, _CASH);
+		
+	}
+	
+	@After
+	public void tearDown() {
+		adServant.deleteOperator(_LOGIN);
+		adServant = null;
+		client = null;
 	}
 
-	public void testCreateWallet() {
-		float _cash = 1000.0f;
-		client.getAdministrationServant().createWallet(_cash);
-		Wallet w = walletDao.getLastInsertedWallet();
-		//assertEquals(w.cash, _cash);
-	}
-
-	public void testUpdateCash() {
-		//fail("Not yet implemented");
-	}
-
+	@Test
 	public void testCreateOperator() {
-		//fail("Not yet implemented");
+		Operator op = operatorDao.get(_LOGIN);
+		
+		assertNotNull("not null", op);
+		assertEquals("login", _LOGIN, op.login);
+		assertEquals("password", _PASSWORD, op.password);
+		assertEquals("cash", _CASH, op.wallet.cash);
+	}
+
+	@Test
+	public void testUpdateCash() {
+		adServant.updateCash(_LOGIN, 2500.0f);
+		Operator op = operatorDao.get(_LOGIN);
+		
+		assertEquals("cash", _CASH + 2500.0f, op.wallet.cash);
 	}
 
 }

@@ -1,6 +1,7 @@
 package test.isimarket.servants.eventservant;
 
 import static org.junit.Assert.assertEquals;
+import isimarket.client.CorbaClient;
 import isimarket.model.Event;
 import isimarket.servants.actiontypeservant.ActionTypeServant;
 import isimarket.servants.eventservant.EventServant;
@@ -10,19 +11,17 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import test.isimarket.TestClient;
-
 public class EventServantImplTest {
 	
-private static final String _CODE = "code";
+	private static final String _CODE = "code4";
 	
-	private static final String _LABEL = "label";
+	private static final String _LABEL = "labe4";
 	
 	private static final int _QUANTITY = 100;
 	
 	private static final float _CURRENT_PRICE = 10.5f;
 
-	private TestClient client;
+	private CorbaClient client;
 	
 	private ActionTypeServant atServant;
 	
@@ -30,9 +29,9 @@ private static final String _CODE = "code";
 
 	@Before
 	public void setUp() throws Exception {
-		client = new TestClient();
+		client = new CorbaClient();
 		client.startClient();
-		atServant = client.getActionTypeServant();
+		atServant = client.getActionTypeServantRef();
 		evServant = client.getEventServant();
 		
 		atServant.createActionType(_CODE, _LABEL, ServerConstants.now(), 10.0f, _QUANTITY, _CURRENT_PRICE);

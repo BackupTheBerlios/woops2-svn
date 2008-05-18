@@ -83,7 +83,7 @@ public class WalletServantImpl extends _WalletServantImplBase {
 		
 		if (op == null) throw new UnknownOperatorException("Operateur inconnu");
 		
-		if (!(op.password.equals(_password))) throw new WrongPasswordException("Mot de passe erronï¿½");
+		if (!(op.password.equals(_password))) throw new WrongPasswordException("Mot de passe erroné");
 		
 		return op.wallet;
 	}
@@ -99,7 +99,7 @@ public class WalletServantImpl extends _WalletServantImplBase {
 		Action action = this.actionDao.get(_actionId);
 		
 		if (_quantity <= action.quantity) {
-			action.quantity = action.quantity - _quantity;
+			action.quantity -= _quantity;
 			this.actionDao.updateQuantity(action.actionId, action.quantity);
 		}
 		else

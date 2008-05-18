@@ -73,10 +73,7 @@ public class WalletDao {
 			stmt = DatabaseManager.getInstance().getConnection()
 					.prepareStatement("select * from wallet where "+_COL_WALLET_ID+" = select max("+_COL_WALLET_ID+") from wallet");
 			res = stmt.executeQuery();
-			if (res.next()) {
-				
-				System.out.println("walletdao ok !");
-				
+			if (res.next()) {				
 				return new Wallet(res.getInt(_COL_WALLET_ID), 
 						res.getFloat(_COL_CASH));
 			} else {

@@ -51,13 +51,6 @@ public class CorbaClient {
 			walletServant = WalletServantHelper.narrow((Object) bindReference(ncRef,ServerConstants._REF_WALLET_SERVANT ));
 			eventServant = EventServantHelper.narrow((Object) bindReference(ncRef,ServerConstants._REF_EVENT_SERVANT ));
 			
-			System.out.println("administrationServantRef @ "+administrationServantRef);
-			System.out.println("actionTypeServantRef @"+actionTypeServantRef);
-			System.out.println("alarmServant @"+alarmServant);
-			System.out.println("walletServant @"+walletServant);
-			System.out.println("eventServant @"+eventServant);
-			System.out.println("client launched ...");
-			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
