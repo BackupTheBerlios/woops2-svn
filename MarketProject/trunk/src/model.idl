@@ -20,7 +20,6 @@ module isimarket{
 			long alarmTypeId;
 			string label;
 			string symbol;
-			float value;
 		};
 		
 		typedef sequence<AlarmType> AlarmTypeList;
@@ -46,6 +45,7 @@ module isimarket{
 		struct Alarm{
 		    long alarmId;
 		    string name;
+			float value;
 		    AlarmType type;
 		    ActionType actionType;
 		    Wallet wallet;

@@ -17,8 +17,6 @@ public class AlarmTypeDao {
 	
 	private static final String _COL_ALARM_TYPE_SYMBOL = "symbol";
 	
-	private static final String _COL_ALARM_TYPE_VALUE = "value";
-	
 	public void insert(AlarmType alarmType) {
 		PreparedStatement stmt = null;
 		try {
@@ -50,7 +48,7 @@ public class AlarmTypeDao {
 			res = stmt.executeQuery();
 			if (res.next()) {
 				return new AlarmType(res.getInt(_COL_ALARM_TYPE_ID), res
-						.getString(_COL_ALARM_TYPE_LABEL), res.getString(_COL_ALARM_TYPE_SYMBOL), res.getFloat(_COL_ALARM_TYPE_VALUE));
+						.getString(_COL_ALARM_TYPE_LABEL), res.getString(_COL_ALARM_TYPE_SYMBOL));
 			} else {
 				System.out.println("Type d'alarme inconnu");
 				return null;
@@ -103,7 +101,7 @@ public class AlarmTypeDao {
 			res = stmt.executeQuery();
 			while (res.next()) {
 				list.add(new AlarmType(res.getInt(_COL_ALARM_TYPE_ID), res
-						.getString(_COL_ALARM_TYPE_LABEL), res.getString(_COL_ALARM_TYPE_SYMBOL), res.getFloat(_COL_ALARM_TYPE_VALUE)));
+						.getString(_COL_ALARM_TYPE_LABEL), res.getString(_COL_ALARM_TYPE_SYMBOL)));
 			}
 			return list;
 		} catch (SQLException e) {

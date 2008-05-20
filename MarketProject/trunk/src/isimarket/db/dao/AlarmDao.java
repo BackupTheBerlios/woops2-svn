@@ -21,6 +21,8 @@ public class AlarmDao {
 
 	private static final String _COL_WALLET = "wallet_id";
 	
+	private static final String _COL_VALUE = "value";
+	
 	protected AlarmTypeDao alarmTypeDao = new AlarmTypeDao();
 	
 	protected ActionTypeDao actionTypeDao = new ActionTypeDao();
@@ -70,7 +72,7 @@ public class AlarmDao {
 			res = stmt.executeQuery();
 			if (res.next()) {
 				return new Alarm(res.getInt(_COL_ALARM_ID), res
-						.getString(_COL_NAME), this.alarmTypeDao.get(res
+						.getString(_COL_NAME), res.getFloat(_COL_VALUE), this.alarmTypeDao.get(res
 						.getInt(_COL_ALARM_TYPE)), this.actionTypeDao.get(res
 						.getString(_COL_ACTION_TYPE)), this.walletDao.get(res
 						.getInt(_COL_WALLET)));
@@ -136,7 +138,7 @@ public class AlarmDao {
 			res = stmt.executeQuery();
 			if (res.next()) {
 				return new Alarm(res.getInt(_COL_ALARM_ID), res
-						.getString(_COL_NAME), this.alarmTypeDao.get(res
+						.getString(_COL_NAME), res.getFloat(_COL_VALUE),this.alarmTypeDao.get(res
 						.getInt(_COL_ALARM_TYPE)), this.actionTypeDao.get(res
 						.getString(_COL_ACTION_TYPE)), this.walletDao.get(res
 						.getInt(_COL_WALLET)));
@@ -179,7 +181,7 @@ public class AlarmDao {
 			res = stmt.executeQuery();
 			while (res.next()) {
 				list.add(new Alarm(res.getInt(_COL_ALARM_ID), res
-						.getString(_COL_NAME), this.alarmTypeDao.get(res
+						.getString(_COL_NAME), res.getFloat(_COL_VALUE),this.alarmTypeDao.get(res
 								.getInt(_COL_ALARM_TYPE)), this.actionTypeDao.get(res
 								.getString(_COL_ACTION_TYPE)), this.walletDao.get(res
 								.getInt(_COL_WALLET))));
