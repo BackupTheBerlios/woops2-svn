@@ -20,6 +20,7 @@ module isimarket{
 			long alarmTypeId;
 			string label;
 			string symbol;
+			float value;
 		};
 		
 		typedef sequence<AlarmType> AlarmTypeList;
