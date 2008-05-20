@@ -25,7 +25,6 @@ import org.omg.CosNaming.NamingContextPackage.NotFound;
 
 public class CorbaClient {
 
-	
 	private AdministrationServant administrationServantRef;
 	private ActionTypeServant actionTypeServantRef;
 	private AlarmServant alarmServant;
