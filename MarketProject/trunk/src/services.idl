@@ -36,7 +36,7 @@ module isimarket{
 					void deleteAlarmType(in long alarmTypeId);
 					AlarmList getAlarmListFromWallet(in long walletId);
 					Alarm getAlarm(in long alarmId);
-					Alarm createAlarm(in string name,in long walletId, in long alarmTypeId,in string actionTypeCode);
+					Alarm createAlarm(in string name,in float value, in long walletId, in long alarmTypeId,in string actionTypeCode);
 					void deleteAlarm(in long alarmId);
 				};
 			};
