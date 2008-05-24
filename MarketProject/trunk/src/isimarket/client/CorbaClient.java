@@ -70,15 +70,15 @@ public class CorbaClient {
 		return actionTypeServantRef;
 	}
 
-	public AlarmServant getAlarmServant() {
+	public AlarmServant getAlarmServantRef() {
 		return alarmServant;
 	}
 
-	public WalletServant getWalletServant() {
+	public WalletServant getWalletServantRef() {
 		return walletServant;
 	}
 
-	public EventServant getEventServant() {
+	public EventServant getEventServantRef() {
 		return eventServant;
 	}
 }

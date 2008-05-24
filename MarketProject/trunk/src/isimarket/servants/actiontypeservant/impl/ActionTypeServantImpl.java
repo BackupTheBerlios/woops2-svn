@@ -54,7 +54,6 @@ public class ActionTypeServantImpl extends _ActionTypeServantImplBase{
 		this.actionTypeDao.updateCurrentPrice(code, newCurrentPrice);
 	}
 
-	@Override
 	public void deleteActionType(String actionTypeCode) {
 		this.actionTypeDao.delete(actionTypeCode);
 	}
@@ -63,7 +62,6 @@ public class ActionTypeServantImpl extends _ActionTypeServantImplBase{
 		return actionTypeDao;
 	}
 
-	@Override
 	public ActionType getLastInsertedActionType() {
 		return this.actionTypeDao.getLastInsertedActionType();
 	}

@@ -17,7 +17,6 @@ public class EventServantImpl extends _EventServantImplBase {
 	
 	protected ActionTypeDao actionTypeDao = new ActionTypeDao();
 
-	@Override
 	public void createEvent(String date, float price, String actionTypeCode) {
 		ActionType actionType = this.actionTypeDao.get(actionTypeCode);		
 		
@@ -29,12 +28,10 @@ public class EventServantImpl extends _EventServantImplBase {
 		this.eventDao.insert(event);
 	}
 
-	@Override
 	public void deleteEvent(int eventId) {
 		this.eventDao.delete(eventId);
 	}
 
-	@Override
 	public Event get(int eventId) {
 		return this.eventDao.get(eventId);
 	}
@@ -48,7 +45,6 @@ public class EventServantImpl extends _EventServantImplBase {
 		return eventlist.toArray(eventArray);
 	}
 
-	@Override
 	public void deleteEventsForActionType(String actionTypeCode) {
 		List<Event> eventlist = this.eventDao.getAllFromActionType(actionTypeCode);
 		for (Event e : eventlist) {

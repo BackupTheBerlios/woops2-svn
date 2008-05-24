@@ -32,7 +32,7 @@ public class EventServantImplTest {
 		client = new CorbaClient();
 		client.startClient();
 		atServant = client.getActionTypeServantRef();
-		evServant = client.getEventServant();
+		evServant = client.getEventServantRef();
 		
 		atServant.createActionType(_CODE, _LABEL, ServerConstants.now(), 10.0f, _QUANTITY, _CURRENT_PRICE);
 		evServant.createEvent(ServerConstants.now(), _CURRENT_PRICE, _CODE);

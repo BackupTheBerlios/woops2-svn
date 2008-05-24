@@ -1,5 +1,8 @@
 package isimarket.ws.client;
 
+import isimarket.model.ActionType;
+
+import java.rmi.RemoteException;
 import java.util.Random;
 
 import javax.xml.namespace.QName;
@@ -20,32 +23,33 @@ public class WSClient {
 	public static void main(String[] args) {
 
 		try {
-			String endpoint = "http://localhost:8080/axis/services";
+			String endpoint = "http://localhost:8080/axis/WSServer.jws";
 			Service service = new Service();
-			
+
 			updateActionTypeRateCall = (Call) service.createCall();
-			updateActionTypeRateCall.setTargetEndpointAddress(new java.net.URL(endpoint));
-			updateActionTypeRateCall.setOperationName(new QName("http://soapinterop.org/",
-					"updateActionTypeRate"));
-			
+			updateActionTypeRateCall.setTargetEndpointAddress(new java.net.URL(
+					endpoint));
+			updateActionTypeRateCall.setOperationName(new QName(
+					"http://soapinterop.org/", "updateActionTypeRate"));
+
 			createHistoryLineCall = (Call) service.createCall();
-			createHistoryLineCall.setTargetEndpointAddress(new java.net.URL(endpoint));
-			createHistoryLineCall.setOperationName(new QName("http://soapinterop.org/",
-				"createHistoryLine"));
-			
+			createHistoryLineCall.setTargetEndpointAddress(new java.net.URL(
+					endpoint));
+			createHistoryLineCall.setOperationName(new QName(
+					"http://soapinterop.org/", "createHistoryLine"));
+
 			createActionTypeCall = (Call) service.createCall();
-			createActionTypeCall.setTargetEndpointAddress(new java.net.URL(endpoint));
-			createActionTypeCall.setOperationName(new QName("http://soapinterop.org/",
-				"createActionType"));
-			
+			createActionTypeCall.setTargetEndpointAddress(new java.net.URL(
+					endpoint));
+			createActionTypeCall.setOperationName(new QName(
+					"http://soapinterop.org/", "createActionType"));
+
 			getActionTypeListCall = (Call) service.createCall();
-			getActionTypeListCall.setTargetEndpointAddress(new java.net.URL(endpoint));
-			getActionTypeListCall.setOperationName(new QName("http://soapinterop.org/",
-				"getActionTypeList"));
+			getActionTypeListCall.setTargetEndpointAddress(new java.net.URL(
+					endpoint));
+			getActionTypeListCall.setOperationName(new QName(
+					"http://soapinterop.org/", "getActionTypeList"));
 
-			//String ret = (String) call.invoke(new Object[] { "Hello!" });
-
-			//System.out.println("Sent 'Hello!', got '" + ret + "'");
 		} catch (Exception e) {
 			System.err.println(e.toString());
 		}
@@ -53,14 +57,24 @@ public class WSClient {
 		Thread rateManager = new Thread() {
 			public void run() {
 				while (true) {
-					//ActionType[] ats = (ActionType[]) WSClient.this.getActionTypeListCall.invoke(new Object[0]);
-					// while passer ts les actiontypes						
-						try {
-							//WSClient.this.updateActionTypeRateCall.invoke(new Object[] { , WSClient.generateRate()});
-							Thread.sleep(60000);
-						} catch (InterruptedException e) {
-							e.printStackTrace();
+					try {
+						ActionType[] ats = (ActionType[]) WSClient.this.getActionTypeListCall
+								.invoke(new Object[0]);
+						int i = 0;
+						while (i < ats.length) {
+							WSClient.this.updateActionTypeRateCall
+									.invoke(new Object[] { ats[i],
+											WSClient.generateRate() });
 						}
+						ats = null;
+						System.out.println("rateManagerOK");
+						Thread.sleep(60000);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					} catch (RemoteException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 				}
 			}
 		};
@@ -69,11 +83,21 @@ public class WSClient {
 		Thread eventManager = new Thread() {
 			public void run() {
 				while (true) {
-					// TODO appel du webservice
 					try {
-
+						ActionType[] ats = (ActionType[]) WSClient.this.getActionTypeListCall
+								.invoke(new Object[0]);
+						int i = 0;
+						while (i < ats.length) {
+							WSClient.this.createHistoryLineCall
+									.invoke(new Object[] { ats[i] });
+						}
+						ats = null;
+						System.out.println("eventManagerOK");
 						Thread.sleep(300000);
 					} catch (InterruptedException e) {
+						e.printStackTrace();
+					} catch (RemoteException e) {
+						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 				}

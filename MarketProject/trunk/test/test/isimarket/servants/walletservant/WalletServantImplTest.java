@@ -50,7 +50,7 @@ public class WalletServantImplTest {
 	public void setUp() throws Exception {
 		client = new CorbaClient();
 		client.startClient();
-		wtServant = client.getWalletServant();
+		wtServant = client.getWalletServantRef();
 		adServant = client.getAdministrationServantRef();
 		atServant = client.getActionTypeServantRef();
 
