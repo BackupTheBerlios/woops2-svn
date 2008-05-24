@@ -148,6 +148,7 @@ private void quitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
 private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
     try{
         IsiMarketClient.getApplication().addAlarm(alarmTypesComboBox.getSelectedIndex(), new Float(valueField.getText()));
+        JOptionPane.showMessageDialog(this, "Ajout avec succès !", "Isimarket", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_addButtonActionPerformed
     catch(Exception e){
         JOptionPane.showMessageDialog(this, "Erreur :"+e, "Erreur", JOptionPane.ERROR_MESSAGE);

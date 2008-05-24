@@ -150,8 +150,9 @@ public class IsiMarketClient extends SingleFrameApplication {
         for (int i = 0; i < tModel.getRowCount(); i++) {
             if (i < IsiMarketClientModel.alarms.length) {
                 tModel.setValueAt(IsiMarketClientModel.alarms[i].actionType.label, i, 0);
-                tModel.setValueAt(IsiMarketClientModel.alarms[i].value, i, 1);
-                tModel.setValueAt(IsiMarketClientModel.alarms[i].type.label, i, 2);
+                tModel.setValueAt(IsiMarketClientModel.alarms[i].type.label, i, 1);
+                tModel.setValueAt(IsiMarketClientModel.alarms[i].value, i, 2);
+                
             } else {
                 tModel.setValueAt(null, i, 0);
                 tModel.setValueAt(null, i, 1);
