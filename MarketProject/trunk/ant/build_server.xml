@@ -37,8 +37,15 @@
 	<!-- Executable Targets -->
 	<target name="build" depends="prepare" description="Compile Java files and copy static files.">
 		<javac srcdir="${src.java.dir}" destdir="${build.dir}/${project.name}/" source="1.5" target="1.5">
-			<include name="**/*.java" />
-			<include name="**/*.xml" />
+			<exclude name="**/ws/*" />
+			<include name="**/db/*.java" />
+			<include name="**/model/*.java" />
+			<include name="**/servants/*.java" />
+			<include name="**/server/*.java" />
+			<include name="**/db/*.xml" />
+			<include name="**/model/*.xml" />
+			<include name="**/servants/*.xml" />
+			<include name="**/server/*.xml" />
 			<classpath refid="classpath" />
 		</javac>
 		<copy todir="${build.dir}/${project.name}/">
