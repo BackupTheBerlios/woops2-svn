@@ -38,11 +38,12 @@ public class AlarmDao {
 		try {
 			stmt = DatabaseManager.getInstance().getConnection()
 					.prepareStatement(
-							"insert into alarm values (NULL,?,?,?,?)");
+							"insert into alarm values (NULL,?,?,?,?,?)");
 			stmt.setString(1, alarm.name);
 			stmt.setInt(2, alarm.type.alarmTypeId);
 			stmt.setString(3, alarm.actionType.code);
 			stmt.setInt(4, alarm.wallet.walletId);
+			stmt.setFloat(5, alarm.value);
 			stmt.executeUpdate();
 		} catch (SQLException e) {
 			System.out.println("AlarmDao -> insert(): " + e.getMessage());

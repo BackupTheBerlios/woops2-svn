@@ -44,6 +44,7 @@ public class AlarmServantImpl extends _AlarmServantImplBase {
 		alarm.type = alarmType;
 		alarm.actionType = actionType;
 		alarm.wallet = wallet;
+		alarm.value= value;
 		
 		this.alarmDao.insert(alarm);
 		
