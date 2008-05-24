@@ -7,6 +7,8 @@ package isimarketclient;
 
 import isimarket.model.Action;
 import isimarket.model.ActionType;
+import isimarket.model.Alarm;
+import isimarket.model.AlarmType;
 import isimarket.model.Wallet;
 
 /**
@@ -19,4 +21,6 @@ public class IsiMarketClientModel {
     public static Wallet wallet;
     public static Action[] actions;
     public static ActionType[] market;
+    public static Alarm[] alarms;
+    public static AlarmType[] alarmTypes;
 }

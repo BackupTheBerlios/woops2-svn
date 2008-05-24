@@ -12,7 +12,9 @@ import isimarket.servants.walletservant.WalletServantPackage.NotEnoughAvailableA
 import isimarket.servants.walletservant.WalletServantPackage.NotEnoughCashException;
 import isimarket.server.ServerConstants;
 import isimarketclient.IsiMarketConstants.UserType;
+import javax.swing.ComboBoxModel;
 import javax.swing.JOptionPane;
+import javax.swing.ListModel;
 import javax.swing.table.DefaultTableModel;
 import org.jdesktop.application.Application;
 import org.jdesktop.application.SingleFrameApplication;
@@ -26,6 +28,7 @@ public class IsiMarketClient extends SingleFrameApplication {
     private DisplayActionTypeDialog displayActionTypeDialog = null;
     private BuyActionTypeDialog buyActionTypeDialog = null;
     private SellActionDialog sellActionDialog = null;
+    private AddAlarmFrame addAlarmFrame = null;
     private IsiMarketClientFrame mainView = null;
     private AdminFrame adminView = null;
     private IsiMarketConstants.UserType session = IsiMarketConstants.UserType.NONE;
@@ -70,19 +73,25 @@ public class IsiMarketClient extends SingleFrameApplication {
                 // get infos
                 mainView.cashField.setText("" + IsiMarketClientModel.wallet.cash);
                 mainView.opeatorField.setText(IsiMarketClientModel.login);
-                updateDataTables();
+                getAlarmTypes();
+                updateData();
                 //mainView.marketTable = new JTable(table, columns);
                 show(mainView);
             }
         }
     }
 
-    public void updateDataTables() {
+    public void updateData() {
         // update actions
         updateMarket();
         updateWalletActions();
         // update events
         updateEvents();
+        // update alarms
+        updateAlarms();
+        
+        // check alarms
+        checkAlarms();
     }
 
     public void updateMarket() {
@@ -133,6 +142,33 @@ public class IsiMarketClient extends SingleFrameApplication {
         mainView.walletValueField.setText("" + walletValue);
     }
     
+    public void updateAlarms(){
+        IsiMarketClientModel.alarms = client.getAlarmServant().getAlarmListFromWallet(IsiMarketClientModel.wallet.walletId);
+        
+        DefaultTableModel tModel = (DefaultTableModel) mainView.alarmTable.getModel();
+
+        for (int i = 0; i < tModel.getRowCount(); i++) {
+            if (i < IsiMarketClientModel.alarms.length) {
+                tModel.setValueAt(IsiMarketClientModel.alarms[i].actionType.label, i, 0);
+                tModel.setValueAt(IsiMarketClientModel.alarms[i].value, i, 1);
+                tModel.setValueAt(IsiMarketClientModel.alarms[i].type.label, i, 2);
+            } else {
+                tModel.setValueAt(null, i, 0);
+                tModel.setValueAt(null, i, 1);
+                tModel.setValueAt(null, i, 2);
+            }
+        }
+        tModel.fireTableDataChanged();
+    }
+    
+    public void checkAlarms(){
+        
+    }
+    
+    public void getAlarmTypes(){
+        IsiMarketClientModel.alarmTypes = client.getAlarmServant().getAlarmTypeList();
+    }
+    
     public void updateEvents(){
         String logText = "";
         for (int i = 0; i < IsiMarketClientModel.market.length ; i++) {
@@ -171,6 +207,20 @@ public class IsiMarketClient extends SingleFrameApplication {
         displayActionTypeDialog.currentPriceField.setText("" + at.currentPrice);
         displayActionTypeDialog.quantityField.setText("" + at.quantity);
         show(displayActionTypeDialog);
+    }
+    
+     public void displayAddAlarm(int rowNb) {
+        addAlarmFrame = new AddAlarmFrame();
+        String label = IsiMarketClientModel.market[mainView.marketTable.getSelectedRow()].label;
+        float value = IsiMarketClientModel.market[mainView.marketTable.getSelectedRow()].currentPrice;
+        addAlarmFrame.actionLabelField.setText(label);
+        addAlarmFrame.valueField.setText(""+value);
+        
+        for (int i = 0; i < IsiMarketClientModel.alarmTypes.length; i++){
+            addAlarmFrame.alarmTypesComboBox.addItem(IsiMarketClientModel.alarmTypes[i].label);
+        }
+        
+        show(addAlarmFrame);
     }
     
      public void displayActionTypeFromWallet(int rowNb) {
@@ -213,7 +263,7 @@ public class IsiMarketClient extends SingleFrameApplication {
         addToWalletCash(cash);
         //client.getEventServant().createEvent(ServerConstants.now(), cash, buyActionTypeDialog.at.code);
         
-        updateDataTables();
+        updateData();
     }
 
     public void SellAction(int qt) throws NotEnoughAvailableActionsException {
@@ -223,13 +273,25 @@ public class IsiMarketClient extends SingleFrameApplication {
         //send event
         //client.getEventServant().createEvent(ServerConstants.now(), cash, sellActionDialog.currentAction.actiontype.code);
         
-        updateDataTables();
+        updateData();
     }
 
     private void addToWalletCash(float c) {
         float totalCash = new Float(mainView.cashField.getText());
         totalCash += c;
         mainView.cashField.setText("" + totalCash);
+    }
+    
+    public void addAlarm( int alarmNb, float value ) {
+        String actionTypeCode = IsiMarketClientModel.market[mainView.marketTable.getSelectedRow()].code;
+        
+        client.getAlarmServant().createAlarm(IsiMarketClientModel.alarmTypes[alarmNb].label+" "+IsiMarketClientModel.market[mainView.marketTable.getSelectedRow()].label+" : "+value, 
+                value,
+                IsiMarketClientModel.wallet.walletId, 
+                IsiMarketClientModel.alarmTypes[alarmNb].alarmTypeId, 
+                actionTypeCode);
+        
+        updateData();
     }
 
     /**
