@@ -1,6 +1,7 @@
 package isimarket.ws.client;
 
 import isimarket.model.ActionType;
+import isimarket.server.ServerConstants;
 
 import java.rmi.RemoteException;
 import java.util.Random;
@@ -67,7 +68,7 @@ public class WSClient {
 											WSClient.generateRate() });
 						}
 						ats = null;
-						System.out.println("rateManagerOK");
+						System.out.println("Mise à jour des cours");
 						Thread.sleep(60000);
 					} catch (InterruptedException e) {
 						e.printStackTrace();
@@ -92,7 +93,7 @@ public class WSClient {
 									.invoke(new Object[] { ats[i] });
 						}
 						ats = null;
-						System.out.println("eventManagerOK");
+						System.out.println("Historique : " + ServerConstants.now());
 						Thread.sleep(300000);
 					} catch (InterruptedException e) {
 						e.printStackTrace();
