@@ -10,29 +10,34 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="1" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="1" attributes="0">
-                      <Component id="tabbedPane" alignment="0" pref="726" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="tabbedPane" alignment="0" min="-2" pref="567" max="-2" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="operatorLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="cashLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="opeatorField" min="-2" pref="143" max="-2" attributes="0"/>
-                              <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                  <Component id="cashField" alignment="0" max="32767" attributes="1"/>
-                                  <Component id="walletValueField" alignment="0" pref="141" max="32767" attributes="1"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="operatorLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="cashLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="opeatorField" alignment="0" pref="143" max="32767" attributes="1"/>
+                                      <Component id="cashField" alignment="0" max="32767" attributes="1"/>
+                                      <Component id="walletValueField" alignment="0" max="32767" attributes="1"/>
+                                  </Group>
                               </Group>
+                              <Component id="walletValueLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="309" max="32767" attributes="0"/>
-                          <Component id="refreshActionTypeButton4" min="-2" max="-2" attributes="1"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jScrollPane1" min="-2" pref="266" max="-2" attributes="0"/>
+                              <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
-                      <Component id="walletValueLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace max="-2" attributes="0"/>
+                  <EmptySpace pref="15" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -40,12 +45,13 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="operatorLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="opeatorField" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="operatorLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="opeatorField" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="cashLabel" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -57,9 +63,12 @@
                               <Component id="walletValueField" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <Component id="refreshActionTypeButton4" alignment="0" min="-2" pref="62" max="-2" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
+                          <Component id="jScrollPane1" min="-2" pref="47" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
                   <Component id="tabbedPane" pref="286" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -89,14 +98,23 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="1" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="scrollMarketPanel" pref="520" max="32767" attributes="0"/>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="buyActionTypeButton" pref="171" max="32767" attributes="1"/>
-                              <Component id="addAlarmButton" pref="171" max="32767" attributes="1"/>
-                              <Component id="showActionTypeButton" pref="171" max="32767" attributes="1"/>
+                              <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                      <Component id="jScrollPane3" alignment="0" max="32767" attributes="1"/>
+                                      <Component id="scrollMarketPanel" alignment="0" pref="431" max="32767" attributes="1"/>
+                                  </Group>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="clearButton" pref="105" max="32767" attributes="0"/>
+                                      <Component id="showActionTypeButton" alignment="0" pref="105" max="32767" attributes="1"/>
+                                      <Component id="buyActionTypeButton" alignment="0" pref="105" max="32767" attributes="1"/>
+                                      <Component id="addAlarmButton" max="32767" attributes="1"/>
+                                  </Group>
+                              </Group>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
@@ -106,15 +124,22 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="scrollMarketPanel" alignment="0" pref="236" max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Component id="scrollMarketPanel" alignment="0" min="0" pref="0" max="32767" attributes="1"/>
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="buyActionTypeButton" min="-2" pref="35" max="-2" attributes="0"/>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
                                   <Component id="showActionTypeButton" min="-2" pref="32" max="-2" attributes="0"/>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
                                   <Component id="addAlarmButton" min="-2" pref="35" max="-2" attributes="0"/>
                               </Group>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jScrollPane3" min="-2" pref="96" max="-2" attributes="0"/>
+                              <Component id="clearButton" min="-2" pref="32" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
@@ -135,7 +160,7 @@
                     <Component class="javax.swing.JTable" name="marketTable">
                       <Properties>
                         <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                          <Connection code="new javax.swing.table.DefaultTableModel(&#xa;    new Object [][] {&#xa;        {null, null, null, null},&#xa;        {null, null, null, null},&#xa;        {null, null, null, null},&#xa;        {null, null, null, null}&#xa;    },&#xa;    new String [] {&#xa;        &quot;Code&quot;, &quot;Label&quot;, &quot;Price&quot;, &quot;Quantity&quot;&#xa;    }&#xa;)" type="code"/>
+                          <Connection code="new javax.swing.table.DefaultTableModel(&#xa;    new Object [][] {&#xa;    },&#xa;    new String [] {&#xa;        &quot;Code&quot;, &quot;Label&quot;, &quot;Prix&quot;, &quot;Quantit&#xe9;&quot;&#xa;    }&#xa;)" type="code"/>
                         </Property>
                         <Property name="name" type="java.lang.String" value="marketTable" noResource="true"/>
                       </Properties>
@@ -172,6 +197,38 @@
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addAlarmButtonActionPerformed"/>
                   </Events>
                 </Component>
+                <Component class="javax.swing.JLabel" name="jLabel1">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" resourceKey="jLabel1.text"/>
+                    <Property name="name" type="java.lang.String" value="jLabel1" noResource="true"/>
+                  </Properties>
+                </Component>
+                <Container class="javax.swing.JScrollPane" name="jScrollPane3">
+                  <Properties>
+                    <Property name="name" type="java.lang.String" value="jScrollPane3" noResource="true"/>
+                  </Properties>
+
+                  <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+                  <SubComponents>
+                    <Component class="javax.swing.JTextPane" name="alarmsTextPane">
+                      <Properties>
+                        <Property name="name" type="java.lang.String" value="alarmsTextPane" noResource="true"/>
+                      </Properties>
+                      <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+                      </AuxValues>
+                    </Component>
+                  </SubComponents>
+                </Container>
+                <Component class="javax.swing.JButton" name="clearButton">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" resourceKey="clearButton.text"/>
+                    <Property name="name" type="java.lang.String" value="clearButton" noResource="true"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="clearButtonActionPerformed"/>
+                  </Events>
+                </Component>
               </SubComponents>
             </Container>
             <Container class="javax.swing.JPanel" name="operatorPanel">
@@ -191,11 +248,11 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jscrollPaneOperatorPanel" pref="537" max="32767" attributes="0"/>
+                          <Component id="jscrollPaneOperatorPanel" pref="437" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="buyActionTypeButton1" pref="158" max="32767" attributes="1"/>
-                              <Component id="showActionTypeButton1" alignment="0" pref="158" max="32767" attributes="1"/>
+                              <Component id="buyActionTypeButton1" max="32767" attributes="1"/>
+                              <Component id="showActionTypeButton1" alignment="0" pref="99" max="32767" attributes="1"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
@@ -232,7 +289,7 @@
                     <Component class="javax.swing.JTable" name="walletTable">
                       <Properties>
                         <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                          <Connection code="new javax.swing.table.DefaultTableModel(&#xa;    new Object [][] {&#xa;        {null, null, null, null ,null},&#xa;        {null, null, null, null ,null},&#xa;        {null, null, null, null ,null},&#xa;        {null, null, null, null ,null}&#xa;    },&#xa;    new String [] {&#xa;        &quot;Code&quot;, &quot;Prix d&apos;achat&quot;, &quot;Quantit&#xe9;&quot;,&quot;Valeur&quot; ,&quot;Date&quot;&#xa;    }&#xa;)" type="code"/>
+                          <Connection code="new javax.swing.table.DefaultTableModel(&#xa;    new Object [][] {&#xa;    },&#xa;    new String [] {&#xa;        &quot;Code&quot;, &quot;Prix d&apos;achat&quot;, &quot;Quantit&#xe9;&quot;,&quot;Valeur&quot; ,&quot;Date&quot;&#xa;    }&#xa;)" type="code"/>
                         </Property>
                         <Property name="name" type="java.lang.String" value="walletTable" noResource="true"/>
                       </Properties>
@@ -279,10 +336,10 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jScrollPane2" min="-2" pref="533" max="-2" attributes="0"/>
+                          <Component id="jScrollPane2" min="-2" pref="444" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="deleteAlarmButton" pref="158" max="32767" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="deleteAlarmButton" pref="89" max="32767" attributes="0"/>
+                          <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -313,7 +370,7 @@
                     <Component class="javax.swing.JTable" name="alarmTable">
                       <Properties>
                         <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                          <Connection code="new javax.swing.table.DefaultTableModel(&#xa;    new Object [][] {&#xa;        {null, null, null},&#xa;        {null, null, null},&#xa;        {null, null, null},&#xa;        {null, null, null}&#xa;    },&#xa;    new String [] {&#xa;        &quot;Action&quot;, &quot;Type&quot;, &quot;Valeur&quot;&#xa;    }&#xa;)" type="code"/>
+                          <Connection code="new javax.swing.table.DefaultTableModel(&#xa;    new Object [][] {&#xa;    },&#xa;    new String [] {&#xa;        &quot;Action&quot;, &quot;Type&quot;, &quot;Valeur&quot;&#xa;    }&#xa;)" type="code"/>
                         </Property>
                         <Property name="name" type="java.lang.String" value="alarmTable" noResource="true"/>
                       </Properties>
@@ -332,61 +389,6 @@
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="deleteAlarmButtonActionPerformed"/>
                   </Events>
                 </Component>
-              </SubComponents>
-            </Container>
-            <Container class="javax.swing.JPanel" name="eventPanel">
-              <Properties>
-                <Property name="name" type="java.lang.String" value="eventPanel" noResource="true"/>
-              </Properties>
-              <Constraints>
-                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-                  <JTabbedPaneConstraints tabName="Evenements">
-                    <Property name="tabTitle" type="java.lang.String" resourceKey="eventPanel.TabConstraints.tabTitle"/>
-                  </JTabbedPaneConstraints>
-                </Constraint>
-              </Constraints>
-
-              <Layout>
-                <DimensionLayout dim="0">
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jScrollPane1" pref="701" max="32767" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
-                </DimensionLayout>
-                <DimensionLayout dim="1">
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jScrollPane1" pref="236" max="32767" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
-                </DimensionLayout>
-              </Layout>
-              <SubComponents>
-                <Container class="javax.swing.JScrollPane" name="jScrollPane1">
-                  <Properties>
-                    <Property name="name" type="java.lang.String" value="jScrollPane1" noResource="true"/>
-                  </Properties>
-
-                  <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
-                  <SubComponents>
-                    <Component class="javax.swing.JTextArea" name="logArea">
-                      <Properties>
-                        <Property name="columns" type="int" value="20"/>
-                        <Property name="editable" type="boolean" value="false"/>
-                        <Property name="rows" type="int" value="5"/>
-                        <Property name="name" type="java.lang.String" value="logArea" noResource="true"/>
-                      </Properties>
-                      <AuxValues>
-                        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
-                      </AuxValues>
-                    </Component>
-                  </SubComponents>
-                </Container>
               </SubComponents>
             </Container>
           </SubComponents>
@@ -439,15 +441,31 @@
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
           </AuxValues>
         </Component>
-        <Component class="javax.swing.JButton" name="refreshActionTypeButton4">
+        <Container class="javax.swing.JScrollPane" name="jScrollPane1">
           <Properties>
-            <Property name="icon" type="javax.swing.Icon" resourceKey="refreshActionTypeButton4.icon"/>
-            <Property name="text" type="java.lang.String" resourceKey="refreshActionTypeButton4.text"/>
-            <Property name="name" type="java.lang.String" value="refreshActionTypeButton4" noResource="true"/>
+            <Property name="name" type="java.lang.String" value="jScrollPane1" noResource="true"/>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="refreshActionTypeButton4ActionPerformed"/>
-          </Events>
+
+          <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+          <SubComponents>
+            <Component class="javax.swing.JTextArea" name="logArea">
+              <Properties>
+                <Property name="columns" type="int" value="20"/>
+                <Property name="editable" type="boolean" value="false"/>
+                <Property name="rows" type="int" value="5"/>
+                <Property name="name" type="java.lang.String" value="logArea" noResource="true"/>
+              </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+              </AuxValues>
+            </Component>
+          </SubComponents>
+        </Container>
+        <Component class="javax.swing.JLabel" name="jLabel2">
+          <Properties>
+            <Property name="text" type="java.lang.String" resourceKey="jLabel2.text"/>
+            <Property name="name" type="java.lang.String" value="jLabel2" noResource="true"/>
+          </Properties>
         </Component>
       </SubComponents>
     </Container>
@@ -471,6 +489,15 @@
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="0"/>
           </AuxValues>
           <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="refreshMenuItem">
+              <Properties>
+                <Property name="text" type="java.lang.String" resourceKey="refreshMenuItem.text"/>
+                <Property name="name" type="java.lang.String" value="refreshMenuItem" noResource="true"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="refreshMenuItemActionPerformed"/>
+              </Events>
+            </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="exitMenuItem">
               <Properties>
                 <Property name="action" type="javax.swing.Action" editor="org.netbeans.modules.swingapp.ActionEditor">
@@ -534,6 +561,6 @@
     <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
     <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
-    <AuxValue name="designerSize" type="java.awt.Dimension" value="-84,-19,0,5,115,114,0,18,106,97,118,97,46,97,119,116,46,68,105,109,101,110,115,105,111,110,65,-114,-39,-41,-84,95,68,20,2,0,2,73,0,6,104,101,105,103,104,116,73,0,5,119,105,100,116,104,120,112,0,0,1,-100,0,0,2,-22"/>
+    <AuxValue name="designerSize" type="java.awt.Dimension" value="-84,-19,0,5,115,114,0,18,106,97,118,97,46,97,119,116,46,68,105,109,101,110,115,105,111,110,65,-114,-39,-41,-84,95,68,20,2,0,2,73,0,6,104,101,105,103,104,116,73,0,5,119,105,100,116,104,120,112,0,0,1,-107,0,0,2,80"/>
   </AuxValues>
 </Form>

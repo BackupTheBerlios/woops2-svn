@@ -120,7 +120,6 @@ public class IsiMarketClient extends SingleFrameApplication {
 
             }
         }
-        mainView.marketTable.repaint();
         tModel.fireTableDataChanged();
         
     }
