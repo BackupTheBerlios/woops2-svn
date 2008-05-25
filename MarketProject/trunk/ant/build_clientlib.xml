@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <!-- Script for building jar application -->
-<project name="IsiMarket Client" default="build.jar" basedir="../">
+<project name="IsiMarket Client(lib)" default="build.jar" basedir="../">
 
 	<!-- Configure the context path for this application -->
 	<property name="project.name" value="IsiMarketClientLib" />
@@ -9,7 +9,8 @@
 	<property name="src.dir" value="${basedir}/src" />
 	<property name="src.java.dir" value="${src.dir}" />
 	<property name="lib.dir" value="${basedir}/lib" />
-	<property name="dist.dir" value="${basedir}/dist_client" />
+	<property name="dist.dir" value="${basedir}/dist_clientlib" />
+	<property name="jar.main-class" value="isimarket.client.ConsoleClient" />
 	<property name="jar.classpath" value="lib/hsqldb.jar" />
 
 	<path id="classpath">
@@ -29,7 +30,6 @@
 
 	<target name="prepare" depends="clean" description="Create build directories.">
 		<mkdir dir="${build.dir}/${project.name}" />
-		<mkdir dir="${build.dir}/${project.name}/lib" />
 		<mkdir dir="${dist.dir}" />
 	</target>
 
@@ -37,14 +37,14 @@
 	<target name="build" depends="prepare" description="Compile Java files and copy static files.">
 		<javac srcdir="${src.java.dir}" destdir="${build.dir}/${project.name}/" source="1.5" target="1.5">
 			<exclude name="**/ws/*" />
-			<include name="**/db/*.java" />
-			<include name="**/model/*.java" />
-			<include name="**/servants/*.java" />
-			<include name="**/server/*.java" />
-			<include name="**/db/*.xml" />
-			<include name="**/model/*.xml" />
-			<include name="**/servants/*.xml" />
-			<include name="**/server/*.xml" />
+						<include name="**/db/*.java" />
+						<include name="**/model/*.java" />
+						<include name="**/servants/*.java" />
+						<include name="**/server/*.java" />
+						<include name="**/db/*.xml" />
+						<include name="**/model/*.xml" />
+						<include name="**/servants/*.xml" />
+						<include name="**/server/*.xml" />
 			<classpath refid="classpath" />
 		</javac>
 		<copy todir="${build.dir}/${project.name}/">
@@ -66,14 +66,19 @@
 			<fileset dir="${build.dir}/${project.name}/">
 				<include name="**/*.*" />
 			</fileset>
+			<manifest>
+				<attribute name="Main-Class" value="${jar.main-class}" />
+				<attribute name="Class-Path" value="${jar.classpath}" />
+			</manifest>
 		</jar>
 		<delete dir="${build.dir}" />
-		<mkdir dir="${dist.dir}/lib/" />
+		<!--
 		<copy todir="${dist.dir}/lib/">
 			<fileset dir="${lib.dir}">
 				<include name="**/*.jar" />
 			</fileset>
 		</copy>
+		-->
 	</target>
 
 </project>
