@@ -149,7 +149,7 @@ public class ClientLoginDialog extends javax.swing.JDialog {
         else {
             try {
                 main.setConnectionType(IsiMarketConstants.UserType.OPERATOR);
-                Wallet w = main.getCorbaClient().getWalletServant().authentication(login, pwd);
+                Wallet w = main.getCorbaClient().getWalletServantRef().authentication(login, pwd);
                 IsiMarketClientModel.wallet = w;
                 IsiMarketClientModel.login = login;
                 this.dispose();
