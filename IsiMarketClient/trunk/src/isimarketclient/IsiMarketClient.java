@@ -6,6 +6,7 @@ package isimarketclient;
 import isimarket.client.CorbaClient;
 import isimarket.model.Action;
 import isimarket.model.ActionType;
+import isimarket.model.Alarm;
 import isimarket.model.Event;
 import isimarket.servants.walletservant.WalletServantPackage.BadQuantityException;
 import isimarket.servants.walletservant.WalletServantPackage.NotEnoughAvailableActionsException;
@@ -313,6 +314,17 @@ public class IsiMarketClient extends SingleFrameApplication {
                 IsiMarketClientModel.alarmTypes[alarmNb].alarmTypeId, 
                 actionTypeCode);
         
+        updateData();
+    }
+    
+    public void removeAlarm(int alarmNb) {
+        Alarm alarmToDel = IsiMarketClientModel.alarms[alarmNb];
+        try{
+            client.getAlarmServantRef().deleteAlarm(alarmToDel.alarmId);
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
         updateData();
     }
 

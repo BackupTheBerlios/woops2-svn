@@ -474,7 +474,8 @@ private void showActionTypeButton1ActionPerformed(java.awt.event.ActionEvent evt
 }//GEN-LAST:event_showActionTypeButton1ActionPerformed
 
 private void deleteAlarmButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteAlarmButtonActionPerformed
-// TODO add your handling code here:
+    int rowNb = alarmTable.getSelectedRow();
+    IsiMarketClient.getApplication().removeAlarm(rowNb);
 }//GEN-LAST:event_deleteAlarmButtonActionPerformed
 
 private void addAlarmButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addAlarmButtonActionPerformed
