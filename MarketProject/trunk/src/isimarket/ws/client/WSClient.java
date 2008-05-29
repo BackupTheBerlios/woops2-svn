@@ -24,7 +24,7 @@ public class WSClient {
 	public static void main(String[] args) {
 
 		try {
-			String endpoint = "http://localhost:8080/axis/WSServer.jws";
+			String endpoint = "http://localhost:8080/axis/WSServer";
 			Service service = new Service();
 
 			updateActionTypeRateCall = (Call) service.createCall();
@@ -55,33 +55,33 @@ public class WSClient {
 			System.err.println(e.toString());
 		}
 
-		Thread rateManager = new Thread() {
+		/*Thread rateManager = new Thread() {
 			public void run() {
-				while (true) {
+				while (true) {*/
 					try {
-						ActionType[] ats = (ActionType[]) WSClient.this.getActionTypeListCall
+						ActionType[] ats = (ActionType[]) WSClient.getActionTypeListCall
 								.invoke(new Object[0]);
 						int i = 0;
 						while (i < ats.length) {
-							WSClient.this.updateActionTypeRateCall
+							WSClient.updateActionTypeRateCall
 									.invoke(new Object[] { ats[i],
 											WSClient.generateRate() });
 						}
 						ats = null;
 						System.out.println("Mise à jour des cours");
-						Thread.sleep(60000);
-					} catch (InterruptedException e) {
+						//Thread.sleep(60000);
+					/*} catch (InterruptedException e) {
 						e.printStackTrace();
-					} catch (RemoteException e) {
+					*/} catch (RemoteException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
-				}
+				/*}
 			}
-		};
-		rateManager.start();
+		};*/
+		//rateManager.start();
 
-		Thread eventManager = new Thread() {
+		/*Thread eventManager = new Thread() {
 			public void run() {
 				while (true) {
 					try {
@@ -104,7 +104,7 @@ public class WSClient {
 				}
 			}
 		};
-		eventManager.start();
+		eventManager.start();*/
 	}
 
 	private static Float generateRate() {
