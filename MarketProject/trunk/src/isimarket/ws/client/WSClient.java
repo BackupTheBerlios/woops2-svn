@@ -31,25 +31,25 @@ public class WSClient {
 			updateActionTypeRateCall.setTargetEndpointAddress(new java.net.URL(
 					endpoint));
 			updateActionTypeRateCall.setOperationName(new QName(
-					"http://soapinterop.org/", "updateActionTypeRate"));
+					"http://DefaultNamespace", "updateActionTypeRate"));
 
 			createHistoryLineCall = (Call) service.createCall();
 			createHistoryLineCall.setTargetEndpointAddress(new java.net.URL(
 					endpoint));
 			createHistoryLineCall.setOperationName(new QName(
-					"http://soapinterop.org/", "createHistoryLine"));
+					"http://DefaultNamespace", "createHistoryLine"));
 
 			createActionTypeCall = (Call) service.createCall();
 			createActionTypeCall.setTargetEndpointAddress(new java.net.URL(
 					endpoint));
 			createActionTypeCall.setOperationName(new QName(
-					"http://soapinterop.org/", "createActionType"));
+					"http://DefaultNamespace", "createActionType"));
 
 			getActionTypeListCall = (Call) service.createCall();
 			getActionTypeListCall.setTargetEndpointAddress(new java.net.URL(
 					endpoint));
 			getActionTypeListCall.setOperationName(new QName(
-					"http://soapinterop.org/", "getActionTypeList"));
+					"http://DefaultNamespace", "getActionTypeList"));
 
 		} catch (Exception e) {
 			System.err.println(e.toString());
