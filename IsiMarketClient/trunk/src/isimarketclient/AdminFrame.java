@@ -406,9 +406,8 @@ public class AdminFrame extends javax.swing.JFrame {
        try{
         Float price = new Float(priceField.getText());
         Integer quantity = new Integer(quantityField.getText());
-//        IsiMarketClient.getApplication().getCorbaClient().getActionTypeServantRef()
-//                .createActionType(codeField.getText(), labelField.getText(), ServerConstants.now(), price, quantity, price);
-        IsiMarketClient.getApplication().createActionTypeViaWS(codeField.getText(), labelField.getText(), ServerConstants.now(), price, quantity, price);
+        IsiMarketClient.getApplication().getCorbaClient().getActionTypeServantRef()
+                .createActionType(codeField.getText(), labelField.getText(), ServerConstants.now(), price, quantity, price);
         
         JOptionPane.showMessageDialog(this, "Creation Action OK !", "IsimarketClient", JOptionPane.INFORMATION_MESSAGE);
         } catch(Exception e){

@@ -12,6 +12,9 @@ import isimarket.servants.walletservant.WalletServantPackage.BadQuantityExceptio
 import isimarket.servants.walletservant.WalletServantPackage.NotEnoughAvailableActionsException;
 import isimarket.servants.walletservant.WalletServantPackage.NotEnoughCashException;
 import isimarketclient.IsiMarketConstants.UserType;
+import java.rmi.RemoteException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import org.jdesktop.application.Application;
@@ -394,12 +397,16 @@ public class IsiMarketClient extends SingleFrameApplication {
         updateData();
     }
     
-    public void createActionTypeViaWS(String text, String text0, String now, Float price, Integer quantity, Float price0) {
-        //createActionTypeCall.invoke();
-    }
+//    public void createActionTypeViaWS(String text, String text0, String now, Float price, Integer quantity, Float price0) {
+//        //createActionTypeCall.invoke();
+//    }
     
     public void updateActionTypeRateViaWS(String code, Float price) {
-        updateActionTypeRateCall.invoke();
+        try {
+            updateActionTypeRateCall.invoke(new Object[]{code, price});
+        } catch (RemoteException ex) {
+            ex.printStackTrace();
+        }
     }
 
     /**
