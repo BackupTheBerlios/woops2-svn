@@ -72,7 +72,8 @@ public class IsiMarketClient extends SingleFrameApplication {
     
     public void startWSClient(){
         try {
-                String endpoint = "http://localhost:8080/axis/WSServer.jws";
+                //String endpoint = "http://localhost:8080/axis/WSServer.jws";
+                String endpoint = "http://localhost:5965/IsiMarketWS/services/WSServer";
                 Service service = new Service();
 
                 updateActionTypeRateCall = (Call) service.createCall();
