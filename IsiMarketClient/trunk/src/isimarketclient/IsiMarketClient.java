@@ -11,15 +11,17 @@ import isimarket.model.Event;
 import isimarket.servants.walletservant.WalletServantPackage.BadQuantityException;
 import isimarket.servants.walletservant.WalletServantPackage.NotEnoughAvailableActionsException;
 import isimarket.servants.walletservant.WalletServantPackage.NotEnoughCashException;
-import isimarket.server.ServerConstants;
 import isimarketclient.IsiMarketConstants.UserType;
-import javax.swing.ComboBoxModel;
 import javax.swing.JOptionPane;
-import javax.swing.JTable;
-import javax.swing.ListModel;
 import javax.swing.table.DefaultTableModel;
 import org.jdesktop.application.Application;
 import org.jdesktop.application.SingleFrameApplication;
+
+
+import javax.xml.namespace.QName;
+
+import org.apache.axis.client.Call;
+import org.apache.axis.client.Service;
 
 /**
  * The main class of the application.
@@ -35,6 +37,9 @@ public class IsiMarketClient extends SingleFrameApplication {
     private AdminFrame adminView = null;
     private IsiMarketConstants.UserType session = IsiMarketConstants.UserType.NONE;
     private CorbaClient client = null;
+    
+    private static Call updateActionTypeRateCall;
+    private static Call createActionTypeCall;
 
     public CorbaClient getCorbaClient() {
         return client;
@@ -61,12 +66,37 @@ public class IsiMarketClient extends SingleFrameApplication {
 
         waitConnectionType();
     }
+    
+    public void startWSClient(){
+        try {
+                String endpoint = "http://localhost:8080/axis/WSServer.jws";
+                Service service = new Service();
+
+                updateActionTypeRateCall = (Call) service.createCall();
+                updateActionTypeRateCall.setTargetEndpointAddress(new java.net.URL(
+                                endpoint));
+                updateActionTypeRateCall.setOperationName(new QName(
+                                "http://soapinterop.org/", "updateActionTypeRate"));
+
+
+
+                createActionTypeCall = (Call) service.createCall();
+                createActionTypeCall.setTargetEndpointAddress(new java.net.URL(
+                                endpoint));
+                createActionTypeCall.setOperationName(new QName(
+                                "http://soapinterop.org/", "createActionType"));
+
+		} catch (Exception e) {
+			System.err.println(e.toString());
+		}
+    }
 
     private void waitConnectionType() {
         while (session == IsiMarketConstants.UserType.NONE) {
         }
 
         if (session == IsiMarketConstants.UserType.ADMIN) {
+            startWSClient();
             adminView = new AdminFrame();
             show(adminView);
         } else if (session == IsiMarketConstants.UserType.OPERATOR) {
@@ -88,7 +118,7 @@ public class IsiMarketClient extends SingleFrameApplication {
         updateMarket();
         updateWalletActions();
         // update events
-        updateEvents();
+        //updateEvents();
         // update alarms
         updateAlarms();
         
@@ -184,40 +214,77 @@ public class IsiMarketClient extends SingleFrameApplication {
     }
     
     public void checkAlarms(){
+        mainView.alarmArea.setText("");
+        for (int i = 0; i < IsiMarketClientModel.alarms.length; i++){
+            mainView.alarmArea.setText(mainView.alarmArea.getText()+checkAlarm(IsiMarketClientModel.alarms[i]));
+        }
+    }
+    
+    public String checkAlarm(Alarm a){
+        int i = 0;
+        String actionCode =actionCode = IsiMarketClientModel.market[i].code;
+        ActionType currentActionType = IsiMarketClientModel.market[i];
         
+        while (!a.actionType.code.equals(actionCode)){
+            i++;
+            actionCode = IsiMarketClientModel.market[i].code;
+            currentActionType = IsiMarketClientModel.market[i];
+        }
+        
+        if (a.actionType.code.equals(actionCode)){
+            
+            if(a.type.symbol.equals("INF")){
+                if ( a.value > currentActionType.currentPrice){
+                    return a.actionType.label+" < "+a.value+"\n";
+                }
+                else 
+                    return "";
+            }
+            else if (a.type.symbol.equals("SUP")){
+                if ( a.value < currentActionType.currentPrice){
+                   return a.actionType.label+" > "+a.value+"\n";
+                }
+                else 
+                    return "";
+            }
+            else
+                return "";
+        }
+        else 
+            return "";
     }
     
     public void getAlarmTypes(){
         IsiMarketClientModel.alarmTypes = client.getAlarmServantRef().getAlarmTypeList();
     }
     
-    public void updateEvents(){
-        String logText = "";
-        for (int i = 0; i < IsiMarketClientModel.market.length ; i++) {
-            Event[] events = null;
-            
-            try {
-                events = client.getEventServantRef().getEventsForActionType("" + IsiMarketClientModel.market[i].code);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            for(int j = 0; j < events.length; j++ ){
-                String eventType;
-                Float price;
-                if (events[j].price > 0){ 
-                    eventType = "vente";
-                    price = events[j].price;
-                }
-                else{
-                    eventType = "achat";
-                    price = events[j].price * -1;
-                }
-                //logText += "["+events[j].date+"]@"+IsiMarketClientModel.market[i].label+" : "+eventType+" pour "+events[j].price+"\n";
-                logText += "["+events[j].date+"] "+eventType+" de "+price+" € d'actions "+IsiMarketClientModel.market[i].label+"\n";
-            } 
-        }
-        mainView.logArea.setText(logText);
-    }
+//    public void updateEvents(){
+//        String logText = "";
+//        for (int i = 0; i < IsiMarketClientModel.market.length ; i++) {
+//            Event[] events = null;
+//            
+//            try {
+//                events = client.getEventServantRef().getEventsForActionType("" + IsiMarketClientModel.market[i].code);
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//            }
+//            for(int j = 0; j < events.length; j++ ){
+//                String eventType;
+//                Float price;
+//                if (events[j].price > 0){ 
+//                    eventType = "vente";
+//                    price = events[j].price;
+//                }
+//                else{
+//                    eventType = "achat";
+//                    price = events[j].price * -1;
+//                }
+//                //logText += "["+events[j].date+"]@"+IsiMarketClientModel.market[i].label+" : "+eventType+" pour "+events[j].price+"\n";
+//                logText += "["+events[j].date+"] "+eventType+" de "+price+" € d'actions "+IsiMarketClientModel.market[i].label+"\n";
+//            } 
+//        }
+//        mainView.logArea.setText(logText);
+//    }
 
     public void displayActionType(int rowNb) {
         displayActionTypeDialog = new DisplayActionTypeDialog(mainView.getFrame());
@@ -325,6 +392,14 @@ public class IsiMarketClient extends SingleFrameApplication {
             e.printStackTrace();
         }
         updateData();
+    }
+    
+    public void createActionTypeViaWS(String text, String text0, String now, Float price, Integer quantity, Float price0) {
+        //createActionTypeCall.invoke();
+    }
+    
+    public void updateActionTypeRateViaWS(String code, Float price) {
+        updateActionTypeRateCall.invoke();
     }
 
     /**

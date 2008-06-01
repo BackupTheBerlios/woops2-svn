@@ -95,7 +95,7 @@ public class IsiMarketClientFrame extends FrameView {
         addAlarmButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        alarmsTextPane = new javax.swing.JTextPane();
+        alarmArea = new javax.swing.JTextArea();
         clearButton = new javax.swing.JButton();
         operatorPanel = new javax.swing.JPanel();
         jscrollPaneOperatorPanel = new javax.swing.JScrollPane();
@@ -112,9 +112,6 @@ public class IsiMarketClientFrame extends FrameView {
         cashField = new javax.swing.JTextField();
         walletValueLabel = new javax.swing.JLabel();
         walletValueField = new javax.swing.JTextField();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        logArea = new javax.swing.JTextArea();
-        jLabel2 = new javax.swing.JLabel();
         menuBar = new javax.swing.JMenuBar();
         javax.swing.JMenu fileMenu = new javax.swing.JMenu();
         refreshMenuItem = new javax.swing.JMenuItem();
@@ -170,8 +167,10 @@ public class IsiMarketClientFrame extends FrameView {
 
         jScrollPane3.setName("jScrollPane3"); // NOI18N
 
-        alarmsTextPane.setName("alarmsTextPane"); // NOI18N
-        jScrollPane3.setViewportView(alarmsTextPane);
+        alarmArea.setColumns(20);
+        alarmArea.setRows(5);
+        alarmArea.setName("alarmArea"); // NOI18N
+        jScrollPane3.setViewportView(alarmArea);
 
         clearButton.setText(resourceMap.getString("clearButton.text")); // NOI18N
         clearButton.setName("clearButton"); // NOI18N
@@ -348,17 +347,6 @@ public class IsiMarketClientFrame extends FrameView {
         walletValueField.setText(resourceMap.getString("walletValueField.text")); // NOI18N
         walletValueField.setName("walletValueField"); // NOI18N
 
-        jScrollPane1.setName("jScrollPane1"); // NOI18N
-
-        logArea.setColumns(20);
-        logArea.setEditable(false);
-        logArea.setRows(5);
-        logArea.setName("logArea"); // NOI18N
-        jScrollPane1.setViewportView(logArea);
-
-        jLabel2.setText(resourceMap.getString("jLabel2.text")); // NOI18N
-        jLabel2.setName("jLabel2"); // NOI18N
-
         javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);
         mainPanel.setLayout(mainPanelLayout);
         mainPanelLayout.setHorizontalGroup(
@@ -369,20 +357,14 @@ public class IsiMarketClientFrame extends FrameView {
                     .addComponent(tabbedPane, javax.swing.GroupLayout.PREFERRED_SIZE, 567, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(mainPanelLayout.createSequentialGroup()
                         .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(mainPanelLayout.createSequentialGroup()
-                                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(operatorLabel)
-                                    .addComponent(cashLabel))
-                                .addGap(27, 27, 27)
-                                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(opeatorField, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE)
-                                    .addComponent(cashField)
-                                    .addComponent(walletValueField)))
-                            .addComponent(walletValueLabel))
-                        .addGap(18, 18, 18)
-                        .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2))))
+                            .addComponent(operatorLabel)
+                            .addComponent(cashLabel))
+                        .addGap(27, 27, 27)
+                        .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(opeatorField, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE)
+                            .addComponent(cashField)
+                            .addComponent(walletValueField)))
+                    .addComponent(walletValueLabel))
                 .addContainerGap(15, Short.MAX_VALUE))
         );
         mainPanelLayout.setVerticalGroup(
@@ -391,21 +373,15 @@ public class IsiMarketClientFrame extends FrameView {
                 .addContainerGap()
                 .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(operatorLabel)
-                    .addComponent(opeatorField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
-                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(mainPanelLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(cashLabel)
-                            .addComponent(cashField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(walletValueLabel)
-                            .addComponent(walletValueField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(mainPanelLayout.createSequentialGroup()
-                        .addGap(4, 4, 4)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(opeatorField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cashLabel)
+                    .addComponent(cashField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(walletValueLabel)
+                    .addComponent(walletValueField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(tabbedPane, javax.swing.GroupLayout.DEFAULT_SIZE, 286, Short.MAX_VALUE)
                 .addContainerGap())
@@ -492,14 +468,14 @@ int rowNb = marketTable.getSelectedRow();
 }//GEN-LAST:event_buyActionTypeButtonActionPerformed
 
 private void clearButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearButtonActionPerformed
-    alarmsTextPane.setText("");
+    alarmArea.setText("");
 }//GEN-LAST:event_clearButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addAlarmButton;
+    public javax.swing.JTextArea alarmArea;
     private javax.swing.JPanel alarmPanel;
     public javax.swing.JTable alarmTable;
-    public javax.swing.JTextPane alarmsTextPane;
     private javax.swing.JButton buyActionTypeButton;
     private javax.swing.JButton buyActionTypeButton1;
     public javax.swing.JTextField cashField;
@@ -507,12 +483,9 @@ private void clearButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
     private javax.swing.JButton clearButton;
     private javax.swing.JButton deleteAlarmButton;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jscrollPaneOperatorPanel;
-    public javax.swing.JTextArea logArea;
     private javax.swing.JPanel mainPanel;
     private javax.swing.JPanel marketPanel;
     public javax.swing.JTable marketTable;

@@ -9,6 +9,7 @@ package isimarketclient;
 import isimarket.server.ServerConstants;
 import javax.swing.JOptionPane;
 
+
 /**
  *
  * @author  Arno
@@ -59,14 +60,13 @@ public class AdminFrame extends javax.swing.JFrame {
         updateCodeField = new javax.swing.JTextField();
         updatePriceLabel = new javax.swing.JLabel();
         updatePriceField = new javax.swing.JTextField();
-        updateQuantityLabel = new javax.swing.JLabel();
-        updateQuantityField = new javax.swing.JTextField();
         updateActionButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(isimarketclient.IsiMarketClient.class).getContext().getResourceMap(AdminFrame.class);
         setTitle(resourceMap.getString("Form.title")); // NOI18N
         setName("Form"); // NOI18N
+        setResizable(false);
 
         quitButton.setText(resourceMap.getString("quitButton.text")); // NOI18N
         quitButton.setName("quitButton"); // NOI18N
@@ -119,9 +119,9 @@ public class AdminFrame extends javax.swing.JFrame {
                     .addComponent(cashField)
                     .addComponent(passwordField)
                     .addComponent(loginField, javax.swing.GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE))
-                .addContainerGap(143, Short.MAX_VALUE))
+                .addContainerGap(189, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, newOperatorPanelLayout.createSequentialGroup()
-                .addContainerGap(228, Short.MAX_VALUE)
+                .addContainerGap(274, Short.MAX_VALUE)
                 .addComponent(createButton)
                 .addContainerGap())
         );
@@ -140,7 +140,7 @@ public class AdminFrame extends javax.swing.JFrame {
                 .addGroup(newOperatorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cashField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cashLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                 .addComponent(createButton)
                 .addContainerGap())
         );
@@ -181,9 +181,9 @@ public class AdminFrame extends javax.swing.JFrame {
                 .addGroup(operatorUpdateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(updateLoginField, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(updateCashField))
-                .addContainerGap(142, Short.MAX_VALUE))
+                .addContainerGap(188, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, operatorUpdateLayout.createSequentialGroup()
-                .addContainerGap(256, Short.MAX_VALUE)
+                .addContainerGap(302, Short.MAX_VALUE)
                 .addComponent(updateButton)
                 .addContainerGap())
         );
@@ -198,7 +198,7 @@ public class AdminFrame extends javax.swing.JFrame {
                 .addGroup(operatorUpdateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(updateCashField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(updateCashLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 96, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
                 .addComponent(updateButton)
                 .addContainerGap())
         );
@@ -256,9 +256,9 @@ public class AdminFrame extends javax.swing.JFrame {
                     .addComponent(priceField)
                     .addComponent(quantityField)
                     .addComponent(codeField, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(191, Short.MAX_VALUE))
+                .addContainerGap(237, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, newActionPanelLayout.createSequentialGroup()
-                .addContainerGap(240, Short.MAX_VALUE)
+                .addContainerGap(286, Short.MAX_VALUE)
                 .addComponent(addActionButton)
                 .addContainerGap())
         );
@@ -281,7 +281,7 @@ public class AdminFrame extends javax.swing.JFrame {
                 .addGroup(newActionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(quantityLabel)
                     .addComponent(quantityField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
                 .addComponent(addActionButton)
                 .addContainerGap())
         );
@@ -299,11 +299,6 @@ public class AdminFrame extends javax.swing.JFrame {
         updatePriceLabel.setName("updatePriceLabel"); // NOI18N
 
         updatePriceField.setName("updatePriceField"); // NOI18N
-
-        updateQuantityLabel.setText(resourceMap.getString("updateQuantityLabel.text")); // NOI18N
-        updateQuantityLabel.setName("updateQuantityLabel"); // NOI18N
-
-        updateQuantityField.setName("updateQuantityField"); // NOI18N
 
         updateActionButton.setText(resourceMap.getString("updateActionButton.text")); // NOI18N
         updateActionButton.setName("updateActionButton"); // NOI18N
@@ -327,13 +322,9 @@ public class AdminFrame extends javax.swing.JFrame {
                                 .addGap(21, 21, 21)
                                 .addComponent(updateCodeField, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(updateActionPanelLayout.createSequentialGroup()
-                                .addGroup(updateActionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(updateQuantityLabel)
-                                    .addComponent(updatePriceLabel))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(updateActionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(updateQuantityField, javax.swing.GroupLayout.DEFAULT_SIZE, 104, Short.MAX_VALUE)
-                                    .addComponent(updatePriceField, javax.swing.GroupLayout.DEFAULT_SIZE, 104, Short.MAX_VALUE))))
+                                .addComponent(updatePriceLabel)
+                                .addGap(28, 28, 28)
+                                .addComponent(updatePriceField, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)))
                         .addGap(191, 191, 191))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, updateActionPanelLayout.createSequentialGroup()
                         .addComponent(updateActionButton)
@@ -350,11 +341,7 @@ public class AdminFrame extends javax.swing.JFrame {
                 .addGroup(updateActionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(updatePriceLabel)
                     .addComponent(updatePriceField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(updateActionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(updateQuantityLabel)
-                    .addComponent(updateQuantityField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
                 .addComponent(updateActionButton)
                 .addContainerGap())
         );
@@ -368,7 +355,7 @@ public class AdminFrame extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(tabbedPane, javax.swing.GroupLayout.DEFAULT_SIZE, 356, Short.MAX_VALUE)
+                    .addComponent(tabbedPane, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 402, Short.MAX_VALUE)
                     .addComponent(quitButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
@@ -376,8 +363,8 @@ public class AdminFrame extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(tabbedPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(tabbedPane, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(quitButton)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -405,8 +392,9 @@ public class AdminFrame extends javax.swing.JFrame {
     private void updateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButtonActionPerformed
        try{
         Float cash = new Float(updateCashField.getText());
-        IsiMarketClient.getApplication().getCorbaClient()
-                .getAdministrationServantRef().updateCash(updateLoginField.getText(), cash);
+//        IsiMarketClient.getApplication().getCorbaClient()
+//                .getAdministrationServantRef().updateCash(updateLoginField.getText(), cash);
+        
         JOptionPane.showMessageDialog(this, "Mise à jour OK !", "IsimarketClient", JOptionPane.INFORMATION_MESSAGE);
         } catch(Exception e){
             e.printStackTrace();
@@ -418,8 +406,10 @@ public class AdminFrame extends javax.swing.JFrame {
        try{
         Float price = new Float(priceField.getText());
         Integer quantity = new Integer(quantityField.getText());
-        IsiMarketClient.getApplication().getCorbaClient().getActionTypeServantRef()
-                .createActionType(codeField.getText(), labelField.getText(), ServerConstants.now(), price, quantity, price);
+//        IsiMarketClient.getApplication().getCorbaClient().getActionTypeServantRef()
+//                .createActionType(codeField.getText(), labelField.getText(), ServerConstants.now(), price, quantity, price);
+        IsiMarketClient.getApplication().createActionTypeViaWS(codeField.getText(), labelField.getText(), ServerConstants.now(), price, quantity, price);
+        
         JOptionPane.showMessageDialog(this, "Creation Action OK !", "IsimarketClient", JOptionPane.INFORMATION_MESSAGE);
         } catch(Exception e){
             e.printStackTrace();
@@ -430,11 +420,13 @@ public class AdminFrame extends javax.swing.JFrame {
     private void updateActionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateActionButtonActionPerformed
         try{
         Float price = new Float(updatePriceField.getText());
-        Integer quantity = new Integer(updateQuantityField.getText());
-        IsiMarketClient.getApplication().getCorbaClient().getActionTypeServantRef()
-                .updateActionTypeCurrentPrice(updateCodeField.getText(), price);
-        IsiMarketClient.getApplication().getCorbaClient().getActionTypeServantRef()
-                .updateActionTypeQuantity(updateCodeField.getText(), quantity);
+        //Integer quantity = new Integer(updateQuantityField.getText());
+//        IsiMarketClient.getApplication().getCorbaClient().getActionTypeServantRef()
+//                .updateActionTypeCurrentPrice(updateCodeField.getText(), price);
+//        IsiMarketClient.getApplication().getCorbaClient().getActionTypeServantRef()
+//                .updateActionTypeQuantity(updateCodeField.getText(), quantity);
+//        
+        IsiMarketClient.getApplication().updateActionTypeRateViaWS(updateCodeField.getText(), price);
         JOptionPane.showMessageDialog(this, "MAJ Action OK !", "IsimarketClient", JOptionPane.INFORMATION_MESSAGE);
         } catch(Exception e){
             e.printStackTrace();
@@ -486,8 +478,6 @@ public class AdminFrame extends javax.swing.JFrame {
     private javax.swing.JLabel updateLoginLabel;
     private javax.swing.JTextField updatePriceField;
     private javax.swing.JLabel updatePriceLabel;
-    private javax.swing.JTextField updateQuantityField;
-    private javax.swing.JLabel updateQuantityLabel;
     // End of variables declaration//GEN-END:variables
     
 }

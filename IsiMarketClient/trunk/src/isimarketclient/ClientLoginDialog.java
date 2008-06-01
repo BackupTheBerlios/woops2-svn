@@ -5,6 +5,10 @@
 package isimarketclient;
 
 import isimarket.model.Wallet;
+import isimarket.servants.walletservant.WalletServantPackage.UnknownOperatorException;
+import isimarket.servants.walletservant.WalletServantPackage.WrongPasswordException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import org.jdesktop.application.Action;
 
@@ -153,8 +157,10 @@ public class ClientLoginDialog extends javax.swing.JDialog {
                 IsiMarketClientModel.wallet = w;
                 IsiMarketClientModel.login = login;
                 this.dispose();
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(this, "Erreur :"+e, "Erreur", JOptionPane.ERROR_MESSAGE);
+            } catch (WrongPasswordException e) {
+                JOptionPane.showMessageDialog(this, "Erreur :"+e.reason, "Erreur", JOptionPane.ERROR_MESSAGE);
+            } catch (UnknownOperatorException ex) {
+                    JOptionPane.showMessageDialog(this, "Erreur :"+ex.reason, "Erreur", JOptionPane.ERROR_MESSAGE);
             }
         }
 }//GEN-LAST:event_connectionButtonActionPerformed

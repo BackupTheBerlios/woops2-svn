@@ -5,6 +5,7 @@
     <Property name="defaultCloseOperation" type="int" value="3"/>
     <Property name="title" type="java.lang.String" resourceKey="Form.title"/>
     <Property name="name" type="java.lang.String" value="Form" noResource="true"/>
+    <Property name="resizable" type="boolean" value="false"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
@@ -23,10 +24,10 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
+          <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="tabbedPane" alignment="0" pref="356" max="32767" attributes="0"/>
+                  <Component id="tabbedPane" alignment="1" pref="402" max="32767" attributes="0"/>
                   <Component id="quitButton" alignment="1" min="-2" pref="110" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -37,8 +38,8 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="tabbedPane" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="tabbedPane" min="-2" pref="182" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Component id="quitButton" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
@@ -90,10 +91,10 @@
                           <Component id="passwordField" alignment="0" max="32767" attributes="1"/>
                           <Component id="loginField" alignment="0" pref="114" max="32767" attributes="1"/>
                       </Group>
-                      <EmptySpace pref="124" max="32767" attributes="0"/>
+                      <EmptySpace pref="189" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace pref="220" max="32767" attributes="0"/>
+                      <EmptySpace pref="274" max="32767" attributes="0"/>
                       <Component id="createButton" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -117,7 +118,7 @@
                           <Component id="cashField" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="cashLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="77" max="32767" attributes="0"/>
+                      <EmptySpace pref="37" max="32767" attributes="0"/>
                       <Component id="createButton" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -196,10 +197,10 @@
                           <Component id="updateLoginField" alignment="0" min="-2" pref="111" max="-2" attributes="1"/>
                           <Component id="updateCashField" alignment="0" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="129" max="32767" attributes="0"/>
+                      <EmptySpace pref="188" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace pref="255" max="32767" attributes="0"/>
+                      <EmptySpace pref="302" max="32767" attributes="0"/>
                       <Component id="updateButton" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -218,7 +219,7 @@
                           <Component id="updateCashField" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="updateCashLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="110" max="32767" attributes="0"/>
+                      <EmptySpace pref="63" max="32767" attributes="0"/>
                       <Component id="updateButton" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -290,10 +291,10 @@
                           <Component id="quantityField" alignment="0" max="32767" attributes="1"/>
                           <Component id="codeField" alignment="0" min="-2" pref="104" max="-2" attributes="1"/>
                       </Group>
-                      <EmptySpace pref="165" max="32767" attributes="0"/>
+                      <EmptySpace pref="237" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace pref="234" max="32767" attributes="0"/>
+                      <EmptySpace pref="286" max="32767" attributes="0"/>
                       <Component id="addActionButton" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -322,7 +323,7 @@
                           <Component id="quantityLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="quantityField" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="44" max="32767" attributes="0"/>
+                      <EmptySpace pref="11" max="32767" attributes="0"/>
                       <Component id="addActionButton" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -415,15 +416,9 @@
                                       <Component id="updateCodeField" min="-2" pref="104" max="-2" attributes="1"/>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="updateQuantityLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="updatePriceLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="updateQuantityField" pref="91" max="32767" attributes="1"/>
-                                          <Component id="updatePriceField" alignment="0" pref="91" max="32767" attributes="1"/>
-                                      </Group>
+                                      <Component id="updatePriceLabel" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+                                      <Component id="updatePriceField" pref="150" max="32767" attributes="1"/>
                                   </Group>
                               </Group>
                               <EmptySpace min="-2" pref="191" max="-2" attributes="0"/>
@@ -449,12 +444,7 @@
                           <Component id="updatePriceLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="updatePriceField" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="updateQuantityLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="updateQuantityField" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace pref="77" max="32767" attributes="0"/>
+                      <EmptySpace pref="63" max="32767" attributes="0"/>
                       <Component id="updateActionButton" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -482,17 +472,6 @@
             <Component class="javax.swing.JTextField" name="updatePriceField">
               <Properties>
                 <Property name="name" type="java.lang.String" value="updatePriceField" noResource="true"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JLabel" name="updateQuantityLabel">
-              <Properties>
-                <Property name="text" type="java.lang.String" resourceKey="updateQuantityLabel.text"/>
-                <Property name="name" type="java.lang.String" value="updateQuantityLabel" noResource="true"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JTextField" name="updateQuantityField">
-              <Properties>
-                <Property name="name" type="java.lang.String" value="updateQuantityField" noResource="true"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JButton" name="updateActionButton">
