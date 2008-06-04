@@ -8,29 +8,41 @@ import isimarket.server.ServerConstants;
 
 public class WSServer {
 
-	CorbaClient corbaClient = new CorbaClient();
+	protected static CorbaClient corbaClient = new CorbaClient();
 
-	public void updateActionTypeRate(ActionType actionType, float rate) {
+	public void updateActionTypeRate(String code, Float rate) {
+		corbaClient.startClient();
 		ActionTypeServant at = corbaClient.getActionTypeServantRef();
-		at.updateActionTypeCurrentPrice(actionType.code,
-				actionType.currentPrice + rate);
+		ActionType a = at.getActionType(code);
+		float sum = a.currentPrice + rate;
+		if (sum < 0.0f)
+			sum = a.currentPrice - rate;
+		at.updateActionTypeCurrentPrice(code, sum);
 	}
 
-	public void createHistoryLine(ActionType actionType) {
+	public void createHistoryLine(String code) {
+		corbaClient.startClient();
+		ActionTypeServant at = corbaClient.getActionTypeServantRef();
 		EventServant es = corbaClient.getEventServantRef();
-		es.createEvent(ServerConstants.now(), actionType.currentPrice,
-				actionType.code);
+		ActionType a = at.getActionType(code);
+		es.createEvent(ServerConstants.now(), a.currentPrice,
+				a.code);
 	}
 
 	public void createActionType(String code, String label,
 			String introductionDate, float introductionPrice, int quantity,
 			float currentPrice) {
+		corbaClient.startClient();
 		ActionTypeServant at = corbaClient.getActionTypeServantRef();
 		at.createActionType(code, label, introductionDate, introductionPrice, quantity, currentPrice);
 	}
 
-	public ActionType[] getActionTypeList(Object[] objs) {
+	public String[] getActionTypeList(Object[] objs) {
+		corbaClient.startClient();
 		ActionTypeServant at = corbaClient.getActionTypeServantRef();
-		return at.getActionTypeList();
+		ActionType[] ats = at.getActionTypeList();
+		String[] codes = new String[ats.length];
+		for(int i = 0;i < ats.length;i++) codes[i] = ats[i].code;
+		return codes;
 	}
 }

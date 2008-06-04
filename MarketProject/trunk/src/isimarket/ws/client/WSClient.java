@@ -1,112 +1,180 @@
 package isimarket.ws.client;
 
-import isimarket.model.ActionType;
 import isimarket.server.ServerConstants;
 
+import java.net.MalformedURLException;
 import java.rmi.RemoteException;
 import java.util.Random;
 
 import javax.xml.namespace.QName;
+import javax.xml.rpc.ServiceException;
 
 import org.apache.axis.client.Call;
 import org.apache.axis.client.Service;
 
 public class WSClient {
 
-	private static Call updateActionTypeRateCall;
-	private static Call createHistoryLineCall;
-	private static Call createActionTypeCall;
-	private static Call getActionTypeListCall;
+	static String endpoint = "http://localhost:8080/axis/WSServer.jws";
 
 	/**
 	 * @param args
 	 */
 	public static void main(String[] args) {
 
-		try {
-			String endpoint = "http://localhost:8080/axis/WSServer";
-			Service service = new Service();
-
-			updateActionTypeRateCall = (Call) service.createCall();
-			updateActionTypeRateCall.setTargetEndpointAddress(new java.net.URL(
-					endpoint));
-			updateActionTypeRateCall.setOperationName(new QName(
-					"http://DefaultNamespace", "updateActionTypeRate"));
-
-			createHistoryLineCall = (Call) service.createCall();
-			createHistoryLineCall.setTargetEndpointAddress(new java.net.URL(
-					endpoint));
-			createHistoryLineCall.setOperationName(new QName(
-					"http://DefaultNamespace", "createHistoryLine"));
-
-			createActionTypeCall = (Call) service.createCall();
-			createActionTypeCall.setTargetEndpointAddress(new java.net.URL(
-					endpoint));
-			createActionTypeCall.setOperationName(new QName(
-					"http://DefaultNamespace", "createActionType"));
-
-			getActionTypeListCall = (Call) service.createCall();
-			getActionTypeListCall.setTargetEndpointAddress(new java.net.URL(
-					endpoint));
-			getActionTypeListCall.setOperationName(new QName(
-					"http://DefaultNamespace", "getActionTypeList"));
-
-		} catch (Exception e) {
-			System.err.println(e.toString());
-		}
-
-		/*Thread rateManager = new Thread() {
-			public void run() {
-				while (true) {*/
-					try {
-						ActionType[] ats = (ActionType[]) WSClient.getActionTypeListCall
-								.invoke(new Object[0]);
-						int i = 0;
-						while (i < ats.length) {
-							WSClient.updateActionTypeRateCall
-									.invoke(new Object[] { ats[i],
-											WSClient.generateRate() });
-						}
-						ats = null;
-						System.out.println("Mise à jour des cours");
-						//Thread.sleep(60000);
-					/*} catch (InterruptedException e) {
-						e.printStackTrace();
-					*/} catch (RemoteException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-				/*}
-			}
-		};*/
-		//rateManager.start();
-
-		/*Thread eventManager = new Thread() {
+		Thread rateManager = new Thread() {
 			public void run() {
 				while (true) {
 					try {
-						ActionType[] ats = (ActionType[]) WSClient.this.getActionTypeListCall
-								.invoke(new Object[0]);
-						int i = 0;
-						while (i < ats.length) {
-							WSClient.this.createHistoryLineCall
-									.invoke(new Object[] { ats[i] });
-						}
-						ats = null;
-						System.out.println("Historique : " + ServerConstants.now());
-						Thread.sleep(300000);
+						String[] codes = WSClient.getActionTypeList();
+						for (int i = 0; i < codes.length; i++)
+							WSClient.updateActionTypeRate(codes[i],
+									generateRate());
+						codes = null;
+						System.out.println("Mise à jour des cours");
+						// temps en ms (base 1 min)
+						Thread.sleep(60000);
 					} catch (InterruptedException e) {
-						e.printStackTrace();
-					} catch (RemoteException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 				}
 			}
 		};
-		eventManager.start();*/
+		rateManager.start();
+
+		Thread eventManager = new Thread() {
+			public void run() {
+				while (true) {
+					try {
+						String[] codes = WSClient.getActionTypeList();
+						for (int i = 0; i < codes.length; i++)
+							WSClient.createHistoryLine(codes[i]);
+						codes = null;
+						System.out.println("Historique créé");
+						// temps en ms (base 5 min)
+						Thread.sleep(300000);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+				}
+			}
+		};
+		eventManager.start();
 	}
 
+	/**
+	 * 
+	 */
+	protected static void updateActionTypeRate(String actionCode, Float rate) {
+		Service service = new Service();
+		try {
+			Call call = (Call) service.createCall();
+			call.setTargetEndpointAddress(new java.net.URL(endpoint));
+			call.setOperationName(new QName("http://soapinterop.org/",
+					"updateActionTypeRate"));
+
+			call.invoke(new Object[] { actionCode, rate });
+
+		} catch (ServiceException e) {
+			e.printStackTrace();
+			System.err.println(e.toString());
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+			System.err.println(e.toString());
+		} catch (RemoteException e) {
+			e.printStackTrace();
+			System.err.println(e.toString());
+		}
+	}
+
+	/**
+	 * 
+	 * @param at
+	 */
+	protected static void createHistoryLine(String code) {
+		Service service = new Service();
+		try {
+			Call call = (Call) service.createCall();
+			call.setTargetEndpointAddress(new java.net.URL(endpoint));
+			call.setOperationName(new QName("http://soapinterop.org/",
+					"createHistoryLine"));
+
+			call.invoke(new Object[] { code });
+
+		} catch (ServiceException e) {
+			e.printStackTrace();
+			System.err.println(e.toString());
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+			System.err.println(e.toString());
+		} catch (RemoteException e) {
+			e.printStackTrace();
+			System.err.println(e.toString());
+		}
+	}
+
+	/**
+	 * 
+	 * @param code
+	 * @param label
+	 * @param introductionPrice
+	 * @param quantity
+	 * @param currentPrice
+	 */
+	protected static void createActionType(String code, String label,
+			Float introductionPrice, Integer quantity) {
+		Service service = new Service();
+		try {
+			Call call = (Call) service.createCall();
+			call.setTargetEndpointAddress(new java.net.URL(endpoint));
+			call.setOperationName(new QName("http://soapinterop.org/",
+					"createActionType"));
+
+			call.invoke(new Object[] {code, label, ServerConstants.now(),
+					introductionPrice, quantity, introductionPrice});
+
+		} catch (ServiceException e) {
+			e.printStackTrace();
+			System.err.println(e.toString());
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+			System.err.println(e.toString());
+		} catch (RemoteException e) {
+			e.printStackTrace();
+			System.err.println(e.toString());
+		}
+	}
+
+	/**
+	 * 
+	 * @return
+	 */
+	protected static String[] getActionTypeList() {
+		Service service = new Service();
+		try {
+			Call call = (Call) service.createCall();
+			call.setTargetEndpointAddress(new java.net.URL(endpoint));
+			call.setOperationName(new QName("http://soapinterop.org/",
+					"getActionTypeList"));
+			String[] codes = (String[]) call.invoke(new Object[0]);
+			return codes;
+
+		} catch (ServiceException e) {
+			e.printStackTrace();
+			System.err.println(e.toString());
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+			System.err.println(e.toString());
+		} catch (RemoteException e) {
+			e.printStackTrace();
+			System.err.println(e.toString());
+		}
+		return null;
+	}
+
+	/**
+	 * 
+	 * @return
+	 */
 	private static Float generateRate() {
 		Random valueGenerator = new Random();
 		Random signGenerator = new Random();

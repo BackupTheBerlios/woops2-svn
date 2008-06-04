@@ -39,6 +39,7 @@
 		<javac srcdir="${src.java.dir}" destdir="${build.dir}/${project.name}/" source="1.5" target="1.5">
 			<exclude name="**/ws/*" />
 			<include name="**/db/*.java" />
+			<include name="**/client/*.java" />
 			<include name="**/model/*.java" />
 			<include name="**/servants/*.java" />
 			<include name="**/server/*.java" />
