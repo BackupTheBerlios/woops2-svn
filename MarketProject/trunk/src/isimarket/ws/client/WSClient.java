@@ -179,9 +179,9 @@ public class WSClient {
 		Random valueGenerator = new Random();
 		Random signGenerator = new Random();
 		if (signGenerator.nextBoolean())
-			return valueGenerator.nextInt(10) * 1.0f;
+			return valueGenerator.nextInt(5) * 1.0f;
 		else
-			return valueGenerator.nextInt(10) * -1.0f;
+			return valueGenerator.nextInt(5) * -1.0f;
 	}
 
 }
