@@ -7,14 +7,11 @@ import isimarket.client.CorbaClient;
 import isimarket.model.Action;
 import isimarket.model.ActionType;
 import isimarket.model.Alarm;
-import isimarket.model.Event;
 import isimarket.servants.walletservant.WalletServantPackage.BadQuantityException;
 import isimarket.servants.walletservant.WalletServantPackage.NotEnoughAvailableActionsException;
 import isimarket.servants.walletservant.WalletServantPackage.NotEnoughCashException;
 import isimarketclient.IsiMarketConstants.UserType;
 import java.rmi.RemoteException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import org.jdesktop.application.Application;
@@ -72,27 +69,26 @@ public class IsiMarketClient extends SingleFrameApplication {
     
     public void startWSClient(){
         try {
-                //String endpoint = "http://localhost:8080/axis/WSServer.jws";
-                String endpoint = "http://localhost:5965/IsiMarketWS/services/WSServer";
-                Service service = new Service();
+            String endpoint = "http://localhost:8080/axis/WSServer.jws";
+            Service service = new Service();
 
-                updateActionTypeRateCall = (Call) service.createCall();
-                updateActionTypeRateCall.setTargetEndpointAddress(new java.net.URL(
-                                endpoint));
-                updateActionTypeRateCall.setOperationName(new QName(
-                                "http://soapinterop.org/", "updateActionTypeRate"));
-
+            updateActionTypeRateCall = (Call) service.createCall();
+            updateActionTypeRateCall.setTargetEndpointAddress(new java.net.URL(
+                            endpoint));
+            updateActionTypeRateCall.setOperationName(new QName(
+                            "http://soapinterop.org/", "updateActionTypeRate"));
 
 
-                createActionTypeCall = (Call) service.createCall();
-                createActionTypeCall.setTargetEndpointAddress(new java.net.URL(
-                                endpoint));
-                createActionTypeCall.setOperationName(new QName(
-                                "http://soapinterop.org/", "createActionType"));
 
-		} catch (Exception e) {
-			System.err.println(e.toString());
-		}
+            createActionTypeCall = (Call) service.createCall();
+            createActionTypeCall.setTargetEndpointAddress(new java.net.URL(
+                            endpoint));
+            createActionTypeCall.setOperationName(new QName(
+                            "http://soapinterop.org/", "createActionType"));
+
+            } catch (Exception e) {
+                    System.err.println(e.toString());
+            }
     }
 
     private void waitConnectionType() {
@@ -120,12 +116,10 @@ public class IsiMarketClient extends SingleFrameApplication {
     public void updateData() {
         // update actions
         updateMarket();
+        // update wallet actions
         updateWalletActions();
-        // update events
-        //updateEvents();
         // update alarms
         updateAlarms();
-        
         // check alarms
         checkAlarms();
     }
@@ -134,25 +128,22 @@ public class IsiMarketClient extends SingleFrameApplication {
         IsiMarketClientModel.market = client.getActionTypeServantRef().getActionTypeList();
         DefaultTableModel tModel = (DefaultTableModel) mainView.marketTable.getModel();
         
-        // remove old rows
-        for (int i = 0; i < tModel.getRowCount(); i++){
-            tModel.removeRow(i);
+        while(tModel.getRowCount() > 0){
+            tModel.removeRow(0);
         }
+        
+        System.out.println("vide? "+tModel.getRowCount());
         // new content
+        System.out.println("market size : "+IsiMarketClientModel.market.length);
+        
         for (int i = 0; i < IsiMarketClientModel.market.length; i++) {
+            System.out.println("c? "+tModel.getRowCount());
             tModel.addRow(new Object[]{"","","",""});
-            if (i < IsiMarketClientModel.market.length) {
-                tModel.setValueAt(IsiMarketClientModel.market[i].code, i, 0);
-                tModel.setValueAt(IsiMarketClientModel.market[i].label, i, 1);
-                tModel.setValueAt(IsiMarketClientModel.market[i].currentPrice, i, 2);
-                tModel.setValueAt(IsiMarketClientModel.market[i].quantity, i, 3);
-            } else {
-                tModel.setValueAt(null, i, 0);
-                tModel.setValueAt(null, i, 1);
-                tModel.setValueAt(null, i, 2);
-                tModel.setValueAt(null, i, 3);
-
-            }
+            System.out.println("table size : "+tModel.getRowCount());
+            tModel.setValueAt(IsiMarketClientModel.market[i].code, i, 0);
+            tModel.setValueAt(IsiMarketClientModel.market[i].label, i, 1);
+            tModel.setValueAt(IsiMarketClientModel.market[i].currentPrice, i, 2);
+            tModel.setValueAt(IsiMarketClientModel.market[i].quantity, i, 3);
         }
         tModel.fireTableDataChanged();
         
@@ -164,13 +155,13 @@ public class IsiMarketClient extends SingleFrameApplication {
         DefaultTableModel tModel = (DefaultTableModel) mainView.walletTable.getModel();
         
         // remove old rows
-        for (int i = 0; i < tModel.getRowCount(); i++){
-            tModel.removeRow(i);
+        while(tModel.getRowCount() > 0){
+            tModel.removeRow(0);
         }
         // content
         for (int i = 0; i < IsiMarketClientModel.actions.length; i++) {
-            tModel.addRow(new Object[]{"","","","",""});
             if (i < IsiMarketClientModel.actions.length) {
+                tModel.addRow(new Object[]{"","","","",""});
                 tModel.setValueAt(IsiMarketClientModel.actions[i].actiontype.code, i, 0);
                 tModel.setValueAt(IsiMarketClientModel.actions[i].buyPrice, i, 1);
                 tModel.setValueAt(IsiMarketClientModel.actions[i].quantity, i, 2);
@@ -197,8 +188,8 @@ public class IsiMarketClient extends SingleFrameApplication {
         DefaultTableModel tModel = (DefaultTableModel) mainView.alarmTable.getModel();
         
         // remove old rows
-        for (int i = 0; i < tModel.getRowCount(); i++){
-            tModel.removeRow(i);
+        while(tModel.getRowCount() > 0){
+            tModel.removeRow(0);
         }
         // adding new content
         for (int i = 0; i < IsiMarketClientModel.alarms.length; i++) {
@@ -239,14 +230,14 @@ public class IsiMarketClient extends SingleFrameApplication {
             
             if(a.type.symbol.equals("INF")){
                 if ( a.value > currentActionType.currentPrice){
-                    return a.actionType.label+" < "+a.value+"\n";
+                    return "action "+a.actionType.label+" < "+a.value+"\n";
                 }
                 else 
                     return "";
             }
             else if (a.type.symbol.equals("SUP")){
                 if ( a.value < currentActionType.currentPrice){
-                   return a.actionType.label+" > "+a.value+"\n";
+                   return "action "+a.actionType.label+" > "+a.value+"\n";
                 }
                 else 
                     return "";
@@ -261,34 +252,6 @@ public class IsiMarketClient extends SingleFrameApplication {
     public void getAlarmTypes(){
         IsiMarketClientModel.alarmTypes = client.getAlarmServantRef().getAlarmTypeList();
     }
-    
-//    public void updateEvents(){
-//        String logText = "";
-//        for (int i = 0; i < IsiMarketClientModel.market.length ; i++) {
-//            Event[] events = null;
-//            
-//            try {
-//                events = client.getEventServantRef().getEventsForActionType("" + IsiMarketClientModel.market[i].code);
-//            } catch (Exception e) {
-//                e.printStackTrace();
-//            }
-//            for(int j = 0; j < events.length; j++ ){
-//                String eventType;
-//                Float price;
-//                if (events[j].price > 0){ 
-//                    eventType = "vente";
-//                    price = events[j].price;
-//                }
-//                else{
-//                    eventType = "achat";
-//                    price = events[j].price * -1;
-//                }
-//                //logText += "["+events[j].date+"]@"+IsiMarketClientModel.market[i].label+" : "+eventType+" pour "+events[j].price+"\n";
-//                logText += "["+events[j].date+"] "+eventType+" de "+price+" € d'actions "+IsiMarketClientModel.market[i].label+"\n";
-//            } 
-//        }
-//        mainView.logArea.setText(logText);
-//    }
 
     public void displayActionType(int rowNb) {
         displayActionTypeDialog = new DisplayActionTypeDialog(mainView.getFrame());
