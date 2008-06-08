@@ -37,7 +37,7 @@ public class WSServer {
 		at.createActionType(code, label, introductionDate, introductionPrice, quantity, currentPrice);
 	}
 
-	public String[] getActionTypeList(Object[] objs) {
+	public String[] getActionTypeList(int nb) {
 		corbaClient.startClient();
 		ActionTypeServant at = corbaClient.getActionTypeServantRef();
 		ActionType[] ats = at.getActionTypeList();

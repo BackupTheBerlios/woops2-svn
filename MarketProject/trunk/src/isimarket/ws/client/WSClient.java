@@ -51,7 +51,7 @@ public class WSClient {
 						codes = null;
 						System.out.println("Historique créé");
 						// temps en ms (base 5 min)
-						Thread.sleep(300000);
+						Thread.sleep(30000);
 					} catch (InterruptedException e) {
 						e.printStackTrace();
 					}
@@ -155,7 +155,7 @@ public class WSClient {
 			call.setTargetEndpointAddress(new java.net.URL(endpoint));
 			call.setOperationName(new QName("http://soapinterop.org/",
 					"getActionTypeList"));
-			String[] codes = (String[]) call.invoke(new Object[0]);
+			String[] codes = (String[]) call.invoke(new Object[]{0});
 			return codes;
 
 		} catch (ServiceException e) {
