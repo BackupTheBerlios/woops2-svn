@@ -106,6 +106,12 @@ public class IsiMarketClientFrame extends FrameView {
         jScrollPane2 = new javax.swing.JScrollPane();
         alarmTable = new javax.swing.JTable();
         deleteAlarmButton = new javax.swing.JButton();
+        historyPanel = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        actionsJList = new javax.swing.JComboBox();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        actionHistoryList = new javax.swing.JTable();
+        jButton1 = new javax.swing.JButton();
         operatorLabel = new javax.swing.JLabel();
         cashLabel = new javax.swing.JLabel();
         opeatorField = new javax.swing.JTextField();
@@ -271,7 +277,7 @@ public class IsiMarketClientFrame extends FrameView {
             .addGroup(operatorPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(operatorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jscrollPaneOperatorPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE)
+                    .addComponent(jscrollPaneOperatorPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 239, Short.MAX_VALUE)
                     .addGroup(operatorPanelLayout.createSequentialGroup()
                         .addComponent(buyActionTypeButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -320,11 +326,74 @@ public class IsiMarketClientFrame extends FrameView {
                 .addContainerGap()
                 .addGroup(alarmPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(deleteAlarmButton, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 239, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
         tabbedPane.addTab(resourceMap.getString("alarmPanel.TabConstraints.tabTitle"), alarmPanel); // NOI18N
+
+        historyPanel.setName("historyPanel"); // NOI18N
+
+        jLabel2.setText(resourceMap.getString("jLabel2.text")); // NOI18N
+        jLabel2.setName("jLabel2"); // NOI18N
+
+        actionsJList.setName("actionsJList"); // NOI18N
+        actionsJList.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                actionsJListActionPerformed(evt);
+            }
+        });
+
+        jScrollPane1.setName("jScrollPane1"); // NOI18N
+
+        actionHistoryList.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+            },
+            new String [] {
+                "Date", "Prix"
+            }
+        ));
+        actionHistoryList.setName("actionHistoryList"); // NOI18N
+        jScrollPane1.setViewportView(actionHistoryList);
+
+        jButton1.setText(resourceMap.getString("jButton1.text")); // NOI18N
+        jButton1.setName("jButton1"); // NOI18N
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout historyPanelLayout = new javax.swing.GroupLayout(historyPanel);
+        historyPanel.setLayout(historyPanelLayout);
+        historyPanelLayout.setHorizontalGroup(
+            historyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(historyPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(historyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 542, Short.MAX_VALUE)
+                    .addGroup(historyPanelLayout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(actionsJList, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton1)))
+                .addContainerGap())
+        );
+        historyPanelLayout.setVerticalGroup(
+            historyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(historyPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(historyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(actionsJList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        tabbedPane.addTab(resourceMap.getString("historyPanel.TabConstraints.tabTitle"), historyPanel); // NOI18N
 
         operatorLabel.setText(resourceMap.getString("operatorLabel.text")); // NOI18N
         operatorLabel.setName("operatorLabel"); // NOI18N
@@ -383,8 +452,8 @@ public class IsiMarketClientFrame extends FrameView {
                     .addComponent(walletValueLabel)
                     .addComponent(walletValueField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tabbedPane, javax.swing.GroupLayout.DEFAULT_SIZE, 286, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(tabbedPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         menuBar.setName("menuBar"); // NOI18N
@@ -471,7 +540,18 @@ private void clearButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
     alarmArea.setText("");
 }//GEN-LAST:event_clearButtonActionPerformed
 
+private void actionsJListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_actionsJListActionPerformed
+        
+}//GEN-LAST:event_actionsJListActionPerformed
+
+private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+int rowNb = actionsJList.getSelectedIndex();
+        IsiMarketClient.getApplication().showActionHistory(rowNb);
+}//GEN-LAST:event_jButton1ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JTable actionHistoryList;
+    public javax.swing.JComboBox actionsJList;
     private javax.swing.JButton addAlarmButton;
     public javax.swing.JTextArea alarmArea;
     private javax.swing.JPanel alarmPanel;
@@ -482,7 +562,11 @@ private void clearButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
     private javax.swing.JLabel cashLabel;
     private javax.swing.JButton clearButton;
     private javax.swing.JButton deleteAlarmButton;
+    private javax.swing.JPanel historyPanel;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jscrollPaneOperatorPanel;
