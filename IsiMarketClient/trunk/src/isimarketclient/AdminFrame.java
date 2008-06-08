@@ -392,8 +392,8 @@ public class AdminFrame extends javax.swing.JFrame {
     private void updateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButtonActionPerformed
        try{
         Float cash = new Float(updateCashField.getText());
-//        IsiMarketClient.getApplication().getCorbaClient()
-//                .getAdministrationServantRef().updateCash(updateLoginField.getText(), cash);
+        IsiMarketClient.getApplication().getCorbaClient()
+                .getAdministrationServantRef().updateCash(updateLoginField.getText(), cash);
         
         JOptionPane.showMessageDialog(this, "Mise à jour OK !", "IsimarketClient", JOptionPane.INFORMATION_MESSAGE);
         } catch(Exception e){

@@ -5,6 +5,7 @@
 package isimarketclient;
 
 import isimarket.model.Action;
+import isimarket.servants.walletservant.WalletServantPackage.NotEnoughAvailableActionsException;
 import javax.swing.JOptionPane;
 
 
@@ -220,6 +221,8 @@ private void sellButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
             this.dispose();
             JOptionPane.showMessageDialog(this, "Vente ok !", "IsimarketClient", JOptionPane.INFORMATION_MESSAGE);
             
+        } catch (NotEnoughAvailableActionsException ex) {
+            JOptionPane.showMessageDialog(this, "Erreur :"+ex.reason, "Erreur", JOptionPane.ERROR_MESSAGE);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Erreur :"+e, "Erreur", JOptionPane.ERROR_MESSAGE);
         }

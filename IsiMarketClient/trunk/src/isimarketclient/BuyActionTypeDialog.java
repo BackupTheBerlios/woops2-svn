@@ -5,6 +5,8 @@
 package isimarketclient;
 
 import isimarket.model.ActionType;
+import isimarket.servants.walletservant.WalletServantPackage.BadQuantityException;
+import isimarket.servants.walletservant.WalletServantPackage.NotEnoughCashException;
 import javax.swing.JOptionPane;
 import org.jdesktop.application.Action;
 
@@ -219,9 +221,14 @@ public class BuyActionTypeDialog extends javax.swing.JDialog {
             this.dispose();
             JOptionPane.showMessageDialog(this, "Achat ok !", "IsimarketClient", JOptionPane.INFORMATION_MESSAGE);
             
+        } catch (BadQuantityException ex) {
+            JOptionPane.showMessageDialog(this, "Erreur :"+ex.reason, "Erreur", JOptionPane.ERROR_MESSAGE);
+        } catch (NotEnoughCashException ex2) {
+            JOptionPane.showMessageDialog(this, "Erreur :"+ex2.reason, "Erreur", JOptionPane.ERROR_MESSAGE);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Erreur :"+e, "Erreur", JOptionPane.ERROR_MESSAGE);
         }
+        
 }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
