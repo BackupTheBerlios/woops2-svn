@@ -1,17 +1,19 @@
 <?xml version="1.0"?>
 <!-- Script for building jar application -->
-<project name="IsiMarket Client(lib)" default="build.jar" basedir="../">
+<project name="IsiMarket WS Client" default="build.jar" basedir="../">
 
 	<!-- Configure the context path for this application -->
-	<property name="project.name" value="IsiMarketClientLib" />
+	<property name="project.name" value="IsiMarketWSClient" />
 	<property name="build.dir" value="${basedir}/tmp" />
 	<property name="ant.dir" value="${basedir}" />
 	<property name="src.dir" value="${basedir}/src" />
 	<property name="src.java.dir" value="${src.dir}" />
 	<property name="lib.dir" value="${basedir}/lib" />
-	<property name="dist.dir" value="${basedir}/dist_clientlib" />
-	<property name="jar.main-class" value="isimarket.client.ConsoleClient" />
-	<property name="jar.classpath" value="lib/hsqldb.jar" />
+	<property name="dist.dir" value="${basedir}/dist_wsclient" />
+	<property name="jar.main-class" value="isimarket.ws.client.WSClient" />
+	<property name="jar.classpath" value="lib/hsqldb.jar lib/axis.jar lib/axis-ant.jar lib/commons-discovery-0.2.jar 
+											lib/commons-logging-1.0.4.jar lib/jaxrpc.jar lib/log4j-1.2.8.jar lib/saaj.jar
+											lib/wsdl4j-1.5.1.jar" />
 
 	<path id="classpath">
 		<fileset dir="${lib.dir}">
@@ -36,7 +38,8 @@
 	<!-- Executable Targets -->
 	<target name="build" depends="prepare" description="Compile Java files and copy static files.">
 		<javac srcdir="${src.java.dir}" destdir="${build.dir}/${project.name}/" source="1.5" target="1.5">
-			<exclude name="**/ws/*" />
+			<exclude name="**/ws/server/*" />
+			<include name="**/client/*" />
 			<include name="**/db/*.java" />
 			<include name="**/model/*.java" />
 			<include name="**/servants/*.java" />
@@ -72,14 +75,12 @@
 			</manifest>
 		</jar>
 		<delete dir="${build.dir}" />
-		<!--
 		<mkdir dir="${dist.dir}/lib/" />
 		<copy todir="${dist.dir}/lib/">
 			<fileset dir="${lib.dir}">
 				<include name="**/*.jar" />
 			</fileset>
 		</copy>
-		-->
 	</target>
 
 </project>

@@ -20,7 +20,22 @@ public class WSClient {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-
+		int timeRate = 60000; // ms
+		int timeEvent = 300000;
+			
+		if (args.length == 2){
+			try{
+			Integer newTR = new Integer(args[0]);
+			Integer newEv = new Integer(args[1]);
+			timeRate = newTR;
+			timeEvent = newEv;
+			}
+			catch(Exception e){
+				System.out.println("Erreur arguments !\n(1) temps generation (2) temps sauvegarde historique");
+				System.out.println("Utilise arguments par défaut ... \n");
+			}
+		}
+			
 		Thread rateManager = new Thread() {
 			public void run() {
 				while (true) {
@@ -51,7 +66,7 @@ public class WSClient {
 						codes = null;
 						System.out.println("Historique créé");
 						// temps en ms (base 5 min)
-						Thread.sleep(30000);
+						Thread.sleep(300000);
 					} catch (InterruptedException e) {
 						e.printStackTrace();
 					}
