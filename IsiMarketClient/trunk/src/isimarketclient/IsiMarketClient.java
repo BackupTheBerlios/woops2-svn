@@ -200,7 +200,6 @@ public class IsiMarketClient extends SingleFrameApplication {
         
         for(int i=0; i < events.length; i++){
             tModel.addRow(new Object[]{"",""});
-            System.out.println("t? "+tModel.getRowCount());
             tModel.setValueAt(events[i].date, i, 0);
             tModel.setValueAt(events[i].price, i, 1);
         }
@@ -244,6 +243,7 @@ public class IsiMarketClient extends SingleFrameApplication {
     
     public String checkAlarm(Alarm a){
         int i = 0;
+        String msg = "";
         String actionCode =actionCode = IsiMarketClientModel.market[i].code;
         ActionType currentActionType = IsiMarketClientModel.market[i];
         
@@ -254,26 +254,16 @@ public class IsiMarketClient extends SingleFrameApplication {
         }
         
         if (a.actionType.code.equals(actionCode)){
-            
-            if(a.type.symbol.equals("INF")){
-                if ( a.value > currentActionType.currentPrice){
-                    return "action "+a.actionType.label+" < "+a.value+"\n";
+            if ( a.type.symbol.equals("INF") || a.type.symbol.equals("SUP")){
+                if ( a.value > currentActionType.currentPrice && a.type.symbol.equals("INF")){
+                    msg =  "action "+a.actionType.label+" < "+a.value+"\n";
                 }
-                else 
-                    return "";
-            }
-            else if (a.type.symbol.equals("SUP")){
-                if ( a.value < currentActionType.currentPrice){
-                   return "action "+a.actionType.label+" > "+a.value+"\n";
+                else if ( a.value < currentActionType.currentPrice && a.type.symbol.equals("SUP")){
+                   msg = "action "+a.actionType.label+" > "+a.value+"\n";
                 }
-                else 
-                    return "";
             }
-            else
-                return "";
         }
-        else 
-            return "";
+        return msg;
     }
     
     public void getAlarmTypes(){
@@ -283,13 +273,33 @@ public class IsiMarketClient extends SingleFrameApplication {
     public void displayActionType(int rowNb) {
         displayActionTypeDialog = new DisplayActionTypeDialog(mainView.getFrame());
         ActionType at = IsiMarketClientModel.market[rowNb];
+        Event[] events = client.getEventServantRef().getEventsForActionType(at.code);
         displayActionTypeDialog.codeField.setText(at.code);
         displayActionTypeDialog.labelField.setText(at.label);
         displayActionTypeDialog.introDateField.setText(at.introductionDate);
         displayActionTypeDialog.introPriceLabel.setText("" + at.introductionPrice);
         displayActionTypeDialog.currentPriceField.setText("" + at.currentPrice);
         displayActionTypeDialog.quantityField.setText("" + at.quantity);
+        displayActionTypeDialog.highestPriceField.setText(""+maxPrice(at, events));
+        displayActionTypeDialog.lowestPriceField.setText(""+minPrice(at, events));
         show(displayActionTypeDialog);
+    }
+    public float maxPrice(ActionType at, Event[] events){
+        float price = at.introductionPrice;
+        for (int i = 1; i < events.length; i++){
+            if (price < events[i].price)
+                price = events[i].price;
+        }
+        return price;
+    }
+    
+    public float minPrice(ActionType at,Event[] events){
+        float price = at.introductionPrice;
+        for (int i = 1; i < events.length; i++){
+            if (price > events[i].price)
+                price = events[i].price;
+        }
+        return price;
     }
     
      public void displayAddAlarm(int rowNb) {
