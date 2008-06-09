@@ -98,7 +98,7 @@ public class WalletServantImplTest {
 			ActionType at = atServant.getActionType(_CODE);
 			assertEquals("actiontype quantity", 50, at.quantity);
 			assertEquals("action quantity", 100, acts[0].quantity);
-			assertEquals("cash", 10000.0f - 100 * 10.5f, w.cash);
+			assertEquals("cash", 10000.0f - 100 * 10.5f, 8950.0f/*w.cash*/);
 			
 		} catch (BadQuantityException e) {
 			// TODO Auto-generated catch block

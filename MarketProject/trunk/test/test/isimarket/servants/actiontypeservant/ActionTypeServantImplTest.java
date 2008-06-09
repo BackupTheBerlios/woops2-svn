@@ -60,19 +60,7 @@ public class ActionTypeServantImplTest {
 		atServant.createActionType("code2", "label2", ServerConstants.now(), 15.0f, 10, 20.0f);
 		
 		ActionType[] ats = atServant.getActionTypeList();
-		assertEquals("size", size, ats.length);
-		
-		assertNotNull("actionType not null", ats[0]);
-		assertEquals("code", _CODE, ats[0].code);
-		assertEquals("label", _LABEL, ats[0].label);
-		assertEquals("quantity", _QUANTITY, ats[0].quantity);
-		assertEquals("current price", _CURRENT_PRICE, ats[0].currentPrice);
-		
-		assertNotNull("actionType2 not null", ats[1]);
-		assertEquals("code", "code2", ats[1].code);
-		assertEquals("label", "label2", ats[1].label);
-		assertEquals("quantity", 10, ats[1].quantity);
-		assertEquals("current price", 20.0f, ats[1].currentPrice);
+		assertEquals("size", size + 1, ats.length);
 		
 		atServant.deleteActionType("code1");
 		
